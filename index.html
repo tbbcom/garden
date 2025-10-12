@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="All about Home & Garden Lot's Site Development">
+    <meta name="theme-color" content="#4CAF50">
+    <title>Garden - Home & Garden Lot's Site</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="icon-192.png">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌿 Garden</h1>
+            <p class="subtitle">Home & Garden Lot's Site Development</p>
+        </header>
+        
+        <main>
+            <section class="welcome">
+                <h2>Welcome to Our Garden</h2>
+                <p>Discover everything you need to know about home and garden lot's site development, including Progressive Web App features for offline access.</p>
+            </section>
+            
+            <section class="features">
+                <h2>Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>📱 Progressive Web App</h3>
+                        <p>Install on your device and access content offline</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🌱 Garden Tips</h3>
+                        <p>Expert advice for your garden development</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🏡 Home Improvement</h3>
+                        <p>Guides for home and lot development</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🔧 Resources</h3>
+                        <p>Tools and resources for your projects</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="pwa-status">
+                <h2>PWA Status</h2>
+                <p id="sw-status">Checking service worker status...</p>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 The Bukit Besi - Garden Project</p>
+        </footer>
+    </div>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered successfully:', registration);
+                        document.getElementById('sw-status').textContent = 
+                            '✅ Service Worker registered successfully! PWA is ready.';
+                        document.getElementById('sw-status').style.color = '#4CAF50';
+                    })
+                    .catch((error) => {
+                        console.error('Service Worker registration failed:', error);
+                        document.getElementById('sw-status').textContent = 
+                            '❌ Service Worker registration failed: ' + error.message;
+                        document.getElementById('sw-status').style.color = '#f44336';
+                    });
+            });
+        } else {
+            document.getElementById('sw-status').textContent = 
+                '⚠️ Service Workers are not supported in this browser.';
+            document.getElementById('sw-status').style.color = '#ff9800';
+        }
+        
+        // Handle install prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            console.log('PWA install prompt available');
+        });
+    </script>
+</body>
+</html>
