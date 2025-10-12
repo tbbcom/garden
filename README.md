@@ -1,5 +1,5 @@
-# garden
-All about Home &amp; Garden Lot's Site Development include PWA.
+# Home & Garden
+All about Home &amp; Garden Lot's Site Development include PWA via https://www.homegardenlot.com
 
 ## Features
 
