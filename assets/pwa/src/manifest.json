@@ -1,0 +1,23 @@
+{
+  "name": "Home Garden Lot",
+  "short_name": "Garden Lot",
+  "start_url": "https://www.homegardenlot.com/?utm_source=pwa",
+  "display": "standalone",
+  "background_color": "#FFF",
+  "theme_color": "#196834",
+  "description": "Everything related to homes, gardens, flowers, plants, guidance, and gardening ideas that goes above and beyond the call of duty to delight, inform, and inspire.",
+  "icons": [
+    {
+      "src": "https://cdn.jsdelivr.net/gh/tbbcom/on@main/pwa-assets/src/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/gh/tbbcom/on@main/pwa-assets/src/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
