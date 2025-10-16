@@ -9,13 +9,13 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "https://cdn.jsdelivr.net/gh/tbbcom/garden@main/assets/pwa/src/icon-192.png",
+      "src": "https://tbbcom.github.io/garden/assets/pwa/src/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "https://cdn.jsdelivr.net/gh/tbbcom/garden@main/assets/pwa/src/icon-512.png",
+      "src": "https://tbbcom.github.io/garden/assets/pwa/src/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
