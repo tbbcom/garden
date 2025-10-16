@@ -8,13 +8,13 @@
     <title>Garden - Home & Garden Lot's Site</title>
     
     <!-- PWA Manifest -->
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="https://github.com/tbbcom/garden/manifest.json">
     
     <!-- Apple Touch Icon -->
     <link rel="apple-touch-icon" href="icon-192.png">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://github.com/tbbcom/garden/styles.css">
 </head>
 <body>
     <div class="container">
@@ -67,7 +67,7 @@
         // Register Service Worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
+                navigator.serviceWorker.register('https://tbbcom.github.io/garden/sw.js')
                     .then((registration) => {
                         console.log('Service Worker registered successfully:', registration);
                         document.getElementById('sw-status').textContent = 
