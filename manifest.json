@@ -5,7 +5,7 @@
   "start_url": "https://www.homegardenlot.com/?utm_source=pwa",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#4CAF50",
+  "theme_color": "#247b49",
   "orientation": "portrait-primary",
   "icons": [
     {
