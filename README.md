@@ -1,5 +1,5 @@
-# Home & Garden
-All about Home &amp; Garden Lot's Site Development include PWA via https://www.homegardenlot.com
+# garden
+All about Home &amp; Garden Lot's Site Development include PWA.
 
 ## Features
 
@@ -38,6 +38,4 @@ Then open http://localhost:8080 in your browser.
 © <a href="https://www.homegardenlot.com/" target="_blank">Home & Garden</a> 2025.
 ### License
 
-
 MIT License - See LICENSE file for details.
-
