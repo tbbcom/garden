@@ -103,6 +103,22 @@ _Audit date: 27 Oct 2026 · Target market: USA first, global English second_
 | **Pinterest** | "Pin it" is the primary share button, pinning the featured image | Pinterest is the #1 free traffic source in the US garden niche |
 | **Accessibility** | Skip link, landmark roles, `aria-expanded` mobile menu, focus rings, dark mode via `prefers-color-scheme` | UX and quality signals |
 
+### Old-theme shortcodes (still in existing posts)
+The theme converts them in place with vanilla JS, so no post needs editing:
+
+| Shortcode | Becomes |
+|---|---|
+| `{getToc} $title={…} $expanded={true}` | The theme's table of contents, at that exact spot (without it, the TOC goes just before the first H2) |
+| `{getButton} $text={…} $color={…}` (on a link) | Styled button that keeps the link |
+| `{getCard} $type={post} $title={…}` (on a link) | Internal-link card with the post's thumbnail |
+| `{getCard} $type={download/product/custom}` | Card with title, info and button text |
+| Blockquote `{alertSuccess}` `{alertInfo}` `{alertWarning}` `{alertError}` `{codeBox}` | Colored alert box / code box |
+| `{contactForm}` | Blogger contact form (ContactForm1 widget) |
+| `{inAds}` `{ads}` `{showAds}` `{nextPage}` sidebar codes | Removed (in-article ads cause CLS; use reserved slots instead) |
+| Any other `{getX}` | Hidden, never shown as raw text |
+
+For **new** posts, write plain HTML instead (see `blogger/post-template.html`). Google reads the raw anchor text of a `{getCard}` link as `{getCard} $type={post} $title={…}`, which is useless as internal-link anchor text. When you update an old post, replace the shortcode link text with the real title, e.g. `<a href="…">How to Grow Cucumbers</a>`.
+
 > **Blogger quirk:** Blogger always lists a post's labels **alphabetically**. The theme uses the first label for the breadcrumb and related posts, so give each post **one hub label** (§4).
 
 ---

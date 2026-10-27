@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='2.1.0' lang='en' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='2.2.0' lang='en' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
 <!--
-  Home Garden Lot — Blogger theme v2.1.0 (brand palette #247b49 / zinc / Inter)
+  Home Garden Lot — Blogger theme v2.2.0 (brand palette #247b49 / zinc / Inter)
   Lightweight, schema-rich, CWV-first theme for www.homegardenlot.com
   - Inter loaded non-blocking, no jQuery, no icon font, no Blogger default CSS bundle (b:css='false')
   - JSON-LD: Organization, WebSite, BlogPosting, BreadcrumbList, CollectionPage, WebPage
@@ -144,7 +144,7 @@
 
   <b:include data='blog' name='google-analytics'/>
 
-<b:skin version='2.1.0'><![CDATA[
+<b:skin version='2.2.0'><![CDATA[
 /* =========================================================
    Home Garden Lot — design tokens
    ========================================================= */
@@ -199,7 +199,14 @@ h3{font-size:1.25rem}
 .hgl-brand-wrap{margin:0;font-size:inherit}
 .hgl-brand__logo{display:block;width:auto;height:40px;max-width:180px}
 .hgl-brand__tag{display:block;font:500 .72rem/1.2 var(--hgl-sans);color:var(--hgl-muted);letter-spacing:.02em}
-.hgl-nav{margin-left:auto}
+.hgl-nav{margin-left:auto;display:flex;align-items:center;gap:4px}
+.hgl-nav .section,.hgl-nav .widget{margin:0}
+.hgl-nav__item--drop{position:relative}
+.hgl-nav__item--drop>.hgl-nav__link::after{content:"\25BE";margin-left:6px;font-size:.8em}
+.hgl-nav__sub{list-style:none;margin:0;padding:8px;position:absolute;top:100%;left:0;min-width:230px;background:var(--hgl-surface);border-radius:var(--hgl-radius);box-shadow:var(--hgl-shadow-lg);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .15s,transform .15s;z-index:60}
+.hgl-nav__item--drop:hover>.hgl-nav__sub,.hgl-nav__item--drop:focus-within>.hgl-nav__sub{opacity:1;visibility:visible;transform:none}
+.hgl-nav__sub a{display:block;padding:8px 10px;border-radius:6px;color:var(--hgl-text);text-decoration:none;font-weight:600;font-size:.93rem}
+.hgl-nav__sub a:hover{background:var(--hgl-gray);color:var(--hgl-green)}
 .hgl-nav__list{display:flex;flex-wrap:wrap;gap:4px;list-style:none;margin:0;padding:0}
 .hgl-nav__link{display:block;padding:8px 12px;border-radius:var(--hgl-radius);text-decoration:none;color:var(--hgl-text);font-weight:700;font-size:1rem;letter-spacing:-.025em}
 .hgl-nav__link:hover{background:var(--hgl-gray);color:var(--hgl-green)}
@@ -214,6 +221,8 @@ h3{font-size:1.25rem}
   .hgl-nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--hgl-surface);border-bottom:1px solid var(--hgl-line);padding:8px 16px 16px}
   .hgl-nav.is-open{display:block}
   .hgl-nav__list{flex-direction:column}
+  .hgl-nav__sub{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;padding:0 0 0 14px;min-width:0}
+  .hgl-nav__item--drop>.hgl-nav__link::after{content:none}
   .hgl-header__bar .hgl-search{display:none}
   .hgl-nav .hgl-search{display:flex;margin-top:8px}
 }
@@ -267,7 +276,7 @@ h3{font-size:1.25rem}
 /* ===== Breadcrumbs ===== */
 .hgl-crumbs{font-size:.85rem;color:var(--hgl-muted);margin:0 0 8px}
 .hgl-crumbs ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
-.hgl-crumbs li+li::before{content:"›";margin-right:6px;color:var(--hgl-line)}
+.hgl-crumbs li+li::before{content:"\203A";margin-right:6px;color:var(--hgl-muted)}
 .hgl-crumbs a{color:var(--hgl-muted);text-decoration:none}
 .hgl-crumbs a:hover{color:var(--hgl-green)}
 
@@ -290,6 +299,7 @@ h3{font-size:1.25rem}
 .hgl-post__body th,.hgl-post__body td{border:1px solid var(--hgl-line);padding:10px 12px;text-align:left;vertical-align:top}
 .hgl-post__body th{background:var(--hgl-green-soft);font-weight:700}
 .hgl-post__body iframe{max-width:100%}
+.hgl-post__body p:empty{display:none}
 .hgl-post__body code{background:var(--hgl-green-soft);padding:.1em .35em;border-radius:4px;font-size:.9em}
 .hgl-post__updated{font-weight:600;color:var(--hgl-green-dark)}
 
@@ -310,7 +320,10 @@ h3{font-size:1.25rem}
 
 /* ===== TOC ===== */
 .hgl-toc{border:1px solid var(--hgl-line);background:var(--hgl-surface);border-radius:var(--hgl-radius);padding:0 18px;margin:0 0 1.6em}
-.hgl-toc summary{cursor:pointer;font-weight:700;padding:12px 0;list-style-position:inside}
+.hgl-toc summary{cursor:pointer;font-weight:700;padding:14px 0;list-style:none;display:flex;align-items:center;justify-content:space-between}
+.hgl-toc summary::-webkit-details-marker{display:none}
+.hgl-toc summary::after{content:"\25BE";color:var(--hgl-green);transition:transform .2s}
+.hgl-toc[open] summary::after{transform:rotate(180deg)}
 .hgl-toc ol{margin:0 0 14px;padding-left:1.2em;font-size:.95rem}
 .hgl-toc li{margin:.25em 0}
 .hgl-toc .hgl-toc__sub{padding-left:1em;list-style:circle}
@@ -324,6 +337,40 @@ h3{font-size:1.25rem}
 .hgl-share__btn:hover{border-color:var(--hgl-green);color:var(--hgl-green)}
 .hgl-share__btn--pin{background:#e60023;border-color:#e60023;color:#fff}
 .hgl-share__btn--pin:hover{color:#fff;opacity:.9}
+
+/* ===== Share icons (under the title) ===== */
+.hgl-share--top{flex-basis:100%;display:flex;gap:8px;margin:6px 0 0;padding:0;border:0}
+.hgl-share__icon{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:var(--hgl-radius);border:0;background:var(--hgl-gray);color:var(--hgl-text);cursor:pointer;box-shadow:inset 0 0 0 1px var(--hgl-line)}
+.hgl-share__icon svg{width:18px;height:18px;fill:currentColor}
+.hgl-share__icon:hover{color:#fff;background:var(--hgl-green);box-shadow:none}
+.hgl-share__icon--pinterest{background:#e60023;color:#fff;box-shadow:none}
+.hgl-share__icon--facebook:hover{background:#0866ff}
+.hgl-share__icon--x:hover{background:#09090b}
+.hgl-share__icon--whatsapp:hover{background:#25d366}
+
+/* ===== Converted shortcodes from the previous theme ===== */
+.hgl-sc-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:var(--hgl-radius);background:var(--hgl-green);color:#fff!important;font-weight:700;text-decoration:none!important;margin:4px 8px 8px 0;box-shadow:0 4px 12px rgba(36,123,73,.2)}
+.hgl-sc-btn:hover{filter:brightness(.92)}
+.hgl-sc-btn--center{display:flex;width:max-content;margin:8px auto}
+.hgl-sc-card{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:center;background:var(--hgl-surface);border-radius:var(--hgl-radius);box-shadow:var(--hgl-shadow);padding:12px;margin:1.4em 0;text-decoration:none!important;color:var(--hgl-text)!important;border-left:4px solid var(--hgl-green)}
+.hgl-sc-card:hover{box-shadow:var(--hgl-shadow-lg)}
+.hgl-sc-card__img{width:96px;height:72px;border-radius:6px;object-fit:cover;background:var(--hgl-green-soft);margin:0!important}
+.hgl-sc-card__kicker{display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--hgl-green)}
+.hgl-sc-card__title{display:block;font-weight:700;line-height:1.35;letter-spacing:-.01em}
+.hgl-sc-card__info{display:block;font-size:.85rem;color:var(--hgl-muted)}
+.hgl-alert{padding:14px 18px;border-radius:var(--hgl-radius);margin:1.4em 0;border-left:4px solid}
+.hgl-alert>*:last-child{margin-bottom:0}
+.hgl-alert--success{background:#ecfdf3;border-color:#22c55e;color:#14532d}
+.hgl-alert--info{background:#eff6ff;border-color:#3b82f6;color:#1e3a8a}
+.hgl-alert--warning{background:#fffbeb;border-color:#f59e0b;color:#78350f}
+.hgl-alert--error{background:#fef2f2;border-color:#ef4444;color:#7f1d1d}
+.hgl-code{background:#18181b;color:#fafafa;padding:16px;border-radius:var(--hgl-radius);overflow-x:auto;font-size:.88rem;white-space:pre-wrap}
+.hgl-cf{display:grid;gap:10px;max-width:560px;margin:1.4em 0}
+.hgl-cf__input{width:100%;padding:12px 14px;border:1px solid var(--hgl-line);border-radius:var(--hgl-radius);background:var(--hgl-surface);font:inherit;color:var(--hgl-text)}
+.hgl-cf__input:focus{outline:2px solid var(--hgl-green);border-color:transparent}
+.hgl-cf .hgl-btn{border:0;cursor:pointer;justify-self:start}
+.contact-form-error-message{color:#b91c1c;margin:0}
+.contact-form-success-message{color:var(--hgl-green);margin:0}
 
 /* ===== Tags ===== */
 .hgl-tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:20px 0}
@@ -434,7 +481,7 @@ body#layout .hgl-footer__grid>*{flex:1}
 
     <nav aria-label='Main' class='hgl-nav' id='hgl-nav'>
       <b:section class='hgl-nav__section' id='hgl-nav-section' maxwidgets='1' name='Main menu' showaddelement='no'>
-        <b:widget id='LinkList1' locked='true' title='Main Menu' type='LinkList' version='2' visible='true'>
+        <b:widget id='LinkList90' locked='true' title='Main Menu' type='LinkList' version='2' visible='true'>
           <b:includable id='main'>
             <ul class='hgl-nav__list'>
               <b:if cond='data:links.size != 0'>
@@ -446,9 +493,36 @@ body#layout .hgl-footer__grid>*{flex:1}
                 <li><a class='hgl-nav__link' href='/search/label/Gardening'>Gardening</a></li>
                 <li><a class='hgl-nav__link' href='/search/label/Lawn%20Care'>Lawn Care</a></li>
                 <li><a class='hgl-nav__link' href='/search/label/Home%20Improvement'>Home Improvement</a></li>
-                <li><a class='hgl-nav__link' href='/p/tools.html'>Tools</a></li>
                 <li><a class='hgl-nav__link' href='/p/about.html'>About</a></li>
               </b:if>
+            </ul>
+          </b:includable>
+        </b:widget>
+      </b:section>
+      <b:section class='hgl-nav__section' id='hgl-nav-tools' maxwidgets='1' name='Main menu: Tools dropdown' showaddelement='no'>
+        <b:widget id='LinkList91' locked='true' title='Tools' type='LinkList' version='2' visible='true'>
+          <b:includable id='main'>
+            <ul class='hgl-nav__list'>
+              <li class='hgl-nav__item--drop'>
+                <a class='hgl-nav__link' href='/p/tools.html'><b:eval expr='data:title != "" ? data:title : "Tools"'/></a>
+                <ul class='hgl-nav__sub'>
+                  <b:if cond='data:links.size != 0'>
+                    <b:loop values='data:links' var='link'>
+                      <li><a expr:href='data:link.target'><data:link.name/></a></li>
+                    </b:loop>
+                  <b:else/>
+                    <li><a href='/p/garden-calculator.html'>Garden Calculator (all-in-one)</a></li>
+                    <li><a href='/p/mulch-calculator.html'>Mulch Calculator</a></li>
+                    <li><a href='/p/soil-calculator.html'>Soil Calculator</a></li>
+                    <li><a href='/p/topsoil-gravel-calculator.html'>Topsoil &amp; Gravel Calculator</a></li>
+                    <li><a href='/p/plant-spacing-calculator.html'>Plant Spacing Calculator</a></li>
+                    <li><a href='/p/lawn-fertilizer-npk-calculator.html'>Lawn Fertilizer NPK</a></li>
+                    <li><a href='/p/irrigation-runtime-calculator.html'>Irrigation Runtime</a></li>
+                    <li><a href='/p/paver-patio-calculator.html'>Paver &amp; Patio Calculator</a></li>
+                    <li><a href='/p/flooring-calculator.html'>Flooring Calculator</a></li>
+                  </b:if>
+                </ul>
+              </li>
             </ul>
           </b:includable>
         </b:widget>
@@ -469,7 +543,7 @@ body#layout .hgl-footer__grid>*{flex:1}
       <h2 class='hgl-hero__title'>Grow more. Fix smarter. Spend less.</h2>
       <p class='hgl-hero__lead'>Tested, step-by-step guides and free calculators for vegetable gardens, lawns, landscaping and DIY home improvement — written for real homeowners.</p>
       <b:section class='hgl-hero__section' id='hgl-hero-section' maxwidgets='1' name='Homepage topic chips' showaddelement='no'>
-        <b:widget id='LinkList3' locked='true' title='Topic Hubs' type='LinkList' version='2' visible='true'>
+        <b:widget id='LinkList93' locked='true' title='Topic Hubs' type='LinkList' version='2' visible='true'>
           <b:includable id='main'>
             <ul class='hgl-hero__chips'>
               <b:if cond='data:links.size != 0'>
@@ -564,7 +638,7 @@ body#layout .hgl-footer__grid>*{flex:1}
                     </b:if>
                     <b:tag class='hgl-card__title' expr:name='data:view.isHomepage ? "h3" : "h2"'><a expr:href='data:post.url'><data:post.title/></a></b:tag>
                     <p class='hgl-card__excerpt'><data:post.snippets.short/></p>
-                    <div class='hgl-card__meta'><time expr:datetime='data:post.date.iso8601'><data:post.date/></time></div>
+                    <div class='hgl-card__meta'><time class='hgl-js-date' expr:datetime='data:post.date.iso8601'><data:post.date/></time></div>
                   </div>
                 </article>
               </b:loop>
@@ -601,12 +675,19 @@ body#layout .hgl-footer__grid>*{flex:1}
                   </b:if>
                   <span>By <data:post.author.name/></span>
                 </a>
-                <span>Published <time expr:datetime='data:post.date.iso8601'><data:post.date/></time></span>
+                <span>Published <time class='hgl-js-date' expr:datetime='data:post.date.iso8601'><data:post.date/></time></span>
                 <span class='hgl-post__updated' hidden='hidden'>Updated <time class='hgl-js-updated' expr:datetime='data:post.lastUpdated.iso8601'/></span>
                 <span class='hgl-js-readtime'/>
+                <div class='hgl-share hgl-share--top' expr:data-title='data:post.title' expr:data-url='data:post.url.canonical' expr:data-image='data:post.featuredImage ? data:post.featuredImage : ""'>
+                  <button aria-label='Save to Pinterest' class='hgl-share__icon hgl-share__icon--pinterest' data-net='pinterest' type='button'><svg aria-hidden='true' viewBox='0 0 24 24'><path d='M12 2C6.5 2 2 6.5 2 12c0 4.2 2.6 7.8 6.3 9.3-.1-.8-.2-2 0-2.9l1.2-5s-.3-.6-.3-1.5c0-1.4.8-2.5 1.8-2.5.9 0 1.3.6 1.3 1.4 0 .9-.5 2.1-.8 3.3-.2 1 .5 1.8 1.5 1.8 1.8 0 3.1-1.9 3.1-4.6 0-2.4-1.7-4.1-4.2-4.1-2.9 0-4.5 2.1-4.5 4.4 0 .9.3 1.8.8 2.3.1.1.1.2.1.3l-.3 1.2c0 .2-.2.2-.4.1-1.3-.6-2.1-2.5-2.1-4 0-3.3 2.4-6.3 6.9-6.3 3.6 0 6.4 2.6 6.4 6 0 3.6-2.3 6.5-5.4 6.5-1.1 0-2.1-.6-2.4-1.2l-.7 2.5c-.2.9-.9 2.1-1.3 2.8.9.3 1.9.4 2.9.4 5.5 0 10-4.5 10-10S17.5 2 12 2z'/></svg></button>
+                  <button aria-label='Share on Facebook' class='hgl-share__icon hgl-share__icon--facebook' data-net='facebook' type='button'><svg aria-hidden='true' viewBox='0 0 24 24'><path d='M14 9h3V5.5h-3c-2.5 0-4 1.6-4 4V11H7.5v3.5H10V22h3.5v-7.5H16l.5-3.5h-3V9.8c0-.5.3-.8.5-.8z'/></svg></button>
+                  <button aria-label='Share on X' class='hgl-share__icon hgl-share__icon--x' data-net='x' type='button'><svg aria-hidden='true' viewBox='0 0 24 24'><path d='M17.8 3H21l-7 8 8.2 10h-6.4l-5-6.1L5 21H1.8l7.5-8.6L1.5 3h6.6l4.5 5.6L17.8 3zm-1.1 16.2h1.8L7.4 4.7H5.5l11.2 14.5z'/></svg></button>
+                  <button aria-label='Share on WhatsApp' class='hgl-share__icon hgl-share__icon--whatsapp' data-net='whatsapp' type='button'><svg aria-hidden='true' viewBox='0 0 24 24'><path d='M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.7 14.2c-.2.7-1.4 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1-3.2-1-5.3-4.2-5.5-4.4-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z'/></svg></button>
+                  <button aria-label='Copy link' class='hgl-share__icon hgl-share__icon--copy' data-net='copy' type='button'><svg aria-hidden='true' viewBox='0 0 24 24'><path d='M10.6 13.4a1 1 0 0 0 1.4 0l4-4a3 3 0 0 0-4.2-4.2l-1.5 1.5 1.4 1.4 1.5-1.5a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 0 0 1.4zm2.8-2.8a1 1 0 0 0-1.4 0l-4 4a3 3 0 0 0 4.2 4.2l1.5-1.5-1.4-1.4-1.5 1.5a1 1 0 0 1-1.4-1.4l4-4a1 1 0 0 0 0-1.4z'/></svg></button>
+                </div>
               </div>
-              <details class='hgl-toc' id='hgl-toc' open='open'>
-                <summary>In this guide</summary>
+              <details class='hgl-toc' hidden='hidden' id='hgl-toc' open='open'>
+                <summary><span class='hgl-toc__title'>In this guide</span></summary>
                 <ol class='hgl-toc__list'/>
               </details>
             </b:if>
@@ -727,7 +808,7 @@ body#layout .hgl-footer__grid>*{flex:1}
   <aside aria-label='Sidebar' class='hgl-sidebar'>
     <b:section class='hgl-sidebar__section' id='hgl-sidebar-section' name='Sidebar' showaddelement='yes'>
 
-      <b:widget id='HTML1' locked='false' title='Ad: Sidebar top' type='HTML' version='2' visible='true'>
+      <b:widget id='HTML90' locked='false' title='Ad: Sidebar top' type='HTML' version='2' visible='true'>
         <b:includable id='main'>
           <b:if cond='data:content'>
             <div class='hgl-ad'><data:content/></div>
@@ -735,7 +816,7 @@ body#layout .hgl-footer__grid>*{flex:1}
         </b:includable>
       </b:widget>
 
-      <b:widget id='HTML2' locked='false' title='Free Garden Calculators' type='HTML' version='2' visible='true'>
+      <b:widget id='HTML91' locked='false' title='Free Garden Calculators' type='HTML' version='2' visible='true'>
         <b:includable id='main'>
           <div class='hgl-box hgl-html'>
             <b:if cond='data:title != ""'><h2 class='hgl-widget__title'><data:title/></h2></b:if>
@@ -796,11 +877,31 @@ body#layout .hgl-footer__grid>*{flex:1}
   </aside>
 </div>
 
+<div hidden='hidden' id='hgl-contact'>
+  <b:section class='hgl-contact__section' id='hgl-contact-section' maxwidgets='1' name='Contact form (shown via {contactForm})' showaddelement='no'>
+    <b:widget id='ContactForm1' locked='true' title='Contact Form' type='ContactForm' version='2' visible='true'>
+      <b:includable id='main'>
+        <form class='hgl-cf' name='contact-form'>
+          <label class='hgl-sr' expr:for='data:widget.instanceId + "_contact-form-name"'>Name</label>
+          <input class='contact-form-name hgl-cf__input' expr:id='data:widget.instanceId + "_contact-form-name"' name='name' placeholder='Your name' size='30' type='text' value=''/>
+          <label class='hgl-sr' expr:for='data:widget.instanceId + "_contact-form-email"'>Email</label>
+          <input class='contact-form-email hgl-cf__input' expr:id='data:widget.instanceId + "_contact-form-email"' name='email' placeholder='Email *' size='30' type='text' value=''/>
+          <label class='hgl-sr' expr:for='data:widget.instanceId + "_contact-form-email-message"'>Message</label>
+          <textarea class='contact-form-email-message hgl-cf__input' cols='25' expr:id='data:widget.instanceId + "_contact-form-email-message"' name='email-message' placeholder='Message *' rows='6'/>
+          <button class='contact-form-button contact-form-button-submit hgl-btn' expr:id='data:widget.instanceId + "_contact-form-submit"' type='button' value=''><data:contactFormSendMsg/></button>
+          <p class='contact-form-error-message' expr:id='data:widget.instanceId + "_contact-form-error-message"'/>
+          <p class='contact-form-success-message' expr:id='data:widget.instanceId + "_contact-form-success-message"'/>
+        </form>
+      </b:includable>
+    </b:widget>
+  </b:section>
+</div>
+
 <!-- ===================== FOOTER ===================== -->
 <footer class='hgl-footer'>
   <div class='hgl-footer__grid'>
     <b:section class='hgl-footer__about' id='hgl-footer-1' maxwidgets='1' name='Footer: about' showaddelement='no'>
-      <b:widget id='HTML3' locked='true' title='About Home Garden Lot' type='HTML' version='2' visible='true'>
+      <b:widget id='HTML92' locked='true' title='About Home Garden Lot' type='HTML' version='2' visible='true'>
         <b:includable id='main'>
           <div class='hgl-html'>
             <img alt='' class='hgl-footer__logo' height='113' loading='lazy' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhIo4Cmr0j6i3FcM5GFYP8QHCeqO6sd_t-b6kU0IDQ6bJDArrc5G2SCvu5SW5yzLjzD4DWWqhFPNzAn1lRMYT6u9nU2DGiluEv4HTFaY_y319krV9Lkh_l5aMVSXtcjKoBjnK9s3joOvJnkkz8T6pBfdrSlg7LsEeQ4em9SfHcK9FQhjQ/s463/light-footer.png' width='463'/>
@@ -815,7 +916,7 @@ body#layout .hgl-footer__grid>*{flex:1}
       </b:widget>
     </b:section>
     <b:section class='hgl-footer__links' id='hgl-footer-2' maxwidgets='1' name='Footer: site links' showaddelement='no'>
-      <b:widget id='LinkList2' locked='true' title='Company' type='LinkList' version='2' visible='true'>
+      <b:widget id='LinkList92' locked='true' title='Company' type='LinkList' version='2' visible='true'>
         <b:includable id='main'>
           <h2 class='hgl-widget__title'><data:title/></h2>
           <ul class='hgl-footer__list'>
@@ -837,7 +938,7 @@ body#layout .hgl-footer__grid>*{flex:1}
       </b:widget>
     </b:section>
     <b:section class='hgl-footer__topics' id='hgl-footer-3' maxwidgets='1' name='Footer: topics' showaddelement='no'>
-      <b:widget id='LinkList4' locked='true' title='Popular Topics' type='LinkList' version='2' visible='true'>
+      <b:widget id='LinkList94' locked='true' title='Popular Topics' type='LinkList' version='2' visible='true'>
         <b:includable id='main'>
           <h2 class='hgl-widget__title'><data:title/></h2>
           <ul class='hgl-footer__list'>
@@ -887,8 +988,131 @@ body#layout .hgl-footer__grid>*{flex:1}
     });
   }
 
+  // Blogger's date text follows the blog's locale settings; show a US-style date with the year.
+  d.querySelectorAll('.hgl-js-date').forEach(function (t) {
+    var dt = new Date(t.getAttribute('datetime'));
+    if (!isNaN(dt)) t.textContent = dt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  });
+
   var body = d.getElementById('hgl-post-body');
   if (!body) return;
+
+  // ---- Shortcodes left in posts by the previous theme ({getToc}, {getCard}, {getButton}, alerts…) ----
+  var attr = function (text, name) {
+    var m = text.match(new RegExp('\\$' + name + '=\\{([^}]*)\\}'));
+    return m ? m[1].trim() : '';
+  };
+  // Replace the shortcode's whole paragraph when the shortcode is all it contains.
+  var block = function (el) {
+    var par = el.parentNode;
+    return par && par !== body && /^(P|DIV|SPAN)$/.test(par.tagName) && par.textContent.trim() === el.textContent.trim() ? block(par) : el;
+  };
+  var tocSlot = null;
+  body.querySelectorAll('b, strong').forEach(function (el) {
+    var t = el.textContent.trim();
+    if (t.charAt(0) !== '{' && t.charAt(0) !== '$') return;
+    var target = block(el);
+    if (/^\{getToc\}/.test(t)) {
+      tocSlot = { el: target, title: attr(t, 'title'), expanded: attr(t, 'expanded') };
+      return;
+    }
+    if (/^\{contactForm\}/.test(t)) {
+      var form = d.querySelector('#hgl-contact form');
+      if (form) { target.parentNode.replaceChild(form, target); return; }
+    }
+    if (/^\{(inAds|ads|showAds|nextPage|leftSidebar|rightSidebar|noSidebar|fullWidth|contactForm)\}|^\$ads=/.test(t)) {
+      target.parentNode.removeChild(target);
+    }
+  });
+
+  body.querySelectorAll('a').forEach(function (a) {
+    var t = a.textContent;
+    if (t.indexOf('{getButton}') > -1) {
+      var label = attr(t, 'text') || 'Open';
+      a.className = 'hgl-sc-btn';
+      a.textContent = label;
+      if (attr(t, 'color')) a.style.background = attr(t, 'color');
+      var par = a.parentNode;
+      if (par && /center/.test(par.getAttribute('style') || '')) a.classList.add('hgl-sc-btn--center');
+    } else if (t.indexOf('{getCard}') > -1) {
+      var type = attr(t, 'type') || 'post';
+      var title = attr(t, 'title') || attr(t, 'text') || a.getAttribute('href');
+      var card = d.createElement('a');
+      card.className = 'hgl-sc-card';
+      card.href = a.getAttribute('href') || '#';
+      if (a.target) card.target = a.target;
+      var img = d.createElement('img');
+      img.className = 'hgl-sc-card__img';
+      img.alt = '';
+      img.width = 96;
+      img.height = 72;
+      img.loading = 'lazy';
+      img.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+      var info = d.createElement('span');
+      var kick = d.createElement('span');
+      kick.className = 'hgl-sc-card__kicker';
+      kick.textContent = type === 'post' ? 'Related guide' : (attr(t, 'button') || 'Open');
+      var ttl = d.createElement('span');
+      ttl.className = 'hgl-sc-card__title';
+      ttl.textContent = title;
+      info.appendChild(kick);
+      info.appendChild(ttl);
+      if (attr(t, 'info')) {
+        var meta = d.createElement('span');
+        meta.className = 'hgl-sc-card__info';
+        meta.textContent = attr(t, 'info');
+        info.appendChild(meta);
+      }
+      card.appendChild(img);
+      card.appendChild(info);
+      block(a).parentNode.replaceChild(card, block(a));
+      if (type === 'post' && card.hostname === location.hostname) {
+        fetch('/feeds/posts/summary?alt=json&max-results=5&q=' + encodeURIComponent('"' + title + '"'))
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            var path = card.pathname;
+            (data.feed.entry || []).some(function (en) {
+              var l = (en.link || []).filter(function (x) { return x.rel === 'alternate'; })[0];
+              if (!l || l.href.indexOf(path) === -1) return false;
+              if (en.media$thumbnail) img.src = en.media$thumbnail.url.replace(/\/s\d+(-c)?\//, '/w192-h144-p-k-no-nu/').replace(/=s\d+(-c)?$/, '=w192-h144-p-k-no-nu');
+              return true;
+            });
+          })
+          .catch(function () {});
+      }
+    }
+  });
+
+  var alerts = { alertSuccess: 'success', alertInfo: 'info', alertWarning: 'warning', alertError: 'error', codeBox: 'code' };
+  body.querySelectorAll('blockquote').forEach(function (q) {
+    Object.keys(alerts).some(function (k) {
+      if (q.textContent.indexOf('{' + k + '}') === -1) return false;
+      var box = d.createElement(alerts[k] === 'code' ? 'pre' : 'div');
+      box.className = alerts[k] === 'code' ? 'hgl-code' : 'hgl-alert hgl-alert--' + alerts[k];
+      box.innerHTML = q.innerHTML.replace('{' + k + '}', '');
+      q.parentNode.replaceChild(box, q);
+      return true;
+    });
+  });
+
+  // Any other leftover {getX} shortcode text is hidden rather than shown raw.
+  body.querySelectorAll('p, b, strong, a, span').forEach(function (el) {
+    if (el.isConnected && /^\s*\{get(?!Toc)[A-Za-z]+\}/.test(el.textContent) && el.textContent.length < 400) {
+      var target = block(el);
+      if (target.parentNode) target.parentNode.removeChild(target);
+    }
+  });
+
+  // Blogger's image editor leaves stray <br>s around image blocks, creating big gaps.
+  body.querySelectorAll('.separator').forEach(function (sep) {
+    [sep.previousSibling, sep.nextSibling].forEach(function (n) {
+      while (n && (n.nodeName === 'BR' || (n.nodeType === 3 && !n.textContent.trim()))) {
+        var next = n === sep.previousSibling ? n.previousSibling : n.nextSibling;
+        if (n.nodeName === 'BR') n.parentNode.removeChild(n);
+        n = next;
+      }
+    });
+  });
 
   // Show "Updated" only when the edit is at least a day after publish.
   var upd = d.querySelector('.hgl-js-updated');
@@ -915,13 +1139,23 @@ body#layout .hgl-footer__grid>*{flex:1}
     }
   });
 
-  // Table of contents from H2/H3; removed when the post is too short to need one.
+  // Table of contents from H2/H3, placed where {getToc} was, otherwise just before the first H2
+  // so the intro (the direct answer) stays at the top. Removed when the post is too short to need one.
   var toc = d.getElementById('hgl-toc');
   if (toc) {
     var heads = body.querySelectorAll('h2, h3');
     if (heads.length < 3) {
       toc.parentNode.removeChild(toc);
+      if (tocSlot) tocSlot.el.parentNode.removeChild(tocSlot.el);
     } else {
+      if (tocSlot) {
+        tocSlot.el.parentNode.replaceChild(toc, tocSlot.el);
+        if (tocSlot.title) toc.querySelector('.hgl-toc__title').textContent = tocSlot.title;
+      } else {
+        var firstH2 = body.querySelector('h2');
+        if (firstH2) firstH2.parentNode.insertBefore(toc, firstH2);
+      }
+      toc.hidden = false;
       var list = toc.querySelector('.hgl-toc__list');
       var used = {};
       var sub = null;
@@ -950,12 +1184,11 @@ body#layout .hgl-footer__grid>*{flex:1}
           sub = null;
         }
       });
-      if (window.matchMedia('(max-width: 700px)').matches) toc.open = false;
+      toc.open = tocSlot && tocSlot.expanded ? tocSlot.expanded === 'true' : !window.matchMedia('(max-width: 700px)').matches;
     }
   }
 
-  var share = d.querySelector('.hgl-share');
-  if (share) {
+  d.querySelectorAll('.hgl-share').forEach(function (share) {
     share.addEventListener('click', function (e) {
       var btn = e.target.closest('[data-net]');
       if (!btn) return;
@@ -970,12 +1203,16 @@ body#layout .hgl-footer__grid>*{flex:1}
       };
       var net = btn.getAttribute('data-net');
       if (net === 'copy') {
-        if (navigator.clipboard) navigator.clipboard.writeText(share.dataset.url).then(function () { btn.textContent = 'Copied!'; });
+        if (navigator.clipboard) navigator.clipboard.writeText(share.dataset.url).then(function () {
+          if (btn.querySelector('svg')) btn.setAttribute('aria-label', 'Copied!'); else btn.textContent = 'Copied!';
+          btn.style.background = 'var(--hgl-green)';
+          btn.style.color = '#fff';
+        });
         return;
       }
       window.open(targets[net], '_blank', 'noopener,width=640,height=560');
     });
-  }
+  });
 
   // Related posts from the first label's JSON feed, loaded only when the section nears the viewport.
   var rel = d.querySelector('.hgl-related');
