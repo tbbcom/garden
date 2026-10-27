@@ -1,0 +1,988 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='2.0.0' lang='en' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<!--
+  Home Garden Lot — Blogger theme v2.0.0
+  Lightweight, schema-rich, CWV-first theme for www.homegardenlot.com
+  - No web fonts, no jQuery, no Blogger default CSS bundle (b:css='false')
+  - JSON-LD: Organization, WebSite, BlogPosting, BreadcrumbList, CollectionPage, WebPage
+  - Every image has width/height (CLS), first card image is the LCP candidate (fetchpriority=high)
+-->
+<head>
+  <meta charset='UTF-8'/>
+  <meta content='width=device-width, initial-scale=1' name='viewport'/>
+  <meta content='#2f6b3a' name='theme-color'/>
+  <meta content='IE=edge' http-equiv='X-UA-Compatible'/>
+
+  <!-- ===== Title ===== -->
+  <b:if cond='data:view.isHomepage'>
+    <title><data:blog.title.escaped/>: Garden &amp; Home Improvement Guides</title>
+  <b:elseif cond='data:view.isLabelSearch'/>
+    <title><data:view.search.label.escaped/>: Guides, Tips &amp; How-Tos | <data:blog.title.escaped/></title>
+  <b:elseif cond='data:view.isSearch'/>
+    <title>Search results | <data:blog.title.escaped/></title>
+  <b:elseif cond='data:view.isArchive'/>
+    <title>Archive: <data:view.archive.rangeMessage.escaped/> | <data:blog.title.escaped/></title>
+  <b:elseif cond='data:view.isError'/>
+    <title>Page not found (404) | <data:blog.title.escaped/></title>
+  <b:else/>
+    <title><data:view.title.escaped/></title>
+  </b:if>
+
+  <!-- ===== Robots: index content, keep thin/duplicate views out ===== -->
+  <b:if cond='data:view.isArchive or data:view.isError or (data:view.isSearch and not data:view.isLabelSearch)'>
+    <meta content='noindex, follow' name='robots'/>
+  <b:else/>
+    <meta content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' name='robots'/>
+  </b:if>
+
+  <!-- ===== Description ===== -->
+  <b:if cond='data:view.isLabelSearch'>
+    <meta expr:content='"Practical, tested " + data:view.search.label + " guides, tips and how-tos for home gardeners and DIY homeowners from " + data:blog.title + "."' name='description'/>
+  <b:elseif cond='data:view.description'/>
+    <meta expr:content='data:view.description' name='description'/>
+  </b:if>
+
+  <!-- ===== Canonical, feeds, icons ===== -->
+  <link expr:href='data:view.url.canonical' rel='canonical'/>
+  <link expr:href='data:blog.homepageUrl.canonical + "feeds/posts/default"' rel='alternate' expr:title='data:blog.title + " - Atom"' type='application/atom+xml'/>
+  <link expr:href='data:blog.homepageUrl.canonical + "feeds/posts/default?alt=rss"' rel='alternate' expr:title='data:blog.title + " - RSS"' type='application/rss+xml'/>
+  <link expr:href='data:blog.blogspotFaviconUrl' rel='icon' type='image/x-icon'/>
+  <link href='https://blogger.googleusercontent.com' rel='preconnect'/>
+  <link href='https://blogger.googleusercontent.com' rel='dns-prefetch'/>
+
+  <!-- ===== Open Graph / Twitter ===== -->
+  <meta expr:content='data:blog.title' property='og:site_name'/>
+  <meta content='en_US' property='og:locale'/>
+  <meta expr:content='data:view.isSingleItem ? data:view.title : data:blog.title' property='og:title'/>
+  <meta expr:content='data:view.url.canonical' property='og:url'/>
+  <meta expr:content='data:view.isPost ? "article" : "website"' property='og:type'/>
+  <b:if cond='data:view.description'>
+    <meta expr:content='data:view.description' property='og:description'/>
+    <meta expr:content='data:view.description' name='twitter:description'/>
+  </b:if>
+  <b:if cond='data:view.featuredImage'>
+    <meta expr:content='data:view.featuredImage.isResizable ? resizeImage(data:view.featuredImage, 1200, "1200:630") : data:view.featuredImage' property='og:image'/>
+    <meta content='1200' property='og:image:width'/>
+    <meta content='630' property='og:image:height'/>
+    <meta expr:content='data:view.featuredImage.isResizable ? resizeImage(data:view.featuredImage, 1200, "1200:630") : data:view.featuredImage' name='twitter:image'/>
+  </b:if>
+  <meta content='summary_large_image' name='twitter:card'/>
+  <meta expr:content='data:view.isSingleItem ? data:view.title : data:blog.title' name='twitter:title'/>
+  <b:if cond='data:view.isPost'>
+    <meta expr:content='data:view.url.canonical' property='article:url'/>
+  </b:if>
+
+  <!-- ===== Site-wide JSON-LD (Organization + WebSite) ===== -->
+  <script type='application/ld+json'>{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "<data:blog.homepageUrl.canonical/>#organization",
+      "name": "<data:blog.title.jsonEscaped/>",
+      "url": "<data:blog.homepageUrl.canonical/>",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "<data:blog.homepageUrl.canonical/>favicon.ico"
+      },
+      "sameAs": [
+        "https://www.pinterest.com/homegardenlot/",
+        "https://www.facebook.com/homegardenlot",
+        "https://github.com/tbbcom"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "<data:blog.homepageUrl.canonical/>#website",
+      "name": "<data:blog.title.jsonEscaped/>",
+      "url": "<data:blog.homepageUrl.canonical/>",
+      "inLanguage": "en-US",
+      "publisher": { "@id": "<data:blog.homepageUrl.canonical/>#organization" }
+    }
+  ]
+}</script>
+
+  <b:if cond='data:view.isLabelSearch'>
+  <script type='application/ld+json'>{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "<data:view.search.label.jsonEscaped/>",
+  "url": "<data:view.url.canonical/>",
+  "isPartOf": { "@id": "<data:blog.homepageUrl.canonical/>#website" },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "<data:blog.homepageUrl.canonical/>" },
+      { "@type": "ListItem", "position": 2, "name": "<data:view.search.label.jsonEscaped/>", "item": "<data:view.url.canonical/>" }
+    ]
+  }
+}</script>
+  </b:if>
+
+  <b:if cond='data:view.isPage'>
+  <script type='application/ld+json'>{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "<data:view.title.jsonEscaped/>",
+  "url": "<data:view.url.canonical/>",
+  "inLanguage": "en-US",
+  "isPartOf": { "@id": "<data:blog.homepageUrl.canonical/>#website" },
+  "publisher": { "@id": "<data:blog.homepageUrl.canonical/>#organization" }
+}</script>
+  </b:if>
+
+  <b:include data='blog' name='google-analytics'/>
+
+<b:skin version='2.0.0'><![CDATA[
+/* =========================================================
+   Home Garden Lot — design tokens
+   ========================================================= */
+:root{
+  --hgl-green:#2f6b3a;
+  --hgl-green-dark:#21502a;
+  --hgl-green-soft:#e8f1e6;
+  --hgl-earth:#8a5a2b;
+  --hgl-sun:#f2b134;
+  --hgl-bg:#fbfaf6;
+  --hgl-surface:#ffffff;
+  --hgl-text:#1f2a22;
+  --hgl-muted:#5b665e;
+  --hgl-line:#e3e6df;
+  --hgl-radius:12px;
+  --hgl-shadow:0 1px 2px rgba(20,40,25,.06),0 4px 16px rgba(20,40,25,.06);
+  --hgl-max:1180px;
+  --hgl-read:720px;
+  --hgl-sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --hgl-serif:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --hgl-green:#7cc68a;
+    --hgl-green-dark:#a5dcae;
+    --hgl-green-soft:#1d2b20;
+    --hgl-earth:#d7a46f;
+    --hgl-bg:#121713;
+    --hgl-surface:#1a211c;
+    --hgl-text:#e7ece6;
+    --hgl-muted:#a6b1a8;
+    --hgl-line:#2c362f;
+    --hgl-shadow:none;
+  }
+}
+
+/* ===== Base ===== */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--hgl-bg);color:var(--hgl-text);font:400 1.0625rem/1.7 var(--hgl-sans);text-rendering:optimizeLegibility}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--hgl-green);text-underline-offset:.18em}
+a:hover{color:var(--hgl-green-dark)}
+h1,h2,h3,h4{font-family:var(--hgl-serif);line-height:1.25;color:var(--hgl-text);margin:1.6em 0 .6em}
+h1{font-size:clamp(1.75rem,4vw,2.5rem);margin-top:.3em}
+h2{font-size:clamp(1.4rem,3vw,1.75rem)}
+h3{font-size:1.25rem}
+:focus-visible{outline:3px solid var(--hgl-sun);outline-offset:2px}
+.hgl-skip{position:absolute;left:-999px;top:0;background:var(--hgl-green);color:#fff;padding:.6em 1em;z-index:100}
+.hgl-skip:focus{left:8px;top:8px}
+.hgl-wrap{max-width:var(--hgl-max);margin:0 auto;padding:0 16px}
+.hgl-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ===== Header ===== */
+.hgl-header{background:var(--hgl-surface);border-bottom:1px solid var(--hgl-line);position:sticky;top:0;z-index:50}
+.hgl-header__bar{display:flex;align-items:center;gap:16px;min-height:64px}
+.hgl-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--hgl-text);margin:0;font:700 1.2rem/1.1 var(--hgl-serif)}
+.hgl-brand-wrap{margin:0;font-size:inherit}
+.hgl-brand__mark{width:34px;height:34px;flex:none}
+.hgl-brand__tag{display:block;font:500 .72rem/1.2 var(--hgl-sans);color:var(--hgl-muted);letter-spacing:.02em}
+.hgl-nav{margin-left:auto}
+.hgl-nav__list{display:flex;flex-wrap:wrap;gap:4px;list-style:none;margin:0;padding:0}
+.hgl-nav__link{display:block;padding:8px 12px;border-radius:8px;text-decoration:none;color:var(--hgl-text);font-weight:600;font-size:.95rem}
+.hgl-nav__link:hover{background:var(--hgl-green-soft);color:var(--hgl-green-dark)}
+.hgl-nav__toggle{display:none;margin-left:auto;background:none;border:1px solid var(--hgl-line);border-radius:8px;padding:8px 10px;color:var(--hgl-text);font:600 .9rem var(--hgl-sans);cursor:pointer}
+.hgl-search{display:flex;border:1px solid var(--hgl-line);border-radius:999px;overflow:hidden;background:var(--hgl-bg)}
+.hgl-search__input{border:0;background:transparent;padding:8px 14px;width:170px;font:inherit;font-size:.9rem;color:var(--hgl-text)}
+.hgl-search__btn{border:0;background:var(--hgl-green);color:#fff;padding:0 14px;cursor:pointer;font-weight:700}
+@media (max-width:900px){
+  .hgl-nav__toggle{display:block}
+  .hgl-nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--hgl-surface);border-bottom:1px solid var(--hgl-line);padding:8px 16px 16px}
+  .hgl-nav.is-open{display:block}
+  .hgl-nav__list{flex-direction:column}
+  .hgl-header__bar .hgl-search{display:none}
+  .hgl-nav .hgl-search{display:flex;margin-top:8px}
+}
+@media (min-width:901px){.hgl-nav .hgl-search{display:none}}
+
+/* ===== Layout ===== */
+.hgl-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:40px;padding:28px 16px 48px;max-width:var(--hgl-max);margin:0 auto}
+.hgl-body--page .hgl-layout{grid-template-columns:minmax(0,1fr)}
+.hgl-body--page .hgl-sidebar{display:none}
+@media (max-width:960px){.hgl-layout{grid-template-columns:minmax(0,1fr)}}
+
+/* ===== Hero (homepage) ===== */
+.hgl-hero{background:linear-gradient(135deg,var(--hgl-green-soft),var(--hgl-bg));border-bottom:1px solid var(--hgl-line)}
+.hgl-hero__inner{padding:36px 16px 32px;max-width:var(--hgl-max);margin:0 auto}
+.hgl-hero__title{margin:0 0 .4em;font-size:clamp(1.8rem,4.5vw,2.75rem)}
+.hgl-hero__lead{margin:0;max-width:640px;color:var(--hgl-muted);font-size:1.1rem}
+.hgl-hero__chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding:0;list-style:none}
+.hgl-chip{display:inline-block;padding:6px 14px;border-radius:999px;background:var(--hgl-surface);border:1px solid var(--hgl-line);text-decoration:none;font-weight:600;font-size:.9rem;color:var(--hgl-text)}
+.hgl-chip:hover{border-color:var(--hgl-green);color:var(--hgl-green)}
+
+/* ===== Archive heading ===== */
+.hgl-archive{margin:0 0 24px;padding-bottom:16px;border-bottom:1px solid var(--hgl-line)}
+.hgl-archive__kicker{margin:0;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--hgl-earth)}
+.hgl-archive__title{margin:.2em 0 .3em}
+.hgl-archive__desc{margin:0;color:var(--hgl-muted)}
+
+/* ===== Cards ===== */
+.hgl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px}
+.hgl-card{background:var(--hgl-surface);border:1px solid var(--hgl-line);border-radius:var(--hgl-radius);overflow:hidden;box-shadow:var(--hgl-shadow);display:flex;flex-direction:column}
+.hgl-card__media{display:block;aspect-ratio:16/9;background:var(--hgl-green-soft);overflow:hidden}
+.hgl-card__img{width:100%;height:100%;object-fit:cover}
+.hgl-card__body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.hgl-card__label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--hgl-earth);text-decoration:none}
+.hgl-card__title{margin:0;font-size:1.15rem;line-height:1.3}
+.hgl-card__title a{color:var(--hgl-text);text-decoration:none}
+.hgl-card__title a:hover{color:var(--hgl-green)}
+.hgl-card__excerpt{margin:0;color:var(--hgl-muted);font-size:.95rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.hgl-card__meta{margin-top:auto;font-size:.82rem;color:var(--hgl-muted)}
+.hgl-card--lead{grid-column:1/-1;display:grid;grid-template-columns:1.3fr 1fr}
+.hgl-card--lead .hgl-card__media{aspect-ratio:auto;min-height:100%}
+.hgl-card--lead .hgl-card__title{font-size:clamp(1.35rem,2.6vw,1.75rem)}
+@media (max-width:700px){.hgl-card--lead{grid-template-columns:1fr}.hgl-card--lead .hgl-card__media{aspect-ratio:16/9}}
+
+/* ===== Pager ===== */
+.hgl-pager{display:flex;justify-content:space-between;gap:12px;margin:32px 0 0}
+.hgl-pager__link{display:inline-block;padding:10px 18px;border-radius:999px;border:1px solid var(--hgl-line);background:var(--hgl-surface);text-decoration:none;font-weight:700}
+.hgl-pager__link--older{margin-left:auto}
+
+/* ===== Breadcrumbs ===== */
+.hgl-crumbs{font-size:.85rem;color:var(--hgl-muted);margin:0 0 8px}
+.hgl-crumbs ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.hgl-crumbs li+li::before{content:"›";margin-right:6px;color:var(--hgl-line)}
+.hgl-crumbs a{color:var(--hgl-muted);text-decoration:none}
+.hgl-crumbs a:hover{color:var(--hgl-green)}
+
+/* ===== Single post ===== */
+.hgl-post{max-width:var(--hgl-read)}
+.hgl-post__title{margin:.2em 0 .4em}
+.hgl-post__meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;font-size:.88rem;color:var(--hgl-muted);padding-bottom:16px;border-bottom:1px solid var(--hgl-line);margin-bottom:24px}
+.hgl-post__author{display:flex;align-items:center;gap:8px;color:var(--hgl-text);font-weight:600;text-decoration:none}
+.hgl-post__avatar{width:32px;height:32px;border-radius:50%;object-fit:cover}
+.hgl-post__body{font-size:1.0625rem;overflow-wrap:break-word}
+.hgl-post__body>*:first-child{margin-top:0}
+.hgl-post__body p,.hgl-post__body ul,.hgl-post__body ol{margin:0 0 1.15em}
+.hgl-post__body li{margin:.3em 0}
+.hgl-post__body img{border-radius:10px;margin:0 auto}
+.hgl-post__body .separator a{margin:0!important}
+.hgl-post__body .tr-caption-container{margin:1.2em auto}
+.hgl-post__body .tr-caption{font-size:.85rem;color:var(--hgl-muted);padding-top:6px}
+.hgl-post__body blockquote{margin:1.4em 0;padding:4px 0 4px 18px;border-left:4px solid var(--hgl-green);color:var(--hgl-muted);font-style:italic}
+.hgl-post__body table{width:100%;border-collapse:collapse;margin:1.4em 0;font-size:.95rem;display:block;overflow-x:auto}
+.hgl-post__body th,.hgl-post__body td{border:1px solid var(--hgl-line);padding:10px 12px;text-align:left;vertical-align:top}
+.hgl-post__body th{background:var(--hgl-green-soft);font-weight:700}
+.hgl-post__body iframe{max-width:100%}
+.hgl-post__body code{background:var(--hgl-green-soft);padding:.1em .35em;border-radius:4px;font-size:.9em}
+.hgl-post__updated{font-weight:600;color:var(--hgl-green-dark)}
+
+/* ===== Editorial blocks (use these classes in the post HTML editor) ===== */
+.hgl-answer{background:var(--hgl-green-soft);border:1px solid var(--hgl-green);border-radius:var(--hgl-radius);padding:16px 20px;margin:0 0 1.5em}
+.hgl-answer__label{display:block;font:700 .75rem/1 var(--hgl-sans);text-transform:uppercase;letter-spacing:.08em;color:var(--hgl-green-dark);margin-bottom:8px}
+.hgl-answer p:last-child{margin-bottom:0}
+.hgl-takeaways{border-left:4px solid var(--hgl-sun);background:var(--hgl-surface);padding:14px 20px;margin:1.5em 0;border-radius:0 var(--hgl-radius) var(--hgl-radius) 0;box-shadow:var(--hgl-shadow)}
+.hgl-takeaways ul{margin:.4em 0 0}
+.hgl-note,.hgl-warning{padding:12px 16px;border-radius:10px;margin:1.4em 0;font-size:.97rem}
+.hgl-note{background:#eef5fb;border:1px solid #c8dcef;color:#1f3a52}
+.hgl-warning{background:#fff6e6;border:1px solid #f0d49b;color:#5a3d06}
+.hgl-faq details{border:1px solid var(--hgl-line);border-radius:10px;padding:0 16px;margin:.6em 0;background:var(--hgl-surface)}
+.hgl-faq summary{cursor:pointer;font-weight:700;padding:12px 0}
+.hgl-sources{font-size:.88rem;color:var(--hgl-muted);border-top:1px solid var(--hgl-line);margin-top:2em;padding-top:1em}
+.hgl-tool-cta{display:flex;align-items:center;gap:14px;background:var(--hgl-surface);border:2px dashed var(--hgl-green);border-radius:var(--hgl-radius);padding:16px 18px;margin:1.6em 0}
+.hgl-tool-cta a{font-weight:700}
+
+/* ===== TOC ===== */
+.hgl-toc{border:1px solid var(--hgl-line);background:var(--hgl-surface);border-radius:var(--hgl-radius);padding:0 18px;margin:0 0 1.6em}
+.hgl-toc summary{cursor:pointer;font-weight:700;padding:12px 0;list-style-position:inside}
+.hgl-toc ol{margin:0 0 14px;padding-left:1.2em;font-size:.95rem}
+.hgl-toc li{margin:.25em 0}
+.hgl-toc .hgl-toc__sub{padding-left:1em;list-style:circle}
+.hgl-toc a{text-decoration:none}
+.hgl-post__body h2,.hgl-post__body h3{scroll-margin-top:84px}
+
+/* ===== Share ===== */
+.hgl-share{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:28px 0;padding:14px 0;border-top:1px solid var(--hgl-line);border-bottom:1px solid var(--hgl-line)}
+.hgl-share__title{font-weight:700;font-size:.9rem;margin-right:4px}
+.hgl-share__btn{border:1px solid var(--hgl-line);background:var(--hgl-surface);color:var(--hgl-text);border-radius:999px;padding:6px 14px;font:600 .85rem var(--hgl-sans);cursor:pointer}
+.hgl-share__btn:hover{border-color:var(--hgl-green);color:var(--hgl-green)}
+.hgl-share__btn--pin{background:#e60023;border-color:#e60023;color:#fff}
+.hgl-share__btn--pin:hover{color:#fff;opacity:.9}
+
+/* ===== Tags ===== */
+.hgl-tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:20px 0}
+
+/* ===== Author box (E-E-A-T) ===== */
+.hgl-author{display:grid;grid-template-columns:72px 1fr;gap:16px;background:var(--hgl-surface);border:1px solid var(--hgl-line);border-radius:var(--hgl-radius);padding:20px;margin:28px 0;box-shadow:var(--hgl-shadow)}
+.hgl-author__img{width:72px;height:72px;border-radius:50%;object-fit:cover;background:var(--hgl-green-soft)}
+.hgl-author__kicker{margin:0;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--hgl-earth)}
+.hgl-author__name{margin:.1em 0 .3em;font-size:1.15rem}
+.hgl-author__bio{margin:0 0 .5em;color:var(--hgl-muted);font-size:.95rem}
+.hgl-author__links{font-size:.88rem;display:flex;flex-wrap:wrap;gap:12px}
+
+/* ===== Related ===== */
+.hgl-related{margin:32px 0;min-height:320px}
+.hgl-related__title{margin:0 0 16px;font-size:1.35rem}
+.hgl-related__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;list-style:none;margin:0;padding:0}
+.hgl-related__item a{display:block;text-decoration:none;color:var(--hgl-text);font-weight:600;line-height:1.35}
+.hgl-related__thumb{aspect-ratio:16/9;width:100%;object-fit:cover;border-radius:10px;background:var(--hgl-green-soft);margin-bottom:8px}
+
+/* ===== Sidebar & widgets ===== */
+.hgl-sidebar{display:flex;flex-direction:column;gap:28px}
+.hgl-sidebar .widget,.hgl-footer .widget{margin:0}
+.hgl-widget__title{font:700 .85rem/1.2 var(--hgl-sans);text-transform:uppercase;letter-spacing:.08em;color:var(--hgl-earth);margin:0 0 12px}
+.hgl-box{background:var(--hgl-surface);border:1px solid var(--hgl-line);border-radius:var(--hgl-radius);padding:18px}
+.hgl-pop{list-style:none;margin:0;padding:0;counter-reset:pop}
+.hgl-pop__item{display:grid;grid-template-columns:72px 1fr;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--hgl-line)}
+.hgl-pop__item:first-child{border-top:0;padding-top:0}
+.hgl-pop__img{width:72px;height:54px;border-radius:8px;object-fit:cover;background:var(--hgl-green-soft)}
+.hgl-pop__link{font-weight:600;font-size:.93rem;line-height:1.35;color:var(--hgl-text);text-decoration:none}
+.hgl-pop__link:hover{color:var(--hgl-green)}
+.hgl-labels{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.hgl-labels__count{color:var(--hgl-muted);font-weight:400;margin-left:4px}
+.hgl-ad{min-height:280px;display:flex;align-items:center;justify-content:center}
+.hgl-ad:empty{display:none}
+.hgl-html{font-size:.95rem}
+
+/* ===== Comments (Blogger default markup, restyled because b:css=false) ===== */
+.hgl-comments{margin-top:32px}
+.comments h3.title,.comments .title{font-family:var(--hgl-serif);font-size:1.35rem}
+.comments .comment-thread ol,.comments .comment-thread ul{list-style:none;padding-left:0}
+.comments .comment{border-top:1px solid var(--hgl-line);padding:14px 0}
+.comments .comment .comment-replies{padding-left:24px}
+.comments .avatar-image-container img{width:36px;height:36px;border-radius:50%}
+.comments .comment-block{margin-left:0}
+.comments .user a{font-weight:700;text-decoration:none}
+.comments .datetime{font-size:.8rem;color:var(--hgl-muted);margin-left:8px}
+.comments .comment-actions a{font-size:.85rem;margin-right:12px}
+.comments .comment-content{margin:.4em 0}
+.comments #comment-editor{width:100%;border:0;min-height:220px}
+.comment-footer,.comments .continue a{font-weight:700}
+
+/* ===== Footer ===== */
+.hgl-footer{background:#18241b;color:#d8e2d9;margin-top:24px}
+.hgl-footer a{color:#cfe6d2}
+.hgl-footer__grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;padding:40px 16px 28px;max-width:var(--hgl-max);margin:0 auto}
+.hgl-footer .hgl-widget__title{color:var(--hgl-sun)}
+.hgl-footer__list{list-style:none;margin:0;padding:0}
+.hgl-footer__list li{margin:.35em 0}
+.hgl-footer__list a{text-decoration:none}
+.hgl-footer__bottom{border-top:1px solid #2c3a2f;padding:16px;text-align:center;font-size:.85rem;color:#9fb0a2}
+@media (max-width:760px){.hgl-footer__grid{grid-template-columns:1fr}}
+
+/* ===== 404 ===== */
+.hgl-404{text-align:center;padding:40px 0}
+.hgl-404 .hgl-search{max-width:420px;margin:20px auto}
+.hgl-404 .hgl-search__input{width:100%}
+
+/* ===== Layout editor ===== */
+body#layout .hgl-layout{display:flex}
+body#layout .hgl-main{width:65%}
+body#layout .hgl-sidebar{width:35%}
+body#layout .hgl-nav{display:block;position:static}
+body#layout .hgl-footer__grid{display:flex}
+body#layout .hgl-footer__grid>*{flex:1}
+
+@media print{.hgl-header,.hgl-sidebar,.hgl-footer,.hgl-share,.hgl-related,.hgl-comments,.hgl-ad{display:none!important}}
+]]></b:skin>
+</head>
+
+<body expr:class='data:view.isPage ? "hgl-body hgl-body--page" : (data:view.isSingleItem ? "hgl-body hgl-body--item" : "hgl-body hgl-body--list")'>
+<a class='hgl-skip' href='#hgl-main'>Skip to content</a>
+
+<!-- ===================== HEADER ===================== -->
+<header class='hgl-header'>
+  <div class='hgl-wrap hgl-header__bar'>
+    <b:tag class='hgl-brand-wrap' expr:name='data:view.isHomepage ? "h1" : "div"'>
+      <a class='hgl-brand' expr:href='data:blog.homepageUrl' rel='home'>
+        <svg aria-hidden='true' class='hgl-brand__mark' viewBox='0 0 48 48'><circle cx='24' cy='24' fill='#e8f1e6' r='24'/><path d='M24 38V22' fill='none' stroke='#21502a' stroke-linecap='round' stroke-width='3'/><path d='M24 26c-8 0-12-6-12-13 8 0 12 5 12 13z' fill='#2f6b3a'/><path d='M24 22c0-8 5-12 13-12 0 8-5 12-13 12z' fill='#5a9a5f'/><path d='M12 38h24' stroke='#8a5a2b' stroke-linecap='round' stroke-width='3'/></svg>
+        <span><data:blog.title/><span class='hgl-brand__tag'>Garden &amp; Home Improvement</span></span>
+      </a>
+    </b:tag>
+
+    <form action='/search' class='hgl-search' method='get' role='search'>
+      <label class='hgl-sr' for='hgl-q'>Search this site</label>
+      <input class='hgl-search__input' id='hgl-q' name='q' placeholder='Search guides…' type='search'/>
+      <button aria-label='Search' class='hgl-search__btn' type='submit'>Go</button>
+    </form>
+
+    <button aria-controls='hgl-nav' aria-expanded='false' class='hgl-nav__toggle' type='button'>Menu</button>
+
+    <nav aria-label='Main' class='hgl-nav' id='hgl-nav'>
+      <b:section class='hgl-nav__section' id='hgl-nav-section' maxwidgets='1' name='Main menu' showaddelement='no'>
+        <b:widget id='LinkList1' locked='true' title='Main Menu' type='LinkList' version='2' visible='true'>
+          <b:includable id='main'>
+            <ul class='hgl-nav__list'>
+              <b:if cond='data:links.size != 0'>
+                <b:loop values='data:links' var='link'>
+                  <li><a class='hgl-nav__link' expr:href='data:link.target'><data:link.name/></a></li>
+                </b:loop>
+              <b:else/>
+                <li><a class='hgl-nav__link' href='/'>Home</a></li>
+                <li><a class='hgl-nav__link' href='/p/garden-calculator.html'>Garden Calculators</a></li>
+                <li><a class='hgl-nav__link' href='/p/about.html'>About</a></li>
+              </b:if>
+            </ul>
+          </b:includable>
+        </b:widget>
+      </b:section>
+      <form action='/search' class='hgl-search' method='get' role='search'>
+        <label class='hgl-sr' for='hgl-q2'>Search this site</label>
+        <input class='hgl-search__input' id='hgl-q2' name='q' placeholder='Search guides…' type='search'/>
+        <button aria-label='Search' class='hgl-search__btn' type='submit'>Go</button>
+      </form>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== HERO (homepage only) ===================== -->
+<b:if cond='data:view.isHomepage'>
+  <section class='hgl-hero'>
+    <div class='hgl-hero__inner'>
+      <h2 class='hgl-hero__title'>Grow more. Fix smarter. Spend less.</h2>
+      <p class='hgl-hero__lead'>Tested, step-by-step guides and free calculators for vegetable gardens, lawns, landscaping and DIY home improvement — written for real homeowners.</p>
+      <b:section class='hgl-hero__section' id='hgl-hero-section' maxwidgets='1' name='Homepage topic chips' showaddelement='no'>
+        <b:widget id='LinkList3' locked='true' title='Topic Hubs' type='LinkList' version='2' visible='true'>
+          <b:includable id='main'>
+            <b:if cond='data:links.size != 0'>
+              <ul class='hgl-hero__chips'>
+                <b:loop values='data:links' var='link'>
+                  <li><a class='hgl-chip' expr:href='data:link.target'><data:link.name/></a></li>
+                </b:loop>
+              </ul>
+            </b:if>
+          </b:includable>
+        </b:widget>
+      </b:section>
+    </div>
+  </section>
+</b:if>
+
+<!-- ===================== MAIN ===================== -->
+<div class='hgl-layout'>
+  <main class='hgl-main' id='hgl-main'>
+    <b:section class='hgl-main__section' id='hgl-main-section' maxwidgets='1' name='Main content' showaddelement='no'>
+      <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2' visible='true'>
+
+        <b:includable id='main' var='top'>
+          <!-- Archive / label / search heading -->
+          <b:if cond='data:view.isLabelSearch'>
+            <header class='hgl-archive'>
+              <nav aria-label='Breadcrumb' class='hgl-crumbs'><ol><li><a expr:href='data:blog.homepageUrl'>Home</a></li><li aria-current='page'><data:view.search.label/></li></ol></nav>
+              <p class='hgl-archive__kicker'>Topic</p>
+              <h1 class='hgl-archive__title'><data:view.search.label/></h1>
+              <p class='hgl-archive__desc'>Every <data:view.search.label/> guide on <data:blog.title/>, newest first.</p>
+            </header>
+          <b:elseif cond='data:view.isSearch'/>
+            <header class='hgl-archive'>
+              <p class='hgl-archive__kicker'>Search</p>
+              <h1 class='hgl-archive__title'>Results for “<data:view.search.query/>”</h1>
+            </header>
+          <b:elseif cond='data:view.isArchive'/>
+            <header class='hgl-archive'>
+              <p class='hgl-archive__kicker'>Archive</p>
+              <h1 class='hgl-archive__title'><data:view.archive.rangeMessage/></h1>
+            </header>
+          <b:elseif cond='data:view.isHomepage'/>
+            <h2 class='hgl-sr'>Latest guides</h2>
+          </b:if>
+
+          <b:if cond='data:view.isError'>
+            <div class='hgl-404'>
+              <h1>Page not found</h1>
+              <p>The page may have moved. Try searching our guides:</p>
+              <form action='/search' class='hgl-search' method='get' role='search'>
+                <label class='hgl-sr' for='hgl-q3'>Search</label>
+                <input class='hgl-search__input' id='hgl-q3' name='q' placeholder='e.g. raised bed soil' type='search'/>
+                <button aria-label='Search' class='hgl-search__btn' type='submit'>Go</button>
+              </form>
+              <p><a expr:href='data:blog.homepageUrl'>← Back to homepage</a></p>
+            </div>
+          <b:elseif cond='data:view.isSingleItem'/>
+            <b:loop values='data:posts' var='post'>
+              <b:include data='post' name='hglSingle'/>
+            </b:loop>
+          <b:else/>
+            <b:if cond='data:posts.size == 0'>
+              <p>No posts found. Try another search or browse the topics in the menu.</p>
+            </b:if>
+            <div class='hgl-grid'>
+              <b:loop index='i' values='data:posts' var='post'>
+                <article expr:class='(data:i == 0 and data:view.isHomepage) ? "hgl-card hgl-card--lead" : "hgl-card"'>
+                  <a class='hgl-card__media' expr:href='data:post.url' tabindex='-1' aria-hidden='true'>
+                    <b:if cond='data:post.featuredImage'>
+                      <img class='hgl-card__img'
+                        expr:alt='data:post.title'
+                        expr:src='data:post.featuredImage.isResizable ? resizeImage(data:post.featuredImage, 640, "16:9") : data:post.featuredImage'
+                        expr:srcset='data:post.featuredImage.isResizable ? sourceSet(data:post.featuredImage, [320, 480, 640, 960], "16:9") : ""'
+                        expr:sizes='data:i == 0 ? "(max-width: 700px) 100vw, 640px" : "(max-width: 600px) 100vw, 360px"'
+                        width='640' height='360'
+                        expr:loading='data:i == 0 ? "eager" : "lazy"'
+                        expr:fetchpriority='data:i == 0 ? "high" : "auto"'
+                        decoding='async'/>
+                    </b:if>
+                  </a>
+                  <div class='hgl-card__body'>
+                    <b:if cond='data:post.labels'>
+                      <b:loop index='li' values='data:post.labels' var='label'>
+                        <b:if cond='data:li == 0'><a class='hgl-card__label' expr:href='data:label.url'><data:label.name/></a></b:if>
+                      </b:loop>
+                    </b:if>
+                    <b:tag class='hgl-card__title' expr:name='data:view.isHomepage ? "h3" : "h2"'><a expr:href='data:post.url'><data:post.title/></a></b:tag>
+                    <p class='hgl-card__excerpt'><data:post.snippets.short/></p>
+                    <div class='hgl-card__meta'><time expr:datetime='data:post.date.iso8601'><data:post.date/></time></div>
+                  </div>
+                </article>
+              </b:loop>
+            </div>
+            <nav aria-label='Pagination' class='hgl-pager'>
+              <b:if cond='data:newerPageUrl'><a class='hgl-pager__link' expr:href='data:newerPageUrl'>← Newer</a></b:if>
+              <b:if cond='data:olderPageUrl'><a class='hgl-pager__link hgl-pager__link--older' expr:href='data:olderPageUrl'>Older guides →</a></b:if>
+            </nav>
+          </b:if>
+        </b:includable>
+
+        <!-- ========== Single post / static page ========== -->
+        <b:includable id='hglSingle' var='post'>
+          <article class='hgl-post' expr:data-id='data:post.id'>
+            <b:if cond='data:view.isPost'>
+              <nav aria-label='Breadcrumb' class='hgl-crumbs'>
+                <ol>
+                  <li><a expr:href='data:blog.homepageUrl'>Home</a></li>
+                  <b:loop index='li' values='data:post.labels' var='label'>
+                    <b:if cond='data:li == 0'><li><a expr:href='data:label.url'><data:label.name/></a></li></b:if>
+                  </b:loop>
+                  <li aria-current='page'><data:post.title/></li>
+                </ol>
+              </nav>
+            </b:if>
+
+            <h1 class='hgl-post__title'><data:post.title/></h1>
+
+            <b:if cond='data:view.isPost'>
+              <div class='hgl-post__meta'>
+                <a class='hgl-post__author' href='/p/about.html' rel='author'>
+                  <b:if cond='data:post.author.authorPhoto.image'>
+                    <img class='hgl-post__avatar' expr:alt='data:post.author.name' expr:src='resizeImage(data:post.author.authorPhoto.image, 64, "1:1")' height='32' width='32'/>
+                  </b:if>
+                  <span>By <data:post.author.name/></span>
+                </a>
+                <span>Published <time expr:datetime='data:post.date.iso8601'><data:post.date/></time></span>
+                <span class='hgl-post__updated' hidden='hidden'>Updated <time class='hgl-js-updated' expr:datetime='data:post.lastUpdated.iso8601'/></span>
+                <span class='hgl-js-readtime'/>
+              </div>
+              <details class='hgl-toc' id='hgl-toc' open='open'>
+                <summary>In this guide</summary>
+                <ol class='hgl-toc__list'/>
+              </details>
+            </b:if>
+
+            <div class='hgl-post__body' id='hgl-post-body'>
+              <data:post.body/>
+            </div>
+
+            <b:if cond='data:view.isPost'>
+              <div class='hgl-share' expr:data-title='data:post.title' expr:data-url='data:post.url.canonical' expr:data-image='data:post.featuredImage ? data:post.featuredImage : ""'>
+                <span class='hgl-share__title'>Save or share:</span>
+                <button class='hgl-share__btn hgl-share__btn--pin' data-net='pinterest' type='button'>Pin it</button>
+                <button class='hgl-share__btn' data-net='facebook' type='button'>Facebook</button>
+                <button class='hgl-share__btn' data-net='x' type='button'>X</button>
+                <button class='hgl-share__btn' data-net='whatsapp' type='button'>WhatsApp</button>
+                <button class='hgl-share__btn' data-net='copy' type='button'>Copy link</button>
+              </div>
+
+              <b:if cond='data:post.labels'>
+                <ul aria-label='Topics' class='hgl-tags'>
+                  <b:loop values='data:post.labels' var='label'>
+                    <li><a class='hgl-chip' expr:href='data:label.url' rel='tag'><data:label.name/></a></li>
+                  </b:loop>
+                </ul>
+              </b:if>
+
+              <b:include data='post' name='hglAuthor'/>
+              <b:include data='post' name='hglJsonLd'/>
+
+              <b:loop index='li' values='data:post.labels' var='label'>
+                <b:if cond='data:li == 0'>
+                  <section class='hgl-related' expr:data-label='data:label.name' expr:data-self='data:post.url.canonical'>
+                    <h2 class='hgl-related__title'>More <data:label.name/> guides</h2>
+                    <ul class='hgl-related__grid'/>
+                  </section>
+                </b:if>
+              </b:loop>
+
+              <div class='hgl-comments'>
+                <b:include data='post' name='commentPicker'/>
+              </div>
+            </b:if>
+          </article>
+        </b:includable>
+
+        <!-- ========== Author box (E-E-A-T) ========== -->
+        <b:includable id='hglAuthor' var='post'>
+          <aside aria-label='About the author' class='hgl-author'>
+            <b:if cond='data:post.author.authorPhoto.image'>
+              <img class='hgl-author__img' expr:alt='data:post.author.name' expr:src='resizeImage(data:post.author.authorPhoto.image, 144, "1:1")' height='72' loading='lazy' width='72'/>
+            <b:else/>
+              <div aria-hidden='true' class='hgl-author__img'/>
+            </b:if>
+            <div>
+              <p class='hgl-author__kicker'>Written by</p>
+              <p class='hgl-author__name'><data:post.author.name/></p>
+              <b:if cond='data:post.author.aboutMe'>
+                <p class='hgl-author__bio'><data:post.author.aboutMe/></p>
+              <b:else/>
+                <p class='hgl-author__bio'>Home gardener and DIY writer. Every guide is researched against university extension and manufacturer sources, then tested in a real garden before publishing.</p>
+              </b:if>
+              <p class='hgl-author__links'>
+                <a href='/p/about.html'>Full bio &amp; credentials</a>
+                <a href='/p/editorial-policy.html'>How we test &amp; review</a>
+                <a href='/p/contact.html'>Suggest a correction</a>
+              </p>
+            </div>
+          </aside>
+        </b:includable>
+
+        <!-- ========== BlogPosting + BreadcrumbList JSON-LD ========== -->
+        <b:includable id='hglJsonLd' var='post'>
+          <script type='application/ld+json'>{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "<data:post.url.canonical/>#article",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "<data:post.url.canonical/>" },
+      "headline": "<data:post.title.jsonEscaped/>",
+      "description": "<data:post.snippets.short.jsonEscaped/>",
+      "datePublished": "<data:post.date.iso8601.jsonEscaped/>",
+      "dateModified": "<data:post.lastUpdated.iso8601.jsonEscaped/>",
+      "inLanguage": "en-US",
+      <b:if cond='data:post.featuredImage'>"image": {
+        "@type": "ImageObject",
+        "url": "<b:eval expr='data:post.featuredImage.isResizable ? resizeImage(data:post.featuredImage, 1200, "16:9") : data:post.featuredImage'/>",
+        "width": 1200,
+        "height": 675
+      },</b:if>
+      "author": {
+        "@type": "Person",
+        "name": "<data:post.author.name.jsonEscaped/>",
+        "url": "<data:blog.homepageUrl.canonical/>p/about.html"
+      },
+      "publisher": { "@id": "<data:blog.homepageUrl.canonical/>#organization" },
+      "isPartOf": { "@id": "<data:blog.homepageUrl.canonical/>#website" }<b:if cond='data:post.labels'>,
+      "articleSection": "<b:loop index='li' values='data:post.labels' var='label'><b:if cond='data:li == 0'><data:label.name.jsonEscaped/></b:if></b:loop>",
+      "keywords": "<b:loop index='li' values='data:post.labels' var='label'><b:if cond='data:li != 0'>, </b:if><data:label.name.jsonEscaped/></b:loop>"</b:if>
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "<data:blog.homepageUrl.canonical/>" },
+        <b:loop index='li' values='data:post.labels' var='label'><b:if cond='data:li == 0'>{ "@type": "ListItem", "position": 2, "name": "<data:label.name.jsonEscaped/>", "item": "<data:label.url/>" },
+        </b:if></b:loop>{ "@type": "ListItem", "position": <b:eval expr='data:post.labels ? 3 : 2'/>, "name": "<data:post.title.jsonEscaped/>" }
+      ]
+    }
+  ]
+}</script>
+        </b:includable>
+
+      </b:widget>
+    </b:section>
+  </main>
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside aria-label='Sidebar' class='hgl-sidebar'>
+    <b:section class='hgl-sidebar__section' id='hgl-sidebar-section' name='Sidebar' showaddelement='yes'>
+
+      <b:widget id='HTML1' locked='false' title='Ad: Sidebar top' type='HTML' version='2' visible='true'>
+        <b:includable id='main'>
+          <b:if cond='data:content'>
+            <div class='hgl-ad'><data:content/></div>
+          </b:if>
+        </b:includable>
+      </b:widget>
+
+      <b:widget id='HTML2' locked='false' title='Free Garden Calculators' type='HTML' version='2' visible='true'>
+        <b:includable id='main'>
+          <div class='hgl-box hgl-html'>
+            <b:if cond='data:title != ""'><h2 class='hgl-widget__title'><data:title/></h2></b:if>
+            <b:if cond='data:content'>
+              <data:content/>
+            <b:else/>
+              <p>Work out exactly how much soil, mulch, compost and fertilizer you need — free, no sign-up.</p>
+              <p><a href='/p/garden-calculator.html'>Open the calculators →</a></p>
+            </b:if>
+          </div>
+        </b:includable>
+      </b:widget>
+
+      <b:widget id='PopularPosts1' locked='false' title='Most Read Guides' type='PopularPosts' version='2' visible='true'>
+        <b:includable id='main' var='this'>
+          <div class='hgl-box'>
+            <b:if cond='data:title != ""'><h2 class='hgl-widget__title'><data:title/></h2></b:if>
+            <ol class='hgl-pop'>
+              <b:loop values='data:posts' var='post'>
+                <li class='hgl-pop__item'>
+                  <b:if cond='data:post.featuredImage'>
+                    <img class='hgl-pop__img' expr:alt='data:post.title' expr:src='data:post.featuredImage.isResizable ? resizeImage(data:post.featuredImage, 144, "4:3") : data:post.featuredImage' height='54' loading='lazy' width='72'/>
+                  <b:else/>
+                    <span aria-hidden='true' class='hgl-pop__img'/>
+                  </b:if>
+                  <a class='hgl-pop__link' expr:href='data:post.url'><data:post.title/></a>
+                </li>
+              </b:loop>
+            </ol>
+          </div>
+        </b:includable>
+      </b:widget>
+
+      <b:widget id='Label1' locked='false' title='Browse Topics' type='Label' version='2' visible='true'>
+        <b:includable id='main' var='this'>
+          <nav aria-label='Topics' class='hgl-box'>
+            <b:if cond='data:title != ""'><h2 class='hgl-widget__title'><data:title/></h2></b:if>
+            <ul class='hgl-labels'>
+              <b:loop values='data:labels' var='label'>
+                <li><a class='hgl-chip' expr:href='data:label.url'><data:label.name/><b:if cond='data:this.showFreqNumbers'><span class='hgl-labels__count'><data:label.count/></span></b:if></a></li>
+              </b:loop>
+            </ul>
+          </nav>
+        </b:includable>
+      </b:widget>
+
+    </b:section>
+  </aside>
+</div>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class='hgl-footer'>
+  <div class='hgl-footer__grid'>
+    <b:section class='hgl-footer__about' id='hgl-footer-1' maxwidgets='1' name='Footer: about' showaddelement='no'>
+      <b:widget id='HTML3' locked='true' title='About Home Garden Lot' type='HTML' version='2' visible='true'>
+        <b:includable id='main'>
+          <div class='hgl-html'>
+            <h2 class='hgl-widget__title'><data:title/></h2>
+            <b:if cond='data:content'>
+              <data:content/>
+            <b:else/>
+              <p>Practical, tested guides for growing food, caring for lawns and plants, and improving your home on a budget. Independent, reader-supported and fact-checked against university extension research.</p>
+            </b:if>
+          </div>
+        </b:includable>
+      </b:widget>
+    </b:section>
+    <b:section class='hgl-footer__links' id='hgl-footer-2' maxwidgets='1' name='Footer: site links' showaddelement='no'>
+      <b:widget id='LinkList2' locked='true' title='Company' type='LinkList' version='2' visible='true'>
+        <b:includable id='main'>
+          <h2 class='hgl-widget__title'><data:title/></h2>
+          <ul class='hgl-footer__list'>
+            <b:if cond='data:links.size != 0'>
+              <b:loop values='data:links' var='link'>
+                <li><a expr:href='data:link.target'><data:link.name/></a></li>
+              </b:loop>
+            <b:else/>
+              <li><a href='/p/about.html'>About &amp; Author</a></li>
+              <li><a href='/p/editorial-policy.html'>Editorial Policy</a></li>
+              <li><a href='/p/contact.html'>Contact</a></li>
+              <li><a href='/p/privacy-policy.html'>Privacy Policy</a></li>
+              <li><a href='/p/terms.html'>Terms of Use</a></li>
+              <li><a href='/p/disclaimer.html'>Disclaimer &amp; Affiliate Disclosure</a></li>
+            </b:if>
+          </ul>
+        </b:includable>
+      </b:widget>
+    </b:section>
+    <b:section class='hgl-footer__topics' id='hgl-footer-3' maxwidgets='1' name='Footer: topics' showaddelement='no'>
+      <b:widget id='LinkList4' locked='true' title='Popular Topics' type='LinkList' version='2' visible='true'>
+        <b:includable id='main'>
+          <h2 class='hgl-widget__title'><data:title/></h2>
+          <ul class='hgl-footer__list'>
+            <b:loop values='data:links' var='link'>
+              <li><a expr:href='data:link.target'><data:link.name/></a></li>
+            </b:loop>
+            <li><a href='/p/garden-calculator.html'>Garden Calculators</a></li>
+            <li><a href='/sitemap.xml'>XML Sitemap</a></li>
+          </ul>
+        </b:includable>
+      </b:widget>
+    </b:section>
+  </div>
+  <div class='hgl-footer__bottom'>
+    © <span class='hgl-js-year'>2026</span> <a expr:href='data:blog.homepageUrl'><data:blog.title/></a>. All rights reserved. Content is for general information; always check local codes and product labels.
+  </div>
+</footer>
+
+<script>
+//<![CDATA[
+(function () {
+  'use strict';
+  var d = document;
+
+  // Blogger serves ?m=1 to phones; the responsive layout makes it redundant, so tidy the address bar.
+  if (/[?&]m=1/.test(location.search) && history.replaceState) {
+    history.replaceState(null, '', location.href.replace(/([?&])m=1&?/, '$1').replace(/[?&]$/, ''));
+  }
+
+  var year = d.querySelector('.hgl-js-year');
+  if (year) year.textContent = new Date().getFullYear();
+
+  var toggle = d.querySelector('.hgl-nav__toggle');
+  var nav = d.getElementById('hgl-nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+
+  var body = d.getElementById('hgl-post-body');
+  if (!body) return;
+
+  // Show "Updated" only when the edit is at least a day after publish.
+  var upd = d.querySelector('.hgl-js-updated');
+  var pub = d.querySelector('.hgl-post__meta time');
+  if (upd && pub) {
+    var u = new Date(upd.getAttribute('datetime'));
+    var p = new Date(pub.getAttribute('datetime'));
+    if (!isNaN(u) && u - p > 864e5) {
+      upd.textContent = u.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      upd.parentNode.hidden = false;
+    }
+  }
+
+  var words = (body.textContent || '').trim().split(/\s+/).length;
+  var rt = d.querySelector('.hgl-js-readtime');
+  if (rt && words > 120) rt.textContent = Math.max(1, Math.round(words / 230)) + ' min read';
+
+  // External links: open safely without passing referrer-based trust.
+  var host = location.hostname.replace(/^www\./, '');
+  body.querySelectorAll('a[href^="http"]').forEach(function (a) {
+    if (a.hostname.replace(/^www\./, '').indexOf(host) === -1) {
+      a.target = '_blank';
+      if (!/noopener/.test(a.rel)) a.rel = (a.rel + ' noopener').trim();
+    }
+  });
+
+  // Table of contents from H2/H3; removed when the post is too short to need one.
+  var toc = d.getElementById('hgl-toc');
+  if (toc) {
+    var heads = body.querySelectorAll('h2, h3');
+    if (heads.length < 3) {
+      toc.parentNode.removeChild(toc);
+    } else {
+      var list = toc.querySelector('.hgl-toc__list');
+      var used = {};
+      var sub = null;
+      heads.forEach(function (h) {
+        if (!h.id) {
+          var base = h.textContent.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60) || 'section';
+          var id = base, n = 2;
+          while (used[id] || d.getElementById(id)) id = base + '-' + n++;
+          h.id = id;
+        }
+        used[h.id] = 1;
+        var li = d.createElement('li');
+        var a = d.createElement('a');
+        a.href = '#' + h.id;
+        a.textContent = h.textContent;
+        li.appendChild(a);
+        if (h.tagName === 'H3' && list.lastElementChild) {
+          if (!sub || sub.parentNode !== list.lastElementChild) {
+            sub = d.createElement('ol');
+            sub.className = 'hgl-toc__sub';
+            list.lastElementChild.appendChild(sub);
+          }
+          sub.appendChild(li);
+        } else {
+          list.appendChild(li);
+          sub = null;
+        }
+      });
+      if (window.matchMedia('(max-width: 700px)').matches) toc.open = false;
+    }
+  }
+
+  var share = d.querySelector('.hgl-share');
+  if (share) {
+    share.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-net]');
+      if (!btn) return;
+      var url = encodeURIComponent(share.dataset.url);
+      var title = encodeURIComponent(share.dataset.title);
+      var img = share.dataset.image || (body.querySelector('img') || {}).src || '';
+      var targets = {
+        pinterest: 'https://www.pinterest.com/pin/create/button/?url=' + url + '&media=' + encodeURIComponent(img) + '&description=' + title,
+        facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
+        x: 'https://x.com/intent/post?url=' + url + '&text=' + title,
+        whatsapp: 'https://wa.me/?text=' + title + '%20' + url
+      };
+      var net = btn.getAttribute('data-net');
+      if (net === 'copy') {
+        if (navigator.clipboard) navigator.clipboard.writeText(share.dataset.url).then(function () { btn.textContent = 'Copied!'; });
+        return;
+      }
+      window.open(targets[net], '_blank', 'noopener,width=640,height=560');
+    });
+  }
+
+  // Related posts from the first label's JSON feed, loaded only when the section nears the viewport.
+  var rel = d.querySelector('.hgl-related');
+  if (rel) {
+    var load = function () {
+      var label = rel.getAttribute('data-label');
+      var self = rel.getAttribute('data-self');
+      fetch('/feeds/posts/summary/-/' + encodeURIComponent(label) + '?alt=json&max-results=7')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          var grid = rel.querySelector('.hgl-related__grid');
+          var shown = 0;
+          (data.feed.entry || []).forEach(function (en) {
+            if (shown >= 6) return;
+            var link = (en.link || []).filter(function (l) { return l.rel === 'alternate'; })[0];
+            if (!link || link.href.split('?')[0] === self.split('?')[0]) return;
+            var thumb = en.media$thumbnail ? en.media$thumbnail.url
+              .replace(/\/s\d+(-c)?\//, '/w400-h225-p-k-no-nu/')
+              .replace(/=s\d+(-c)?$/, '=w400-h225-p-k-no-nu') : '';
+            var li = d.createElement('li');
+            li.className = 'hgl-related__item';
+            var a = d.createElement('a');
+            a.href = link.href;
+            if (thumb) {
+              var im = d.createElement('img');
+              im.className = 'hgl-related__thumb';
+              im.src = thumb;
+              im.alt = '';
+              im.width = 400;
+              im.height = 225;
+              im.loading = 'lazy';
+              a.appendChild(im);
+            }
+            a.appendChild(d.createTextNode(en.title.$t));
+            li.appendChild(a);
+            grid.appendChild(li);
+            shown++;
+          });
+          if (!shown) rel.parentNode.removeChild(rel);
+        })
+        .catch(function () { rel.parentNode.removeChild(rel); });
+    };
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { io.disconnect(); load(); }
+      }, { rootMargin: '600px' });
+      io.observe(rel);
+    } else {
+      load();
+    }
+  }
+})();
+//]]>
+</script>
+</body>
+</html>
