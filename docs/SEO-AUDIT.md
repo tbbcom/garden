@@ -2,7 +2,7 @@
 
 _Audit date: 27 Oct 2026 · Target market: USA first, global English second_
 
-> **Scope note:** The live site could not be crawled from the audit environment (network policy blocked `homegardenlot.com`), so the current theme XML was **not** inspected line by line. Findings below come from Ubersuggest (US) performance and keyword data, plus the code in `tbbcom/garden` and `tbbcom/garden-calc`. The new theme (`blogger/homegardenlot-theme.xml`) is a full replacement, not a patch, so it fixes the common Blogger XML problems whatever the current file contains. Upload your current XML to get a line-by-line diff.
+> **Scope note:** The live site could not be crawled from the audit environment (network policy blocked `homegardenlot.com`). Findings come from Ubersuggest (US) performance and keyword data, the code in `tbbcom/garden` and `tbbcom/garden-calc`, and the current theme XML you uploaded (audited line by line in §2b). The new theme (`blogger/homegardenlot-theme.xml`, v2.1.0) is a full replacement that keeps your brand look: green `#247b49`, zinc neutrals, the Inter font and the dark forest-green footer.
 
 ---
 
@@ -48,6 +48,30 @@ _Audit date: 27 Oct 2026 · Target market: USA first, global English second_
 | 8 | Apex → www redirect costs 1.4 s | TTFB / LCP | ⚠️ Settings: always link to `https://www.` (see §5) |
 | 9 | 6-in-1 tabbed calculator can only rank for one head term | Leaves 60k+/mo searches unclaimed | 📋 Roadmap §7 |
 | 10 | Service worker in `garden` repo can't run on Blogger (no root file hosting) | PWA doesn't work on www | 📋 Move to the tools subdomain (§6) |
+
+---
+
+## 2b. Line-by-line audit of the current theme XML (uploaded, 3,545 lines / 255 KB)
+
+| # | Finding in current XML | Why it hurts | New theme |
+|---|---|---|---|
+| 1 | jQuery 3.6.0 loaded from cdnjs (~90 KB) | Main source of the ~300 KB "unused JavaScript"; delays interaction | No jQuery; one ~5 KB vanilla IIFE |
+| 2 | Bootstrap Icons CSS + icon font from cdnjs | Render-blocking CSS plus a ~100 KB font only used for icons → slow FCP/LCP | No icon font; text buttons |
+| 3 | Inter loaded as a render-blocking Google Fonts stylesheet, up to 3 families × 400–700 incl. italics | Blocks first paint on mobile 4G | Inter 400/600/700 only, non-blocking (`media=print` swap); system-ui paints first |
+| 4 | 5 widgets render posts client-side via `{getPosts}` (menu "Tips & Trick", "You Might Like", "Latest Posts" …) | Content injected after load = layout shift (CLS 0.749) and invisible to non-JS crawlers | Server-rendered cards/popular posts; only related posts lazy-load inside a reserved 320 px box |
+| 5 | In-feed AdSense units with `data-ad-format='fluid'` and no reserved height | Ads push content down on load → major CLS | Ad slots reserve `min-height:280px` |
+| 6 | `<title>` is `data:view.title` everywhere | Homepage, label and search pages all get generic titles | Templated titles per view type |
+| 7 | Meta description and `index` on every view, incl. `/search?q=` and archives | Thin/duplicate pages in the index | `noindex,follow` on search, archive and 404 |
+| 8 | Two `WebSite` schemas (custom + `pbt-head`) and a separate `Organization`; `http://schema.org` | Conflicting entity data | One `@graph` linking Organization ↔ WebSite ↔ BlogPosting by `@id` |
+| 9 | `SearchAction` sitelinks-searchbox markup | Google retired that feature in Nov 2024; dead weight | Removed |
+| 10 | Label breadcrumb `item` built from the raw label (`search/label/Decor & Design`) | Spaces and `&` produce invalid URLs in structured data | Uses Blogger's encoded `data:label.url` |
+| 11 | 6 `hreflang` tags (en, en-us, en-gb, en-ca, en-au, x-default) all pointing at the same URL | No benefit for a single-language site; adds noise and Search Console warnings | Removed; `og:locale en_US` + `inLanguage en-US` |
+| 12 | Two `viewport` meta tags | Invalid duplicate | One |
+| 13 | `manifest.json` loaded cross-origin from `tbbcom.github.io` | The manifest's `start_url` resolves to github.io, so the PWA can't install for `www` | Removed from the theme; host the PWA on the tools subdomain (§6) |
+| 14 | Leftover vendor promo widget (`pbt-ad` → probloggertemplates.com "Spotlight") | External commercial link left in the theme | Removed |
+| 15 | Author avatar falls back to a generic image; there is no author bio box | Weak E-E-A-T | Author box with bio, About, Editorial Policy and corrections links |
+
+**Kept from your theme:** the brand palette, Inter, logo images, `fb:app_id`, the Bing `msvalidate.01` verification tag, the social profiles (now in the Organization `sameAs`), and every tool page link.
 
 ---
 
@@ -101,6 +125,19 @@ _Audit date: 27 Oct 2026 · Target market: USA first, global English second_
 | Outdoor Living | patios, decks, fences, sheds | paver calculator, fence cost |
 | Home Improvement | DIY, repairs, paint, flooring | paint calculator, how much concrete do I need |
 | Tools & Gear | reviews, buying guides (affiliate) | best cordless leaf blower |
+
+**Mapping your current labels** (taken from the menu and widgets in your XML):
+
+| Current label | → New hub label |
+|---|---|
+| Gardening, Garden Maintenance | Flowers & Plants (or Vegetable Gardening if edible) |
+| Vegetable, Edible Garden, Organic Gardening | Vegetable Gardening |
+| Composting | Raised Beds & Soil |
+| Lawn Care | Lawn Care |
+| Home Improvement | Home Improvement |
+| Decor & Design, Interior Design | Home Improvement (or keep "Decor & Design" as an 11th hub if it has 10+ posts) |
+| Sustainability | Merge into the closest practical hub (rain barrels → Outdoor Living, composting → Raised Beds & Soil) |
+| Lifestyle, inspiration | Retire (too vague to rank); redistribute posts and set a custom redirect |
 
 **Migration rules**
 1. Blogger → Posts → filter by each old label → bulk-apply the new hub label, then remove the old label.
