@@ -1,0 +1,77 @@
+name: Blogger drafts
+
+# Pushing a post file to main creates (or updates) a DRAFT in Blogger.
+# Nothing is ever published automatically: review, add photos and publish by hand.
+on:
+  push:
+    branches: [main]
+    paths: ['content/posts/**.html']
+  workflow_dispatch:
+    inputs:
+      file:
+        description: 'One post file to (re)send, e.g. content/posts/how-much-mulch-do-i-need.html'
+        required: true
+      force:
+        description: 'Overwrite the Blogger draft even if it was edited in Blogger (erases those edits)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: blogger-drafts
+  cancel-in-progress: false
+
+jobs:
+  drafts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Collect changed post files
+        id: changed
+        env:
+          EVENT: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+          INPUT_FILE: ${{ github.event.inputs.file }}
+        run: |
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            files="$INPUT_FILE"
+          elif [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            files=$(git diff-tree --no-commit-id --name-only --diff-filter=AM -r "$AFTER" -- 'content/posts/*.html')
+          else
+            files=$(git diff --name-only --diff-filter=AM "$BEFORE" "$AFTER" -- 'content/posts/*.html')
+          fi
+          # On pushes, template files (_*.html) are skipped; a manually named file is always checked.
+          if [ "$EVENT" != "workflow_dispatch" ]; then
+            files=$(printf '%s\n' $files | grep -v '/_' || true)
+          fi
+          echo "files=$(echo $files)" >> "$GITHUB_OUTPUT"
+
+      - name: Send drafts to Blogger
+        if: steps.changed.outputs.files != ''
+        env:
+          BLOGGER_CLIENT_ID: ${{ secrets.BLOGGER_CLIENT_ID }}
+          BLOGGER_CLIENT_SECRET: ${{ secrets.BLOGGER_CLIENT_SECRET }}
+          BLOGGER_REFRESH_TOKEN: ${{ secrets.BLOGGER_REFRESH_TOKEN }}
+          BLOGGER_BLOG_ID: ${{ secrets.BLOGGER_BLOG_ID }}
+          FILES: ${{ steps.changed.outputs.files }}
+          FORCE: ${{ github.event.inputs.force == 'true' && '1' || '0' }}
+        run: node scripts/blogger-drafts.mjs $FILES
+
+      - name: Save draft IDs
+        if: steps.changed.outputs.files != ''
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/.blogger-ids.json
+          git diff --cached --quiet || { git commit -m "Record Blogger draft IDs [skip ci]" && git push; }
