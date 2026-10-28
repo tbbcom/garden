@@ -6,7 +6,7 @@
 //      DRY_RUN=1 to parse and print without calling the API.
 // Usage: node scripts/blogger-drafts.mjs content/posts/a.html content/posts/b.html
 import { readFile, writeFile } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
+import { existsSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 
 const API = 'https://www.googleapis.com/blogger/v3';
@@ -16,6 +16,15 @@ const PAUSE_MS = 8000;
 const DRY = process.env.DRY_RUN === '1';
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+function listPosts() {
+  try {
+    const names = readdirSync('content/posts').filter((n) => n.endsWith('.html') && !n.startsWith('_'));
+    return names.length ? names.join(', ') : 'none yet';
+  } catch {
+    return 'none yet';
+  }
+}
 
 function parse(raw, file) {
   const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
@@ -72,12 +81,20 @@ async function api(token, method, url, body) {
 }
 
 async function main() {
-  const files = process.argv.slice(2)
-    .filter((f) => /^content\/posts\/[^/]+\.html$/.test(f) && !path.basename(f).startsWith('_') && existsSync(f));
-  if (!files.length) {
+  const args = process.argv.slice(2);
+  if (!args.length) {
     console.log('No post files to process.');
     return;
   }
+  // Every file named explicitly must be valid, so a typo fails the run instead of passing silently.
+  const problems = args.map((f) => {
+    if (!/^content\/posts\/[^/]+\.html$/.test(f)) return `${f}: must be a .html file directly inside content/posts/`;
+    if (path.basename(f).startsWith('_')) return `${f}: files starting with "_" are templates and are never sent`;
+    if (!existsSync(f)) return `${f}: file not found on main (check the name; posts in content/posts/: ${listPosts()})`;
+    return null;
+  }).filter(Boolean);
+  if (problems.length) throw new Error(problems.join('\n'));
+  const files = args;
   if (files.length > MAX_PER_RUN) {
     throw new Error(`${files.length} posts in one run (limit ${MAX_PER_RUN}). Push them in smaller batches so the blog isn't flagged for bulk posting.`);
   }

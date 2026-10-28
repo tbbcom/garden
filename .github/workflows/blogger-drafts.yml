@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       file:
-        description: 'One post file to (re)send, e.g. content/posts/how-much-mulch.html'
+        description: 'One post file to (re)send, e.g. content/posts/how-much-mulch-do-i-need.html'
         required: true
 
 permissions:
@@ -24,13 +24,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Collect changed post files
         id: changed
@@ -46,6 +46,10 @@ jobs:
             files=$(git diff-tree --no-commit-id --name-only --diff-filter=AM -r "$AFTER" -- 'content/posts/*.html')
           else
             files=$(git diff --name-only --diff-filter=AM "$BEFORE" "$AFTER" -- 'content/posts/*.html')
+          fi
+          # On pushes, template files (_*.html) are skipped; a manually named file is always checked.
+          if [ "$EVENT" != "workflow_dispatch" ]; then
+            files=$(printf '%s\n' $files | grep -v '/_' || true)
           fi
           echo "files=$(echo $files)" >> "$GITHUB_OUTPUT"
 
