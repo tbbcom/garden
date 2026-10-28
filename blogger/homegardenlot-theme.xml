@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='2.2.0' lang='en' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='2.3.0' lang='en' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
 <!--
-  Home Garden Lot — Blogger theme v2.2.0 (brand palette #247b49 / zinc / Inter)
+  Home Garden Lot — Blogger theme v2.3.0 (brand palette #247b49 / zinc / Inter)
   Lightweight, schema-rich, CWV-first theme for www.homegardenlot.com
   - Inter loaded non-blocking, no jQuery, no icon font, no Blogger default CSS bundle (b:css='false')
   - JSON-LD: Organization, WebSite, BlogPosting, BreadcrumbList, CollectionPage, WebPage
@@ -144,7 +144,7 @@
 
   <b:include data='blog' name='google-analytics'/>
 
-<b:skin version='2.2.0'><![CDATA[
+<b:skin version='2.3.0'><![CDATA[
 /* =========================================================
    Home Garden Lot — design tokens
    ========================================================= */
@@ -205,28 +205,49 @@ h3{font-size:1.25rem}
 .hgl-nav__item--drop>.hgl-nav__link::after{content:"\25BE";margin-left:6px;font-size:.8em}
 .hgl-nav__sub{list-style:none;margin:0;padding:8px;position:absolute;top:100%;left:0;min-width:230px;background:var(--hgl-surface);border-radius:var(--hgl-radius);box-shadow:var(--hgl-shadow-lg);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .15s,transform .15s;z-index:60}
 .hgl-nav__item--drop:hover>.hgl-nav__sub,.hgl-nav__item--drop:focus-within>.hgl-nav__sub{opacity:1;visibility:visible;transform:none}
-.hgl-nav__sub a{display:block;padding:8px 10px;border-radius:6px;color:var(--hgl-text);text-decoration:none;font-weight:600;font-size:.93rem}
+.hgl-nav__sub a{display:block;padding:8px 10px;border-radius:6px;color:var(--hgl-text);text-decoration:none;font-weight:600;font-size:.93rem;white-space:nowrap}
 .hgl-nav__sub a:hover{background:var(--hgl-gray);color:var(--hgl-green)}
 .hgl-nav__list{display:flex;flex-wrap:wrap;gap:4px;list-style:none;margin:0;padding:0}
 .hgl-nav__link{display:block;padding:8px 12px;border-radius:var(--hgl-radius);text-decoration:none;color:var(--hgl-text);font-weight:700;font-size:1rem;letter-spacing:-.025em}
 .hgl-nav__link:hover{background:var(--hgl-gray);color:var(--hgl-green)}
-.hgl-nav__toggle{display:none;margin-left:auto;background:none;border:1px solid var(--hgl-line);border-radius:8px;padding:8px 10px;color:var(--hgl-text);font:600 .9rem var(--hgl-sans);cursor:pointer}
+.hgl-nav__toggle{display:none;margin-left:auto;width:44px;height:44px;align-items:center;justify-content:center;background:var(--hgl-gray);border:1px solid var(--hgl-line);border-radius:var(--hgl-radius);color:var(--hgl-text);cursor:pointer}
+.hgl-burger{position:relative;display:block;width:20px;height:14px}
+.hgl-burger>span{position:absolute;left:0;width:100%;height:2px;border-radius:2px;background:currentColor;transition:transform .2s,opacity .2s,top .2s}
+.hgl-burger>span:nth-child(1){top:0}
+.hgl-burger>span:nth-child(2){top:6px}
+.hgl-burger>span:nth-child(3){top:12px}
+.hgl-nav__toggle[aria-expanded="true"] .hgl-burger>span:nth-child(1){top:6px;transform:rotate(45deg)}
+.hgl-nav__toggle[aria-expanded="true"] .hgl-burger>span:nth-child(2){opacity:0}
+.hgl-nav__toggle[aria-expanded="true"] .hgl-burger>span:nth-child(3){top:6px;transform:rotate(-45deg)}
+.hgl-nav__subtoggle{display:none}
 .hgl-search{display:flex;border:1px solid var(--hgl-line);border-radius:var(--hgl-radius);overflow:hidden;background:var(--hgl-gray)}
-.hgl-search__input{border:0;background:transparent;padding:8px 14px;width:170px;font:inherit;font-size:.9rem;color:var(--hgl-text)}
+.hgl-search__input{border:0;background:transparent;padding:8px 14px;width:170px;flex:1;min-width:0;font:inherit;font-size:.9rem;color:var(--hgl-text)}
 .hgl-search__btn{border:0;background:var(--hgl-green);color:#fff;padding:0 14px;cursor:pointer;font-weight:700}
 .hgl-header__bar>.hgl-search{order:3}
 .hgl-header__bar>.hgl-nav{order:2}
 @media (max-width:900px){
-  .hgl-nav__toggle{display:block}
-  .hgl-nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--hgl-surface);border-bottom:1px solid var(--hgl-line);padding:8px 16px 16px}
-  .hgl-nav.is-open{display:block}
-  .hgl-nav__list{flex-direction:column}
-  .hgl-nav__sub{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;padding:0 0 0 14px;min-width:0}
+  .hgl-nav__toggle{display:inline-flex}
+  .hgl-nav{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:0;background:var(--hgl-surface);box-shadow:0 16px 24px -12px rgba(9,9,11,.25);padding:12px 16px 20px;max-height:calc(100vh - 72px);overflow-y:auto;overscroll-behavior:contain}
+  .hgl-nav.is-open{display:flex}
+  .hgl-nav .hgl-search{display:flex;order:-1;width:100%;margin:0 0 8px}
+  .hgl-nav .hgl-search__input{width:auto;padding:12px 14px;font-size:1rem}
+  .hgl-nav .hgl-search__btn{padding:0 18px}
+  .hgl-nav__list{flex-direction:column;gap:0}
+  .hgl-nav__list>li{border-bottom:1px solid var(--hgl-line)}
+  .hgl-nav__list>li:last-child{border-bottom:0}
+  .hgl-nav__link{padding:14px 4px;font-size:1.05rem;border-radius:0}
+  .hgl-nav__link:hover{background:none}
+  .hgl-nav__item--drop{display:grid;grid-template-columns:1fr 48px;align-items:center}
   .hgl-nav__item--drop>.hgl-nav__link::after{content:none}
-  .hgl-header__bar .hgl-search{display:none}
-  .hgl-nav .hgl-search{display:flex;margin-top:8px}
+  .hgl-nav__subtoggle{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:var(--hgl-radius);background:var(--hgl-gray);color:var(--hgl-text);cursor:pointer}
+  .hgl-nav__subtoggle::before{content:"\25BE";transition:transform .2s}
+  .hgl-nav__subtoggle[aria-expanded="true"]::before{transform:rotate(180deg)}
+  .hgl-nav__sub{grid-column:1/-1;display:none;position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;padding:0 0 10px 8px;min-width:0}
+  .hgl-nav__item--drop.is-open>.hgl-nav__sub{display:block}
+  .hgl-nav__sub a{padding:10px 8px}
+  .hgl-header__bar>.hgl-search{display:none}
 }
-@media (min-width:901px){.hgl-nav .hgl-search{display:none}}
+@media (min-width:901px){.hgl-nav .hgl-search{display:none}.hgl-nav__subtoggle{display:none!important}}
 
 /* ===== Layout ===== */
 .hgl-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:40px;padding:28px 16px 48px;max-width:var(--hgl-max);margin:0 auto}
@@ -477,7 +498,7 @@ body#layout .hgl-footer__grid>*{flex:1}
       <button aria-label='Search' class='hgl-search__btn' type='submit'>Go</button>
     </form>
 
-    <button aria-controls='hgl-nav' aria-expanded='false' class='hgl-nav__toggle' type='button'>Menu</button>
+    <button aria-controls='hgl-nav' aria-expanded='false' aria-label='Open menu' class='hgl-nav__toggle' type='button'><span class='hgl-burger' aria-hidden='true'><span/><span/><span/></span></button>
 
     <nav aria-label='Main' class='hgl-nav' id='hgl-nav'>
       <b:section class='hgl-nav__section' id='hgl-nav-section' maxwidgets='1' name='Main menu' showaddelement='no'>
@@ -495,32 +516,19 @@ body#layout .hgl-footer__grid>*{flex:1}
                 <li><a class='hgl-nav__link' href='/search/label/Home%20Improvement'>Home Improvement</a></li>
                 <li><a class='hgl-nav__link' href='/p/about.html'>About</a></li>
               </b:if>
-            </ul>
-          </b:includable>
-        </b:widget>
-      </b:section>
-      <b:section class='hgl-nav__section' id='hgl-nav-tools' maxwidgets='1' name='Main menu: Tools dropdown' showaddelement='no'>
-        <b:widget id='LinkList91' locked='true' title='Tools' type='LinkList' version='2' visible='true'>
-          <b:includable id='main'>
-            <ul class='hgl-nav__list'>
               <li class='hgl-nav__item--drop'>
-                <a class='hgl-nav__link' href='/p/tools.html'><b:eval expr='data:title != "" ? data:title : "Tools"'/></a>
+                <a class='hgl-nav__link' href='/p/tools.html'>Tools</a>
+                <button aria-expanded='false' aria-label='Show tools' class='hgl-nav__subtoggle' type='button'/>
                 <ul class='hgl-nav__sub'>
-                  <b:if cond='data:links.size != 0'>
-                    <b:loop values='data:links' var='link'>
-                      <li><a expr:href='data:link.target'><data:link.name/></a></li>
-                    </b:loop>
-                  <b:else/>
-                    <li><a href='/p/garden-calculator.html'>Garden Calculator (all-in-one)</a></li>
-                    <li><a href='/p/mulch-calculator.html'>Mulch Calculator</a></li>
-                    <li><a href='/p/soil-calculator.html'>Soil Calculator</a></li>
-                    <li><a href='/p/topsoil-gravel-calculator.html'>Topsoil &amp; Gravel Calculator</a></li>
-                    <li><a href='/p/plant-spacing-calculator.html'>Plant Spacing Calculator</a></li>
-                    <li><a href='/p/lawn-fertilizer-npk-calculator.html'>Lawn Fertilizer NPK</a></li>
-                    <li><a href='/p/irrigation-runtime-calculator.html'>Irrigation Runtime</a></li>
-                    <li><a href='/p/paver-patio-calculator.html'>Paver &amp; Patio Calculator</a></li>
-                    <li><a href='/p/flooring-calculator.html'>Flooring Calculator</a></li>
-                  </b:if>
+                  <li><a href='/p/garden-calculator.html'>Garden Calculator (all-in-one)</a></li>
+                  <li><a href='/p/mulch-calculator.html'>Mulch Calculator</a></li>
+                  <li><a href='/p/soil-calculator.html'>Soil Calculator</a></li>
+                  <li><a href='/p/topsoil-gravel-calculator.html'>Topsoil &amp; Gravel Calculator</a></li>
+                  <li><a href='/p/plant-spacing-calculator.html'>Plant Spacing Calculator</a></li>
+                  <li><a href='/p/lawn-fertilizer-npk-calculator.html'>Lawn Fertilizer NPK</a></li>
+                  <li><a href='/p/irrigation-runtime-calculator.html'>Irrigation Runtime</a></li>
+                  <li><a href='/p/paver-patio-calculator.html'>Paver &amp; Patio Calculator</a></li>
+                  <li><a href='/p/flooring-calculator.html'>Flooring Calculator</a></li>
                 </ul>
               </li>
             </ul>
@@ -982,9 +990,24 @@ body#layout .hgl-footer__grid>*{flex:1}
   var toggle = d.querySelector('.hgl-nav__toggle');
   var nav = d.getElementById('hgl-nav');
   if (toggle && nav) {
-    toggle.addEventListener('click', function () {
-      var open = nav.classList.toggle('is-open');
+    var setMenu = function (open) {
+      nav.classList.toggle('is-open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    toggle.addEventListener('click', function () { setMenu(!nav.classList.contains('is-open')); });
+    d.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) { setMenu(false); toggle.focus(); }
+    });
+    d.addEventListener('click', function (e) {
+      if (nav.classList.contains('is-open') && !nav.contains(e.target) && !toggle.contains(e.target)) setMenu(false);
+    });
+    nav.querySelectorAll('.hgl-nav__subtoggle').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var open = b.parentNode.classList.toggle('is-open');
+        b.setAttribute('aria-expanded', open ? 'true' : 'false');
+        b.setAttribute('aria-label', open ? 'Hide tools' : 'Show tools');
+      });
     });
   }
 
