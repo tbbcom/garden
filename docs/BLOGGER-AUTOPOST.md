@@ -116,3 +116,12 @@ Changing your Google password can revoke refresh tokens → redo step 5.
 The content lives in this repo as HTML, so it stays portable. If you migrate:
 - Use WordPress permalink structure `/%year%/%monthnum%/%postname%.html`. It matches Blogger URLs exactly, so no ranking is lost and no redirects are needed.
 - The same script can target the WordPress REST API with an *Application Password* (built into WordPress, free). Only the `api()` calls change.
+
+## 7. Daily batches (50 articles over 5 days)
+
+- A scheduled Claude session runs **once a day at 09:39 Malaysia time** for 5 days. Each run writes the next 10 articles from `content/PLAN.md` following `docs/WRITING-GUIDE.md`, then opens **one PR**.
+- **You:** skim the PR, then merge it. The merge sends the 10 drafts to Blogger (about 2 minutes). Merge one batch PR at a time; a run accepts 10 posts at most.
+- If a batch PR waits a day, the next run simply writes the following 10 and doesn't duplicate anything.
+- Each post's top comment has an **IMAGE BRIEF**: SEO filename, alt text, title and 3 prompt styles for the featured image, plus a Pinterest pin and an inline image.
+- **Your edits in Blogger are protected.** Once you change a draft in the Blogger editor (photos, experience, permalink), later syncs skip it instead of overwriting it. To overwrite on purpose: Actions → Blogger drafts → Run workflow → tick **force**.
+- **Publishing pace:** 1–2 posts a day, each with a real photo and an experience line added. A brand-new site that publishes 50 near-identical AI posts in 3 weeks fits Google's scaled-content pattern. The same 50 posts, each made personal and published steadily, don't.

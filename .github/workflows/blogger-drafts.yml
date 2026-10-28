@@ -11,6 +11,10 @@ on:
       file:
         description: 'One post file to (re)send, e.g. content/posts/how-much-mulch-do-i-need.html'
         required: true
+      force:
+        description: 'Overwrite the Blogger draft even if it was edited in Blogger (erases those edits)'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -61,6 +65,7 @@ jobs:
           BLOGGER_REFRESH_TOKEN: ${{ secrets.BLOGGER_REFRESH_TOKEN }}
           BLOGGER_BLOG_ID: ${{ secrets.BLOGGER_BLOG_ID }}
           FILES: ${{ steps.changed.outputs.files }}
+          FORCE: ${{ github.event.inputs.force == 'true' && '1' || '0' }}
         run: node scripts/blogger-drafts.mjs $FILES
 
       - name: Save draft IDs

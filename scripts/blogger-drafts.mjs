@@ -11,7 +11,8 @@ import path from 'node:path';
 
 const API = 'https://www.googleapis.com/blogger/v3';
 const ID_FILE = 'content/.blogger-ids.json';
-const MAX_PER_RUN = 5; // a burst of new posts is what trips Blogger's spam classifier
+const MAX_PER_RUN = 10; // one daily batch; drafts aren't public, but keep runs small and spaced
+const FORCE = process.env.FORCE === '1';
 const PAUSE_MS = 8000;
 const DRY = process.env.DRY_RUN === '1';
 
@@ -106,7 +107,7 @@ async function main() {
   const posts = await Promise.all(files.map(async (f) => ({ file: f, ...parse(await readFile(f, 'utf8'), f) })));
 
   if (DRY) {
-    for (const p of posts) console.log(`[dry-run] ${ids[p.file] ? 'update' : 'create'} draft: "${p.title}" [${p.labels.join(', ')}] ${p.content.length} chars`);
+    for (const p of posts) console.log(`[dry-run] ${entry(ids[p.file]).id ? 'update' : 'create'} draft: "${p.title}" [${p.labels.join(', ')}] ${p.content.length} chars`);
     return;
   }
 
@@ -125,10 +126,12 @@ async function main() {
   const blog = `${API}/blogs/${encodeURIComponent(process.env.BLOGGER_BLOG_ID)}/posts`;
   const token = await accessToken();
 
+  const save = () => writeFile(ID_FILE, JSON.stringify(ids, null, 2) + '\n');
+
   for (const [i, p] of posts.entries()) {
     if (i) await sleep(PAUSE_MS);
     const body = { kind: 'blogger#post', title: p.title, content: p.content, labels: p.labels };
-    const id = ids[p.file];
+    const { id, updated } = entry(ids[p.file]);
     if (id) {
       let current;
       try {
@@ -142,17 +145,28 @@ async function main() {
         continue;
       }
       if (current) {
-        await api(token, 'PATCH', `${blog}/${id}`, body);
+        // Never overwrite work done in the Blogger editor (photos, experience, permalink).
+        if (!FORCE && current.updated !== updated) {
+          console.log(`::warning::Skip ${p.file}: the draft was edited in Blogger after the last sync, so updating it would erase those edits. Make the change in Blogger, or re-run manually with force to overwrite.`);
+          continue;
+        }
+        const patched = await api(token, 'PATCH', `${blog}/${id}`, body);
+        ids[p.file] = { id, updated: patched.updated };
+        await save();
         console.log(`Updated draft: "${p.title}"`);
         continue;
       }
     }
     const created = await api(token, 'POST', `${blog}?isDraft=true`, body);
-    ids[p.file] = created.id;
+    ids[p.file] = { id: created.id, updated: created.updated };
+    await save(); // saved per post so a later failure can't cause duplicate drafts on the next run
     console.log(`Created draft: "${p.title}" (id ${created.id})`);
   }
+}
 
-  await writeFile(ID_FILE, JSON.stringify(ids, null, 2) + '\n');
+// Older entries were a bare post ID with no sync time; those are treated as "possibly edited".
+function entry(v) {
+  return typeof v === 'string' ? { id: v, updated: null } : (v || {});
 }
 
 main().catch((e) => {
