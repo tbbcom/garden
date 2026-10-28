@@ -520,6 +520,7 @@ body#layout .hgl-footer__grid>*{flex:1}
                 <a class='hgl-nav__link' href='/p/tools.html'>Tools</a>
                 <button aria-expanded='false' aria-label='Show tools' class='hgl-nav__subtoggle' type='button'/>
                 <ul class='hgl-nav__sub'>
+                  <li><a href='/p/planting-calendar.html'>Planting Calendar by ZIP</a></li>
                   <li><a href='/p/garden-calculator.html'>Garden Calculator (all-in-one)</a></li>
                   <li><a href='/p/mulch-calculator.html'>Mulch Calculator</a></li>
                   <li><a href='/p/soil-calculator.html'>Soil Calculator</a></li>
@@ -833,6 +834,7 @@ body#layout .hgl-footer__grid>*{flex:1}
             <b:else/>
               <p>Exact quantities for your project — free, no sign-up.</p>
               <ul class='hgl-tools'>
+                <li><a href='/p/planting-calendar.html'>Planting Calendar by ZIP</a></li>
                 <li><a href='/p/mulch-calculator.html'>Mulch Calculator</a></li>
                 <li><a href='/p/soil-calculator.html'>Soil Calculator</a></li>
                 <li><a href='/p/topsoil-gravel-calculator.html'>Topsoil &amp; Gravel</a></li>
