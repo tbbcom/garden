@@ -125,3 +125,14 @@ The content lives in this repo as HTML, so it stays portable. If you migrate:
 - Each post's top comment has an **IMAGE BRIEF**: SEO filename, alt text, title and 3 prompt styles for the featured image, plus a Pinterest pin and an inline image.
 - **Your edits in Blogger are protected.** Once you change a draft in the Blogger editor (photos, experience, permalink), later syncs skip it instead of overwriting it. To overwrite on purpose: Actions → Blogger drafts → Run workflow → tick **force**.
 - **Publishing pace:** 1–2 posts a day, each with a real photo and an experience line added. A brand-new site that publishes 50 near-identical AI posts in 3 weeks fits Google's scaled-content pattern. The same 50 posts, each made personal and published steadily, don't.
+
+## 8. Weekly site audit (read-only)
+
+`.github/workflows/site-audit.yml` runs every **Monday at 10:17 Malaysia time** (or any time via Actions → Site audit → Run workflow). It uses the same secrets but **only reads**: it never changes Blogger.
+
+It checks every live post and page:
+- **AdSense readiness:** 25+ substantial posts, About/Contact/Privacy/Disclaimer pages, no critical issues, every post personalised, no broken links.
+- **SEO / web standards:** meta description, canonical, `noindex`, one H1, `og:image`, valid JSON-LD, title length, one label, duplicate titles.
+- **Content:** thin posts, leftover old shortcodes, unfilled ADD YOUR EXPERIENCE / ADD YOUR PHOTO, images without alt text, `http://` images, broken internal links, posts not updated in a year.
+
+The result is committed to `reports/site-audit.md` and shown on the run's summary page.
