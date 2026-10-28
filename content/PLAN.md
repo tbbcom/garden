@@ -1,10 +1,12 @@
-# Content plan: 50 articles in 5 daily batches of 10
+# Content plan: 60 articles in 6 daily batches of 10
 
 The scheduled writer takes the first 10 rows with status `todo` each day (skipping any whose file already exists on `main` or in an open PR), writes them per `docs/WRITING-GUIDE.md`, sets them to `drafted`, and opens one PR. Merging the PR creates the Blogger drafts. **Merge one batch PR at a time** (the pipeline sends at most 10 drafts per run).
 
-Order follows US search demand and season: lawn care first (searches peak February–April), then mulch/soil (March–May), vegetable planning (January–March), hardscape (spring), then fall and winter tasks.
+Order follows US search demand and season: lawn care first (searches peak February–April), then mulch/soil (March–May), vegetable planning (January–March), hardscape (spring), then fall and winter tasks, then "when to plant [crop]" posts (day 6) that link to the planting calendar. Garlic sits in day 1 because its searches peak in October.
 
 Volumes are US monthly averages from Ubersuggest (Oct 2026); "–" means not checked. Each post links to the calculator in the last column with descriptive anchor text.
+
+**Crop posts (garlic and day 6):** each must be crop-specific, not a template with the crop name swapped: the crop's own soil-temperature threshold, frost tolerance, start-indoors vs direct-sow rule, days to maturity, a dates table by USDA zone (3–10) computed from average last/first frost dates, and crop-specific mistakes. Link the planting calendar near the top ("find your exact dates by ZIP code") and again in the tool CTA. Garlic is a fall crop: plant dates are relative to the first fall frost.
 
 **Status:** `todo` → `drafted` (in a PR / Blogger draft) → `live` (you published it; update by hand).
 
@@ -19,7 +21,7 @@ Volumes are US monthly averages from Ubersuggest (Oct 2026); "–" means not che
 | 7 | 1 | todo | cool-season-vs-warm-season-grass.html | Cool-Season vs Warm-Season Grass: Which Grows Where You Live | cool season vs warm season grass (–) | Lawn Care | /p/lawn-fertilizer-npk-calculator.html |
 | 8 | 1 | todo | how-to-measure-lawn-square-footage.html | How to Measure Your Lawn's Square Footage (Any Shape) | how to measure lawn square footage (–) | Lawn Care | /p/garden-calculator.html |
 | 9 | 1 | todo | lawn-aeration-guide.html | Lawn Aeration: When, Why and How to Aerate Your Yard | when to aerate lawn (–) | Lawn Care | /p/lawn-fertilizer-npk-calculator.html |
-| 10 | 1 | todo | how-much-gravel-do-i-need.html | How Much Gravel Do I Need? Tons, Yards and Bags Explained | how much gravel do i need (2,400) | Garden Maintenance | /p/topsoil-gravel-calculator.html |
+| 10 | 1 | todo | when-to-plant-garlic.html | When to Plant Garlic: Fall Planting Dates by USDA Zone | when to plant garlic (6,600; 14,800 in Oct) | Vegetable | /p/planting-calendar.html |
 | 11 | 2 | todo | how-deep-should-mulch-be.html | How Deep Should Mulch Be? Depth Guide by Mulch Type | how deep should mulch be (480) | Garden Maintenance | /p/mulch-calculator.html |
 | 12 | 2 | todo | bagged-vs-bulk-mulch.html | Bagged vs Bulk Mulch: Cost, Quality and When Each Wins | bagged vs bulk mulch (–) | Garden Maintenance | /p/mulch-calculator.html |
 | 13 | 2 | todo | when-to-mulch.html | When to Mulch: Best Time in Spring and Fall | when to mulch (–) | Garden Maintenance | /p/mulch-calculator.html |
@@ -35,8 +37,8 @@ Volumes are US monthly averages from Ubersuggest (Oct 2026); "–" means not che
 | 23 | 3 | todo | tomato-plant-spacing.html | Tomato Plant Spacing: How Far Apart to Plant Tomatoes | tomato plant spacing (–) | Vegetable | /p/plant-spacing-calculator.html |
 | 24 | 3 | todo | vegetable-garden-layout-for-beginners.html | Vegetable Garden Layout for Beginners (Plans You Can Copy) | vegetable garden layout (–) | Vegetable | /p/plant-spacing-calculator.html |
 | 25 | 3 | todo | companion-planting-chart.html | Companion Planting Chart: Good and Bad Vegetable Neighbors | companion planting chart (–) | Organic Gardening | /p/plant-spacing-calculator.html |
-| 26 | 3 | todo | when-to-start-seeds-indoors.html | When to Start Seeds Indoors (Calendar by Last Frost Date) | when to start seeds indoors (–) | Vegetable | /p/garden-calculator.html |
-| 27 | 3 | todo | usda-hardiness-zones-explained.html | USDA Hardiness Zones Explained (and Why They Matter) | usda hardiness zones (–) | Gardening | /p/garden-calculator.html |
+| 26 | 3 | todo | when-to-start-seeds-indoors.html | When to Start Seeds Indoors (Calendar by Last Frost Date) | when to start seeds indoors (–) | Vegetable | /p/planting-calendar.html |
+| 27 | 3 | todo | usda-hardiness-zones-explained.html | USDA Hardiness Zones Explained (and Why They Matter) | usda hardiness zones (–) | Gardening | /p/planting-calendar.html |
 | 28 | 3 | todo | how-to-build-a-raised-garden-bed.html | How to Build a Raised Garden Bed: Materials, Cost and Steps | how to build a raised garden bed (–) | Vegetable | /p/soil-calculator.html |
 | 29 | 3 | todo | how-deep-should-a-raised-bed-be.html | How Deep Should a Raised Bed Be? Depth by Crop | how deep should a raised bed be (–) | Vegetable | /p/soil-calculator.html |
 | 30 | 3 | todo | composting-for-beginners.html | Composting for Beginners: A Simple Backyard Method | how to start composting (–) | Composting | /p/garden-calculator.html |
@@ -60,3 +62,13 @@ Volumes are US monthly averages from Ubersuggest (Oct 2026); "–" means not che
 | 48 | 5 | todo | spring-garden-checklist.html | Spring Garden Checklist: Month-by-Month To-Do List | spring garden checklist (–) | Garden Maintenance | /p/garden-calculator.html |
 | 49 | 5 | todo | winter-houseplant-care.html | Winter Houseplant Care: Light, Water and Humidity Fixes | winter houseplant care (–) | Gardening | /p/garden-calculator.html |
 | 50 | 5 | todo | garden-tool-maintenance.html | Garden Tool Maintenance: Clean, Sharpen and Store for Winter | garden tool maintenance (–) | Garden Maintenance | /p/garden-calculator.html |
+| 51 | 6 | todo | when-to-plant-tomatoes.html | When to Plant Tomatoes: Dates by Zone and Last Frost | when to plant tomatoes (8,100; 27,100 in Mar–Apr) | Vegetable | /p/planting-calendar.html |
+| 52 | 6 | todo | when-to-plant-potatoes.html | When to Plant Potatoes: Soil Temperature and Dates by Zone | when to plant potatoes (8,100; 22,200 in Mar) | Vegetable | /p/planting-calendar.html |
+| 53 | 6 | todo | when-to-plant-strawberries.html | When to Plant Strawberries: Spring vs Fall by Zone | when to plant strawberries (5,400; 18,100 in Mar) | Vegetable | /p/planting-calendar.html |
+| 54 | 6 | todo | when-to-plant-pumpkins.html | When to Plant Pumpkins for a Halloween Harvest | when to plant pumpkins (5,400; 12,100 in Jul–Aug) | Vegetable | /p/planting-calendar.html |
+| 55 | 6 | todo | when-to-plant-onions.html | When to Plant Onions: Sets, Seeds and Day Length by Zone | when to plant onions (3,600; 8,100 in Mar) | Vegetable | /p/planting-calendar.html |
+| 56 | 6 | todo | when-to-plant-carrots.html | When to Plant Carrots: Spring and Fall Sowing Dates | when to plant carrots (3,600; 9,900 in Mar–Apr) | Vegetable | /p/planting-calendar.html |
+| 57 | 6 | todo | when-to-plant-cucumbers.html | When to Plant Cucumbers: Soil Temperature and Dates | when to plant cucumbers (2,900; 8,100 in Mar–Apr) | Vegetable | /p/planting-calendar.html |
+| 58 | 6 | todo | when-to-plant-watermelon.html | When to Plant Watermelon: Dates by Zone and Soil Temp | when to plant watermelon (1,900; 5,400 in Apr) | Vegetable | /p/planting-calendar.html |
+| 59 | 6 | todo | when-to-plant-green-beans.html | When to Plant Green Beans: Dates and Succession Sowing | when to plant green beans (1,600; 5,400 in Apr) | Vegetable | /p/planting-calendar.html |
+| 60 | 6 | todo | how-much-gravel-do-i-need.html | How Much Gravel Do I Need? Tons, Yards and Bags Explained | how much gravel do i need (2,400) | Garden Maintenance | /p/topsoil-gravel-calculator.html |
