@@ -1,0 +1,25 @@
+name: Probe live pages
+on:
+  push:
+    branches: ['claude/**']
+    paths: ['.github/workflows/probe.yml']
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          for p in about contact privacy-policy disclaimer tools; do
+            echo "=================== $p"
+            curl -sL "https://www.homegardenlot.com/p/$p.html" -o $p.html
+            python3 - "$p.html" <<'PY'
+          import re,sys,html
+          s=open(sys.argv[1],encoding='utf-8',errors='ignore').read()
+          m=re.search(r"<div class='hgl-post__body[^']*'[^>]*>(.*?)<div class='hgl-share|<div class=\"post-body[^\"]*\"[^>]*>(.*?)</article>",s,re.S)
+          body=(m.group(1) or m.group(2)) if m else s
+          body=re.sub(r'<(script|style)[^>]*>.*?</\1>','',body,flags=re.S)
+          body=re.sub(r'<a [^>]*href="([^"]+)"[^>]*>',r' [\1] ',body)
+          t=html.unescape(re.sub(r'<[^>]+>',' ',body)); t=re.sub(r'\s+',' ',t)
+          print(t[:4000])
+          PY
+          done
+          grep -o 'ContactForm1[^"]*' contact.html | sort -u | head
