@@ -6,7 +6,7 @@ Order follows US search demand and season: lawn care first (searches peak Februa
 
 Volumes are US monthly averages from Ubersuggest (Oct 2026); "–" means not checked. Each post links to the calculator in the last column with descriptive anchor text.
 
-**Crop posts (garlic and day 6):** each must be crop-specific, not a template with the crop name swapped: the crop's own soil-temperature threshold, frost tolerance, start-indoors vs direct-sow rule, days to maturity, a dates table by USDA zone (3–10) computed from average last/first frost dates, and crop-specific mistakes. Link the planting calendar near the top ("find your exact dates by ZIP code") and again in the tool CTA. Garlic is a fall crop: plant dates are relative to the first fall frost.
+**Crop posts (garlic and day 6):** each must be crop-specific, not a template with the crop name swapped: the crop's own soil-temperature threshold, frost tolerance, start-indoors vs direct-sow rule, days to maturity, a dates table by USDA zone (3–10) computed from average last/first frost dates, and crop-specific mistakes. Link the planting calendar near the top ("find your exact dates by ZIP code") and again in the tool CTA. Garlic is a fall crop: plant dates are relative to the first fall frost. When the post mentions frost dates, link the NOAA data at https://tool.homegardenlot.com/frost-dates/ (anchor such as "frost dates by ZIP code"), and cite NOAA NCEI 1991–2020 U.S. Climate Normals in Sources.
 
 **Status:** `todo` → `drafted` (in a PR / Blogger draft) → `live` (you published it; update by hand).
 

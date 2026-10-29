@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='2.4.0' lang='en' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='2.4.1' lang='en' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
 <!--
-  Home Garden Lot — Blogger theme v2.4.0 (brand palette #247b49 / zinc / Inter)
+  Home Garden Lot — Blogger theme v2.4.1 (brand palette #247b49 / zinc / Inter)
   Lightweight, schema-rich, CWV-first theme for www.homegardenlot.com
   - Inter loaded non-blocking, no jQuery, no icon font, no Blogger default CSS bundle (b:css='false')
   - JSON-LD: Organization, WebSite, BlogPosting, BreadcrumbList, CollectionPage, WebPage
@@ -144,7 +144,7 @@
 
   <b:include data='blog' name='google-analytics'/>
 
-<b:skin version='2.4.0'><![CDATA[
+<b:skin version='2.4.1'><![CDATA[
 /* =========================================================
    Home Garden Lot — design tokens
    ========================================================= */
@@ -543,6 +543,7 @@ body#layout .hgl-footer__grid>*{flex:1}
                 <button aria-expanded='false' aria-label='Show tools' class='hgl-nav__subtoggle' type='button'/>
                 <ul class='hgl-nav__sub'>
                   <li><a href='/p/planting-calendar.html'>Planting Calendar by ZIP</a></li>
+                  <li><a href='https://tool.homegardenlot.com/frost-dates/'>Frost Dates by ZIP</a></li>
                   <li><a href='/p/garden-calculator.html'>Garden Calculator (all-in-one)</a></li>
                   <li><a href='/p/mulch-calculator.html'>Mulch Calculator</a></li>
                   <li><a href='/p/soil-calculator.html'>Soil Calculator</a></li>
@@ -857,6 +858,7 @@ body#layout .hgl-footer__grid>*{flex:1}
               <p>Exact quantities for your project — free, no sign-up.</p>
               <ul class='hgl-tools'>
                 <li><a href='/p/planting-calendar.html'>Planting Calendar by ZIP</a></li>
+                <li><a href='https://tool.homegardenlot.com/frost-dates/'>Frost Dates by ZIP</a></li>
                 <li><a href='/p/mulch-calculator.html'>Mulch Calculator</a></li>
                 <li><a href='/p/soil-calculator.html'>Soil Calculator</a></li>
                 <li><a href='/p/topsoil-gravel-calculator.html'>Topsoil &amp; Gravel</a></li>
@@ -1003,6 +1005,7 @@ body#layout .hgl-footer__grid>*{flex:1}
               </b:loop>
             <b:else/>
               <li><a href='/p/planting-calendar.html'>Planting Calendar by ZIP</a></li>
+              <li><a href='https://tool.homegardenlot.com/frost-dates/'>Frost Dates by ZIP</a></li>
               <li><a href='/p/mulch-calculator.html'>Mulch Calculator</a></li>
               <li><a href='/p/soil-calculator.html'>Soil Calculator</a></li>
               <li><a href='/p/topsoil-gravel-calculator.html'>Topsoil &amp; Gravel Calculator</a></li>
