@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='2.4.3' lang='en' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='2.4.4' lang='en' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
 <!--
-  Home Garden Lot — Blogger theme v2.4.3 (brand palette #247b49 / zinc / Inter)
+  Home Garden Lot — Blogger theme v2.4.4 (brand palette #247b49 / zinc / Inter)
   Lightweight, schema-rich, CWV-first theme for www.homegardenlot.com
   - Inter loaded non-blocking, no jQuery, no icon font, no Blogger default CSS bundle (b:css='false')
   - JSON-LD: Organization, WebSite, BlogPosting, BreadcrumbList, CollectionPage, WebPage
@@ -144,7 +144,7 @@
 
   <b:include data='blog' name='google-analytics'/>
 
-<b:skin version='2.4.3'><![CDATA[
+<b:skin version='2.4.4'><![CDATA[
 /* =========================================================
    Home Garden Lot — design tokens
    ========================================================= */
@@ -723,6 +723,12 @@ body#layout .hgl-footer__grid>*{flex:1}
                 <ol class='hgl-toc__list'/>
               </details>
             </b:if>
+            <b:if cond='data:view.isPage'>
+              <details class='hgl-toc' data-optin='1' hidden='hidden' id='hgl-toc' open='open'>
+                <summary><span class='hgl-toc__title'>On this page</span></summary>
+                <ol class='hgl-toc__list'/>
+              </details>
+            </b:if>
 
             <div class='hgl-post__body' id='hgl-post-body'>
               <data:post.body/>
@@ -1248,6 +1254,9 @@ body#layout .hgl-footer__grid>*{flex:1}
   // Table of contents from H2/H3, placed where {getToc} was, otherwise just before the first H2
   // so the intro (the direct answer) stays at the top. Removed when the post is too short to need one.
   var toc = d.getElementById('hgl-toc');
+  // Pages get a TOC only when they ask for one with {getToc}; a stray shortcode never shows as text.
+  if (toc && toc.hasAttribute('data-optin') && !tocSlot) { toc.parentNode.removeChild(toc); toc = null; }
+  if (!toc && tocSlot) tocSlot.el.parentNode.removeChild(tocSlot.el);
   if (toc) {
     var heads = body.querySelectorAll('h2, h3');
     if (heads.length < 3) {
