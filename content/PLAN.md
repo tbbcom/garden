@@ -22,16 +22,16 @@ Volumes are US monthly averages from Ubersuggest (Oct 2026); "–" means not che
 | 8 | 1 | drafted | how-to-measure-lawn-square-footage.html | How to Measure Your Lawn's Square Footage (Any Shape) | how to measure lawn square footage (–) | Lawn Care | /p/garden-calculator.html |
 | 9 | 1 | drafted | lawn-aeration-guide.html | Lawn Aeration: When, Why and How to Aerate Your Yard | when to aerate lawn (–) | Lawn Care | /p/lawn-fertilizer-npk-calculator.html |
 | 10 | 1 | drafted | when-to-plant-garlic.html | When to Plant Garlic: Fall Planting Dates by USDA Zone | when to plant garlic (6,600; 14,800 in Oct) | Vegetable | /p/planting-calendar.html |
-| 11 | 2 | todo | how-deep-should-mulch-be.html | How Deep Should Mulch Be? Depth Guide by Mulch Type | how deep should mulch be (480) | Garden Maintenance | /p/mulch-calculator.html |
-| 12 | 2 | todo | bagged-vs-bulk-mulch.html | Bagged vs Bulk Mulch: Cost, Quality and When Each Wins | bagged vs bulk mulch (–) | Garden Maintenance | /p/mulch-calculator.html |
-| 13 | 2 | todo | when-to-mulch.html | When to Mulch: Best Time in Spring and Fall | when to mulch (–) | Garden Maintenance | /p/mulch-calculator.html |
-| 14 | 2 | todo | best-mulch-for-vegetable-garden.html | Best Mulch for Vegetable Gardens (and What to Avoid) | best mulch for vegetable garden (–) | Vegetable | /p/mulch-calculator.html |
-| 15 | 2 | todo | rubber-mulch-vs-wood-mulch.html | Rubber Mulch vs Wood Mulch: Honest Pros, Cons and Costs | rubber mulch vs wood mulch (–) | Garden Maintenance | /p/mulch-calculator.html |
-| 16 | 2 | todo | how-much-soil-for-raised-bed.html | How Much Soil for a Raised Bed? Charts for Every Size | how much soil for raised bed (–) | Vegetable | /p/soil-calculator.html |
-| 17 | 2 | todo | best-soil-mix-for-raised-beds.html | The Best Soil Mix for Raised Beds (Simple Recipe) | raised bed soil mix (–) | Vegetable | /p/soil-calculator.html |
-| 18 | 2 | todo | topsoil-vs-garden-soil-vs-potting-mix.html | Topsoil vs Garden Soil vs Potting Mix: Which to Use Where | topsoil vs garden soil (–) | Garden Maintenance | /p/soil-calculator.html |
-| 19 | 2 | todo | how-to-calculate-cubic-yards.html | How to Calculate Cubic Yards for Soil, Mulch and Gravel | how to calculate cubic yards (–) | Garden Maintenance | /p/topsoil-gravel-calculator.html |
-| 20 | 2 | todo | how-to-improve-clay-soil.html | How to Improve Clay Soil for Gardening | how to improve clay soil (–) | Organic Gardening | /p/soil-calculator.html |
+| 11 | 2 | drafted | how-deep-should-mulch-be.html | How Deep Should Mulch Be? Depth Guide by Mulch Type | how deep should mulch be (480) | Garden Maintenance | /p/mulch-calculator.html |
+| 12 | 2 | drafted | bagged-vs-bulk-mulch.html | Bagged vs Bulk Mulch: Cost, Quality and When Each Wins | bagged vs bulk mulch (–) | Garden Maintenance | /p/mulch-calculator.html |
+| 13 | 2 | drafted | when-to-mulch.html | When to Mulch: Best Time in Spring and Fall | when to mulch (–) | Garden Maintenance | /p/mulch-calculator.html |
+| 14 | 2 | drafted | best-mulch-for-vegetable-garden.html | Best Mulch for Vegetable Gardens (and What to Avoid) | best mulch for vegetable garden (–) | Vegetable | /p/mulch-calculator.html |
+| 15 | 2 | drafted | rubber-mulch-vs-wood-mulch.html | Rubber Mulch vs Wood Mulch: Honest Pros, Cons and Costs | rubber mulch vs wood mulch (–) | Garden Maintenance | /p/mulch-calculator.html |
+| 16 | 2 | drafted | how-much-soil-for-raised-bed.html | How Much Soil for a Raised Bed? Charts for Every Size | how much soil for raised bed (–) | Vegetable | /p/soil-calculator.html |
+| 17 | 2 | drafted | best-soil-mix-for-raised-beds.html | The Best Soil Mix for Raised Beds (Simple Recipe) | raised bed soil mix (–) | Vegetable | /p/soil-calculator.html |
+| 18 | 2 | drafted | topsoil-vs-garden-soil-vs-potting-mix.html | Topsoil vs Garden Soil vs Potting Mix: Which to Use Where | topsoil vs garden soil (–) | Garden Maintenance | /p/soil-calculator.html |
+| 19 | 2 | drafted | how-to-calculate-cubic-yards.html | How to Calculate Cubic Yards for Soil, Mulch and Gravel | how to calculate cubic yards (–) | Garden Maintenance | /p/topsoil-gravel-calculator.html |
+| 20 | 2 | drafted | how-to-improve-clay-soil.html | How to Improve Clay Soil for Gardening | how to improve clay soil (–) | Organic Gardening | /p/soil-calculator.html |
 | 21 | 3 | drafted | square-foot-gardening-spacing-chart.html | Square Foot Gardening Spacing Chart (Plants per Square) | square foot gardening spacing (210) | Vegetable | /p/plant-spacing-calculator.html |
 | 22 | 3 | drafted | how-many-plants-per-raised-bed.html | How Many Plants Fit in a 4x8 Raised Bed? | how many plants in a 4x8 raised bed (–) | Vegetable | /p/plant-spacing-calculator.html |
 | 23 | 3 | drafted | tomato-plant-spacing.html | Tomato Plant Spacing: How Far Apart to Plant Tomatoes | tomato plant spacing (–) | Vegetable | /p/plant-spacing-calculator.html |
