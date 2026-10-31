@@ -12,7 +12,12 @@ import { readFile } from 'node:fs/promises';
 
 const SITE = 'https://www.homegardenlot.com';
 const API = 'https://ssl.bing.com/webmaster/api.svc/json';
-const KEY = (process.env.BING_API_KEY || '').trim();
+// Strip whitespace, quotes and a pasted "apikey=" prefix, the usual copy-paste accidents.
+const KEY = (process.env.BING_API_KEY || '').trim().replace(/^["']|["']$/g, '').replace(/^apikey=/i, '').trim();
+// The tools site's public IndexNow key: easy to confuse with the Webmaster API key, but Bing rejects it here.
+const TOOLS_INDEXNOW_KEY = 'f6b36fd77837445fcaa6cfad74c7ace4';
+const KEY_HELP = 'Use the Bing Webmaster *API* key (Bing Webmaster Tools → ⚙ Settings → API access → API Key), ' +
+  'not an IndexNow key, generated while signed in to the Microsoft account that verified www.homegardenlot.com.';
 const WINDOW = Number(process.env.WINDOW_HOURS || 7) * 3600e3;
 const ALL = process.env.SUBMIT_ALL === '1' || process.env.SUBMIT_ALL === 'true';
 const DRY = process.env.DRY_RUN === '1' || !KEY;
@@ -58,6 +63,14 @@ async function main() {
   if (!urls.length) return;
   if (!ALL) urls.unshift(`${SITE}/`); // the homepage lists the new item, so it changed too
 
+  if (KEY) {
+    // Describe the key without revealing it, so a wrong paste is easy to spot in the log.
+    const raw = process.env.BING_API_KEY || '';
+    console.log(`Key check: ${KEY.length} characters, ${/^[0-9a-f]+$/i.test(KEY) ? 'letters/digits only' : 'contains other characters'}` +
+      `${raw !== raw.trim() ? ', had extra spaces/newlines (removed)' : ''}.`);
+    if (KEY.toLowerCase() === TOOLS_INDEXNOW_KEY) throw new Error(`BING_API_KEY is the tools site's IndexNow key, not a Bing Webmaster API key. ${KEY_HELP}`);
+  }
+
   if (DRY) {
     console.log(KEY ? 'DRY_RUN: not sending.' : '::notice::BING_API_KEY not set, so nothing was sent. Add it as a repository secret to enable Bing submission.');
     urls.forEach((u) => console.log('  ' + u));
@@ -85,6 +98,7 @@ async function main() {
       body: JSON.stringify({ siteUrl: SITE, urlList: batch }),
     });
     const text = await res.text();
+    if (/InvalidApiKey/i.test(text)) throw new Error(`Bing rejected the key (InvalidApiKey). ${KEY_HELP}`);
     if (!res.ok) throw new Error(`Bing SubmitUrlbatch HTTP ${res.status}: ${text.slice(0, 300)}`);
     console.log(`Submitted ${batch.length} URL(s) to Bing:`);
     batch.forEach((u) => console.log('  ' + u));
