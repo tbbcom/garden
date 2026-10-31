@@ -32,16 +32,16 @@ Volumes are US monthly averages from Ubersuggest (Oct 2026); "–" means not che
 | 18 | 2 | drafted | topsoil-vs-garden-soil-vs-potting-mix.html | Topsoil vs Garden Soil vs Potting Mix: Which to Use Where | topsoil vs garden soil (–) | Garden Maintenance | /p/soil-calculator.html |
 | 19 | 2 | drafted | how-to-calculate-cubic-yards.html | How to Calculate Cubic Yards for Soil, Mulch and Gravel | how to calculate cubic yards (–) | Garden Maintenance | /p/topsoil-gravel-calculator.html |
 | 20 | 2 | drafted | how-to-improve-clay-soil.html | How to Improve Clay Soil for Gardening | how to improve clay soil (–) | Organic Gardening | /p/soil-calculator.html |
-| 21 | 3 | todo | square-foot-gardening-spacing-chart.html | Square Foot Gardening Spacing Chart (Plants per Square) | square foot gardening spacing (210) | Vegetable | /p/plant-spacing-calculator.html |
-| 22 | 3 | todo | how-many-plants-per-raised-bed.html | How Many Plants Fit in a 4x8 Raised Bed? | how many plants in a 4x8 raised bed (–) | Vegetable | /p/plant-spacing-calculator.html |
-| 23 | 3 | todo | tomato-plant-spacing.html | Tomato Plant Spacing: How Far Apart to Plant Tomatoes | tomato plant spacing (–) | Vegetable | /p/plant-spacing-calculator.html |
-| 24 | 3 | todo | vegetable-garden-layout-for-beginners.html | Vegetable Garden Layout for Beginners (Plans You Can Copy) | vegetable garden layout (–) | Vegetable | /p/plant-spacing-calculator.html |
-| 25 | 3 | todo | companion-planting-chart.html | Companion Planting Chart: Good and Bad Vegetable Neighbors | companion planting chart (–) | Organic Gardening | /p/plant-spacing-calculator.html |
-| 26 | 3 | todo | when-to-start-seeds-indoors.html | When to Start Seeds Indoors (Calendar by Last Frost Date) | when to start seeds indoors (–) | Vegetable | /p/planting-calendar.html |
-| 27 | 3 | todo | usda-hardiness-zones-explained.html | USDA Hardiness Zones Explained (and Why They Matter) | usda hardiness zones (–) | Gardening | /p/planting-calendar.html |
-| 28 | 3 | todo | how-to-build-a-raised-garden-bed.html | How to Build a Raised Garden Bed: Materials, Cost and Steps | how to build a raised garden bed (–) | Vegetable | /p/soil-calculator.html |
-| 29 | 3 | todo | how-deep-should-a-raised-bed-be.html | How Deep Should a Raised Bed Be? Depth by Crop | how deep should a raised bed be (–) | Vegetable | /p/soil-calculator.html |
-| 30 | 3 | todo | composting-for-beginners.html | Composting for Beginners: A Simple Backyard Method | how to start composting (–) | Composting | /p/garden-calculator.html |
+| 21 | 3 | drafted | square-foot-gardening-spacing-chart.html | Square Foot Gardening Spacing Chart (Plants per Square) | square foot gardening spacing (210) | Vegetable | /p/plant-spacing-calculator.html |
+| 22 | 3 | drafted | how-many-plants-per-raised-bed.html | How Many Plants Fit in a 4x8 Raised Bed? | how many plants in a 4x8 raised bed (–) | Vegetable | /p/plant-spacing-calculator.html |
+| 23 | 3 | drafted | tomato-plant-spacing.html | Tomato Plant Spacing: How Far Apart to Plant Tomatoes | tomato plant spacing (–) | Vegetable | /p/plant-spacing-calculator.html |
+| 24 | 3 | drafted | vegetable-garden-layout-for-beginners.html | Vegetable Garden Layout for Beginners (Plans You Can Copy) | vegetable garden layout (–) | Vegetable | /p/plant-spacing-calculator.html |
+| 25 | 3 | drafted | companion-planting-chart.html | Companion Planting Chart: Good and Bad Vegetable Neighbors | companion planting chart (–) | Organic Gardening | /p/plant-spacing-calculator.html |
+| 26 | 3 | drafted | when-to-start-seeds-indoors.html | When to Start Seeds Indoors (Calendar by Last Frost Date) | when to start seeds indoors (–) | Vegetable | /p/planting-calendar.html |
+| 27 | 3 | drafted | usda-hardiness-zones-explained.html | USDA Hardiness Zones Explained (and Why They Matter) | usda hardiness zones (–) | Gardening | /p/planting-calendar.html |
+| 28 | 3 | drafted | how-to-build-a-raised-garden-bed.html | How to Build a Raised Garden Bed: Materials, Cost and Steps | how to build a raised garden bed (–) | Vegetable | /p/soil-calculator.html |
+| 29 | 3 | drafted | how-deep-should-a-raised-bed-be.html | How Deep Should a Raised Bed Be? Depth by Crop | how deep should a raised bed be (–) | Vegetable | /p/soil-calculator.html |
+| 30 | 3 | drafted | composting-for-beginners.html | Composting for Beginners: A Simple Backyard Method | how to start composting (–) | Composting | /p/garden-calculator.html |
 | 31 | 4 | todo | how-many-pavers-do-i-need.html | How Many Pavers Do I Need? Formula and Examples | how many pavers do i need (390) | Home Improvement | /p/paver-patio-calculator.html |
 | 32 | 4 | todo | paver-base-gravel-and-sand.html | How Much Gravel and Sand Under Pavers? Base Depth Guide | paver base depth (–) | Home Improvement | /p/paver-patio-calculator.html |
 | 33 | 4 | todo | paver-patio-cost.html | How Much Does a Paver Patio Cost? DIY vs Pro Breakdown | paver patio cost (–) | Home Improvement | /p/paver-patio-calculator.html |
