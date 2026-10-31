@@ -35,6 +35,7 @@ Ranked by expected traffic and revenue per hour of work. Volumes are US monthly 
 - **Mechanism:** freshness plus real query data from Search Console lifts rankings right before demand spikes.
 
 ## 7. Search Console and Bing (free, 10 minutes)
+- **Automatic Bing submission:** the *Submit to Bing* workflow (`.github/workflows/bing-submit.yml`) runs every 6 hours and sends posts and pages published or updated since the last run to Bing through the Bing Webmaster API. One-time setup: verify the site in Bing Webmaster Tools (import from Search Console), then **Settings → API access → API Key** → add it to this repo as the secret `BING_API_KEY`, and run the workflow once with **Submit every post and page** ticked. The tools site submits itself through IndexNow on every deploy.
 - Google Search Console: verify, submit `sitemap.xml` and `sitemap-pages.xml`, check **Manual actions** and **Core Web Vitals** monthly.
 - Bing Webmaster Tools: import from Search Console. Bing powers ChatGPT search and DuckDuckGo results, which helps AI citations.
 
