@@ -2,6 +2,15 @@
 
 _Research date: 30 Oct 2026 · US data from Ubersuggest (monthly searches, SD = SEO difficulty, DA = domain authority, "clicks" = Ubersuggest's estimate for that SERP position) · homegardenlot.com today: DA 7, 123 referring domains, 2 ranking keywords._
 
+## Build status (31 Oct 2026)
+| Tool | Status |
+|---|---|
+| #1 Hardiness zones by ZIP + 52 state pages | ✅ Live at tools.homegardenlot.com/hardiness-zones/ |
+| #2 Concrete block + retaining wall | ✅ Live at /concrete-block-calculator/ and /retaining-wall-calculator/ |
+| #3 Sod, #4 Grass seed | ✅ Built (tbbcom/garden-calc PR), live after merge |
+| Embeds for every tool, IndexNow, related-tool links | ✅ Built; outreach plan in [LINK-BUILDING.md](LINK-BUILDING.md) |
+| #5 Stairs, #6 Gravel, #7 Pool, #8 Pavers, #9 Raised bed soil, #10 Mulch refresh | Next, in that order |
+
 ## The honest constraint
 "#1 for every SERP" is not reachable at DA 7. Brand and government sites hold some SERPs no matter how good the tool is (Sherwin-Williams, Benjamin Moore and Lowe's take the top 3 for **paint calculator**; USDA, Arbor Day and garden.org take the top 3 for **hardiness zone finder**). What is reachable: SERPs where **DA 1–20 sites already rank in the top 5**. In those, Google is choosing on tool quality, not authority, so a better tool wins. Every pick below passed that test using live SERP data.
 
