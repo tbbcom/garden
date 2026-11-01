@@ -42,16 +42,16 @@ Volumes are US monthly averages from Ubersuggest (Oct 2026); "–" means not che
 | 28 | 3 | drafted | how-to-build-a-raised-garden-bed.html | How to Build a Raised Garden Bed: Materials, Cost and Steps | how to build a raised garden bed (–) | Vegetable | /p/soil-calculator.html |
 | 29 | 3 | drafted | how-deep-should-a-raised-bed-be.html | How Deep Should a Raised Bed Be? Depth by Crop | how deep should a raised bed be (–) | Vegetable | /p/soil-calculator.html |
 | 30 | 3 | drafted | composting-for-beginners.html | Composting for Beginners: A Simple Backyard Method | how to start composting (–) | Composting | /p/garden-calculator.html |
-| 31 | 4 | todo | how-many-pavers-do-i-need.html | How Many Pavers Do I Need? Formula and Examples | how many pavers do i need (390) | Home Improvement | /p/paver-patio-calculator.html |
-| 32 | 4 | todo | paver-base-gravel-and-sand.html | How Much Gravel and Sand Under Pavers? Base Depth Guide | paver base depth (–) | Home Improvement | /p/paver-patio-calculator.html |
-| 33 | 4 | todo | paver-patio-cost.html | How Much Does a Paver Patio Cost? DIY vs Pro Breakdown | paver patio cost (–) | Home Improvement | /p/paver-patio-calculator.html |
-| 34 | 4 | todo | how-much-flooring-do-i-need.html | How Much Flooring Do I Need? Square Footage and Waste Factor | how much flooring do i need (480) | Home Improvement | /p/flooring-calculator.html |
-| 35 | 4 | todo | laminate-vs-vinyl-plank-flooring.html | Laminate vs Vinyl Plank Flooring: Which Is Better for You? | laminate vs vinyl plank (–) | Home Improvement | /p/flooring-calculator.html |
-| 36 | 4 | todo | how-to-build-a-gravel-path.html | How to Build a Gravel Path (Materials and Steps) | how to build a gravel path (–) | Home Improvement | /p/topsoil-gravel-calculator.html |
-| 37 | 4 | todo | landscape-edging-ideas.html | Landscape Edging Ideas: Materials Compared by Cost and Effort | landscape edging ideas (–) | Home Improvement | /p/mulch-calculator.html |
-| 38 | 4 | todo | how-to-level-ground-for-a-patio.html | How to Level Ground for a Patio or Shed Base | how to level ground for patio (–) | Home Improvement | /p/topsoil-gravel-calculator.html |
-| 39 | 4 | todo | drip-irrigation-for-raised-beds.html | Drip Irrigation for Raised Beds: Simple Setup and Run Times | drip irrigation for raised beds (–) | Gardening | /p/irrigation-runtime-calculator.html |
-| 40 | 4 | todo | how-much-topsoil-do-i-need.html | How Much Topsoil Do I Need for a Lawn or Garden? | how much topsoil do i need (–) | Garden Maintenance | /p/topsoil-gravel-calculator.html |
+| 31 | 4 | drafted | how-many-pavers-do-i-need.html | How Many Pavers Do I Need? Formula and Examples | how many pavers do i need (390) | Home Improvement | /p/paver-patio-calculator.html |
+| 32 | 4 | drafted | paver-base-gravel-and-sand.html | How Much Gravel and Sand Under Pavers? Base Depth Guide | paver base depth (–) | Home Improvement | /p/paver-patio-calculator.html |
+| 33 | 4 | drafted | paver-patio-cost.html | How Much Does a Paver Patio Cost? DIY vs Pro Breakdown | paver patio cost (–) | Home Improvement | /p/paver-patio-calculator.html |
+| 34 | 4 | drafted | how-much-flooring-do-i-need.html | How Much Flooring Do I Need? Square Footage and Waste Factor | how much flooring do i need (480) | Home Improvement | /p/flooring-calculator.html |
+| 35 | 4 | drafted | laminate-vs-vinyl-plank-flooring.html | Laminate vs Vinyl Plank Flooring: Which Is Better for You? | laminate vs vinyl plank (–) | Home Improvement | /p/flooring-calculator.html |
+| 36 | 4 | drafted | how-to-build-a-gravel-path.html | How to Build a Gravel Path (Materials and Steps) | how to build a gravel path (–) | Home Improvement | /p/topsoil-gravel-calculator.html |
+| 37 | 4 | drafted | landscape-edging-ideas.html | Landscape Edging Ideas: Materials Compared by Cost and Effort | landscape edging ideas (–) | Home Improvement | /p/mulch-calculator.html |
+| 38 | 4 | drafted | how-to-level-ground-for-a-patio.html | How to Level Ground for a Patio or Shed Base | how to level ground for patio (–) | Home Improvement | /p/topsoil-gravel-calculator.html |
+| 39 | 4 | drafted | drip-irrigation-for-raised-beds.html | Drip Irrigation for Raised Beds: Simple Setup and Run Times | drip irrigation for raised beds (–) | Gardening | /p/irrigation-runtime-calculator.html |
+| 40 | 4 | drafted | how-much-topsoil-do-i-need.html | How Much Topsoil Do I Need for a Lawn or Garden? | how much topsoil do i need (–) | Garden Maintenance | /p/topsoil-gravel-calculator.html |
 | 41 | 5 | todo | fall-garden-cleanup-checklist.html | Fall Garden Cleanup Checklist (What to Cut, Leave and Mulch) | fall garden cleanup (–) | Garden Maintenance | /p/mulch-calculator.html |
 | 42 | 5 | todo | how-to-protect-plants-from-frost.html | How to Protect Plants from Frost (Fast Fixes That Work) | how to protect plants from frost (–) | Gardening | /p/garden-calculator.html |
 | 43 | 5 | todo | winter-pruning-guide.html | Winter Pruning Guide: What to Prune and What to Leave | winter pruning (–) | Garden Maintenance | /p/garden-calculator.html |
