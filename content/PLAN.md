@@ -52,16 +52,16 @@ Volumes are US monthly averages from Ubersuggest (Oct 2026); "–" means not che
 | 38 | 4 | todo | how-to-level-ground-for-a-patio.html | How to Level Ground for a Patio or Shed Base | how to level ground for patio (–) | Home Improvement | /p/topsoil-gravel-calculator.html |
 | 39 | 4 | todo | drip-irrigation-for-raised-beds.html | Drip Irrigation for Raised Beds: Simple Setup and Run Times | drip irrigation for raised beds (–) | Gardening | /p/irrigation-runtime-calculator.html |
 | 40 | 4 | todo | how-much-topsoil-do-i-need.html | How Much Topsoil Do I Need for a Lawn or Garden? | how much topsoil do i need (–) | Garden Maintenance | /p/topsoil-gravel-calculator.html |
-| 41 | 5 | todo | fall-garden-cleanup-checklist.html | Fall Garden Cleanup Checklist (What to Cut, Leave and Mulch) | fall garden cleanup (–) | Garden Maintenance | /p/mulch-calculator.html |
-| 42 | 5 | todo | how-to-protect-plants-from-frost.html | How to Protect Plants from Frost (Fast Fixes That Work) | how to protect plants from frost (–) | Gardening | /p/garden-calculator.html |
-| 43 | 5 | todo | winter-pruning-guide.html | Winter Pruning Guide: What to Prune and What to Leave | winter pruning (–) | Garden Maintenance | /p/garden-calculator.html |
-| 44 | 5 | todo | how-to-winterize-raised-beds.html | How to Winterize Raised Garden Beds | winterize raised beds (–) | Vegetable | /p/soil-calculator.html |
-| 45 | 5 | todo | cover-crops-for-home-gardens.html | Cover Crops for Home Gardens: Easy Winter Soil Builders | cover crops for home garden (–) | Organic Gardening | /p/soil-calculator.html |
-| 46 | 5 | todo | how-to-test-soil-ph.html | How to Test Soil pH at Home (and Fix It) | how to test soil ph (–) | Organic Gardening | /p/soil-calculator.html |
-| 47 | 5 | todo | how-to-kill-weeds-naturally.html | How to Kill Weeds Naturally Without Harming Your Garden | how to kill weeds naturally (–) | Organic Gardening | /p/mulch-calculator.html |
-| 48 | 5 | todo | spring-garden-checklist.html | Spring Garden Checklist: Month-by-Month To-Do List | spring garden checklist (–) | Garden Maintenance | /p/garden-calculator.html |
-| 49 | 5 | todo | winter-houseplant-care.html | Winter Houseplant Care: Light, Water and Humidity Fixes | winter houseplant care (–) | Gardening | /p/garden-calculator.html |
-| 50 | 5 | todo | garden-tool-maintenance.html | Garden Tool Maintenance: Clean, Sharpen and Store for Winter | garden tool maintenance (–) | Garden Maintenance | /p/garden-calculator.html |
+| 41 | 5 | drafted | fall-garden-cleanup-checklist.html | Fall Garden Cleanup Checklist (What to Cut, Leave and Mulch) | fall garden cleanup (–) | Garden Maintenance | /p/mulch-calculator.html |
+| 42 | 5 | drafted | how-to-protect-plants-from-frost.html | How to Protect Plants from Frost (Fast Fixes That Work) | how to protect plants from frost (–) | Gardening | /p/garden-calculator.html |
+| 43 | 5 | drafted | winter-pruning-guide.html | Winter Pruning Guide: What to Prune and What to Leave | winter pruning (–) | Garden Maintenance | /p/garden-calculator.html |
+| 44 | 5 | drafted | how-to-winterize-raised-beds.html | How to Winterize Raised Garden Beds | winterize raised beds (–) | Vegetable | /p/soil-calculator.html |
+| 45 | 5 | drafted | cover-crops-for-home-gardens.html | Cover Crops for Home Gardens: Easy Winter Soil Builders | cover crops for home garden (–) | Organic Gardening | /p/soil-calculator.html |
+| 46 | 5 | drafted | how-to-test-soil-ph.html | How to Test Soil pH at Home (and Fix It) | how to test soil ph (–) | Organic Gardening | /p/soil-calculator.html |
+| 47 | 5 | drafted | how-to-kill-weeds-naturally.html | How to Kill Weeds Naturally Without Harming Your Garden | how to kill weeds naturally (–) | Organic Gardening | /p/mulch-calculator.html |
+| 48 | 5 | drafted | spring-garden-checklist.html | Spring Garden Checklist: Month-by-Month To-Do List | spring garden checklist (–) | Garden Maintenance | /p/garden-calculator.html |
+| 49 | 5 | drafted | winter-houseplant-care.html | Winter Houseplant Care: Light, Water and Humidity Fixes | winter houseplant care (–) | Gardening | /p/garden-calculator.html |
+| 50 | 5 | drafted | garden-tool-maintenance.html | Garden Tool Maintenance: Clean, Sharpen and Store for Winter | garden tool maintenance (–) | Garden Maintenance | /p/garden-calculator.html |
 | 51 | 6 | todo | when-to-plant-tomatoes.html | When to Plant Tomatoes: Dates by Zone and Last Frost | when to plant tomatoes (8,100; 27,100 in Mar–Apr) | Vegetable | /p/planting-calendar.html |
 | 52 | 6 | todo | when-to-plant-potatoes.html | When to Plant Potatoes: Soil Temperature and Dates by Zone | when to plant potatoes (8,100; 22,200 in Mar) | Vegetable | /p/planting-calendar.html |
 | 53 | 6 | todo | when-to-plant-strawberries.html | When to Plant Strawberries: Spring vs Fall by Zone | when to plant strawberries (5,400; 18,100 in Mar) | Vegetable | /p/planting-calendar.html |
