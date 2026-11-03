@@ -62,13 +62,13 @@ Volumes are US monthly averages from Ubersuggest (Oct 2026); "–" means not che
 | 48 | 5 | drafted | spring-garden-checklist.html | Spring Garden Checklist: Month-by-Month To-Do List | spring garden checklist (–) | Garden Maintenance | /p/garden-calculator.html |
 | 49 | 5 | drafted | winter-houseplant-care.html | Winter Houseplant Care: Light, Water and Humidity Fixes | winter houseplant care (–) | Gardening | /p/garden-calculator.html |
 | 50 | 5 | drafted | garden-tool-maintenance.html | Garden Tool Maintenance: Clean, Sharpen and Store for Winter | garden tool maintenance (–) | Garden Maintenance | /p/garden-calculator.html |
-| 51 | 6 | todo | when-to-plant-tomatoes.html | When to Plant Tomatoes: Dates by Zone and Last Frost | when to plant tomatoes (8,100; 27,100 in Mar–Apr) | Vegetable | /p/planting-calendar.html |
-| 52 | 6 | todo | when-to-plant-potatoes.html | When to Plant Potatoes: Soil Temperature and Dates by Zone | when to plant potatoes (8,100; 22,200 in Mar) | Vegetable | /p/planting-calendar.html |
-| 53 | 6 | todo | when-to-plant-strawberries.html | When to Plant Strawberries: Spring vs Fall by Zone | when to plant strawberries (5,400; 18,100 in Mar) | Vegetable | /p/planting-calendar.html |
-| 54 | 6 | todo | when-to-plant-pumpkins.html | When to Plant Pumpkins for a Halloween Harvest | when to plant pumpkins (5,400; 12,100 in Jul–Aug) | Vegetable | /p/planting-calendar.html |
-| 55 | 6 | todo | when-to-plant-onions.html | When to Plant Onions: Sets, Seeds and Day Length by Zone | when to plant onions (3,600; 8,100 in Mar) | Vegetable | /p/planting-calendar.html |
-| 56 | 6 | todo | when-to-plant-carrots.html | When to Plant Carrots: Spring and Fall Sowing Dates | when to plant carrots (3,600; 9,900 in Mar–Apr) | Vegetable | /p/planting-calendar.html |
-| 57 | 6 | todo | when-to-plant-cucumbers.html | When to Plant Cucumbers: Soil Temperature and Dates | when to plant cucumbers (2,900; 8,100 in Mar–Apr) | Vegetable | /p/planting-calendar.html |
-| 58 | 6 | todo | when-to-plant-watermelon.html | When to Plant Watermelon: Dates by Zone and Soil Temp | when to plant watermelon (1,900; 5,400 in Apr) | Vegetable | /p/planting-calendar.html |
-| 59 | 6 | todo | when-to-plant-green-beans.html | When to Plant Green Beans: Dates and Succession Sowing | when to plant green beans (1,600; 5,400 in Apr) | Vegetable | /p/planting-calendar.html |
-| 60 | 6 | todo | how-much-gravel-do-i-need.html | How Much Gravel Do I Need? Tons, Yards and Bags Explained | how much gravel do i need (2,400) | Garden Maintenance | /p/topsoil-gravel-calculator.html |
+| 51 | 6 | drafted | when-to-plant-tomatoes.html | When to Plant Tomatoes: Dates by Zone and Last Frost | when to plant tomatoes (8,100; 27,100 in Mar–Apr) | Vegetable | /p/planting-calendar.html |
+| 52 | 6 | drafted | when-to-plant-potatoes.html | When to Plant Potatoes: Soil Temperature and Dates by Zone | when to plant potatoes (8,100; 22,200 in Mar) | Vegetable | /p/planting-calendar.html |
+| 53 | 6 | drafted | when-to-plant-strawberries.html | When to Plant Strawberries: Spring vs Fall by Zone | when to plant strawberries (5,400; 18,100 in Mar) | Vegetable | /p/planting-calendar.html |
+| 54 | 6 | drafted | when-to-plant-pumpkins.html | When to Plant Pumpkins for a Halloween Harvest | when to plant pumpkins (5,400; 12,100 in Jul–Aug) | Vegetable | /p/planting-calendar.html |
+| 55 | 6 | drafted | when-to-plant-onions.html | When to Plant Onions: Sets, Seeds and Day Length by Zone | when to plant onions (3,600; 8,100 in Mar) | Vegetable | /p/planting-calendar.html |
+| 56 | 6 | drafted | when-to-plant-carrots.html | When to Plant Carrots: Spring and Fall Sowing Dates | when to plant carrots (3,600; 9,900 in Mar–Apr) | Vegetable | /p/planting-calendar.html |
+| 57 | 6 | drafted | when-to-plant-cucumbers.html | When to Plant Cucumbers: Soil Temperature and Dates | when to plant cucumbers (2,900; 8,100 in Mar–Apr) | Vegetable | /p/planting-calendar.html |
+| 58 | 6 | drafted | when-to-plant-watermelon.html | When to Plant Watermelon: Dates by Zone and Soil Temp | when to plant watermelon (1,900; 5,400 in Apr) | Vegetable | /p/planting-calendar.html |
+| 59 | 6 | drafted | when-to-plant-green-beans.html | When to Plant Green Beans: Dates and Succession Sowing | when to plant green beans (1,600; 5,400 in Apr) | Vegetable | /p/planting-calendar.html |
+| 60 | 6 | drafted | how-much-gravel-do-i-need.html | How Much Gravel Do I Need? Tons, Yards and Bags Explained | how much gravel do i need (2,400) | Garden Maintenance | /p/topsoil-gravel-calculator.html |
