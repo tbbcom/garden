@@ -1,0 +1,607 @@
+{
+ "rules": [
+  {
+   "from": "/search/label/:label",
+   "to": "/category/:label/",
+   "note": "label pages → category pages (slugged)"
+  },
+  {
+   "from": "/search",
+   "to": "/search/",
+   "note": "site search, query string kept"
+  },
+  {
+   "from": "/feeds/posts/default",
+   "to": "/feed.xml",
+   "note": "Atom/RSS feed, any ?alt="
+  },
+  {
+   "from": "/feeds/*",
+   "to": "/feed.xml",
+   "note": "all other Blogger feeds"
+  },
+  {
+   "from": "/atom.xml",
+   "to": "/feed.xml"
+  },
+  {
+   "from": "/rss.xml",
+   "to": "/feed.xml"
+  },
+  {
+   "from": "/sitemap-pages.xml",
+   "to": "/sitemap.xml"
+  },
+  {
+   "from": "/:yyyy/",
+   "to": "/",
+   "note": "year archive (4 digits)"
+  },
+  {
+   "from": "/:yyyy/:mm/",
+   "to": "/",
+   "note": "month archive"
+  },
+  {
+   "from": "*?m=1 / ?m=0",
+   "to": "same path without ?m=",
+   "note": "Blogger mobile parameter"
+  }
+ ],
+ "categories": [
+  {
+   "label": "Backyard",
+   "path": "/category/backyard/"
+  },
+  {
+   "label": "Balcony",
+   "path": "/category/balcony/"
+  },
+  {
+   "label": "Beginner",
+   "path": "/category/beginner/"
+  },
+  {
+   "label": "Beginner Gardener",
+   "path": "/category/beginner-gardener/"
+  },
+  {
+   "label": "Beginner Gardening",
+   "path": "/category/beginner-gardening/"
+  },
+  {
+   "label": "Beginner's Guide",
+   "path": "/category/beginner-s-guide/"
+  },
+  {
+   "label": "Beneficial Insects",
+   "path": "/category/beneficial-insects/"
+  },
+  {
+   "label": "Boho",
+   "path": "/category/boho/"
+  },
+  {
+   "label": "Brand Guide",
+   "path": "/category/brand-guide/"
+  },
+  {
+   "label": "Budgeting",
+   "path": "/category/budgeting/"
+  },
+  {
+   "label": "Cabbage",
+   "path": "/category/cabbage/"
+  },
+  {
+   "label": "Cabinetry",
+   "path": "/category/cabinetry/"
+  },
+  {
+   "label": "Composting",
+   "path": "/category/composting/"
+  },
+  {
+   "label": "Container",
+   "path": "/category/container/"
+  },
+  {
+   "label": "Container Garden",
+   "path": "/category/container-garden/"
+  },
+  {
+   "label": "Container Gardening",
+   "path": "/category/container-gardening/"
+  },
+  {
+   "label": "Cost Guide",
+   "path": "/category/cost-guide/"
+  },
+  {
+   "label": "DIY Project",
+   "path": "/category/diy-project/"
+  },
+  {
+   "label": "DIY Projects",
+   "path": "/category/diy-projects/"
+  },
+  {
+   "label": "Decor",
+   "path": "/category/decor/"
+  },
+  {
+   "label": "Decorating Tips",
+   "path": "/category/decorating-tips/"
+  },
+  {
+   "label": "Decoration",
+   "path": "/category/decoration/"
+  },
+  {
+   "label": "Easy Plants",
+   "path": "/category/easy-plants/"
+  },
+  {
+   "label": "Eco-Friendly",
+   "path": "/category/eco-friendly/"
+  },
+  {
+   "label": "Edible Garden",
+   "path": "/category/edible-garden/"
+  },
+  {
+   "label": "Edible Gardening",
+   "path": "/category/edible-gardening/"
+  },
+  {
+   "label": "Ethical Home",
+   "path": "/category/ethical-home/"
+  },
+  {
+   "label": "Fall Gardening",
+   "path": "/category/fall-gardening/"
+  },
+  {
+   "label": "Fast-Growing Vegetables",
+   "path": "/category/fast-growing-vegetables/"
+  },
+  {
+   "label": "Flooring",
+   "path": "/category/flooring/"
+  },
+  {
+   "label": "Fruit Gardening",
+   "path": "/category/fruit-gardening/"
+  },
+  {
+   "label": "Furniture Guides",
+   "path": "/category/furniture-guides/"
+  },
+  {
+   "label": "Gallery Wall",
+   "path": "/category/gallery-wall/"
+  },
+  {
+   "label": "Garden",
+   "path": "/category/garden/"
+  },
+  {
+   "label": "Garden Design",
+   "path": "/category/garden-design/"
+  },
+  {
+   "label": "Garden Layout",
+   "path": "/category/garden-layout/"
+  },
+  {
+   "label": "Garden Maintenance",
+   "path": "/category/garden-maintenance/"
+  },
+  {
+   "label": "Garden Pests",
+   "path": "/category/garden-pests/"
+  },
+  {
+   "label": "Garden Planning",
+   "path": "/category/garden-planning/"
+  },
+  {
+   "label": "Gardening",
+   "path": "/category/gardening/"
+  },
+  {
+   "label": "Guides",
+   "path": "/category/guides/"
+  },
+  {
+   "label": "Harvesting",
+   "path": "/category/harvesting/"
+  },
+  {
+   "label": "Home",
+   "path": "/category/home/"
+  },
+  {
+   "label": "Home Decor",
+   "path": "/category/home-decor/"
+  },
+  {
+   "label": "Home Goods",
+   "path": "/category/home-goods/"
+  },
+  {
+   "label": "Home Improvement",
+   "path": "/category/home-improvement/"
+  },
+  {
+   "label": "Home Renovation",
+   "path": "/category/home-renovation/"
+  },
+  {
+   "label": "Home Styling",
+   "path": "/category/home-styling/"
+  },
+  {
+   "label": "Houseplants",
+   "path": "/category/houseplants/"
+  },
+  {
+   "label": "How-to",
+   "path": "/category/how-to/"
+  },
+  {
+   "label": "IPM",
+   "path": "/category/ipm/"
+  },
+  {
+   "label": "Ideas",
+   "path": "/category/ideas/"
+  },
+  {
+   "label": "Indoor Gardening",
+   "path": "/category/indoor-gardening/"
+  },
+  {
+   "label": "Inspiration",
+   "path": "/category/inspiration/"
+  },
+  {
+   "label": "Interior Design",
+   "path": "/category/interior-design/"
+  },
+  {
+   "label": "Japandi",
+   "path": "/category/japandi/"
+  },
+  {
+   "label": "Keledek",
+   "path": "/category/keledek/"
+  },
+  {
+   "label": "Kitchen",
+   "path": "/category/kitchen/"
+  },
+  {
+   "label": "Kitchen Ideas",
+   "path": "/category/kitchen-ideas/"
+  },
+  {
+   "label": "Kitchen Update",
+   "path": "/category/kitchen-update/"
+  },
+  {
+   "label": "Landscape Design",
+   "path": "/category/landscape-design/"
+  },
+  {
+   "label": "Landscaping Ideas",
+   "path": "/category/landscaping-ideas/"
+  },
+  {
+   "label": "Minimalist",
+   "path": "/category/minimalist/"
+  },
+  {
+   "label": "Okra",
+   "path": "/category/okra/"
+  },
+  {
+   "label": "Organic",
+   "path": "/category/organic/"
+  },
+  {
+   "label": "Organic Gardening",
+   "path": "/category/organic-gardening/"
+  },
+  {
+   "label": "Outdoor Design",
+   "path": "/category/outdoor-design/"
+  },
+  {
+   "label": "Outdoor Living",
+   "path": "/category/outdoor-living/"
+  },
+  {
+   "label": "Painting",
+   "path": "/category/painting/"
+  },
+  {
+   "label": "Patio Design",
+   "path": "/category/patio-design/"
+  },
+  {
+   "label": "Patio Furniture",
+   "path": "/category/patio-furniture/"
+  },
+  {
+   "label": "Pest Control",
+   "path": "/category/pest-control/"
+  },
+  {
+   "label": "Pest Management",
+   "path": "/category/pest-management/"
+  },
+  {
+   "label": "Pet-Safe Plants",
+   "path": "/category/pet-safe-plants/"
+  },
+  {
+   "label": "Picture Hanging",
+   "path": "/category/picture-hanging/"
+  },
+  {
+   "label": "Plant Care",
+   "path": "/category/plant-care/"
+  },
+  {
+   "label": "Pro Tips",
+   "path": "/category/pro-tips/"
+  },
+  {
+   "label": "Root Vegetables",
+   "path": "/category/root-vegetables/"
+  },
+  {
+   "label": "Scandinavian",
+   "path": "/category/scandinavian/"
+  },
+  {
+   "label": "Small Garden",
+   "path": "/category/small-garden/"
+  },
+  {
+   "label": "Small Space Garden",
+   "path": "/category/small-space-garden/"
+  },
+  {
+   "label": "Small Spaces",
+   "path": "/category/small-spaces/"
+  },
+  {
+   "label": "Soil Preparation",
+   "path": "/category/soil-preparation/"
+  },
+  {
+   "label": "Step-by-Step",
+   "path": "/category/step-by-step/"
+  },
+  {
+   "label": "Summer Gardening",
+   "path": "/category/summer-gardening/"
+  },
+  {
+   "label": "Sustainable",
+   "path": "/category/sustainable/"
+  },
+  {
+   "label": "Sustainable Living",
+   "path": "/category/sustainable-living/"
+  },
+  {
+   "label": "Sweet Potatoes",
+   "path": "/category/sweet-potatoes/"
+  },
+  {
+   "label": "Trend Alert",
+   "path": "/category/trend-alert/"
+  },
+  {
+   "label": "Urban Farming",
+   "path": "/category/urban-farming/"
+  },
+  {
+   "label": "Urban Gardening",
+   "path": "/category/urban-gardening/"
+  },
+  {
+   "label": "Vegetable",
+   "path": "/category/vegetable/"
+  },
+  {
+   "label": "Vegetable Gardening",
+   "path": "/category/vegetable-gardening/"
+  },
+  {
+   "label": "Vegetables",
+   "path": "/category/vegetables/"
+  },
+  {
+   "label": "Wall Art",
+   "path": "/category/wall-art/"
+  },
+  {
+   "label": "Wall Decor",
+   "path": "/category/wall-decor/"
+  }
+ ],
+ "toolMerge": {
+  "/": "/tools/",
+  "/about/": "/p/about.html",
+  "/privacy/": "/p/privacy-policy.html",
+  "/terms/": "/p/terms.html",
+  "/contact/": "/p/contact.html",
+  "/disclaimer/": "/p/disclaimer.html",
+  "/editorial-policy/": "/p/editorial-policy.html"
+ },
+ "toolPaths": [
+  "/",
+  "/frost-dates/",
+  "/hardiness-zones/",
+  "/data/",
+  "/embed/",
+  "/about/",
+  "/contact/",
+  "/privacy/",
+  "/terms/",
+  "/frost-dates/alabama/",
+  "/frost-dates/alaska/",
+  "/frost-dates/arizona/",
+  "/frost-dates/arkansas/",
+  "/frost-dates/california/",
+  "/frost-dates/colorado/",
+  "/frost-dates/connecticut/",
+  "/frost-dates/delaware/",
+  "/frost-dates/florida/",
+  "/frost-dates/georgia/",
+  "/frost-dates/hawaii/",
+  "/frost-dates/idaho/",
+  "/frost-dates/illinois/",
+  "/frost-dates/indiana/",
+  "/frost-dates/iowa/",
+  "/frost-dates/kansas/",
+  "/frost-dates/kentucky/",
+  "/frost-dates/louisiana/",
+  "/frost-dates/maine/",
+  "/frost-dates/maryland/",
+  "/frost-dates/massachusetts/",
+  "/frost-dates/michigan/",
+  "/frost-dates/minnesota/",
+  "/frost-dates/mississippi/",
+  "/frost-dates/missouri/",
+  "/frost-dates/montana/",
+  "/frost-dates/nebraska/",
+  "/frost-dates/nevada/",
+  "/frost-dates/new-hampshire/",
+  "/frost-dates/new-jersey/",
+  "/frost-dates/new-mexico/",
+  "/frost-dates/new-york/",
+  "/frost-dates/north-carolina/",
+  "/frost-dates/north-dakota/",
+  "/frost-dates/ohio/",
+  "/frost-dates/oklahoma/",
+  "/frost-dates/oregon/",
+  "/frost-dates/pennsylvania/",
+  "/frost-dates/rhode-island/",
+  "/frost-dates/south-carolina/",
+  "/frost-dates/south-dakota/",
+  "/frost-dates/tennessee/",
+  "/frost-dates/texas/",
+  "/frost-dates/utah/",
+  "/frost-dates/vermont/",
+  "/frost-dates/virginia/",
+  "/frost-dates/washington/",
+  "/frost-dates/west-virginia/",
+  "/frost-dates/wisconsin/",
+  "/frost-dates/wyoming/",
+  "/hardiness-zones/alabama/",
+  "/hardiness-zones/alaska/",
+  "/hardiness-zones/arizona/",
+  "/hardiness-zones/arkansas/",
+  "/hardiness-zones/california/",
+  "/hardiness-zones/colorado/",
+  "/hardiness-zones/connecticut/",
+  "/hardiness-zones/delaware/",
+  "/hardiness-zones/district-of-columbia/",
+  "/hardiness-zones/florida/",
+  "/hardiness-zones/georgia/",
+  "/hardiness-zones/hawaii/",
+  "/hardiness-zones/idaho/",
+  "/hardiness-zones/illinois/",
+  "/hardiness-zones/indiana/",
+  "/hardiness-zones/iowa/",
+  "/hardiness-zones/kansas/",
+  "/hardiness-zones/kentucky/",
+  "/hardiness-zones/louisiana/",
+  "/hardiness-zones/maine/",
+  "/hardiness-zones/maryland/",
+  "/hardiness-zones/massachusetts/",
+  "/hardiness-zones/michigan/",
+  "/hardiness-zones/minnesota/",
+  "/hardiness-zones/mississippi/",
+  "/hardiness-zones/missouri/",
+  "/hardiness-zones/montana/",
+  "/hardiness-zones/nebraska/",
+  "/hardiness-zones/nevada/",
+  "/hardiness-zones/new-hampshire/",
+  "/hardiness-zones/new-jersey/",
+  "/hardiness-zones/new-mexico/",
+  "/hardiness-zones/new-york/",
+  "/hardiness-zones/north-carolina/",
+  "/hardiness-zones/north-dakota/",
+  "/hardiness-zones/ohio/",
+  "/hardiness-zones/oklahoma/",
+  "/hardiness-zones/oregon/",
+  "/hardiness-zones/pennsylvania/",
+  "/hardiness-zones/rhode-island/",
+  "/hardiness-zones/south-carolina/",
+  "/hardiness-zones/south-dakota/",
+  "/hardiness-zones/tennessee/",
+  "/hardiness-zones/texas/",
+  "/hardiness-zones/utah/",
+  "/hardiness-zones/vermont/",
+  "/hardiness-zones/virginia/",
+  "/hardiness-zones/washington/",
+  "/hardiness-zones/west-virginia/",
+  "/hardiness-zones/wisconsin/",
+  "/hardiness-zones/wyoming/",
+  "/hardiness-zones/puerto-rico/",
+  "/roof-pitch-calculator/",
+  "/roofing-calculator/",
+  "/shingle-calculator/",
+  "/topsoil-calculator/",
+  "/sand-calculator/",
+  "/polymeric-sand-calculator/",
+  "/deck-joist-span-calculator/",
+  "/floor-joist-span-calculator/",
+  "/rafter-span-calculator/",
+  "/fertilizer-calculator/",
+  "/acreage-calculator/",
+  "/square-feet-to-acres-calculator/",
+  "/btu-calculator/",
+  "/mini-split-size-calculator/",
+  "/concrete-calculator/",
+  "/concrete-slab-calculator/",
+  "/concrete-bag-calculator/",
+  "/deck-stain-calculator/",
+  "/fence-stain-calculator/",
+  "/exterior-paint-calculator/",
+  "/square-footage-calculator/",
+  "/countertop-square-footage-calculator/",
+  "/cubic-yard-calculator/",
+  "/cubic-yards-to-tons-calculator/",
+  "/board-foot-calculator/",
+  "/log-board-foot-calculator/",
+  "/potting-soil-calculator/",
+  "/raised-bed-soil-calculator/",
+  "/fence-calculator/",
+  "/fence-post-concrete-calculator/",
+  "/deck-calculator/",
+  "/tile-calculator/",
+  "/shower-tile-calculator/",
+  "/drywall-calculator/",
+  "/stair-calculator/",
+  "/stair-stringer-calculator/",
+  "/gravel-calculator/",
+  "/pea-gravel-calculator/",
+  "/driveway-gravel-calculator/",
+  "/pool-volume-calculator/",
+  "/pool-salt-calculator/",
+  "/pool-shock-calculator/",
+  "/paver-calculator/",
+  "/paver-base-calculator/",
+  "/sod-calculator/",
+  "/grass-seed-calculator/",
+  "/concrete-block-calculator/",
+  "/retaining-wall-calculator/"
+ ]
+}
