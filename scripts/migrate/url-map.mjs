@@ -24,7 +24,7 @@ const toolsXml = await readFile('migration/export/tools-sitemap.xml', 'utf8').ca
 const toolPaths = [...toolsXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => new URL(m[1]).pathname);
 
 const live = exp.items.filter((x) => x.status === 'live' && x.path);
-const keep = live.map((x) => ({ from: x.path, to: x.path, kind: x.type, title: x.title, live: x.live }));
+const keep = live.map((x) => ({ from: x.path, to: x.path, kind: x.type, title: x.title, live: x.live, description: x.description }));
 const rules = [];
 const blogPaths = new Set(keep.map((k) => k.from));
 
@@ -52,8 +52,8 @@ const clashes = toolMap.filter((t) => t.clash);
 await writeFile('migration/redirects.json', JSON.stringify({ rules, categories, toolMerge: TOOL_MERGE, toolPaths }, null, 1) + '\n');
 
 const drafts = exp.items.filter((x) => x.status !== 'live');
-const missingDesc = keep.filter((k) => k.live && k.live.status === 200 && !k.live.description);
-const unreadable = keep.filter((k) => !k.live || k.live.status !== 200);
+const missingDesc = keep.filter((k) => !k.description);
+const unreadable = keep.filter((k) => k.live && ![200, 'skipped'].includes(k.live.status));
 const images = [...new Set(exp.items.flatMap((x) => x.images))];
 const md = [
   '# URL map: Blogger + tools subdomain → static www.homegardenlot.com',
