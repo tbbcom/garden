@@ -1,0 +1,43 @@
+name: Migration export
+
+# Read-only: exports Blogger content and builds the URL map for the static migration.
+# Never changes Blogger. Commits migration/ back to the branch it ran on.
+on:
+  workflow_dispatch:
+  push:
+    branches: ['claude/**']
+    paths: ['scripts/migrate/**', '.github/workflows/migrate-export.yml']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: migrate-export-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Export Blogger posts and pages
+        env:
+          BLOGGER_CLIENT_ID: ${{ secrets.BLOGGER_CLIENT_ID }}
+          BLOGGER_CLIENT_SECRET: ${{ secrets.BLOGGER_CLIENT_SECRET }}
+          BLOGGER_REFRESH_TOKEN: ${{ secrets.BLOGGER_REFRESH_TOKEN }}
+          BLOGGER_BLOG_ID: ${{ secrets.BLOGGER_BLOG_ID }}
+        run: node scripts/migrate/export-blogger.mjs
+      - name: Fetch the tools sitemap
+        run: curl -fsSL --retry 3 https://tools.homegardenlot.com/sitemap.xml -o migration/export/tools-sitemap.xml
+      - name: Build the URL map
+        run: node scripts/migrate/url-map.mjs && cat migration/URL-MAP.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Commit export
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add migration
+          git diff --cached --quiet || { git commit -m "Migration export $(date -u +%F) [skip ci]" && git push; }
