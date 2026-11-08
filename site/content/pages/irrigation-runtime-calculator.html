@@ -1,0 +1,286 @@
+---
+title: Irrigation Run-Time Calculator – Drip & Sprinkler
+description: Free irrigation run-time calculator: how long to run drip or sprinkler zones to apply the water your lawn or garden needs each week.
+date: 2025-10-31T10:08:00-07:00
+updated: 2025-10-31T10:10:22-07:00
+author: Fadzilla
+bloggerId: 4664991036625253250
+---
+<p class="seo-intro">Size watering like a pro. Enter flow rate, emitter/nozzle output, target depth, and efficiency to get minutes per zone for drip or spray. Convert between GPM/LPH and in/mm automatically.</p>
+
+<section id="irrig-calc" aria-label="Irrigation Run-Time Calculator" style="--ic-base:#249749;--ic-ink:#0f1a13;--ic-muted:#3a624e;--ic-bg:#f7faf8;--ic-card:#fff;--ic-sh:0 4px 18px rgba(0,0,0,.08);margin:0;padding:32px 0;background:var(--ic-bg);color:var(--ic-ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;">
+  <div class="ic-wrap" style="max-width:1100px;margin:0 auto;padding:0 16px;">
+    <header style="text-align:center;margin-bottom:24px">
+      <h1 style="margin:0 0 6px;font-size:clamp(22px,3.2vw,28px);color:var(--ic-base);font-weight:800">💧 Irrigation Run-Time Calculator</h1>
+      <p style="margin:0 auto;max-width:780px;line-height:1.65;color:var(--ic-muted)">Minutes per zone for drip &amp; sprinkler systems with unit conversions and efficiency factor.</p>
+    </header>
+
+    <div class="ic-grid" style="display:grid;grid-template-columns:repeat(12,1fr);gap:16px;align-items:start;">
+      <div class="ic-card" style="grid-column:span 12;background:var(--ic-card);box-shadow:var(--ic-sh);border-radius:12px;padding:16px;">
+        <form id="ic-form" autocomplete="off">
+          <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:12px;">
+            <div style="grid-column:span 6">
+              <label class="ic-label" for="ic-mode">System Type</label>
+              <select id="ic-mode" class="ic-input">
+                <option value="drip">Drip (emitters)</option>
+                <option value="spray">Sprinkler (nozzles)</option>
+              </select>
+            </div>
+            <div style="grid-column:span 6">
+              <label class="ic-label" for="ic-unit-depth">Target Water Depth</label>
+              <div style="display:flex;gap:8px">
+                <input id="ic-depth" class="ic-input" type="number" min="0" step="0.1" placeholder="e.g., 0.5">
+                <select id="ic-depth-unit" class="ic-input" style="max-width:140px">
+                  <option value="in">in</option>
+                  <option value="mm">mm</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- drip inputs -->
+            <div class="ic-drip" style="grid-column:span 6;">
+              <label class="ic-label" for="ic-emitters">Emitters per zone</label>
+              <input id="ic-emitters" class="ic-input" type="number" min="0" step="1" placeholder="e.g., 50">
+            </div>
+            <div class="ic-drip" style="grid-column:span 6;">
+              <label class="ic-label" for="ic-emitter-rate">Emitter rate</label>
+              <div style="display:flex;gap:8px">
+                <input id="ic-emitter-rate" class="ic-input" type="number" min="0" step="0.1" placeholder="e.g., 2">
+                <select id="ic-emitter-unit" class="ic-input" style="max-width:160px">
+                  <option value="lph">L/h (liters/hour)</option>
+                  <option value="gph">GPH (US gal/hour)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- sprinkler inputs -->
+            <div class="ic-spray" style="grid-column:span 6;display:none;">
+              <label class="ic-label" for="ic-precip">Precipitation rate</label>
+              <div style="display:flex;gap:8px">
+                <input id="ic-precip" class="ic-input" type="number" min="0" step="0.01" placeholder="e.g., 1.2">
+                <select id="ic-precip-unit" class="ic-input" style="max-width:160px">
+                  <option value="inph">in/hr</option>
+                  <option value="mmph">mm/hr</option>
+                </select>
+              </div>
+            </div>
+            <div class="ic-spray" style="grid-column:span 6;display:none;">
+              <label class="ic-label" for="ic-area">Area per zone</label>
+              <div style="display:flex;gap:8px">
+                <input id="ic-area" class="ic-input" type="number" min="0" step="0.1" placeholder="e.g., 800">
+                <select id="ic-area-unit" class="ic-input" style="max-width:160px">
+                  <option value="ft2">ft²</option>
+                  <option value="m2">m²</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="grid-column:span 6">
+              <label class="ic-label" for="ic-eff">System Efficiency (%)</label>
+              <input id="ic-eff" class="ic-input" type="number" min="1" max="100" step="1" placeholder="e.g., 80">
+            </div>
+            <div style="grid-column:span 6">
+              <label class="ic-label" for="ic-flow">Zone Flow (optional)</label>
+              <div style="display:flex;gap:8px">
+                <input id="ic-flow" class="ic-input" type="number" min="0" step="0.1" placeholder="e.g., 6">
+                <select id="ic-flow-unit" class="ic-input" style="max-width:160px">
+                  <option value="gpm">GPM (US gal/min)</option>
+                  <option value="lpm">L/min</option>
+                </select>
+              </div>
+              <small style="color:#3a624e;display:block;margin-top:6px">Optional: sanity-check against pump or meter.</small>
+            </div>
+
+            <div style="grid-column:span 12;display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
+              <button type="button" id="ic-calc" class="ic-btn">Calculate</button>
+              <button type="button" id="ic-reset" class="ic-btn ghost">Reset</button>
+              <button type="button" id="ic-share" class="ic-btn outline">Share</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="ic-card" style="grid-column:span 12;background:var(--ic-card);box-shadow:var(--ic-sh);border-radius:12px;padding:16px;">
+        <h2 style="margin:0 0 10px;font-size:18px;color:var(--ic-base)">Results</h2>
+        <div id="ic-results" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px"></div>
+        <p style="margin-top:10px;font-size:12.5px;color:var(--ic-muted)">Tip: Run deep &amp; infrequent for turf; frequent &amp; short for seedlings/containers.</p>
+      </div>
+    </div>
+
+    <style>
+      #irrig-calc .ic-label{display:block;font-size:13px;color:var(--ic-muted);margin:2px 0 6px}
+      #irrig-calc .ic-input{width:100%;padding:10px 12px;border:1px solid rgba(0,0,0,.12);border-radius:10px;background:#fff;outline:none}
+      #irrig-calc .ic-input:focus{border-color:var(--ic-base);box-shadow:0 0 0 3px color-mix(in srgb, var(--ic-base) 18%, transparent)}
+      #irrig-calc .ic-btn{appearance:none;border:0;background:var(--ic-base);color:#fff;padding:10px 14px;border-radius:999px;font-weight:700;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.1)}
+      #irrig-calc .ic-btn:hover{transform:translateY(-1px)}
+      #irrig-calc .ic-btn.ghost{background:#eaf5ee;color:var(--ic-base)}
+      #irrig-calc .ic-btn.outline{background:#fff;color:var(--ic-base);border:1px solid var(--ic-base)}
+      @media (max-width:640px){#irrig-calc header p{font-size:14px}}
+    </style>
+
+    <script>
+    (()=>{'use strict';
+      const $=id=>document.getElementById(id);
+      const mode=$('ic-mode');
+      const depth=$('ic-depth'), depthUnit=$('ic-depth-unit');
+      const emitters=$('ic-emitters'), emitterRate=$('ic-emitter-rate'), emitterUnit=$('ic-emitter-unit');
+      const precip=$('ic-precip'), precipUnit=$('ic-precip-unit');
+      const area=$('ic-area'), areaUnit=$('ic-area-unit');
+      const eff=$('ic-eff'), flow=$('ic-flow'), flowUnit=$('ic-flow-unit');
+      const res=$('ic-results');
+
+      const showDrip=()=>document.querySelectorAll('#irrig-calc .ic-drip').forEach(e=>e.style.display='block');
+      const hideDrip=()=>document.querySelectorAll('#irrig-calc .ic-drip').forEach(e=>e.style.display='none');
+      const showSpray=()=>document.querySelectorAll('#irrig-calc .ic-spray').forEach(e=>e.style.display='block');
+      const hideSpray=()=>document.querySelectorAll('#irrig-calc .ic-spray').forEach(e=>e.style.display='none');
+
+      function toggleMode(){
+        if(mode.value==='drip'){ showDrip(); hideSpray(); }
+        else { hideDrip(); showSpray(); }
+      }
+
+      // unit helpers
+      const in_to_mm=in=>in*25.4, mm_to_in=mm=>mm/25.4;
+      const gph_to_lph=g=>g*3.78541, lph_to_gph=l=>l/3.78541;
+      const ft2_to_m2=ft=>ft*0.092903;
+
+      function card(label,val){ return `<div style="background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:12px;padding:14px;min-height:72px"><div style="font-size:12px;color:var(--ic-muted);margin-bottom:6px">${label}</div><div style="font-size:18px;font-weight:800;color:var(--ic-base)">${val}</div></div>`; }
+
+      function calc(){
+        const depth_in = depthUnit.value==='in' ? (parseFloat(depth.value)||0) : mm_to_in(parseFloat(depth.value)||0);
+        const efficiency = Math.min(100, Math.max(1, parseFloat(eff.value)||80))/100;
+
+        let minutes=0, applied_inph=0, zone_flow_gpm=null;
+
+        if(mode.value==='drip'){
+          const n = Math.max(0, parseInt(emitters.value)||0);
+          const rate_lph = emitterUnit.value==='lph' ? (parseFloat(emitterRate.value)||0) : gph_to_lph(parseFloat(emitterRate.value)||0);
+          // emitter precipitation (approx) = total LPH over area; if area unknown, compute by volume/time vs depth using an equivalent area factor.
+          // Instead, for drip: minutes = (target volume per plant) / emitter flow. Assume target depth over a reference area per emitter (~1 ft²) as heuristic.
+          // Simple, explainable model:
+          // water per emitter per hour (gal) = rate_lph/3.78541
+          const gph = rate_lph/3.78541;
+          // Target water per emitter to reach depth over ~1 ft²: gallons = depth_in * 0.623 (1 in over 1 ft² = 0.623 gal)
+          const target_gal_per_emitter = depth_in * 0.623;
+          minutes = (target_gal_per_emitter / gph) * 60 / efficiency;
+          applied_inph = (gph*efficiency)/(0.623) ; // in/hr over 1 ft² heuristic
+          zone_flow_gpm = (gph*n)/60;
+        } else {
+          // sprinkler: minutes = target depth / (precip rate * efficiency)
+          const pr_inph = precipUnit.value==='inph' ? (parseFloat(precip.value)||0) : (parseFloat(precip.value)||0)/25.4;
+          minutes = (depth_in) / (pr_inph * efficiency) * 60;
+          applied_inph = pr_inph*efficiency;
+          const area_m2 = areaUnit.value==='m2' ? (parseFloat(area.value)||0) : ft2_to_m2(parseFloat(area.value)||0);
+          zone_flow_gpm = null; // unknown without nozzle count; user can compare with pump via optional field
+        }
+
+        // Optional flow sanity
+        let flow_note = '';
+        if(flow.value){
+          const input_gpm = flowUnit.value==='gpm' ? (parseFloat(flow.value)||0) : (parseFloat(flow.value)||0)/3.78541*60;
+          flow_note = input_gpm>0 ? `Input flow ≈ ${input_gpm.toFixed(2)} GPM` : '';
+        }
+
+        // Render
+        res.innerHTML='';
+        res.insertAdjacentHTML('beforeend', card('Recommended Run Time (minutes)', Math.max(0,minutes).toFixed(1)));
+        res.insertAdjacentHTML('beforeend', card('Effective Precipitation (in/hr)', Math.max(0,applied_inph).toFixed(2)));
+        if(zone_flow_gpm!==null) res.insertAdjacentHTML('beforeend', card('Zone Flow (est.)', `${zone_flow_gpm.toFixed(2)} GPM`));
+        if(flow_note) res.insertAdjacentHTML('beforeend', card('Flow Check', flow_note));
+      }
+
+      function resetForm(){ $('ic-form').reset(); hydrateDefaults(); res.innerHTML=''; }
+      function share(){
+        const q=new URLSearchParams({
+          m:mode.value,dep:depth.value||'',depU:depthUnit.value,
+          n:emitters.value||'',er:emitterRate.value||'',eru:emitterUnit.value||'',
+          pr:precip.value||'',pru:precipUnit.value||'',
+          ar:area.value||'',aru:areaUnit.value||'',
+          ef:eff.value||'',fl:flow.value||'',flu:flowUnit.value||''
+        }).toString();
+        const url=location.origin+location.pathname+'?'+q+'#irrig-calc';
+        navigator.clipboard?.writeText(url); alert('Share link copied.');
+      }
+
+      function hydrate(){
+        const q=new URLSearchParams(location.search), get=k=>q.get(k)||'';
+        if(get('m')) mode.value=get('m');
+        if(get('dep')) depth.value=get('dep');
+        if(get('depU')) depthUnit.value=get('depU');
+        if(get('n')) emitters.value=get('n');
+        if(get('er')) emitterRate.value=get('er');
+        if(get('eru')) emitterUnit.value=get('eru');
+        if(get('pr')) precip.value=get('pr');
+        if(get('pru')) precipUnit.value=get('pru');
+        if(get('ar')) area.value=get('ar');
+        if(get('aru')) areaUnit.value=get('aru');
+        if(get('ef')) eff.value=get('ef');
+        if(get('fl')) flow.value=get('fl');
+        if(get('flu')) flowUnit.value=get('flu');
+        toggleMode();
+      }
+
+      function hydrateDefaults(){
+        mode.value='drip'; depth.value='0.5'; depthUnit.value='in';
+        emitters.value='50'; emitterRate.value='2'; emitterUnit.value='gph';
+        precip.value='1.2'; precipUnit.value='inph'; area.value='800'; areaUnit.value='ft2';
+        eff.value='80'; flow.value=''; flowUnit.value='gpm';
+        toggleMode();
+      }
+
+      $('ic-calc').addEventListener('click', calc);
+      $('ic-reset').addEventListener('click', resetForm);
+      $('ic-share').addEventListener('click', share);
+      mode.addEventListener('change', toggleMode);
+      document.querySelectorAll('#irrig-calc input').forEach(i=>i.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();calc();}}));
+
+      hydrate(); if(!location.search) hydrateDefaults();
+    })();
+    </script>
+  </div>
+</section>
+<section id="irrig-howto" style="max-width:1100px;margin:22px auto;padding:0 16px">
+  <h2 style="color:#249749;margin:0 0 10px">How to Use the Irrigation Run-Time Calculator</h2>
+  <ol style="line-height:1.8;color:#3a624e;margin-left:18px">
+    <li>Choose <strong>Drip</strong> or <strong>Sprinkler</strong>.</li>
+    <li>Enter <strong>target water depth</strong> (in/mm) for this cycle.</li>
+    <li>Drip: set <strong>emitters per zone</strong> and <strong>emitter rate</strong> (GPH/L/h).</li>
+    <li>Sprinkler: set <strong>precipitation rate</strong> (in/hr or mm/hr) and <strong>area</strong> (optional).</li>
+    <li>Set <strong>system efficiency</strong> (e.g., 80%). Click <strong>Calculate</strong> → get minutes per zone.</li>
+  </ol>
+
+  <h2 style="color:#249749;margin:16px 0 8px">Irrigation FAQ</h2>
+  <details><summary>What efficiency should I use?</summary><p>Typical: Drip 85–95%, Sprinklers 60–80% depending on wind/overlap. Start at 80% if unsure.</p></details>
+  <details><summary>What is precipitation rate?</summary><p>How fast your system applies water (in/hr or mm/hr). Manufacturers publish nozzle charts; you can also catch-can test.</p></details>
+  <details><summary>How deep should I water?</summary><p>Turf: 0.5–1.0 in per cycle; vegetables: 0.5–1.0 in; trees: fewer, deeper soaks. Adjust by soil/drainage.</p></details>
+  <details><summary>Why are my results different from the controller?</summary><p>Controller programs are time-based; this tool aligns run-time to actual water applied so you can tune programs.</p></details>
+  <details><summary>How often should I water?</summary><p>Use local weather/ET and plant needs. Deep &amp; infrequent for established turf; frequent &amp; light for seedlings.</p></details>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"What efficiency should I use?","acceptedAnswer":{"@type":"Answer","text":"Typical: Drip 85–95%, Sprinklers 60–80% depending on wind and overlap. Start at 80% if unsure."}},
+    {"@type":"Question","name":"What is precipitation rate?","acceptedAnswer":{"@type":"Answer","text":"The rate your system applies water (in/hr or mm/hr). Use manufacturer nozzle charts or a catch-can test."}},
+    {"@type":"Question","name":"How deep should I water?","acceptedAnswer":{"@type":"Answer","text":"Turf 0.5–1.0 in per cycle, vegetables 0.5–1.0 in, trees fewer but deeper soaks; adjust for soil and drainage."}},
+    {"@type":"Question","name":"Why are results different from the controller?","acceptedAnswer":{"@type":"Answer","text":"Controllers are time-based; this tool calculates minutes needed to reach your target water depth."}},
+    {"@type":"Question","name":"How often should I water?","acceptedAnswer":{"@type":"Answer","text":"Match frequency to weather/ET and plant needs. Deep & infrequent for established plants; frequent for seedlings."}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"SoftwareApplication",
+  "name":"Irrigation Run-Time Calculator",
+  "applicationCategory":"CalculatorApplication",
+  "operatingSystem":"Web",
+  "url":"https://www.homegardenlot.com/p/irrigation-runtime-calculator.html",
+  "description":"Calculate minutes per zone for drip and sprinkler systems using target depth, emitter/nozzle output, and efficiency. Supports GPM/LPH and in/mm.",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "publisher":{"@type":"Organization","name":"HomeGardenLot","url":"https://www.homegardenlot.com"}
+}
+</script
+>

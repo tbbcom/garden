@@ -1,0 +1,12 @@
+{
+  "name": "homegardenlot-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/site/build.mjs",
+    "check": "node scripts/site/check.mjs"
+  },
+  "dependencies": {
+    "linkedom": "^0.18.12"
+  }
+}

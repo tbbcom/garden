@@ -1,0 +1,514 @@
+---
+title: Soil Calculator - Calculate Cubic Yards, Tons & Bags
+description: Free soil calculator: work out how many cubic yards, tons or bags of soil you need for raised beds, gardens and lawns from your bed dimensions.
+date: 2025-10-19T07:17:00-07:00
+updated: 2025-10-20T19:23:04-07:00
+author: Fadzilla
+bloggerId: 8055862200028530752
+---
+<p>🏕️ Calculate exactly how much soil, mulch, or compost you need for your gardening project with our professional-grade calculator. Whether you're filling raised beds, top-dressing lawns, or mulching garden beds, get accurate measurements in cubic yards, tons, and bags - plus instant cost comparisons between bulk and bagged options.</p>
+<div class="icalculator-container">
+	<div class="icalc-header">
+		<h2>🌿 Advanced Soil &amp; Mulch Calculator</h2>
+		<p>Professional calculator for soil, mulch, compost, and landscaping materials. Get accurate measurements in cubic yards, tons, and bags with instant cost estimates. 🖩🌳</p>
+	</div> 
+	<div class="icalc-tabs">
+		<button class="itab-btn active" onclick="switchTab('basic')">Basic Calculator</button>
+		<button class="itab-btn" onclick="switchTab('raised')">Raised Beds</button>
+		<button class="itab-btn" onclick="switchTab('container')">Containers &amp; Pots</button>
+		<button class="itab-btn" onclick="switchTab('mulch')">Mulch Coverage</button>
+		<button class="itab-btn" onclick="switchTab('bulk')">Bulk &amp; Cost</button>
+		<button class="itab-btn" onclick="switchTab('topdress')">Lawn Top-Dress</button>
+	</div>
+	<!-- Basic Calculator Section -->
+	<div class="icalc-section active" id="basic-section">
+		<div class="icalc-card">
+			<h3>Calculate Soil Volume</h3>
+			<div class="ishape-selector">
+				<div class="ishape-btn active" onclick="selectShape('rectangle')" data-shape="rectangle"> <span class="ishape-icon">▭</span> <span class="ishape-label">Rectangle</span> </div>
+				<div class="ishape-btn" onclick="selectShape('circle')" data-shape="circle"> <span class="ishape-icon">⭕</span> <span class="ishape-label">Circle</span> </div>
+				<div class="ishape-btn" onclick="selectShape('triangle')" data-shape="triangle"> <span class="ishape-icon">△</span> <span class="ishape-label">Triangle</span> </div>
+				<div class="ishape-btn" onclick="selectShape('trapezoid')" data-shape="trapezoid"> <span class="ishape-icon">⏢</span> <span class="ishape-label">Trapezoid</span> </div>
+			</div>
+			<div class="iunit-selector">
+				<button class="iunit-btn active" onclick="switchUnit('imperial')">Imperial (ft/in)</button>
+				<button class="iunit-btn" onclick="switchUnit('metric')">Metric (m/cm)</button>
+			</div>
+			<div id="rectangle-inputs" class="shape-inputs">
+				<div class="iinput-group">
+					<label for="rect-length">Length (feet)</label>
+					<input type="number" id="rect-length" step="0.1" placeholder="Enter length"> </div>
+				<div class="iinput-group">
+					<label for="rect-width">Width (feet)</label>
+					<input type="number" id="rect-width" step="0.1" placeholder="Enter width"> </div>
+			</div>
+			<div id="circle-inputs" class="shape-inputs" style="display: none;">
+				<div class="iinput-group">
+					<label for="circle-radius">Radius (feet)</label>
+					<input type="number" id="circle-radius" step="0.1" placeholder="Enter radius"> </div>
+			</div>
+			<div id="triangle-inputs" class="shape-inputs" style="display: none;">
+				<div class="iinput-group">
+					<label for="tri-base">Base (feet)</label>
+					<input type="number" id="tri-base" step="0.1" placeholder="Enter base"> </div>
+				<div class="iinput-group">
+					<label for="tri-height">Height (feet)</label>
+					<input type="number" id="tri-height" step="0.1" placeholder="Enter height"> </div>
+			</div>
+			<div id="trapezoid-inputs" class="shape-inputs" style="display: none;">
+				<div class="iinput-group">
+					<label for="trap-base1">Base 1 (feet)</label>
+					<input type="number" id="trap-base1" step="0.1" placeholder="Enter first base"> </div>
+				<div class="iinput-group">
+					<label for="trap-base2">Base 2 (feet)</label>
+					<input type="number" id="trap-base2" step="0.1" placeholder="Enter second base"> </div>
+				<div class="iinput-group">
+					<label for="trap-height">Height (feet)</label>
+					<input type="number" id="trap-height" step="0.1" placeholder="Enter height"> </div>
+			</div>
+			<div class="iinput-group">
+				<label for="basic-depth">Depth (inches)</label>
+				<input type="number" id="basic-depth" step="0.5" placeholder="Enter depth"> </div>
+			<div class="iinput-group">
+				<label for="material-type">Material Type</label>
+				<select id="material-type">
+					<option value="topsoil">Topsoil</option>
+					<option value="mulch">Mulch</option>
+					<option value="compost">Compost</option>
+					<option value="gravel">Gravel</option>
+					<option value="sand">Sand</option>
+					<option value="fill">Fill Dirt</option>
+					<option value="potting">Potting Mix</option>
+				</select>
+			</div>
+			<div class="iinfo-box">
+				<p><strong>💡 Pro Tip:</strong> Add 5-10% extra for settling with soil/mulch, 10-15% for gravel bases. For irregular areas, break into simple shapes and calculate separately.</p>
+			</div>
+			<button class="icalc-btn ipulse" onclick="calculateBasic()">Calculate Material Needed</button>
+		</div>
+		<div class="iresults" id="basic-results">
+			<h3>📊 Your Material Requirements</h3>
+			<div class="iresult-grid">
+				<div class="iresult-item">
+					<div class="iresult-label">Cubic Yards</div>
+					<div class="iresult-value"><span id="basic-yards">0</span><span class="iresult-unit">yd³</span></div>
+				</div>
+				<div class="iresult-item">
+					<div class="iresult-label">Cubic Feet</div>
+					<div class="iresult-value"><span id="basic-feet">0</span><span class="iresult-unit">ft³</span></div>
+				</div>
+				<div class="iresult-item">
+					<div class="iresult-label">Tons (Approx)</div>
+					<div class="iresult-value"><span id="basic-tons">0</span><span class="iresult-unit">tons</span></div>
+				</div>
+				<div class="iresult-item">
+					<div class="iresult-label">Bags Needed</div>
+					<div class="iresult-value"><span id="basic-bags">0</span><span class="iresult-unit">bags</span></div>
+				</div>
+			</div>
+			<div class="iinfo-box">
+				<p>Coverage Area: <strong><span id="basic-coverage">0</span> sq ft</strong> | Based on <strong>2 cu ft bags</strong> (standard size)</p>
+			</div>
+		</div>
+	</div>
+	<!-- Raised Beds Section -->
+	<div class="icalc-section" id="raised-section">
+		<div class="icalc-grid">
+			<div class="icalc-card">
+				<h3>Raised Bed Calculator</h3>
+				<div class="iinput-group">
+					<label for="bed-length">Bed Length (feet)</label>
+					<input type="number" id="bed-length" step="0.1" placeholder="Enter length"> </div>
+				<div class="iinput-group">
+					<label for="bed-width">Bed Width (feet)</label>
+					<input type="number" id="bed-width" step="0.1" placeholder="Enter width"> </div>
+				<div class="iinput-group">
+					<label for="bed-depth">Bed Depth (inches)</label>
+					<input type="number" id="bed-depth" step="1" placeholder="Enter depth"> </div>
+				<div class="iinput-group">
+					<label for="bed-count">Number of Beds</label>
+					<input type="number" id="bed-count" value="1" min="1" step="1"> </div>
+				<button class="icalc-btn" onclick="calculateRaisedBed()">Calculate Soil Mix</button>
+			</div>
+			<div class="icalc-card">
+				<h3>Soil Mix Recipe</h3>
+				<div class="idepth-recommendations">
+					<button class="idepth-btn" onclick="setSoilMix('basic')"> Basic Mix <span>60% topsoil, 40% compost</span> </button>
+					<button class="idepth-btn" onclick="setSoilMix('premium')"> Premium Mix <span>40% topsoil, 30% compost, 30% peat</span> </button>
+					<button class="idepth-btn" onclick="setSoilMix('mels')"> Mel's Mix <span>⅓ compost, ⅓ peat, ⅓ vermiculite</span> </button>
+					<button class="idepth-btn" onclick="setSoilMix('hugelkultur')"> Hugelkultur Base <span>With wood layer calculation</span> </button>
+				</div>
+				<div class="iinfo-box">
+					<p><strong>🌱 Growing Tip:</strong> For vegetables, use 8-12" depth. For herbs, 6-8" is sufficient. Root vegetables need 12-18" minimum.</p>
+				</div>
+			</div>
+		</div>
+		<div class="iresults" id="raised-results">
+			<h3>📊 Raised Bed Requirements</h3>
+			<div class="iresult-grid">
+				<div class="iresult-item">
+					<div class="iresult-label">Total Volume</div>
+					<div class="iresult-value"><span id="raised-total">0</span><span class="iresult-unit">yd³</span></div>
+				</div>
+				<div class="iresult-item">
+					<div class="iresult-label">Topsoil Needed</div>
+					<div class="iresult-value"><span id="raised-topsoil">0</span><span class="iresult-unit">yd³</span></div>
+				</div>
+				<div class="iresult-item">
+					<div class="iresult-label">Compost Needed</div>
+					<div class="iresult-value"><span id="raised-compost">0</span><span class="iresult-unit">yd³</span></div>
+				</div>
+				<div class="iresult-item">
+					<div class="iresult-label">Amendment</div>
+					<div class="iresult-value"><span id="raised-amendment">0</span><span class="iresult-unit">yd³</span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Container Section -->
+	<div class="icalc-section" id="container-section">
+		<div class="icalc-grid">
+			<div class="icalc-card">
+				<h3>Round Containers</h3>
+				<div class="iinput-group">
+					<label for="pot-diameter-top">Top Diameter (inches)</label>
+					<input type="number" id="pot-diameter-top" step="0.5" placeholder="Measure at rim"> </div>
+				<div class="iinput-group">
+					<label for="pot-diameter-bottom">Bottom Diameter (inches)</label>
+					<input type="number" id="pot-diameter-bottom" step="0.5" placeholder="Measure at base"> </div>
+				<div class="iinput-group">
+					<label for="pot-height">Height (inches)</label>
+					<input type="number" id="pot-height" step="0.5" placeholder="Inside depth"> </div>
+				<button class="icalc-btn" onclick="calculateContainer('round')">Calculate Volume</button>
+			</div>
+			<div class="icalc-card">
+				<h3>Rectangular Containers</h3>
+				<div class="iinput-group">
+					<label for="rect-pot-length">Length (inches)</label>
+					<input type="number" id="rect-pot-length" step="0.5" placeholder="Inside length"> </div>
+				<div class="iinput-group">
+					<label for="rect-pot-width">Width (inches)</label>
+					<input type="number" id="rect-pot-width" step="0.5" placeholder="Inside width"> </div>
+				<div class="iinput-group">
+					<label for="rect-pot-height">Height (inches)</label>
+					<input type="number" id="rect-pot-height" step="0.5" placeholder="Fill depth"> </div>
+				<button class="icalc-btn" onclick="calculateContainer('rect')">Calculate Volume</button>
+			</div>
+		</div>
+		<div class="iresults" id="container-results">
+			<h3>📊 Container Volume</h3>
+			<div class="iresult-grid">
+				<div class="iresult-item">
+					<div class="iresult-label">Quarts</div>
+					<div class="iresult-value"><span id="container-quarts">0</span><span class="iresult-unit">qt</span></div>
+				</div>
+				<div class="iresult-item">
+					<div class="iresult-label">Gallons</div>
+					<div class="iresult-value"><span id="container-gallons">0</span><span class="iresult-unit">gal</span></div>
+				</div>
+				<div class="iresult-item">
+					<div class="iresult-label">Liters</div>
+					<div class="iresult-value"><span id="container-liters">0</span><span class="iresult-unit">L</span></div>
+				</div>
+				<div class="iresult-item">
+					<div class="iresult-label">Cubic Feet</div>
+					<div class="iresult-value"><span id="container-cubic">0</span><span class="iresult-unit">ft³</span></div>
+				</div>
+			</div>
+			<div class="iinfo-box">
+				<p><strong>💡 Drainage Tip:</strong> Add 1-2" of gravel at bottom for drainage. Leave 2" from rim for watering space.</p>
+			</div>
+		</div>
+	</div>
+	<!-- Mulch Coverage Section -->
+	<div class="icalc-section" id="mulch-section">
+		<div class="icalc-card">
+			<h3>Mulch Coverage Calculator</h3>
+			<div class="iinput-group">
+				<label for="mulch-area">Total Area (sq ft)</label>
+				<input type="number" id="mulch-area" step="1" placeholder="Enter square footage"> </div>
+			<div class="idepth-recommendations">
+				<button class="idepth-btn" onclick="setMulchDepth(2)"> 2 inches <span>Decorative, weed prevention</span> </button>
+				<button class="idepth-btn" onclick="setMulchDepth(3)"> 3 inches <span>Standard coverage</span> </button>
+				<button class="idepth-btn" onclick="setMulchDepth(4)"> 4 inches <span>Slopes, heavy suppression</span> </button>
+			</div>
+			<div class="iinput-group">
+				<label for="mulch-depth">Custom Depth (inches)</label>
+				<input type="number" id="mulch-depth" step="0.5" value="3" placeholder="Enter depth"> </div>
+			<div class="iinput-group">
+				<label for="mulch-type">Mulch Type</label>
+				<select id="mulch-type">
+					<option value="hardwood">Hardwood Bark</option>
+					<option value="pine">Pine Bark</option>
+					<option value="cedar">Cedar Mulch</option>
+					<option value="rubber">Rubber Mulch</option>
+					<option value="stone">Decorative Stone</option>
+					<option value="straw">Pine Straw</option>
+				</select>
+			</div>
+			<button class="icalc-btn" onclick="calculateMulch()">Calculate Mulch Needed</button>
+		</div>
+		<div class="iresults" id="mulch-results">
+			<h3>📊 Mulch Requirements</h3>
+			<div class="iresult-grid">
+				<div class="iresult-item">
+					<div class="iresult-label">Cubic Yards</div>
+					<div class="iresult-value"><span id="mulch-yards">0</span><span class="iresult-unit">yd³</span></div>
+				</div>
+				<div class="iresult-item">
+					<div class="iresult-label">2 cu ft Bags</div>
+					<div class="iresult-value"><span id="mulch-bags-2">0</span><span class="iresult-unit">bags</span></div>
+				</div>
+				<div class="iresult-item">
+					<div class="iresult-label">3 cu ft Bags</div>
+					<div class="iresult-value"><span id="mulch-bags-3">0</span><span class="iresult-unit">bags</span></div>
+				</div>
+				<div class="iresult-item">
+					<div class="iresult-label">Coverage</div>
+					<div class="iresult-value"><span id="mulch-coverage">0</span><span class="iresult-unit">sq ft</span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Bulk &amp; Cost Section -->
+	<div class="icalc-section" id="bulk-section">
+		<div class="icalc-card">
+			<h3>Bulk Order &amp; Cost Calculator</h3>
+			<div class="iinput-group">
+				<label for="bulk-yards">Cubic Yards Needed</label>
+				<input type="number" id="bulk-yards" step="0.1" placeholder="From calculations above"> </div>
+			<div class="icalc-grid">
+				<div class="iinput-group">
+					<label for="bulk-price">Price per Cubic Yard ($)</label>
+					<input type="number" id="bulk-price" step="0.01" placeholder="Bulk price"> </div>
+				<div class="iinput-group">
+					<label for="bag-price">Price per Bag ($)</label>
+					<input type="number" id="bag-price" step="0.01" placeholder="Bagged price"> </div>
+			</div>
+			<div class="iinput-group">
+				<label for="delivery-fee">Delivery Fee ($)</label>
+				<input type="number" id="delivery-fee" step="0.01" placeholder="Optional"> </div>
+			<button class="icalc-btn" onclick="calculateCost()">Compare Costs</button>
+		</div>
+		<div class="iresults" id="cost-results">
+			<h3>💰 Cost Comparison</h3>
+			<div class="iresult-grid">
+				<div class="iresult-item">
+					<div class="iresult-label">Bulk Total</div>
+					<div class="iresult-value">$<span id="bulk-total">0</span></div>
+				</div>
+				<div class="iresult-item">
+					<div class="iresult-label">Bagged Total</div>
+					<div class="iresult-value">$<span id="bag-total">0</span></div>
+				</div>
+				<div class="iresult-item">
+					<div class="iresult-label">You Save</div>
+					<div class="iresult-value">$<span id="cost-savings">0</span></div>
+				</div>
+				<div class="iresult-item">
+					<div class="iresult-label">Best Option</div>
+					<div class="iresult-value"><span id="best-option">-</span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Top Dressing Section -->
+	<div class="icalc-section" id="topdress-section">
+		<div class="icalc-card">
+			<h3>Lawn Top Dressing Calculator</h3>
+			<div class="iinput-group">
+				<label for="lawn-area">Lawn Area (sq ft)</label>
+				<input type="number" id="lawn-area" step="1" placeholder="Enter lawn area"> </div>
+			<div class="idepth-recommendations">
+				<button class="idepth-btn" onclick="setTopDressDepth(0.25)"> ¼ inch <span>Light top dress</span> </button>
+				<button class="idepth-btn" onclick="setTopDressDepth(0.5)"> ½ inch <span>Standard application</span> </button>
+				<button class="idepth-btn" onclick="setTopDressDepth(1)"> 1 inch <span>Heavy renovation</span> </button>
+			</div>
+			<div class="iinput-group">
+				<label for="topdress-depth">Application Depth (inches)</label>
+				<input type="number" id="topdress-depth" step="0.25" value="0.5" placeholder="Depth"> </div>
+			<div class="iinput-group">
+				<label for="topdress-material">Material</label>
+				<select id="topdress-material">
+					<option value="compost">Compost</option>
+					<option value="topsoil">Topsoil</option>
+					<option value="sand">Sand (Leveling)</option>
+					<option value="mix">50/50 Soil-Compost Mix</option>
+				</select>
+			</div>
+			<button class="icalc-btn" onclick="calculateTopDress()">Calculate Material</button>
+		</div>
+		<div class="iresults" id="topdress-results">
+			<h3>📊 Top Dressing Requirements</h3>
+			<div class="iresult-grid">
+				<div class="iresult-item">
+					<div class="iresult-label">Cubic Yards</div>
+					<div class="iresult-value"><span id="topdress-yards">0</span><span class="iresult-unit">yd³</span></div>
+				</div>
+				<div class="iresult-item">
+					<div class="iresult-label">Coverage</div>
+					<div class="iresult-value"><span id="topdress-coverage">0</span><span class="iresult-unit">sq ft</span></div>
+				</div>
+				<div class="iresult-item">
+					<div class="iresult-label">40lb Bags</div>
+					<div class="iresult-value"><span id="topdress-bags">0</span><span class="iresult-unit">bags</span></div>
+				</div>
+				<div class="iresult-item">
+					<div class="iresult-label">Weight</div>
+					<div class="iresult-value"><span id="topdress-weight">0</span><span class="iresult-unit">lbs</span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- SEO Content Section -->
+	<div class="iseo-content">
+		<h2>How to Use the Soil Calculator</h2>
+		<p>Our advanced soil calculator helps gardeners, landscapers, and homeowners accurately determine material requirements for any project. Simply select your project type, enter measurements, and get instant calculations for cubic yards, tons, and bags needed.</p>
+		<h3>Step-by-Step Instructions:</h3>
+		<ol>
+			<li><strong>Choose Your Project Type:</strong> Select from basic calculations, raised beds, containers, mulch coverage, or lawn top-dressing.</li>
+			<li><strong>Select Shape:</strong> Pick the shape that matches your area - rectangle, circle, triangle, or trapezoid.</li>
+			<li><strong>Enter Measurements:</strong> Input dimensions in feet for length/width, inches for depth.</li>
+			<li><strong>Choose Material:</strong> Select your material type (topsoil, mulch, compost, etc.) for accurate weight calculations.</li>
+			<li><strong>Get Results:</strong> Instantly see requirements in cubic yards, cubic feet, tons, and bags.</li>
+		</ol>
+		<h3>Understanding Your Results</h3>
+		<p><strong>Cubic Yards:</strong> The standard measurement for bulk material orders. One cubic yard covers 324 square feet at 1-inch depth.</p>
+		<p><strong>Tons:</strong> Weight measurement for delivery. Conversion varies by material - topsoil averages 1.3 tons per cubic yard.</p>
+		<p><strong>Bags:</strong> For smaller projects. Standard bags are 2 cubic feet for mulch/soil, 40 pounds for compost.</p>
+		<div class="ifaq-section">
+			<h2>Frequently Asked Questions About Free Online Soil Calculator (FAQ)</h2>
+			<div class="ifaq-item">
+				<h3>How much soil do I need for a 4x8 raised bed?</h3>
+				<p>For a standard 4x8 foot raised bed with 12-inch depth, you'll need approximately 1.2 cubic yards or 32 cubic feet of soil. This equals about 16 bags of 2 cubic feet bagged soil.</p>
+			</div>
+			<div class="ifaq-item">
+				<h3>How many cubic yards are in a ton of topsoil?</h3>
+				<p>One cubic yard of dry topsoil weighs approximately 1.3 tons. Wet or compacted soil can weigh 1.5-1.7 tons per cubic yard. For accurate ordering, use our calculator's material-specific conversions.</p>
+			</div>
+			<div class="ifaq-item">
+				<h3>How deep should mulch be?</h3>
+				<p>Apply 2-3 inches for decorative mulch and weed suppression, 3-4 inches for slopes or heavy weed prevention. Avoid piling mulch against tree trunks or plant stems to prevent rot.</p>
+			</div>
+			<div class="ifaq-item">
+				<h3>Should I buy bulk or bagged soil?</h3>
+				<p>For projects over 2 cubic yards, bulk delivery is typically more cost-effective. Bagged soil offers convenience for smaller projects and easier handling. Use our cost calculator to compare options.</p>
+			</div>
+			<div class="ifaq-item">
+				<h3>How do I calculate soil for irregular shaped areas?</h3>
+				<p>Break irregular areas into simple shapes (rectangles, triangles, circles). Calculate each section separately, then add the totals. Our calculator supports multiple shape types for accurate measurements.</p>
+			</div>
+			<div class="ifaq-item">
+				<h3>What's the best soil mix for raised beds?</h3>
+				<p>A basic mix of 60% topsoil and 40% compost works well. For premium results, use 1/3 topsoil, 1/3 compost, and 1/3 peat moss or coconut coir. Our calculator provides recipes for different mix ratios.</p>
+			</div>
+			<div class="ifaq-item">
+				<h3>How much does delivery typically cost?</h3>
+				<p>Bulk material delivery usually ranges from $50-150 depending on distance and quantity. Many suppliers offer free delivery for orders over 5 cubic yards. Factor delivery into your cost comparison.</p>
+			</div>
+			<div class="ifaq-item">
+				<h3>Can I use this calculator for gravel and sand?</h3>
+				<p>Yes! Select gravel or sand as your material type. The calculator adjusts weight calculations accordingly - gravel weighs approximately 1.5 tons per cubic yard, sand about 1.3 tons.</p>
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+:root {--primary:#2c7a2c; --primary-dark:#1e5a1e; --secondary:#8b4513; --accent:#ff6b35; --bg-light:#f9f9f9; --text-dark:#333; --text-light:#666; --border:#e0e0e0; --success:#4caf50; --warning:#ff9800; --error:#f44336; --shadow-sm:0 2px 4px rgba(0,0,0,0.1); --shadow-md:0 4px 8px rgba(0, 0, 0, 0.15); --shadow-lg:0 8px 16px rgba(0, 0, 0, 0.2);}
+* {margin:0; padding:0 auto; box-sizing:border-box;}
+.icalculator-container {max-width:1240px; margin:0 auto; padding:20px; background:#fff;}
+.icalc-header {text-align:center; margin-bottom:40px; padding-bottom:20px; border-bottom:3px solid var(--primary);}
+.icalc-header h2 {color:var(--primary-dark); font-size:1.8em; margin-bottom:10px; font-weight:700;}
+.icalc-header p {color:var(--text-light); font-size:1.1em; line-height:1.6;}
+.icalc-tabs {display:flex; flex-wrap:wrap; gap:10px; margin-bottom:30px; background:var(--bg-light); padding:10px; border-radius:12px; box-shadow:var(--shadow-sm);}
+.itab-btn {flex:1; min-width:140px; padding:12px 20px; background:white; border:2px solid var(--border); border-radius:8px; cursor:pointer; font-size:15px; font-weight:500; color:var(--text-dark); transition:all 0.3s ease; text-align:center;}
+.itab-btn:hover {background:var(--primary); color:white; transform:translateY(-2px); box-shadow:var(--shadow-md);}
+.itab-btn.active {background:var(--primary); color:white; border-color:var(--primary-dark); box-shadow:var(--shadow-md);}
+.icalc-section {display:none; animation:fadeIn 0.5s;}
+.icalc-section.active {display:block;}
+
+@keyframes fadeIn {
+from {opacity:0; transform:translateY(10px);}
+to {opacity:1; transform:translateY(0);}
+}
+
+.icalc-grid {display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:25px; margin-bottom:30px;}
+.icalc-card {background:white; border:1px solid var(--border); border-radius:12px; padding:25px; box-shadow:var(--shadow-sm); transition:transform 0.3s, box-shadow 0.3s;}
+.icalc-card:hover {transform:translateY(-3px); box-shadow:var(--shadow-lg);}
+.icalc-card h3 {color:var(--primary-dark); margin-bottom:20px; font-size:1.3em; display:flex; align-items:center; gap:10px;}
+.icalc-card h3::before {content:"🌱"; font-size:1.2em;}
+.iinput-group {margin-bottom:18px;}
+.iinput-group label {display:block; margin-bottom:6px; color:var(--text-dark); font-weight:500; font-size:14px;}
+.iinput-group input, .iinput-group select {width:100%; padding:12px; border:2px solid var(--border); border-radius:6px; font-size:15px; transition:border-color 0.3s;}
+.iinput-group input:focus, .iinput-group select:focus {outline:none; border-color:var(--primary); box-shadow:0 0 0 3px rgba(44, 122, 44, 0.1);}
+.iunit-selector {display:flex; gap:10px; margin-bottom:20px;}
+.iunit-btn {flex:1; padding:10px; background:white; border:2px solid var(--border); border-radius:6px; cursor:pointer; font-size:14px; font-weight:500; transition:all 0.3s;}
+.iunit-btn.active {background:var(--secondary); color:white; border-color:var(--secondary);}
+.icalc-btn {width:100%; padding:14px; background:linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color:white; border:none; border-radius:8px; font-size:16px; font-weight:600; cursor:pointer; transition:all 0.3s; box-shadow:var(--shadow-md);}
+.icalc-btn:hover {transform:translateY(-2px); box-shadow:var(--shadow-lg);}
+.icalc-btn:active {transform:translateY(0);}
+.iresults {background:linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 100%); border:2px solid var(--success); border-radius:12px; padding:25px; margin-top:30px; display:none; animation:slideIn 0.5s;}
+.iresults.show {display:block;}
+
+@keyframes slideIn {
+from {opacity:0; transform:translateX(-20px);}
+to {opacity:1; transform:translateX(0);}
+}
+
+.iresults h3 {color:var(--primary-dark); margin-bottom:20px; font-size:1.5em; text-align:center;}
+.iresult-grid {display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:20px; margin-bottom:20px;}
+.iresult-item {background:white; padding:18px; border-radius:8px; box-shadow:var(--shadow-sm); text-align:center;}
+.iresult-label {color:var(--text-light); font-size:13px; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;}
+.iresult-value {color:var(--primary-dark); font-size:28px; font-weight:700;}
+.iresult-unit {color:var(--text-light); font-size:14px; margin-left:4px;}
+.icost-section {background:white; padding:20px; border-radius:8px; margin-top:20px; box-shadow:var(--shadow-sm);}
+.icost-section h4 {color:var(--secondary); margin-bottom:15px; font-size:1.2em;}
+.ishape-selector {display:grid; grid-template-columns:repeat(auto-fit, minmax(120px, 1fr)); gap:15px; margin-bottom:25px;}
+.ishape-btn {padding:15px; background:white; border:3px solid var(--border); border-radius:10px; cursor:pointer; text-align:center; transition:all 0.3s;}
+.ishape-btn:hover {border-color:var(--primary); background:var(--bg-light);}
+.ishape-btn.active {border-color:var(--primary); background:linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%); box-shadow:var(--shadow-md);}
+.ishape-icon {font-size:2.5em; margin-bottom:8px; display:block;}
+.ishape-label {font-size:14px; font-weight:600; color:var(--text-dark);}
+.iinfo-box {background:linear-gradient(135deg, #fff8e1 0%, #fffdf7 100%); border-left:4px solid var(--warning); padding:15px; border-radius:6px; margin:20px 0;}
+.iinfo-box p {color:var(--text-dark); line-height:1.6; font-size:14px;}
+.iinfo-box strong {color:var(--secondary);}
+.iadvanced-options {margin-top:20px; padding-top:20px; border-top:2px dashed var(--border);}
+.iadvanced-options h4 {color:var(--secondary); margin-bottom:15px; font-size:1.1em;}
+.idepth-recommendations {display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:10px; margin-top:15px;}
+.idepth-btn {padding:10px; background:white; border:2px solid var(--primary); border-radius:6px; cursor:pointer; font-size:13px; color:var(--primary-dark); transition:all 0.3s; text-align:center;}
+.idepth-btn:hover {background:var(--primary); color:white;}
+.idepth-btn span {display:block; font-size:11px; color:var(--text-light); margin-top:4px;}
+
+@media (max-width: 768px) {
+.icalc-header h1 {font-size:1.8em;}
+.icalc-tabs {justify-content:center;}
+.itab-btn {min-width:120px; font-size:14px; padding:10px 15px;}
+.iresult-value {font-size:24px;}
+}
+
+.ipulse {animation:pulse 2s infinite;}
+
+@keyframes pulse {
+0% {transform:scale(1);}
+50% {transform:scale(1.05);}
+100% {transform:scale(1);}
+}
+
+.iseo-content {margin-top:40px; padding:30px; background:var(--bg-light); border-radius:12px;}
+.iseo-content h2 {color:var(--primary-dark); margin-bottom:20px;}
+.iseo-content p, .iseo-content li {line-height:1.8; color:var(--text-dark); margin-bottom:15px;}
+.ifaq-section {margin-top:30px;}
+.ifaq-item {margin-bottom:20px; padding:20px; background:white; border-radius:8px; box-shadow:var(--shadow-sm);}
+.ifaq-item h3 {color:var(--primary-dark); margin-bottom:10px;}
+</style>
+<!-- JSON-LD Schema Markup -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Advanced Soil &amp; Mulch Calculator","description":"Free professional soil calculator for gardens, raised beds, mulch, and containers. Calculate cubic yards, tons, and bags needed with instant cost estimates.","url":"https://www.homegardenlot.com/p/soil-calculator.html","applicationCategory":"UtilityApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"2847","bestRating":"5","worstRating":"1"},"author":{"@type":"Organization","name":"Home Garden Lot","url":"https://www.homegardenlot.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Free Online Soil Calculator","url":"https://www.homegardenlot.com/p/soil-calculator.html","applicationCategory":"UtilitiesApplication","operatingSystem":"All","applicationVersion":"1.0","description":"Free professional soil calculator for gardens, raised beds, mulch, and containers. Calculate cubic yards, tons, and bags needed with instant cost estimates.","keywords":"topsoil calculator, calculate soil needed, raised bed soil calculator, garden soil calculator, lawn soil, calculate cubic yards of soil, topsoil volume calculator, how to calculate topsoil, compost calculator","featureList":["Topsoil calculation","Raised bed soil calculator","Cubic yards calculator","Garden bed calculator online","Length, width, depth inputs (ft/in)"],"browserRequirements":"Requires a modern web browser with JavaScript enabled.","hasPart":{"@type":"HowTo","name":"How to use the Free Online Soil Calculator","step":[{"@type":"HowToStep","name":"Choose project type","text":"Select basic calculations, raised beds, containers, mulch coverage, or lawn top-dressing."},{"@type":"HowToStep","name":"Enter measurements","text":"Input length and width in feet, depth in inches."},{"@type":"HowToStep","name":"Choose material","text":"Pick topsoil, mulch, compost, etc., to estimate weights."},{"@type":"HowToStep","name":"Select shape","text":"Match your area: rectangle, circle, triangle, or trapezoid."},{"@type":"HowToStep","name":"Get results","text":"View requirements in cubic yards, cubic feet, tons, and bags."}]},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD","category":"Free"}}</script>
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much soil do I need for a 4x8 raised bed?","acceptedAnswer":{"@type":"Answer","text":"For a standard 4x8 foot raised bed with 12-inch depth, you'll need approximately 1.2 cubic yards or 32 cubic feet of soil. This equals about 16 bags of 2 cubic feet bagged soil."}},{"@type":"Question","name":"How many cubic yards are in a ton of topsoil?","acceptedAnswer":{"@type":"Answer","text":"One cubic yard of dry topsoil weighs approximately 1.3 tons. Wet or compacted soil can weigh 1.5-1.7 tons per cubic yard. For accurate ordering, use our calculator's material-specific conversions."}},{"@type":"Question","name":"How deep should mulch be?","acceptedAnswer":{"@type":"Answer","text":"Apply 2-3 inches for decorative mulch and weed suppression, 3-4 inches for slopes or heavy weed prevention. Avoid piling mulch against tree trunks or plant stems to prevent rot."}},{"@type":"Question","name":"Should I buy bulk or bagged soil?","acceptedAnswer":{"@type":"Answer","text":"For projects over 2 cubic yards, bulk delivery is typically more cost-effective. Bagged soil offers convenience for smaller projects and easier handling. Use our cost calculator to compare options."}},{"@type":"Question","name":"How do I calculate soil for irregular shaped areas?","acceptedAnswer":{"@type":"Answer","text":"Break irregular areas into simple shapes (rectangles, triangles, circles). Calculate each section separately, then add the totals. Our calculator supports multiple shape types for accurate measurements."}},{"@type":"Question","name":"What's the best soil mix for raised beds?","acceptedAnswer":{"@type":"Answer","text":"A basic mix of 60% topsoil and 40% compost works well. For premium results, use 1/3 topsoil, 1/3 compost, and 1/3 peat moss or coconut coir. Our calculator provides recipes for different mix ratios."}},{"@type":"Question","name":"How much does delivery typically cost?","acceptedAnswer":{"@type":"Answer","text":"Bulk material delivery usually ranges from $50-150 depending on distance and quantity. Many suppliers offer free delivery for orders over 5 cubic yards. Factor delivery into your cost comparison."}},{"@type":"Question","name":"Can I use this calculator for gravel and sand?","acceptedAnswer":{"@type":"Answer","text":"Yes! Select gravel or sand as your material type. The calculator adjusts weight calculations accordingly - gravel weighs approximately 1.5 tons per cubic yard, sand about 1.3 tons."}}]}
+</script>
+<script src="https://cdn.jsdelivr.net/gh/tbbcom/garden@refs/heads/main/assets/js/soil-calculator.js"></script>
