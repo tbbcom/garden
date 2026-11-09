@@ -8,10 +8,11 @@
 //      GTM_ID      GTM-XXXX or G-XXXX (same rules as the tools site)
 //      WEB3FORMS_KEY  public access key for the contact form (web3forms.com, free)
 import { cp, mkdir, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { parseHTML } from 'linkedom';
+import { imageSize } from 'image-size';
 
 const SITE = (process.env.SITE_URL || 'https://www.homegardenlot.com').replace(/\/$/, '');
 const TOOLS_HOST = 'https://tools.homegardenlot.com';
@@ -33,11 +34,13 @@ const CONSENT_REGIONS = ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', '
 export const HUBS = [
   ['grow-food', 'Grow Food', 'Step-by-step guides to growing vegetables, fruit and herbs at home, from seed to harvest.'],
   ['garden-design', 'Garden Design & Planning', 'Layouts, raised beds, small-space ideas and seasonal planning for a garden that works.'],
+  ['lawn-care', 'Lawn Care', 'Fertilizing, watering, seeding and mowing schedules for a thick, healthy lawn, with free calculators.'],
   ['soil-compost', 'Soil & Compost', 'Build healthy soil: composting, soil mixes and amendments explained simply.'],
   ['pests-weeds', 'Pests & Weeds', 'Safe, practical ways to control garden pests, household pests and weeds.'],
   ['houseplants', 'Houseplants', 'Choosing and caring for indoor plants in every room and light level.'],
   ['home-diy', 'Home & DIY', 'Practical home improvement and decor: flooring, painting, wall art and budget upgrades.'],
 ];
+const liveHubs = () => HUBS.filter(([s]) => POSTS.some((p) => p.hub === s));
 const HUB = Object.fromEntries(HUBS.map(([s, n, d]) => [s, { slug: s, name: n, desc: d, url: `/category/${s}/` }]));
 
 import { MOVED, TOOL_MERGE, DEAD } from './redirect-map.mjs';
@@ -49,7 +52,9 @@ const fmtDate = (iso) => new Date(iso).toLocaleDateString('en-US', { year: 'nume
 const isoDay = (iso) => new Date(iso).toISOString().slice(0, 10);
 
 // Blogger image URLs can be resized by rewriting their size token.
+const abs = (u) => (u && u.startsWith('/') ? `${SITE}${u}` : u);
 function resize(url, w, h) {
+  if ((url || '').startsWith('/')) return url;
   if (!/googleusercontent\.com|bp\.blogspot\.com/.test(url || '')) return url || '';
   const tok = h ? `w${w}-h${h}-p-k-no-nu` : `w${w}`;
   if (/\/s\d+(-[a-z0-9-]+)?\//.test(url) || /\/w\d+-h\d+[^/]*\//.test(url)) return url.replace(/\/(s\d+|w\d+-h\d+)(-[a-z0-9-]+)?\//, `/${tok}/`);
@@ -81,7 +86,7 @@ async function walk(dir) {
 }
 
 async function write(rel, content) {
-  const file = path.join(OUT, rel);
+  const file = path.join(OUT, rel.endsWith('/') ? `${rel}index.html` : rel);
   await mkdir(path.dirname(file), { recursive: true });
   await writeFile(file, content);
 }
@@ -89,6 +94,8 @@ async function write(rel, content) {
 // ---------- Theme pieces (the Blogger theme stays the single source of the design) ----------
 const themeXml = await readFile(THEME, 'utf8');
 const THEME_CSS = themeXml.match(/<b:skin[^>]*><!\[CDATA\[([\s\S]*?)\]\]><\/b:skin>/)[1].replace(/body#layout[^{]*\{[^}]*\}/g, '').trim();
+// Additions for static-only content (figures with captions); the rest of the design is the theme's.
+const EXTRA_CSS = '.hgl-figure{margin:1.6em 0}.hgl-figure img{display:block;width:100%;height:auto;border-radius:var(--hgl-radius);border:1px solid var(--hgl-line)}.hgl-figure figcaption{font-size:.88rem;color:var(--hgl-muted);margin-top:.5em}.hgl-post__body img{max-width:100%;height:auto}.hgl-post__body>img{display:block;margin:0 auto 1.4em}';
 const SPRITE = themeXml.match(/<svg aria-hidden='true' height='0'[\s\S]*?<\/svg>/)[0];
 const SHARE_ICONS = [...themeXml.matchAll(/<button aria-label='[^']*' class='hgl-share__icon[\s\S]*?<\/button>/g)].map((m) => m[0]).join('\n');
 const HEADER_LOGO = themeXml.match(/<img class='hgl-brand__logo'[^>]*\/>/)[0].replace(/expr:alt='[^']*'/, `alt='${BRAND}'`).replace(/\/>$/, '>');
@@ -159,13 +166,13 @@ function headerHtml(isHome) {
     <nav aria-label="Main" class="hgl-nav" id="hgl-nav">
       <ul class="hgl-nav__list">
         <li><a class="hgl-nav__link" href="/category/grow-food/">Grow Food</a></li>
+        ${POSTS.some((p) => p.hub === 'lawn-care') ? '<li><a class="hgl-nav__link" href="/category/lawn-care/">Lawn Care</a></li>' : ''}
         <li><a class="hgl-nav__link" href="/category/garden-design/">Garden Design</a></li>
         <li><a class="hgl-nav__link" href="/category/pests-weeds/">Pests &amp; Weeds</a></li>
         <li><a class="hgl-nav__link" href="/category/home-diy/">Home &amp; DIY</a></li>
         <li class="hgl-nav__item--drop"><a class="hgl-nav__link" href="/tools/">Tools</a><button aria-expanded="false" aria-label="Show tools" class="hgl-nav__subtoggle" type="button"></button>
           <ul class="hgl-nav__sub">${TOOL_LINKS.map(([u, n]) => `<li><a href="${u}">${esc(n)}</a></li>`).join('')}<li><a href="/tools/">All free tools →</a></li></ul>
         </li>
-        <li><a class="hgl-nav__link" href="/p/about.html">About</a></li>
       </ul>
       <form action="/search/" class="hgl-search" method="get" role="search"><label class="hgl-sr" for="hgl-q2">Search this site</label><input class="hgl-search__input" id="hgl-q2" name="q" placeholder="Search guides…" type="search"><button aria-label="Search" class="hgl-search__btn" type="submit">Go</button></form>
     </nav>
@@ -227,7 +234,7 @@ const ORG_GRAPH = [
 
 function shell({ url, title, description, body, bodyClass = 'hgl-body hgl-body--list', image = '', type = 'website', graph = [], noindex = false, isHome = false, hero = '', sidebar = true, extraHead = '' }) {
   const robots = noindex ? 'noindex, follow' : PREVIEW ? 'noindex, follow" data-preview="1' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
-  const ogImg = image ? resize(image, 1200, 630) : '';
+  const ogImg = image ? abs(resize(image, 1200, 630)) : '';
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -257,7 +264,8 @@ ${ogImg ? `<meta property="og:image" content="${esc(ogImg)}">\n<meta property="o
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" media="print" onload="this.media='all'">
-<style>${THEME_CSS}</style>
+<style>${THEME_CSS}
+${EXTRA_CSS}</style>
 ${extraHead}
 ${gtmHead()}
 ${jsonLd({ '@context': 'https://schema.org', '@graph': [...ORG_GRAPH, ...graph] })}
@@ -294,7 +302,7 @@ function sidebarHtml() {
     </div>
     <nav aria-label="Topics" class="hgl-box">
       <h2 class="hgl-widget__title">Browse Topics</h2>
-      <ul class="hgl-labels">${HUBS.map(([s, n]) => `<li><a class="hgl-chip" href="/category/${s}/">${esc(n)}<span class="hgl-labels__count">${POSTS.filter((p) => p.hub === s).length}</span></a></li>`).join('')}</ul>
+      <ul class="hgl-labels">${liveHubs().map(([s, n]) => `<li><a class="hgl-chip" href="/category/${s}/">${esc(n)}<span class="hgl-labels__count">${POSTS.filter((p) => p.hub === s).length}</span></a></li>`).join('')}</ul>
     </nav>
   </aside>`;
 }
@@ -332,7 +340,9 @@ function rewriteHref(href) {
 
 let LABEL_HUB = {};
 function renderBody(item, byPath) {
-  const { document: d } = parseHTML(`<!doctype html><html><body><div id="b">${item.html}</div></body></html>`);
+  // Source comments (image briefs, editor notes) never reach the page.
+  const src = item.html.replace(/<!--[\s\S]*?-->/g, '');
+  const { document: d } = parseHTML(`<!doctype html><html><body><div id="b">${src}</div></body></html>`);
   const body = d.getElementById('b');
   const attr = (t, name) => (t.match(new RegExp('\\$' + name + '=\\{([^}]*)\\}')) || [])[1]?.trim() || '';
   const block = (el) => {
@@ -397,6 +407,18 @@ function renderBody(item, byPath) {
   });
   // Images: first one is the LCP candidate; the rest load lazily.
   body.querySelectorAll('img').forEach((img, i) => {
+    const src = img.getAttribute('src') || '';
+    // Your own images (site/images): add width/height so the page never jumps while they load.
+    if (src.startsWith('/images/')) {
+      const file = path.join('site', decodeURIComponent(src.split(/[?#]/)[0]));
+      if (!existsSync(file)) throw new Error(`${item.url}: image ${src} not found (upload it to ${file})`);
+      if (!img.getAttribute('alt')) throw new Error(`${item.url}: image ${src} needs alt text (alt="what the picture shows")`);
+      if (!img.getAttribute('width')) {
+        const dim = imageSize(readFileSync(file));
+        img.setAttribute('width', dim.width);
+        img.setAttribute('height', dim.height);
+      }
+    }
     img.setAttribute('decoding', 'async');
     if (i === 0) { img.setAttribute('fetchpriority', 'high'); img.removeAttribute('loading'); } else img.setAttribute('loading', 'lazy');
   });
@@ -428,9 +450,16 @@ function renderBody(item, byPath) {
   if (tocSlot?.el?.isConnected) tocSlot.el.outerHTML = toc ? '<!--TOC-->' : '';
   let html = body.innerHTML;
   if (html.includes('<!--TOC-->')) { html = html.replace('<!--TOC-->', toc); toc = ''; }
+  // No {getToc} marker: the TOC goes just before the first H2, so the intro (the direct answer) and the featured image lead.
+  else if (toc && html.includes('<h2')) { html = html.replace('<h2', `${toc}<h2`); toc = ''; }
+  const faqs = [...body.querySelectorAll('.hgl-faq details')].map((dt) => {
+    const q = dt.querySelector('summary')?.textContent.trim();
+    const a = [...dt.children].filter((c) => c.tagName !== 'SUMMARY').map((c) => c.textContent.trim()).join(' ');
+    return q && a ? { '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } } : null;
+  }).filter(Boolean);
   const text = body.textContent.replace(/\s+/g, ' ').trim();
   const firstP = [...body.querySelectorAll('p')].map((p) => p.textContent.replace(/\s+/g, ' ').trim()).find((t) => t.length > 60 && !t.startsWith('{')) || text;
-  return { html, toc, words: text.split(' ').length, firstP };
+  return { html, toc, words: text.split(' ').length, firstP, faqs };
 }
 
 function summary(text, max = 155) {
@@ -452,7 +481,7 @@ function card(p, i, lead) {
 }
 
 function shareBlock(p, top) {
-  const data = `data-title="${esc(p.title)}" data-url="${SITE}${p.url}" data-image="${esc(p.image || '')}"`;
+  const data = `data-title="${esc(p.title)}" data-url="${SITE}${p.url}" data-image="${esc(abs(p.image || ''))}"`;
   return top
     ? `<div class="hgl-share hgl-share--top" ${data}>${SHARE_ICONS}</div>`
     : `<div class="hgl-share" ${data}><span class="hgl-share__title">Save or share:</span><button class="hgl-share__btn hgl-share__btn--pin" data-net="pinterest" type="button">Pin it</button><button class="hgl-share__btn" data-net="facebook" type="button">Facebook</button><button class="hgl-share__btn" data-net="x" type="button">X</button><button class="hgl-share__btn" data-net="whatsapp" type="button">WhatsApp</button><button class="hgl-share__btn" data-net="copy" type="button">Copy link</button></div>`;
@@ -493,8 +522,9 @@ ${p.body}
   const graph = [
     { '@type': 'BlogPosting', '@id': `${SITE}${p.url}#article`, mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE}${p.url}` }, headline: p.title, description: p.description,
       datePublished: p.date, dateModified: p.updated, inLanguage: 'en-US', wordCount: p.words,
-      ...(p.image ? { image: { '@type': 'ImageObject', url: resize(p.image, 1200, 675), width: 1200, height: 675 } } : {}),
+      ...(p.image ? { image: { '@type': 'ImageObject', url: abs(resize(p.image, 1200, 675)), width: 1200, height: 675 } } : {}),
       author: { '@type': 'Person', name: p.author, url: `${SITE}/p/about.html` }, publisher: { '@id': ORG_ID }, isPartOf: { '@id': SITE_ID }, articleSection: hub.name },
+    ...(p.faqs.length && !/FAQPage/.test(p.body) ? [{ '@type': 'FAQPage', '@id': `${SITE}${p.url}#faq`, mainEntity: p.faqs }] : []),
     { '@type': 'BreadcrumbList', itemListElement: [['Home', `${SITE}/`], [hub.name, `${SITE}${hub.url}`], [p.title]].map(([n, u], i) => ({ '@type': 'ListItem', position: i + 1, name: n, ...(u ? { item: u } : {}) })) },
   ];
   return shell({ url: p.url, title: p.title, description: p.description, body, bodyClass: 'hgl-body hgl-body--item', image: p.image, type: 'article', graph,
@@ -505,7 +535,7 @@ ${p.body}
 function htmlSitemap() {
   const group = (title, list) => `<h2>${esc(title)}</h2><ul>${list.map((x) => `<li><a href="${x.url}">${esc(x.title)}</a></li>`).join('')}</ul>`;
   return `<p>Every guide and free tool on ${BRAND}, by topic. Newest first.</p>
-${HUBS.map(([s, n]) => group(n, POSTS.filter((p) => p.hub === s))).join('\n')}
+${liveHubs().map(([s, n]) => group(n, POSTS.filter((p) => p.hub === s))).join('\n')}
 ${group('Free tools', [{ url: '/tools/', title: 'All free tools and calculators' }, ...TOOL_LINKS.map(([url, title]) => ({ url, title }))])}
 ${group('About this site', [['/p/about.html', 'About & author'], ['/p/editorial-policy.html', 'Editorial policy'], ['/p/contact.html', 'Contact'], ['/p/privacy-policy.html', 'Privacy policy'], ['/p/terms-of-service.html', 'Terms of use'], ['/p/disclaimer.html', 'Disclaimer & affiliate disclosure']].map(([url, title]) => ({ url, title })))}`;
 }
@@ -552,6 +582,7 @@ async function mergeTools(header, footer) {
     const rel = path.relative(TOOLS_DIR, f).split(path.sep).join('/');
     if (skipDirs.some((d) => rel.startsWith(`${d}/`)) || ['404.html', 'robots.txt', 'sitemap.xml', 'CNAME', 'page-hashes.json'].includes(rel)) continue;
     let dest = rel === 'index.html' ? 'tools/index.html' : rel;
+    if (existsSync(path.join(OUT, dest))) throw new Error(`URL clash: tools page /${dest} has the same address as a blog page. Rename the article.`);
     if (rel === 'llms.txt') dest = '.tools-llms.txt';
     if (!rel.endsWith('.html')) {
       await mkdir(path.dirname(path.join(OUT, dest)), { recursive: true });
@@ -616,9 +647,12 @@ async function main() {
   for (const f of (await walk('site/content')).filter((x) => x.endsWith('.html'))) {
     const it = parseFile(await readFile(f, 'utf8'), f);
     const rel = path.relative('site/content', f).split(path.sep).join('/');
-    it.type = rel.startsWith('posts/') ? 'post' : 'page';
-    it.url = it.type === 'post' ? `/${rel.slice(6)}` : `/p/${rel.slice(6)}`;
+    // posts/YYYY/MM/slug.html: Blogger-era URLs, kept as they are. articles/slug.html: new posts at /slug/.
+    it.type = rel.startsWith('pages/') ? 'page' : 'post';
+    it.url = rel.startsWith('articles/') ? `/${path.basename(rel, '.html')}/` : it.type === 'post' ? `/${rel.slice(6)}` : `/p/${rel.slice(6)}`;
     it.author ||= BRAND;
+    // draft: true keeps a post off the live site; the preview shows it so you can check it first.
+    if (/^(true|yes|1)$/i.test(it.draft || '') && !PREVIEW) continue;
     if (it.type === 'post' && !HUB[it.hub]) throw new Error(`${f}: unknown hub "${it.hub}"`);
     items.push(it);
   }
@@ -630,8 +664,13 @@ async function main() {
   LABEL_HUB = Object.fromEntries(Object.entries(LABEL_HUB).map(([l, c]) => [l, HUB[Object.entries(c).sort((a, b) => b[1] - a[1])[0][0]].url]));
 
   for (const it of items) {
+    // New posts: the featured image (front matter image + imageAlt) opens the article unless the body already shows it.
+    if (it.type === 'post' && it.image?.startsWith('/images/') && !it.html.includes(it.image)) {
+      if (!it.imageAlt) throw new Error(`${it.url}: add imageAlt: to the front matter (describes the featured image)`);
+      it.html = `<img src="${esc(it.image)}" alt="${esc(it.imageAlt)}">\n${it.html}`;
+    }
     const r = renderBody(it, byPath);
-    Object.assign(it, { body: r.html, toc: r.toc, words: r.words });
+    Object.assign(it, { body: r.html, toc: r.toc, words: r.words, faqs: r.faqs });
     it.description ||= summary(r.firstP);
   }
   POSTS = items.filter((i) => i.type === 'post').sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -643,16 +682,16 @@ async function main() {
   const hero = `<section class="hgl-hero"><div class="hgl-hero__inner">
   <h2 class="hgl-hero__title">Grow more. Fix smarter. Spend less.</h2>
   <p class="hgl-hero__lead">Step-by-step guides and free calculators for vegetable gardens, lawns, landscaping and DIY home improvement — written for real homeowners.</p>
-  <ul class="hgl-hero__chips">${HUBS.map(([s, n]) => `<li><a class="hgl-chip" href="/category/${s}/">${esc(n)}</a></li>`).join('')}<li><a class="hgl-chip" href="/tools/">Free Calculators</a></li></ul>
+  <ul class="hgl-hero__chips">${liveHubs().map(([s, n]) => `<li><a class="hgl-chip" href="/category/${s}/">${esc(n)}</a></li>`).join('')}<li><a class="hgl-chip" href="/tools/">Free Calculators</a></li></ul>
 </div></section>`;
   await write('index.html', listPage({ url: '/', title: `${BRAND}: Garden & Home Improvement Guides`, h1: BRAND, desc: 'Practical guides and free calculators for growing food, garden design, pest control and DIY home improvement, researched against university extension sources.', posts: POSTS.slice(0, 13), isHome: true, hero }));
-  for (const [s, n, d] of HUBS) {
+  for (const [s, n, d] of liveHubs()) {
     const list = POSTS.filter((p) => p.hub === s);
     await write(`category/${s}/index.html`, listPage({ url: `/category/${s}/`, title: `${n} Guides | ${BRAND}`, h1: n, kicker: 'Topic', desc: d, posts: list, crumbs: true }));
   }
   // Date archives keep Blogger's /YYYY/ and /YYYY/MM/ URLs alive; noindex, like Blogger's.
   const periods = {};
-  for (const p of POSTS) {
+  for (const p of POSTS.filter((x) => /^\/\d{4}\/\d{2}\//.test(x.url))) {
     const [, y, m] = p.url.split('/');
     (periods[`/${y}/`] ||= []).push(p);
     (periods[`/${y}/${m}/`] ||= []).push(p);
@@ -688,6 +727,7 @@ async function main() {
 
   await mkdir(path.join(OUT, 'assets'), { recursive: true });
   for (const f of await readdir('site/assets')) await cp(path.join('site/assets', f), path.join(OUT, 'assets', f));
+  if (existsSync('site/images')) await cp('site/images', path.join(OUT, 'images'), { recursive: true });
 
   const toolPaths = await mergeTools(headerHtml(false).replace('id="hgl-q"', 'id="hgl-qt"').replace('for="hgl-q"', 'for="hgl-qt"'), footerHtml());
 
@@ -701,11 +741,11 @@ async function main() {
 <id>${SITE}/</id>
 <updated>${new Date(Math.max(...feedPosts.map((p) => +new Date(p.updated)))).toISOString()}</updated>
 <author><name>${BRAND}</name></author>
-${feedPosts.map((p) => `<entry><title>${esc(p.title)}</title><link href="${SITE}${p.url}"/><id>${SITE}${p.url}</id><published>${new Date(p.date).toISOString()}</published><updated>${new Date(p.updated).toISOString()}</updated><category term="${esc(HUB[p.hub].name)}"/><summary>${esc(p.description)}</summary>${p.image ? `<link rel="enclosure" type="image/jpeg" href="${esc(resize(p.image, 1200, 675))}"/>` : ''}</entry>`).join('\n')}
+${feedPosts.map((p) => `<entry><title>${esc(p.title)}</title><link href="${SITE}${p.url}"/><id>${SITE}${p.url}</id><published>${new Date(p.date).toISOString()}</published><updated>${new Date(p.updated).toISOString()}</updated><category term="${esc(HUB[p.hub].name)}"/><summary>${esc(p.description)}</summary>${p.image ? `<link rel="enclosure" type="image/jpeg" href="${esc(abs(resize(p.image, 1200, 675)))}"/>` : ''}</entry>`).join('\n')}
 </feed>
 `);
   const urls = [
-    ['/', POSTS[0].updated], ...HUBS.map(([s]) => [`/category/${s}/`, POSTS.find((p) => p.hub === s)?.updated]),
+    ['/', POSTS[0].updated], ...liveHubs().map(([s]) => [`/category/${s}/`, POSTS.find((p) => p.hub === s)?.updated]),
     ...POSTS.map((p) => [p.url, p.updated]), ...pages.map((p) => [p.url, p.updated]),
     ...toolPaths.map((u) => [u, null]),
   ];
@@ -722,7 +762,7 @@ ${urls.map(([u, d]) => `<url><loc>${SITE}${u}</loc>${d ? `<lastmod>${isoDay(d)}<
 > Practical guides and free calculators for home gardeners and DIY homeowners: growing vegetables and fruit, garden design, soil and compost, pest control, houseplants and home improvement. Tools use public data from NOAA, the USDA and university extension services.
 
 ## Topic hubs
-${HUBS.map(([s, n, d]) => `- [${n}](${SITE}/category/${s}/): ${d}`).join('\n')}
+${liveHubs().map(([s, n, d]) => `- [${n}](${SITE}/category/${s}/): ${d}`).join('\n')}
 
 ## Guides
 ${POSTS.map((p) => `- [${p.title}](${SITE}${p.url}): ${p.description}`).join('\n')}
