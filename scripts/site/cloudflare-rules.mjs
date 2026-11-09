@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-// Creates the migration's 301 redirects as Cloudflare Single Redirect rules (free plan: 10 rules).
+// Creates the migration's 301 redirects as Cloudflare Single Redirect rules (7 of the free plan's 10).
 // Run once at switch-over (workflow "Deploy www" → "apply_redirects"). Idempotent: replaces only
 // rules whose description starts with "hgl-migrate:", and keeps every other rule in the zone.
 // Env: CF_API_TOKEN (Zone → Single Redirect → Edit, plus Zone → Zone → Read), CF_ZONE_ID, DRY_RUN=1
-import { MOVED, TOOL_MERGE } from './redirect-map.mjs';
+import { MOVED } from './redirect-map.mjs';
 
 const WWW = 'https://www.homegardenlot.com';
 const TOOLS = 'tools.homegardenlot.com';
@@ -20,8 +20,8 @@ const rule = (desc, expression, target, dynamic = false) => ({
 // Most specific first: Cloudflare runs the first matching redirect only.
 const rules = [
   rule('tools home → /tools/', `(http.host eq "${TOOLS}" and http.request.uri.path eq "/")`, `${WWW}/tools/`),
-  ...Object.entries(TOOL_MERGE).map(([from, to]) => rule(`tools ${from} → ${to}`, `(http.host eq "${TOOLS}" and http.request.uri.path eq "${from}")`, `${WWW}${to}`)),
-  rule('tools.* → www (same path)', `(http.host eq "${TOOLS}")`, `concat("${WWW}", http.request.uri.path)`, true),
+  rule('homegardenlot.com → www (same path)', `(http.host eq "homegardenlot.com")`, `concat("${WWW}", http.request.uri.path)`, true),
+  rule('tools.* → www (same path; old legal pages forward from there)', `(http.host eq "${TOOLS}")`, `concat("${WWW}", http.request.uri.path)`, true),
   rule('Blogger feeds → /feed.xml', `(http.host eq "www.homegardenlot.com" and (starts_with(http.request.uri.path, "/feeds/posts") or starts_with(http.request.uri.path, "/feeds/pages") or starts_with(http.request.uri.path, "/feeds/comments") or http.request.uri.path in {"/atom.xml" "/rss.xml"}))`, `${WWW}/feed.xml`),
   ...Object.entries(MOVED).slice(0, 3).map(([from, to]) => rule(`${from} → ${to}`, `(http.host eq "www.homegardenlot.com" and http.request.uri.path eq "${from}")`, `${WWW}${to}`)),
 ];

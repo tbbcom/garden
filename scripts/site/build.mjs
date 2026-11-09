@@ -96,6 +96,10 @@ const themeXml = await readFile(THEME, 'utf8');
 const THEME_CSS = themeXml.match(/<b:skin[^>]*><!\[CDATA\[([\s\S]*?)\]\]><\/b:skin>/)[1].replace(/body#layout[^{]*\{[^}]*\}/g, '').trim();
 // Additions for static-only content (figures with captions); the rest of the design is the theme's.
 const EXTRA_CSS = '.hgl-figure{margin:1.6em 0}.hgl-figure img{display:block;width:100%;height:auto;border-radius:var(--hgl-radius);border:1px solid var(--hgl-line)}.hgl-figure figcaption{font-size:.88rem;color:var(--hgl-muted);margin-top:.5em}.hgl-post__body img{max-width:100%;height:auto}.hgl-post__body>img{display:block;margin:0 auto 1.4em}';
+// Brand icons (site/root, from the Home Garden Lot logo) for every page, blog and tools.
+const ICON_LINKS = '<link rel="icon" href="/favicon.ico" sizes="48x48">\n<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">\n<link rel="apple-touch-icon" href="/apple-touch-icon.png">\n<link rel="manifest" href="/manifest.webmanifest">';
+// Static pages are safe to prerender: Chrome loads the next page on hover/press, so clicks feel instant.
+const SPECULATION = '<script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/search/*","/*.xml","/*.json"]}}]},"eagerness":"moderate"}]}</script>';
 const SPRITE = themeXml.match(/<svg aria-hidden='true' height='0'[\s\S]*?<\/svg>/)[0];
 const SHARE_ICONS = [...themeXml.matchAll(/<button aria-label='[^']*' class='hgl-share__icon[\s\S]*?<\/button>/g)].map((m) => m[0]).join('\n');
 const HEADER_LOGO = themeXml.match(/<img class='hgl-brand__logo'[^>]*\/>/)[0].replace(/expr:alt='[^']*'/, `alt='${BRAND}'`).replace(/\/>$/, '>');
@@ -258,8 +262,8 @@ ${ogImg ? `<meta property="og:image" content="${esc(ogImg)}">\n<meta property="o
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(description)}">
 <link rel="alternate" type="application/atom+xml" title="${BRAND}" href="/feed.xml">
-<link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/assets/icon-192.png">
+${ICON_LINKS}
+${SPECULATION}
 <link rel="preconnect" href="https://blogger.googleusercontent.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -385,6 +389,20 @@ function renderBody(item, byPath) {
   body.querySelectorAll('p, b, strong, a, span').forEach((el) => {
     if (el.isConnected && /^\s*\{get(?!Toc)[A-Za-z]+\}/.test(el.textContent) && el.textContent.length < 400) block(el).remove();
   });
+  // 2022-era posts are bare text lines split by <br>; wrap each run in a <p> so spacing matches the newer posts.
+  if ([...body.childNodes].filter((n) => n.nodeName === 'BR').length >= 4) {
+    const BLOCK = /^(H[1-6]|P|DIV|UL|OL|TABLE|FIGURE|BLOCKQUOTE|IFRAME|PRE|DETAILS|SECTION|ASIDE|HR|SCRIPT|STYLE|NAV|FORM)$/;
+    let para = null;
+    for (const n of [...body.childNodes]) {
+      const blank = n.nodeType === 3 && !n.textContent.trim();
+      if (n.nodeName === 'BR') { para = null; n.remove(); continue; }
+      const imgOnly = n.nodeName === 'IMG' || (n.nodeName === 'A' && n.children.length === 1 && n.firstElementChild.nodeName === 'IMG' && !n.textContent.trim());
+      if (BLOCK.test(n.nodeName) || imgOnly) { para = null; continue; }
+      if (blank && !para) continue;
+      if (!para) { para = d.createElement('p'); n.before(para); }
+      para.appendChild(n);
+    }
+  }
   body.querySelectorAll('.separator').forEach((sep) => {
     for (const dir of ['previousSibling', 'nextSibling']) {
       let n = sep[dir];
@@ -606,7 +624,9 @@ async function mergeTools(header, footer) {
       .replace('<li><a href="/">Tools</a></li>', '<li><a href="/">Home</a></li><li><a href="/tools/">Tools</a></li>')
       .replace(/href="\/#/g, 'href="/tools/#')
       .replace(/href="(\/about\/|\/privacy\/|\/terms\/|\/contact\/)([#"])/g, (m, p, end) => `href="${TOOL_MERGE[p]}${end}`)
-      .replace(/<meta property="og:site_name" content="[^"]*">/, `<meta property="og:site_name" content="${BRAND}">`);
+      .replace(/<meta property="og:site_name" content="[^"]*">/, `<meta property="og:site_name" content="${BRAND}">`)
+      .replace(/<link rel="icon"[^>]*>\n?/g, '').replace(/<link rel="apple-touch-icon"[^>]*>\n?/g, '')
+      .replace(/<link rel="manifest"[^>]*>/, `${ICON_LINKS}\n${SPECULATION}`);
     // Breadcrumb JSON-LD: Tools now sits under Home.
     h = h.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g, (m, json) => {
       const data = JSON.parse(json);
@@ -707,7 +727,8 @@ async function main() {
     const to = LABEL_HUB[l.toLowerCase()] || '/';
     await write(`search/label/${l}/index.html`, `<!doctype html><meta charset="utf-8"><title>${esc(l)}</title><meta name="robots" content="noindex"><link rel="canonical" href="${SITE}${to}"><meta http-equiv="refresh" content="0;url=${to}"><a href="${to}">${esc(l)}</a>\n`);
   }
-  for (const [from, to] of Object.entries(MOVED)) {
+  // tools.* 301s keep the path, so the tool site's old legal pages land here: forward them to the blog versions.
+  for (const [from, to] of Object.entries({ ...MOVED, ...TOOL_MERGE })) {
     await write(from.slice(1), `<!doctype html><meta charset="utf-8"><title>Moved</title><meta name="robots" content="noindex"><link rel="canonical" href="${SITE}${to}"><meta http-equiv="refresh" content="0;url=${to}"><a href="${to}">This page has moved</a>\n`);
   }
 
@@ -730,6 +751,16 @@ async function main() {
   if (existsSync('site/images')) await cp('site/images', path.join(OUT, 'images'), { recursive: true });
 
   const toolPaths = await mergeTools(headerHtml(false).replace('id="hgl-q"', 'id="hgl-qt"').replace('for="hgl-q"', 'for="hgl-qt"'), footerHtml());
+
+  // Brand icons and the web app manifest (after the tools merge, so these win).
+  for (const f of await readdir('site/root')) await cp(path.join('site/root', f), path.join(OUT, f));
+  await write('manifest.webmanifest', JSON.stringify({
+    name: BRAND, short_name: 'Garden Lot', description: 'Garden and home improvement guides with free calculators: frost dates, planting calendar, soil, mulch and more.',
+    start_url: '/', scope: '/', display: 'standalone', background_color: '#f4f4f5', theme_color: '#247b49',
+    icons: [{ src: '/icon-192.png', sizes: '192x192', type: 'image/png' }, { src: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+      { src: '/icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' }],
+    shortcuts: [{ name: 'Frost dates by ZIP', url: '/frost-dates/' }, { name: 'Planting calendar', url: '/p/planting-calendar.html' }, { name: 'All tools', url: '/tools/' }],
+  }, null, 1));
 
   // Feed (Atom), sitemap, robots, llms.txt.
   const feedPosts = POSTS.slice(0, 25);
