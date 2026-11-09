@@ -34,11 +34,13 @@ const CONSENT_REGIONS = ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', '
 export const HUBS = [
   ['grow-food', 'Grow Food', 'Step-by-step guides to growing vegetables, fruit and herbs at home, from seed to harvest.'],
   ['garden-design', 'Garden Design & Planning', 'Layouts, raised beds, small-space ideas and seasonal planning for a garden that works.'],
+  ['lawn-care', 'Lawn Care', 'Fertilizing, watering, seeding and mowing schedules for a thick, healthy lawn, with free calculators.'],
   ['soil-compost', 'Soil & Compost', 'Build healthy soil: composting, soil mixes and amendments explained simply.'],
   ['pests-weeds', 'Pests & Weeds', 'Safe, practical ways to control garden pests, household pests and weeds.'],
   ['houseplants', 'Houseplants', 'Choosing and caring for indoor plants in every room and light level.'],
   ['home-diy', 'Home & DIY', 'Practical home improvement and decor: flooring, painting, wall art and budget upgrades.'],
 ];
+const liveHubs = () => HUBS.filter(([s]) => POSTS.some((p) => p.hub === s));
 const HUB = Object.fromEntries(HUBS.map(([s, n, d]) => [s, { slug: s, name: n, desc: d, url: `/category/${s}/` }]));
 
 import { MOVED, TOOL_MERGE, DEAD } from './redirect-map.mjs';
@@ -84,7 +86,7 @@ async function walk(dir) {
 }
 
 async function write(rel, content) {
-  const file = path.join(OUT, rel);
+  const file = path.join(OUT, rel.endsWith('/') ? `${rel}index.html` : rel);
   await mkdir(path.dirname(file), { recursive: true });
   await writeFile(file, content);
 }
@@ -164,13 +166,13 @@ function headerHtml(isHome) {
     <nav aria-label="Main" class="hgl-nav" id="hgl-nav">
       <ul class="hgl-nav__list">
         <li><a class="hgl-nav__link" href="/category/grow-food/">Grow Food</a></li>
+        ${POSTS.some((p) => p.hub === 'lawn-care') ? '<li><a class="hgl-nav__link" href="/category/lawn-care/">Lawn Care</a></li>' : ''}
         <li><a class="hgl-nav__link" href="/category/garden-design/">Garden Design</a></li>
         <li><a class="hgl-nav__link" href="/category/pests-weeds/">Pests &amp; Weeds</a></li>
         <li><a class="hgl-nav__link" href="/category/home-diy/">Home &amp; DIY</a></li>
         <li class="hgl-nav__item--drop"><a class="hgl-nav__link" href="/tools/">Tools</a><button aria-expanded="false" aria-label="Show tools" class="hgl-nav__subtoggle" type="button"></button>
           <ul class="hgl-nav__sub">${TOOL_LINKS.map(([u, n]) => `<li><a href="${u}">${esc(n)}</a></li>`).join('')}<li><a href="/tools/">All free tools →</a></li></ul>
         </li>
-        <li><a class="hgl-nav__link" href="/p/about.html">About</a></li>
       </ul>
       <form action="/search/" class="hgl-search" method="get" role="search"><label class="hgl-sr" for="hgl-q2">Search this site</label><input class="hgl-search__input" id="hgl-q2" name="q" placeholder="Search guides…" type="search"><button aria-label="Search" class="hgl-search__btn" type="submit">Go</button></form>
     </nav>
@@ -300,7 +302,7 @@ function sidebarHtml() {
     </div>
     <nav aria-label="Topics" class="hgl-box">
       <h2 class="hgl-widget__title">Browse Topics</h2>
-      <ul class="hgl-labels">${HUBS.map(([s, n]) => `<li><a class="hgl-chip" href="/category/${s}/">${esc(n)}<span class="hgl-labels__count">${POSTS.filter((p) => p.hub === s).length}</span></a></li>`).join('')}</ul>
+      <ul class="hgl-labels">${liveHubs().map(([s, n]) => `<li><a class="hgl-chip" href="/category/${s}/">${esc(n)}<span class="hgl-labels__count">${POSTS.filter((p) => p.hub === s).length}</span></a></li>`).join('')}</ul>
     </nav>
   </aside>`;
 }
@@ -533,7 +535,7 @@ ${p.body}
 function htmlSitemap() {
   const group = (title, list) => `<h2>${esc(title)}</h2><ul>${list.map((x) => `<li><a href="${x.url}">${esc(x.title)}</a></li>`).join('')}</ul>`;
   return `<p>Every guide and free tool on ${BRAND}, by topic. Newest first.</p>
-${HUBS.map(([s, n]) => group(n, POSTS.filter((p) => p.hub === s))).join('\n')}
+${liveHubs().map(([s, n]) => group(n, POSTS.filter((p) => p.hub === s))).join('\n')}
 ${group('Free tools', [{ url: '/tools/', title: 'All free tools and calculators' }, ...TOOL_LINKS.map(([url, title]) => ({ url, title }))])}
 ${group('About this site', [['/p/about.html', 'About & author'], ['/p/editorial-policy.html', 'Editorial policy'], ['/p/contact.html', 'Contact'], ['/p/privacy-policy.html', 'Privacy policy'], ['/p/terms-of-service.html', 'Terms of use'], ['/p/disclaimer.html', 'Disclaimer & affiliate disclosure']].map(([url, title]) => ({ url, title })))}`;
 }
@@ -580,6 +582,7 @@ async function mergeTools(header, footer) {
     const rel = path.relative(TOOLS_DIR, f).split(path.sep).join('/');
     if (skipDirs.some((d) => rel.startsWith(`${d}/`)) || ['404.html', 'robots.txt', 'sitemap.xml', 'CNAME', 'page-hashes.json'].includes(rel)) continue;
     let dest = rel === 'index.html' ? 'tools/index.html' : rel;
+    if (existsSync(path.join(OUT, dest))) throw new Error(`URL clash: tools page /${dest} has the same address as a blog page. Rename the article.`);
     if (rel === 'llms.txt') dest = '.tools-llms.txt';
     if (!rel.endsWith('.html')) {
       await mkdir(path.dirname(path.join(OUT, dest)), { recursive: true });
@@ -644,8 +647,9 @@ async function main() {
   for (const f of (await walk('site/content')).filter((x) => x.endsWith('.html'))) {
     const it = parseFile(await readFile(f, 'utf8'), f);
     const rel = path.relative('site/content', f).split(path.sep).join('/');
-    it.type = rel.startsWith('posts/') ? 'post' : 'page';
-    it.url = it.type === 'post' ? `/${rel.slice(6)}` : `/p/${rel.slice(6)}`;
+    // posts/YYYY/MM/slug.html: Blogger-era URLs, kept as they are. articles/slug.html: new posts at /slug/.
+    it.type = rel.startsWith('pages/') ? 'page' : 'post';
+    it.url = rel.startsWith('articles/') ? `/${path.basename(rel, '.html')}/` : it.type === 'post' ? `/${rel.slice(6)}` : `/p/${rel.slice(6)}`;
     it.author ||= BRAND;
     // draft: true keeps a post off the live site; the preview shows it so you can check it first.
     if (/^(true|yes|1)$/i.test(it.draft || '') && !PREVIEW) continue;
@@ -678,16 +682,16 @@ async function main() {
   const hero = `<section class="hgl-hero"><div class="hgl-hero__inner">
   <h2 class="hgl-hero__title">Grow more. Fix smarter. Spend less.</h2>
   <p class="hgl-hero__lead">Step-by-step guides and free calculators for vegetable gardens, lawns, landscaping and DIY home improvement — written for real homeowners.</p>
-  <ul class="hgl-hero__chips">${HUBS.map(([s, n]) => `<li><a class="hgl-chip" href="/category/${s}/">${esc(n)}</a></li>`).join('')}<li><a class="hgl-chip" href="/tools/">Free Calculators</a></li></ul>
+  <ul class="hgl-hero__chips">${liveHubs().map(([s, n]) => `<li><a class="hgl-chip" href="/category/${s}/">${esc(n)}</a></li>`).join('')}<li><a class="hgl-chip" href="/tools/">Free Calculators</a></li></ul>
 </div></section>`;
   await write('index.html', listPage({ url: '/', title: `${BRAND}: Garden & Home Improvement Guides`, h1: BRAND, desc: 'Practical guides and free calculators for growing food, garden design, pest control and DIY home improvement, researched against university extension sources.', posts: POSTS.slice(0, 13), isHome: true, hero }));
-  for (const [s, n, d] of HUBS) {
+  for (const [s, n, d] of liveHubs()) {
     const list = POSTS.filter((p) => p.hub === s);
     await write(`category/${s}/index.html`, listPage({ url: `/category/${s}/`, title: `${n} Guides | ${BRAND}`, h1: n, kicker: 'Topic', desc: d, posts: list, crumbs: true }));
   }
   // Date archives keep Blogger's /YYYY/ and /YYYY/MM/ URLs alive; noindex, like Blogger's.
   const periods = {};
-  for (const p of POSTS) {
+  for (const p of POSTS.filter((x) => /^\/\d{4}\/\d{2}\//.test(x.url))) {
     const [, y, m] = p.url.split('/');
     (periods[`/${y}/`] ||= []).push(p);
     (periods[`/${y}/${m}/`] ||= []).push(p);
@@ -741,7 +745,7 @@ ${feedPosts.map((p) => `<entry><title>${esc(p.title)}</title><link href="${SITE}
 </feed>
 `);
   const urls = [
-    ['/', POSTS[0].updated], ...HUBS.map(([s]) => [`/category/${s}/`, POSTS.find((p) => p.hub === s)?.updated]),
+    ['/', POSTS[0].updated], ...liveHubs().map(([s]) => [`/category/${s}/`, POSTS.find((p) => p.hub === s)?.updated]),
     ...POSTS.map((p) => [p.url, p.updated]), ...pages.map((p) => [p.url, p.updated]),
     ...toolPaths.map((u) => [u, null]),
   ];
@@ -758,7 +762,7 @@ ${urls.map(([u, d]) => `<url><loc>${SITE}${u}</loc>${d ? `<lastmod>${isoDay(d)}<
 > Practical guides and free calculators for home gardeners and DIY homeowners: growing vegetables and fruit, garden design, soil and compost, pest control, houseplants and home improvement. Tools use public data from NOAA, the USDA and university extension services.
 
 ## Topic hubs
-${HUBS.map(([s, n, d]) => `- [${n}](${SITE}/category/${s}/): ${d}`).join('\n')}
+${liveHubs().map(([s, n, d]) => `- [${n}](${SITE}/category/${s}/): ${d}`).join('\n')}
 
 ## Guides
 ${POSTS.map((p) => `- [${p.title}](${SITE}${p.url}): ${p.description}`).join('\n')}
