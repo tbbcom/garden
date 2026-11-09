@@ -8,10 +8,11 @@
 //      GTM_ID      GTM-XXXX or G-XXXX (same rules as the tools site)
 //      WEB3FORMS_KEY  public access key for the contact form (web3forms.com, free)
 import { cp, mkdir, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { parseHTML } from 'linkedom';
+import { imageSize } from 'image-size';
 
 const SITE = (process.env.SITE_URL || 'https://www.homegardenlot.com').replace(/\/$/, '');
 const TOOLS_HOST = 'https://tools.homegardenlot.com';
@@ -49,7 +50,9 @@ const fmtDate = (iso) => new Date(iso).toLocaleDateString('en-US', { year: 'nume
 const isoDay = (iso) => new Date(iso).toISOString().slice(0, 10);
 
 // Blogger image URLs can be resized by rewriting their size token.
+const abs = (u) => (u && u.startsWith('/') ? `${SITE}${u}` : u);
 function resize(url, w, h) {
+  if ((url || '').startsWith('/')) return url;
   if (!/googleusercontent\.com|bp\.blogspot\.com/.test(url || '')) return url || '';
   const tok = h ? `w${w}-h${h}-p-k-no-nu` : `w${w}`;
   if (/\/s\d+(-[a-z0-9-]+)?\//.test(url) || /\/w\d+-h\d+[^/]*\//.test(url)) return url.replace(/\/(s\d+|w\d+-h\d+)(-[a-z0-9-]+)?\//, `/${tok}/`);
@@ -227,7 +230,7 @@ const ORG_GRAPH = [
 
 function shell({ url, title, description, body, bodyClass = 'hgl-body hgl-body--list', image = '', type = 'website', graph = [], noindex = false, isHome = false, hero = '', sidebar = true, extraHead = '' }) {
   const robots = noindex ? 'noindex, follow' : PREVIEW ? 'noindex, follow" data-preview="1' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
-  const ogImg = image ? resize(image, 1200, 630) : '';
+  const ogImg = image ? abs(resize(image, 1200, 630)) : '';
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -397,6 +400,18 @@ function renderBody(item, byPath) {
   });
   // Images: first one is the LCP candidate; the rest load lazily.
   body.querySelectorAll('img').forEach((img, i) => {
+    const src = img.getAttribute('src') || '';
+    // Your own images (site/images): add width/height so the page never jumps while they load.
+    if (src.startsWith('/images/')) {
+      const file = path.join('site', decodeURIComponent(src.split(/[?#]/)[0]));
+      if (!existsSync(file)) throw new Error(`${item.url}: image ${src} not found (upload it to ${file})`);
+      if (!img.getAttribute('alt')) throw new Error(`${item.url}: image ${src} needs alt text (alt="what the picture shows")`);
+      if (!img.getAttribute('width')) {
+        const dim = imageSize(readFileSync(file));
+        img.setAttribute('width', dim.width);
+        img.setAttribute('height', dim.height);
+      }
+    }
     img.setAttribute('decoding', 'async');
     if (i === 0) { img.setAttribute('fetchpriority', 'high'); img.removeAttribute('loading'); } else img.setAttribute('loading', 'lazy');
   });
@@ -452,7 +467,7 @@ function card(p, i, lead) {
 }
 
 function shareBlock(p, top) {
-  const data = `data-title="${esc(p.title)}" data-url="${SITE}${p.url}" data-image="${esc(p.image || '')}"`;
+  const data = `data-title="${esc(p.title)}" data-url="${SITE}${p.url}" data-image="${esc(abs(p.image || ''))}"`;
   return top
     ? `<div class="hgl-share hgl-share--top" ${data}>${SHARE_ICONS}</div>`
     : `<div class="hgl-share" ${data}><span class="hgl-share__title">Save or share:</span><button class="hgl-share__btn hgl-share__btn--pin" data-net="pinterest" type="button">Pin it</button><button class="hgl-share__btn" data-net="facebook" type="button">Facebook</button><button class="hgl-share__btn" data-net="x" type="button">X</button><button class="hgl-share__btn" data-net="whatsapp" type="button">WhatsApp</button><button class="hgl-share__btn" data-net="copy" type="button">Copy link</button></div>`;
@@ -493,7 +508,7 @@ ${p.body}
   const graph = [
     { '@type': 'BlogPosting', '@id': `${SITE}${p.url}#article`, mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE}${p.url}` }, headline: p.title, description: p.description,
       datePublished: p.date, dateModified: p.updated, inLanguage: 'en-US', wordCount: p.words,
-      ...(p.image ? { image: { '@type': 'ImageObject', url: resize(p.image, 1200, 675), width: 1200, height: 675 } } : {}),
+      ...(p.image ? { image: { '@type': 'ImageObject', url: abs(resize(p.image, 1200, 675)), width: 1200, height: 675 } } : {}),
       author: { '@type': 'Person', name: p.author, url: `${SITE}/p/about.html` }, publisher: { '@id': ORG_ID }, isPartOf: { '@id': SITE_ID }, articleSection: hub.name },
     { '@type': 'BreadcrumbList', itemListElement: [['Home', `${SITE}/`], [hub.name, `${SITE}${hub.url}`], [p.title]].map(([n, u], i) => ({ '@type': 'ListItem', position: i + 1, name: n, ...(u ? { item: u } : {}) })) },
   ];
@@ -619,6 +634,8 @@ async function main() {
     it.type = rel.startsWith('posts/') ? 'post' : 'page';
     it.url = it.type === 'post' ? `/${rel.slice(6)}` : `/p/${rel.slice(6)}`;
     it.author ||= BRAND;
+    // draft: true keeps a post off the live site; the preview shows it so you can check it first.
+    if (/^(true|yes|1)$/i.test(it.draft || '') && !PREVIEW) continue;
     if (it.type === 'post' && !HUB[it.hub]) throw new Error(`${f}: unknown hub "${it.hub}"`);
     items.push(it);
   }
@@ -688,6 +705,7 @@ async function main() {
 
   await mkdir(path.join(OUT, 'assets'), { recursive: true });
   for (const f of await readdir('site/assets')) await cp(path.join('site/assets', f), path.join(OUT, 'assets', f));
+  if (existsSync('site/images')) await cp('site/images', path.join(OUT, 'images'), { recursive: true });
 
   const toolPaths = await mergeTools(headerHtml(false).replace('id="hgl-q"', 'id="hgl-qt"').replace('for="hgl-q"', 'for="hgl-qt"'), footerHtml());
 
@@ -701,7 +719,7 @@ async function main() {
 <id>${SITE}/</id>
 <updated>${new Date(Math.max(...feedPosts.map((p) => +new Date(p.updated)))).toISOString()}</updated>
 <author><name>${BRAND}</name></author>
-${feedPosts.map((p) => `<entry><title>${esc(p.title)}</title><link href="${SITE}${p.url}"/><id>${SITE}${p.url}</id><published>${new Date(p.date).toISOString()}</published><updated>${new Date(p.updated).toISOString()}</updated><category term="${esc(HUB[p.hub].name)}"/><summary>${esc(p.description)}</summary>${p.image ? `<link rel="enclosure" type="image/jpeg" href="${esc(resize(p.image, 1200, 675))}"/>` : ''}</entry>`).join('\n')}
+${feedPosts.map((p) => `<entry><title>${esc(p.title)}</title><link href="${SITE}${p.url}"/><id>${SITE}${p.url}</id><published>${new Date(p.date).toISOString()}</published><updated>${new Date(p.updated).toISOString()}</updated><category term="${esc(HUB[p.hub].name)}"/><summary>${esc(p.description)}</summary>${p.image ? `<link rel="enclosure" type="image/jpeg" href="${esc(abs(resize(p.image, 1200, 675)))}"/>` : ''}</entry>`).join('\n')}
 </feed>
 `);
   const urls = [
