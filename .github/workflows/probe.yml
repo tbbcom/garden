@@ -1,0 +1,15 @@
+name: Probe live
+on:
+  push:
+    branches: ['claude/probe-live']
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check
+        run: |
+          UA='Mozilla/5.0 (X11; Linux x86_64) Chrome/130.0 Safari/537.36'
+          for u in /when-to-plant-garlic/ /category/lawn-care/ /when-to-fertilize-lawn/ /lawn-aeration-guide/ /p/contact.html /2022/10/how-to-grow-potatoes.html; do
+            echo "$u → $(curl -s -o /tmp/b -A "$UA" -w '%{http_code}' "https://www.homegardenlot.com$u") $(grep -o '<title>[^<]*' /tmp/b | cut -c8-80)"; done
+          echo "contact form key present: $(curl -s -A "$UA" https://www.homegardenlot.com/p/contact.html | grep -c 'api.web3forms.com')"
+          echo "sitemap has garlic: $(curl -s https://www.homegardenlot.com/sitemap.xml | grep -c when-to-plant-garlic)"
