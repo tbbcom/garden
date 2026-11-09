@@ -1,0 +1,390 @@
+---
+title: Mulch Calculator: How Much Do I Need? (Cubic, Bags & Cost)
+description: Free mulch calculator: how many cubic yards or bags of mulch you need for your beds at any depth, plus an estimated cost. Works for any shape bed.
+date: 2025-10-31T05:12:00-07:00
+updated: 2026-08-16T22:25:18-07:00
+author: Fadzilla
+bloggerId: 5782378455128842684
+---
+<p>Stop guessing mulch amounts. Enter your bed size and depth-instantly get cubic yards/m³, bags needed (2 cu ft, 3 cu ft, 50L), and cost. Supports rectangular, circular, or direct area input. Optimized for speed and accuracy.</p>
+<section id="mulch-calc" aria-label="Mulch Calculator" style="--mc-base:#249749;--mc-ink:#0f1a13;--mc-muted:#3a624e;--mc-bg:#f7faf8;--mc-card:#fff;--mc-sh:0 4px 18px rgba(0,0,0,.08);margin:0;padding:32px 0;background:var(--mc-bg);color:var(--mc-ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;">
+  <div class="mc-wrap" style="max-width:1100px;margin:0 auto;padding:0 16px;">
+    <header class="mc-head" style="text-align:center;margin-bottom:28px;">
+      <h2 style="margin:0 0 8px;font-size:clamp(22px,3.2vw,28px);color:var(--mc-base);font-weight:800;">🌿 Mulch Calculator</h2>
+      <p style="margin:0 auto;max-width:780px;line-height:1.65;color:var(--mc-muted);">Estimate mulch volume, bags, and cost for rectangular/circular beds or direct area. Supports imperial &amp; metric. No page bloat.</p>
+    </header>
+
+    <div class="mc-grid" style="display:grid;grid-template-columns:repeat(12,1fr);gap:16px;align-items:start;">
+      <!-- Controls -->
+      <div class="mc-card" style="grid-column:span 12;background:var(--mc-card);box-shadow:var(--mc-sh);border-radius:12px;padding:16px;">
+        <form id="mc-form" class="mc-form" autocomplete="off">
+          <div class="mc-row" style="display:grid;grid-template-columns:repeat(12,1fr);gap:12px;">
+            <div class="mc-field" style="grid-column:span 12;">
+              <label for="mc-shape" class="mc-label">Bed Shape</label>
+              <select id="mc-shape" class="mc-input">
+                <option value="rect">Rectangle (L × W)</option>
+                <option value="circle">Circle (diameter)</option>
+                <option value="area">Direct area input</option>
+              </select>
+            </div>
+
+            <!-- Rectangle -->
+            <div class="mc-field mc-rect" style="grid-column:span 6;">
+              <label class="mc-label" for="mc-l">Length</label>
+              <input id="mc-l" class="mc-input" type="number" min="0" step="0.01" placeholder="e.g., 10">
+            </div>
+            <div class="mc-field mc-rect" style="grid-column:span 6;">
+              <label class="mc-label" for="mc-w">Width</label>
+              <input id="mc-w" class="mc-input" type="number" min="0" step="0.01" placeholder="e.g., 5">
+            </div>
+
+            <!-- Circle -->
+            <div class="mc-field mc-circ" style="grid-column:span 12;display:none;">
+              <label class="mc-label" for="mc-d">Diameter</label>
+              <input id="mc-d" class="mc-input" type="number" min="0" step="0.01" placeholder="e.g., 8">
+            </div>
+
+            <!-- Area -->
+            <div class="mc-field mc-area" style="grid-column:span 12;display:none;">
+              <label class="mc-label" for="mc-a">Area</label>
+              <input id="mc-a" class="mc-input" type="number" min="0" step="0.01" placeholder="e.g., 120">
+            </div>
+
+            <!-- Units -->
+            <div class="mc-field" style="grid-column:span 6;">
+              <label class="mc-label" for="mc-unit">Units</label>
+              <select id="mc-unit" class="mc-input">
+                <option value="imperial">Imperial (ft, in)</option>
+                <option value="metric">Metric (m, cm)</option>
+              </select>
+            </div>
+
+            <!-- Depth -->
+            <div class="mc-field" style="grid-column:span 6;">
+              <label id="mc-depth-label" class="mc-label" for="mc-depth">Depth (in)</label>
+              <input id="mc-depth" class="mc-input" type="number" min="0" step="0.1" placeholder="e.g., 3">
+            </div>
+
+            <!-- Bag size & price -->
+            <div class="mc-field" style="grid-column:span 6;">
+              <label class="mc-label" for="mc-bag">Bag Size</label>
+              <select id="mc-bag" class="mc-input">
+                <option value="2">2 cu ft</option>
+                <option value="3">3 cu ft</option>
+                <option value="50L">50 L</option>
+                <option value="custom">Custom…</option>
+              </select>
+            </div>
+            <div id="mc-bag-custom-wrap" class="mc-field" style="grid-column:span 6;display:none;">
+              <label class="mc-label" for="mc-bag-custom">Custom Bag Size (cu ft)</label>
+              <input id="mc-bag-custom" class="mc-input" type="number" min="0.1" step="0.1" placeholder="e.g., 1.5">
+            </div>
+
+            <div class="mc-field" style="grid-column:span 6;">
+              <label class="mc-label" for="mc-price-bag">Price per Bag (optional)</label>
+              <input id="mc-price-bag" class="mc-input" type="number" min="0" step="0.01" placeholder="e.g., 4.99">
+            </div>
+            <div class="mc-field" style="grid-column:span 6;">
+              <label class="mc-label" for="mc-price-yard">Price per Cubic Yard (optional)</label>
+              <input id="mc-price-yard" class="mc-input" type="number" min="0" step="0.01" placeholder="e.g., 38">
+            </div>
+
+            <div class="mc-actions" style="grid-column:span 12;display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
+              <button type="button" id="mc-calc" class="mc-btn">Calculate</button>
+              <button type="button" id="mc-reset" class="mc-btn ghost">Reset</button>
+              <button type="button" id="mc-share" class="mc-btn outline">Share</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Results -->
+      <div class="mc-card" style="grid-column:span 12;background:var(--mc-card);box-shadow:var(--mc-sh);border-radius:12px;padding:16px;">
+        <h2 style="margin:0 0 10px;font-size:18px;color:var(--mc-base);">Results</h2>
+        <div class="mc-results" id="mc-results" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;">
+          <!-- populated by JS -->
+        </div>
+        <p id="mc-note" style="margin-top:10px;font-size:12.5px;color:var(--mc-muted);">Tip: Typical mulch depth is 2–3 in (5–7.5 cm). Round up bags to account for settling &amp; irregular edges.</p>
+      </div>
+    </div>
+<section id="mulch-howto" style="max-width:1100px;margin:22px auto;padding:0 16px">
+  <h2 style="color:#249749;margin:0 0 10px">How to Use the Mulch Calculator</h2>
+  <ol style="line-height:1.8;color:#3a624e;margin-left:18px">
+    <li>Choose <strong>Bed Shape</strong> (Rectangle/Circle/Area).</li>
+    <li>Select <strong>Units</strong> and enter <strong>length/width/diameter</strong> (or area) and <strong>depth</strong>.</li>
+    <li>Pick <strong>Bag Size</strong> (2 cu ft, 3 cu ft, 50 L) or set a custom size.</li>
+    <li>(Optional) Add <strong>price per bag</strong> or <strong>per cubic yard</strong> for cost estimates.</li>
+    <li>Click <strong>Calculate</strong> → review <em>yd³ / m³ / ft³ / liters, bags, and cost</em>.</li>
+  </ol>
+</section>
+<section class="mulch-faq-page" style="max-width:1100px;margin:22px auto;padding:0 16px">
+  <h2 style="color:#249749;margin:16px 0 8px">Mulch Calculator FAQ</h2>
+  <h3 class="faq-question">What depth should I use?</h3>
+  <p class="faq-answer">General beds: 2–3 in (5–7.5 cm). Weed suppression: up to 4 in. Keep mulch 2–3 in away from stems/trunks.</p>
+  
+  <h3 class="faq-question">Which bag size should I select?</h3>
+  <p class="faq-answer">Common retail sizes: 2 cu ft, 3 cu ft, and 50 L (~1.77 cu ft). Use “Custom” if your local bag differs.</p>
+  
+  <h3 class="faq-question">How accurate is the result?</h3>
+  <p class="faq-answer">Regular shapes are highly accurate. For curved/irregular beds, over-estimate slightly for edges and settling.</p>
+  
+  <h3 class="faq-question">What’s better: bags or bulk?</h3>
+  <p class="faq-answer">Bags are convenient for small areas; bulk (yd³) is cheaper for large projects. Use the cost fields to compare.</p>
+  
+  <h3 class="faq-question">Does mulch type change volume?</h3>
+  <p class="faq-answer">Volume stays the same; weight can vary with wood type and moisture. The calculator outputs volume + bags.</p>
+</section>
+    <style>
+      /* Scoped inputs/buttons */
+      #mulch-calc .mc-label{display:block;font-size:13px;color:var(--mc-muted);margin:2px 0 6px}
+      #mulch-calc .mc-input{width:100%;padding:10px 12px;border:1px solid rgba(0,0,0,.12);border-radius:10px;background:#fff;outline:none}
+      #mulch-calc .mc-input:focus{border-color:var(--mc-base);box-shadow:0 0 0 3px color-mix(in srgb, var(--mc-base) 18%, transparent)}
+      #mulch-calc .mc-btn{appearance:none;border:0;background:var(--mc-base);color:#fff;padding:10px 14px;border-radius:999px;font-weight:700;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.1)}
+      #mulch-calc .mc-btn:hover{transform:translateY(-1px)}
+      #mulch-calc .mc-btn.ghost{background:#eaf5ee;color:var(--mc-base)}
+      #mulch-calc .mc-btn.outline{background:#fff;color:var(--mc-base);border:1px solid var(--mc-base)}
+      #mulch-calc .mc-chip{display:inline-block;padding:6px 10px;border-radius:999px;background:#eaf5ee;color:var(--mc-base);font-weight:700}
+      #mulch-calc .mulch-faq-page p {margin-bottom:10px;color:#3a624e;}
+       #mulch-calc .mulch-faq-page h3 {color:#0c3808;}
+      @media (max-width:640px){#mulch-calc .mc-head p{font-size:14px}}
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://www.homegardenlot.com/p/mulch-calculator.html#app",
+      "name": "Mulch Calculator",
+      "alternateName": "Mulch Volume, Bags and Cost Calculator",
+      "url": "https://www.homegardenlot.com/p/mulch-calculator.html",
+      "description": "Free mulch calculator for estimating cubic yards, cubic metres, litres, bags and project cost for rectangular and circular garden beds.",
+      "applicationCategory": "UtilitiesApplication",
+      "applicationSubCategory": "Gardening Calculator",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript and a modern web browser.",
+      "isAccessibleForFree": true,
+      "inLanguage": "en-US",
+      "featureList": [
+        "Imperial and metric measurements",
+        "Rectangular and circular bed calculations",
+        "Cubic yard and cubic metre results",
+        "Mulch bag estimates",
+        "Optional material cost estimate"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "publisher": {
+        "@id": "https://www.homegardenlot.com/#organization"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://www.homegardenlot.com/p/mulch-calculator.html#webpage"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.homegardenlot.com/p/mulch-calculator.html#webpage",
+      "url": "https://www.homegardenlot.com/p/mulch-calculator.html",
+      "name": "Mulch Calculator: How Much Do I Need?",
+      "description": "Calculate mulch volume, bags and cost using imperial or metric measurements.",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "https://www.homegardenlot.com/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://www.homegardenlot.com/p/mulch-calculator.html#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://www.homegardenlot.com/p/mulch-calculator.html#app"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.homegardenlot.com/p/mulch-calculator.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.homegardenlot.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tools",
+          "item": "https://www.homegardenlot.com/p/tools.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Mulch Calculator",
+          "item": "https://www.homegardenlot.com/p/mulch-calculator.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+    <script>
+    (()=>{'use strict';
+      const $ = (id)=>document.getElementById(id);
+      const shapeEl = $('mc-shape'), unitEl=$('mc-unit'), depthEl=$('mc-depth'), depthLbl=$('mc-depth-label');
+      const lEl=$('mc-l'), wEl=$('mc-w'), dEl=$('mc-d'), aEl=$('mc-a');
+      const rectEls=[...document.querySelectorAll('#mulch-calc .mc-rect')];
+      const circEls=[...document.querySelectorAll('#mulch-calc .mc-circ')];
+      const areaEls=[...document.querySelectorAll('#mulch-calc .mc-area')];
+      const bagSel=$('mc-bag'), bagCustomWrap=$('mc-bag-custom-wrap'), bagCustom=$('mc-bag-custom');
+      const res=$('mc-results');
+
+      // UI toggles
+      function toggleShape(){
+        const v=shapeEl.value;
+        rectEls.forEach(e=>e.style.display=(v==='rect')?'block':'none');
+        circEls.forEach(e=>e.style.display=(v==='circle')?'block':'none');
+        areaEls.forEach(e=>e.style.display=(v==='area')?'block':'none');
+      }
+      function toggleUnit(){
+        if(unitEl.value==='imperial'){ depthLbl.textContent='Depth (in)'; }
+        else { depthLbl.textContent='Depth (cm)'; }
+      }
+      function toggleBag(){
+        bagCustomWrap.style.display = (bagSel.value==='custom') ? 'block' : 'none';
+      }
+
+      // Helpers
+      const ft2_to_yd3 = (ft2, depth_in)=> (ft2 * (depth_in/12)) / 27; // yd³
+      const m2_to_m3   = (m2, depth_cm)=> m2 * (depth_cm/100);         // m³
+      const cuft_to_m3 = (cf)=> cf * 0.0283168;
+      const m3_to_cuft = (m3)=> m3 / 0.0283168;
+      const yd3_to_m3  = (y)=> y * 0.764555;
+      const m3_to_yd3  = (m3)=> m3 / 0.764555;
+
+      function bagSizeCuFt(){
+        const v=bagSel.value;
+        if(v==='2') return 2;
+        if(v==='3') return 3;
+        if(v==='50L') return 50 * 0.0353147; // liters -> cu ft
+        if(v==='custom') return Math.max(0, parseFloat(bagCustom.value)||0);
+        return 2;
+      }
+
+      function renderResults(obj){
+        res.innerHTML = '';
+        const card=(label,val)=>`<div style="background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:12px;padding:14px;min-height:72px;"><div style="font-size:12px;color:var(--mc-muted);margin-bottom:6px">${label}</div><div style="font-size:18px;font-weight:800;color:var(--mc-base)">${val}</div></div>`;
+        res.insertAdjacentHTML('beforeend', card('Cubic Yards (yd³)', obj.yd3.toFixed(3)));
+        res.insertAdjacentHTML('beforeend', card('Cubic Meters (m³)', obj.m3.toFixed(3)));
+        res.insertAdjacentHTML('beforeend', card('Cubic Feet (ft³)', obj.cuft.toFixed(1)));
+        res.insertAdjacentHTML('beforeend', card('Liters (L)', obj.liters.toLocaleString(undefined,{maximumFractionDigits:0})));
+        res.insertAdjacentHTML('beforeend', card('Bags Needed', obj.bags.toLocaleString()));
+        if(obj.costBag!==null) res.insertAdjacentHTML('beforeend', card('Est. Cost (by bags)', obj.costBag.toLocaleString(undefined,{style:'currency',currency:obj.ccy})));
+        if(obj.costYard!==null) res.insertAdjacentHTML('beforeend', card('Est. Cost (by yd³ bulk)', obj.costYard.toLocaleString(undefined,{style:'currency',currency:obj.ccy})));
+      }
+
+      function calc(){
+        // read inputs
+        const unit = unitEl.value; toggleUnit();
+        const shape = shapeEl.value;
+        const depth = Math.max(0, parseFloat(depthEl.value)||0);
+        const ccy = (Intl.NumberFormat().resolvedOptions().currency) || 'USD'; // not reliable; just label
+
+        // area
+        let area_ft2 = 0, area_m2 = 0;
+        if(shape==='rect'){
+          const L = Math.max(0, parseFloat(lEl.value)||0);
+          const W = Math.max(0, parseFloat(wEl.value)||0);
+          if(unit==='imperial'){ area_ft2 = L*W; area_m2 = area_ft2*0.092903; }
+          else { area_m2 = L*W; area_ft2 = area_m2/0.092903; }
+        } else if(shape==='circle'){
+          const D = Math.max(0, parseFloat(dEl.value)||0);
+          if(unit==='imperial'){ const r=D/2; area_ft2 = Math.PI*r*r; area_m2 = area_ft2*0.092903; }
+          else { const r=D/2; area_m2 = Math.PI*r*r; area_ft2 = area_m2/0.092903; }
+        } else { // direct area
+          const A = Math.max(0, parseFloat(aEl.value)||0);
+          if(unit==='imperial'){ area_ft2 = A; area_m2 = A*0.092903; }
+          else { area_m2 = A; area_ft2 = A/0.092903; }
+        }
+
+        // volumes
+        let yd3=0, m3=0, cuft=0, liters=0;
+        if(unit==='imperial'){
+          yd3 = ft2_to_yd3(area_ft2, depth);
+          m3  = yd3_to_m3(yd3);
+        } else {
+          m3  = m2_to_m3(area_m2, depth);
+          yd3 = m3_to_yd3(m3);
+        }
+        cuft   = m3_to_cuft(m3);
+        liters = m3*1000;
+
+        // bags
+        const perBagCuFt = Math.max(0.1, bagSizeCuFt());
+        const bags = Math.ceil(cuft / perBagCuFt);
+
+        // cost
+        const priceBag = Math.max(0, parseFloat(document.getElementById('mc-price-bag').value)||0);
+        const priceYd  = Math.max(0, parseFloat(document.getElementById('mc-price-yard').value)||0);
+        const costBag  = priceBag>0 ? bags * priceBag : null;
+        const costYard = priceYd>0 ? yd3 * priceYd : null;
+
+        renderResults({yd3,m3,cuft,liters,bags,costBag,costYard,ccy});
+      }
+
+      function resetForm(){
+        document.getElementById('mc-form').reset();
+        toggleShape(); toggleUnit(); toggleBag();
+        res.innerHTML='';
+      }
+
+      function share(){
+        const params = new URLSearchParams({
+          s:shapeEl.value,u:unitEl.value,dep:depthEl.value||'',
+          l:lEl.value||'',w:wEl.value||'',d:dEl.value||'',a:aEl.value||'',
+          bag:bagSel.value,bagc:bagCustom.value||'',
+          pb:document.getElementById('mc-price-bag').value||'',
+          py:document.getElementById('mc-price-yard').value||''
+        }).toString();
+        const url = location.origin + location.pathname + '?' + params + '#mulch-calc';
+        navigator.clipboard?.writeText(url);
+        alert('Share link copied to clipboard.');
+      }
+
+      // Restore from URL
+      function hydrate(){
+        const q=new URLSearchParams(location.search);
+        const get=(k)=>q.get(k)||'';
+        if(get('s')) shapeEl.value=get('s');
+        if(get('u')) unitEl.value=get('u');
+        if(get('dep')) depthEl.value=get('dep');
+        if(get('l')) lEl.value=get('l');
+        if(get('w')) wEl.value=get('w');
+        if(get('d')) dEl.value=get('d');
+        if(get('a')) aEl.value=get('a');
+        if(get('bag')) bagSel.value=get('bag');
+        if(get('bagc')) bagCustom.value=get('bagc');
+        if(get('pb')) document.getElementById('mc-price-bag').value=get('pb');
+        if(get('py')) document.getElementById('mc-price-yard').value=get('py');
+        toggleShape(); toggleUnit(); toggleBag();
+      }
+
+      // events
+      $('mc-calc').addEventListener('click', calc);
+      $('mc-reset').addEventListener('click', resetForm);
+      $('mc-share').addEventListener('click', share);
+      shapeEl.addEventListener('change', toggleShape);
+      unitEl.addEventListener('change', toggleUnit);
+      bagSel.addEventListener('change', toggleBag);
+      // enter to calc
+      document.querySelectorAll('#mulch-calc input').forEach(i=>i.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();calc();}}));
+
+      hydrate(); // restore state if link shared
+      // sensible defaults
+      shapeEl.value='rect'; unitEl.value='imperial'; depthEl.value='3'; lEl.value='10'; wEl.value='5';
+      toggleShape(); toggleUnit(); toggleBag();
+    })();
+    </script>
+  </div>
+</section>

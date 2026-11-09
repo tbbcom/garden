@@ -1,0 +1,313 @@
+---
+title: Topsoil & Gravel Calculator (Volume, Weight:Tons & Cost:ft/m)
+description: Free topsoil and gravel calculator: enter length, width and depth to get cubic yards, tons and cost for topsoil, gravel or fill, in feet or meters.
+date: 2025-10-31T05:22:00-07:00
+updated: 2025-10-31T06:09:58-07:00
+author: Fadzilla
+bloggerId: 4205162185842182363
+---
+<b>{inAds}</b>
+<p>Estimate topsoil, gravel, or sand in cubic yards/m³, tons, bags, and cost. Supports rectangle, circle, or direct area with imperial/metric units and material density presets.</p>
+
+<section id="agg-calc" aria-label="Topsoil & Gravel Calculator" style="--ac-base:#249749;--ac-ink:#0f1a13;--ac-muted:#3a624e;--ac-bg:#f7faf8;--ac-card:#fff;--ac-sh:0 4px 18px rgba(0,0,0,.08);margin:0;padding:32px 0;background:var(--ac-bg);color:var(--ac-ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;">
+  <div class="ac-wrap" style="max-width:1100px;margin:0 auto;padding:0 16px;">
+    <header style="text-align:center;margin-bottom:24px">
+      <h1 style="margin:0 0 6px;font-size:clamp(22px,3.2vw,28px);color:var(--ac-base);font-weight:800">🧱 Topsoil &amp; Gravel Calculator</h1>
+      <p style="margin:0 auto;max-width:780px;line-height:1.65;color:var(--ac-muted)">Volume, weight (tons), bags &amp; cost with material density presets. Ultra-light and theme-safe.</p>
+    </header>
+
+    <div class="ac-grid" style="display:grid;grid-template-columns:repeat(12,1fr);gap:16px;align-items:start;">
+      <div class="ac-card" style="grid-column:span 12;background:var(--ac-card);box-shadow:var(--ac-sh);border-radius:12px;padding:16px;">
+        <form id="ac-form" autocomplete="off">
+          <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:12px;">
+            <div style="grid-column:span 6">
+              <label class="ac-label" for="ac-material">Material</label>
+              <select id="ac-material" class="ac-input">
+                <option value="topsoil">Topsoil (~100 lb/ft³ | 1600 kg/m³)</option>
+                <option value="gravel">Gravel (~105 lb/ft³ | 1680 kg/m³)</option>
+                <option value="sand">Sand (~100 lb/ft³ | 1600 kg/m³)</option>
+                <option value="custom">Custom density…</option>
+              </select>
+            </div>
+            <div id="ac-density-wrap" style="grid-column:span 6;display:none">
+              <label class="ac-label" for="ac-density">Density (kg/m³)</label>
+              <input id="ac-density" class="ac-input" type="number" min="100" step="10" placeholder="e.g., 1600">
+            </div>
+
+            <div style="grid-column:span 6">
+              <label class="ac-label" for="ac-unit">Units</label>
+              <select id="ac-unit" class="ac-input">
+                <option value="imperial">Imperial (ft, in)</option>
+                <option value="metric">Metric (m, cm)</option>
+              </select>
+            </div>
+            <div style="grid-column:span 6">
+              <label class="ac-label" for="ac-shape">Area Type</label>
+              <select id="ac-shape" class="ac-input">
+                <option value="rect">Rectangle (L × W)</option>
+                <option value="circle">Circle (diameter)</option>
+                <option value="area">Direct area input</option>
+              </select>
+            </div>
+
+            <!-- rectangle -->
+            <div class="ac-rect" style="grid-column:span 6">
+              <label class="ac-label" for="ac-l">Length</label>
+              <input id="ac-l" class="ac-input" type="number" min="0" step="0.01" placeholder="e.g., 12">
+            </div>
+            <div class="ac-rect" style="grid-column:span 6">
+              <label class="ac-label" for="ac-w">Width</label>
+              <input id="ac-w" class="ac-input" type="number" min="0" step="0.01" placeholder="e.g., 8">
+            </div>
+
+            <!-- circle -->
+            <div class="ac-circ" style="grid-column:span 12;display:none">
+              <label class="ac-label" for="ac-d">Diameter</label>
+              <input id="ac-d" class="ac-input" type="number" min="0" step="0.01" placeholder="e.g., 10">
+            </div>
+
+            <!-- direct area -->
+            <div class="ac-area" style="grid-column:span 12;display:none">
+              <label class="ac-label" for="ac-a">Area</label>
+              <input id="ac-a" class="ac-input" type="number" min="0" step="0.01" placeholder="e.g., 120">
+            </div>
+
+            <!-- depth -->
+            <div style="grid-column:span 6">
+              <label id="ac-depth-label" class="ac-label" for="ac-depth">Depth (in)</label>
+              <input id="ac-depth" class="ac-input" type="number" min="0" step="0.1" placeholder="e.g., 4">
+            </div>
+
+            <!-- bag & price -->
+            <div style="grid-column:span 6">
+              <label class="ac-label" for="ac-bag">Bag Size</label>
+              <select id="ac-bag" class="ac-input">
+                <option value="2">2 cu ft</option>
+                <option value="3">3 cu ft</option>
+                <option value="50L">50 L (~1.77 cu ft)</option>
+                <option value="custom">Custom…</option>
+              </select>
+            </div>
+            <div id="ac-bag-custom-wrap" style="grid-column:span 6;display:none">
+              <label class="ac-label" for="ac-bag-custom">Custom Bag Size (cu ft)</label>
+              <input id="ac-bag-custom" class="ac-input" type="number" min="0.1" step="0.1" placeholder="e.g., 1.5">
+            </div>
+
+            <div style="grid-column:span 6">
+              <label class="ac-label" for="ac-price-bag">Price per Bag</label>
+              <input id="ac-price-bag" class="ac-input" type="number" min="0" step="0.01" placeholder="e.g., 5.90">
+            </div>
+            <div style="grid-column:span 6">
+              <label class="ac-label" for="ac-price-yard">Price per Cubic Yard / per Ton</label>
+              <input id="ac-price-yard" class="ac-input" type="number" min="0" step="0.01" placeholder="e.g., 45 (yd³) or 38 (ton)">
+            </div>
+
+            <div style="grid-column:span 12;display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
+              <button type="button" id="ac-calc" class="ac-btn">Calculate</button>
+              <button type="button" id="ac-reset" class="ac-btn ghost">Reset</button>
+              <button type="button" id="ac-share" class="ac-btn outline">Share</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="ac-card" style="grid-column:span 12;background:var(--ac-card);box-shadow:var(--ac-sh);border-radius:12px;padding:16px;">
+        <h2 style="margin:0 0 10px;font-size:18px;color:var(--ac-base)">Results</h2>
+        <div id="ac-results" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px"></div>
+        <p style="margin-top:10px;font-size:12.5px;color:var(--ac-muted)">Tip: Depth guides — topsoil 4–6 in (10–15 cm), gravel base 3–4 in (7.5–10 cm).</p>
+      </div>
+    </div>
+<section id="agg-howto" style="max-width:1100px;margin:22px auto;padding:0 16px">
+  <h2 style="color:#249749;margin:0 0 10px">How to Use the Topsoil & Gravel Calculator</h2>
+  <ol style="line-height:1.8;color:#3a624e;margin-left:18px">
+    <li>Select <strong>Material</strong> (Topsoil/Gravel/Sand) or set a <strong>custom density</strong>.</li>
+    <li>Choose <strong>Units</strong> and <strong>Area Type</strong> (Rectangle/Circle/Area).</li>
+    <li>Enter <strong>bed size</strong> and <strong>depth</strong>.</li>
+    <li>(Optional) Enter <strong>bag</strong>, <strong>cubic yard</strong>, or <strong>per ton</strong> pricing.</li>
+    <li>Click <strong>Calculate</strong> → get <em>yd³ / m³ / ft³</em>, <em>weight (tons)</em>, <em>bags</em> &amp; <em>cost</em>.</li>
+  </ol>
+
+  <h2 style="color:#249749;margin:16px 0 8px">Topsoil &amp; Gravel FAQ</h2>
+  <details><summary>What density should I use?</summary><p>Defaults: Topsoil ~1600 kg/m³, Gravel ~1680 kg/m³, Sand ~1600 kg/m³. Use supplier values if provided.</p></details>
+  <details><summary>How do I choose depth?</summary><p>Topsoil: 4–6 in (10–15 cm) for new beds/lawns. Gravel base: 3–4 in (7.5–10 cm) for paths/patios.</p></details>
+  <details><summary>Why are there two cost fields?</summary><p><em>Per bag</em> is for retail bags; <em>per cubic yard</em> or <em>per ton</em> is for bulk delivery. Enter what you have; compare totals.</p></details>
+  <details><summary>Can I switch units later?</summary><p>Yes—results recalc instantly when you change units or dimensions.</p></details>
+  <details><summary>Does moisture affect weight?</summary><p>Yes. Wet topsoil and washed gravel can weigh more. Use your supplier’s density for precise tonnage.</p></details>
+</section>
+    <style>
+      #agg-calc .ac-label{display:block;font-size:13px;color:var(--ac-muted);margin:2px 0 6px}
+      #agg-calc .ac-input{width:100%;padding:10px 12px;border:1px solid rgba(0,0,0,.12);border-radius:10px;background:#fff;outline:none}
+      #agg-calc .ac-input:focus{border-color:var(--ac-base);box-shadow:0 0 0 3px color-mix(in srgb, var(--ac-base) 18%, transparent)}
+      #agg-calc .ac-btn{appearance:none;border:0;background:var(--ac-base);color:#fff;padding:10px 14px;border-radius:999px;font-weight:700;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.1)}
+      #agg-calc .ac-btn:hover{transform:translateY(-1px)}
+      #agg-calc .ac-btn.ghost{background:#eaf5ee;color:var(--ac-base)}
+      #agg-calc .ac-btn.outline{background:#fff;color:var(--ac-base);border:1px solid var(--ac-base)}
+      @media (max-width:640px){#agg-calc header p{font-size:14px}}
+    </style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"What density should I use?","acceptedAnswer":{"@type":"Answer","text":"Defaults: Topsoil ~1600 kg/m³, Gravel ~1680 kg/m³, Sand ~1600 kg/m³. Use supplier values if provided."}},
+    {"@type":"Question","name":"How do I choose depth?","acceptedAnswer":{"@type":"Answer","text":"Topsoil: 4–6 inches (10–15 cm) for new beds/lawns. Gravel base: 3–4 inches (7.5–10 cm) for paths/patios."}},
+    {"@type":"Question","name":"Why are there two cost fields?","acceptedAnswer":{"@type":"Answer","text":"Per bag is for retail; per cubic yard or per ton is for bulk. Enter what you have to compare totals."}},
+    {"@type":"Question","name":"Can I switch units later?","acceptedAnswer":{"@type":"Answer","text":"Yes—changing units or dimensions recalculates results instantly."}},
+    {"@type":"Question","name":"Does moisture affect weight?","acceptedAnswer":{"@type":"Answer","text":"Yes. Wet materials weigh more. Use supplier density for precise tonnage."}}
+  ]
+}
+</script>
+    <script>
+    (()=>{'use strict';
+      const $=id=>document.getElementById(id);
+      const mat=$('ac-material'), densWrap=$('ac-density-wrap'), densEl=$('ac-density');
+      const unit=$('ac-unit'), shape=$('ac-shape'), depth=$('ac-depth'), depthLbl=$('ac-depth-label');
+      const l=$('ac-l'), w=$('ac-w'), d=$('ac-d'), a=$('ac-a'), res=$('ac-results');
+      const bag=$('ac-bag'), bagWrap=$('ac-bag-custom-wrap'), bagCustom=$('ac-bag-custom');
+
+      const setDensity=()=>{
+        const map={topsoil:1600,gravel:1680,sand:1600};
+        densWrap.style.display=(mat.value==='custom')?'block':'none';
+        if(mat.value!=='custom'){ densEl.value=map[mat.value]; } else if(!densEl.value){ densEl.value=1600; }
+      };
+      const toggleShape=()=>{
+        const v=shape.value;
+        document.querySelectorAll('#agg-calc .ac-rect').forEach(e=>e.style.display=(v==='rect')?'block':'none');
+        document.querySelectorAll('#agg-calc .ac-circ').forEach(e=>e.style.display=(v==='circle')?'block':'none');
+        document.querySelectorAll('#agg-calc .ac-area').forEach(e=>e.style.display=(v==='area')?'block':'none');
+      };
+      const toggleUnit=()=>{ depthLbl.textContent = unit.value==='imperial' ? 'Depth (in)' : 'Depth (cm)'; };
+      const toggleBag=()=>{ bagWrap.style.display = (bag.value==='custom')?'block':'none'; };
+
+      // helpers
+      const ft2_to_yd3=(ft2,depth_in)=> (ft2*(depth_in/12))/27;
+      const m2_to_m3=(m2,depth_cm)=> m2*(depth_cm/100);
+      const m3_to_yd3=m3=> m3/0.764555;
+      const m3_to_cuft=m3=> m3/0.0283168;
+      const liters=m3=> m3*1000;
+
+      const bagCuFt = ()=> {
+        if(bag.value==='2') return 2;
+        if(bag.value==='3') return 3;
+        if(bag.value==='50L') return 50*0.0353147;
+        if(bag.value==='custom') return Math.max(0.1, parseFloat(bagCustom.value)||0);
+        return 2;
+      };
+
+      const card=(label,val)=>`<div style="background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:12px;padding:14px;min-height:72px"><div style="font-size:12px;color:var(--ac-muted);margin-bottom:6px">${label}</div><div style="font-size:18px;font-weight:800;color:var(--ac-base)">${val}</div></div>`;
+
+      const calc=()=>{
+        const dep = Math.max(0, parseFloat(depth.value)||0);
+        const density = Math.max(200, parseFloat(densEl.value)||1600); // kg/m3
+        const priceBag = Math.max(0, parseFloat($('ac-price-bag').value)||0);
+        const priceBulk = Math.max(0, parseFloat($('ac-price-yard').value)||0);
+
+        // area
+        let ft2=0, m2=0;
+        if(shape.value==='rect'){
+          const L=Math.max(0,parseFloat(l.value)||0), W=Math.max(0,parseFloat(w.value)||0);
+          if(unit.value==='imperial'){ ft2=L*W; m2=ft2*0.092903; } else { m2=L*W; ft2=m2/0.092903; }
+        } else if(shape.value==='circle'){
+          const D=Math.max(0,parseFloat(d.value)||0), r=D/2;
+          if(unit.value==='imperial'){ ft2=Math.PI*r*r; m2=ft2*0.092903; } else { m2=Math.PI*r*r; ft2=m2/0.092903; }
+        } else {
+          const A=Math.max(0,parseFloat(a.value)||0);
+          if(unit.value==='imperial'){ ft2=A; m2=A*0.092903; } else { m2=A; ft2=A/0.092903; }
+        }
+
+        // volumes
+        const m3 = unit.value==='imperial' ? (ft2*(dep/12))*0.0283168 : m2*(dep/100);
+        const yd3 = m3/0.764555;
+        const cuft = m3_to_cuft(m3);
+
+        // weight
+        const kg = m3*density;
+        const tons_metric = kg/1000;
+        const tons_us = kg*2.20462/2000; // short ton
+
+        // bags + costs
+        const perBag=bagCuFt();
+        const bags = Math.ceil(cuft/perBag);
+        const costBags = priceBag>0 ? bags*priceBag : null;
+        // bulk cost: user may mean per yd³ OR per ton – show both if provided
+        const costPerYd = priceBulk>0 ? yd3*priceBulk : null;
+        const costPerTon = priceBulk>0 ? tons_us*priceBulk : null;
+
+        // render
+        res.innerHTML='';
+        res.insertAdjacentHTML('beforeend', card('Cubic Yards (yd³)', yd3.toFixed(3)));
+        res.insertAdjacentHTML('beforeend', card('Cubic Meters (m³)', m3.toFixed(3)));
+        res.insertAdjacentHTML('beforeend', card('Cubic Feet (ft³)', cuft.toFixed(1)));
+        res.insertAdjacentHTML('beforeend', card('Weight (metric tons)', tons_metric.toFixed(2)));
+        res.insertAdjacentHTML('beforeend', card('Weight (US short tons)', tons_us.toFixed(2)));
+        res.insertAdjacentHTML('beforeend', card('Bags Needed', bags.toLocaleString()));
+        if(costBags!==null) res.insertAdjacentHTML('beforeend', card('Est. Cost (by bags)', costBags.toLocaleString(undefined,{style:'currency',currency:'USD'})));
+        if(costPerYd!==null) res.insertAdjacentHTML('beforeend', card('Est. Cost (by cubic yard)', costPerYd.toLocaleString(undefined,{style:'currency',currency:'USD'})));
+        if(costPerTon!==null) res.insertAdjacentHTML('beforeend', card('Est. Cost (by US ton)', costPerTon.toLocaleString(undefined,{style:'currency',currency:'USD'})));
+      };
+
+      const resetForm=()=>{ $('ac-form').reset(); hydrateDefaults(); res.innerHTML=''; };
+      const share=()=>{
+        const q=new URLSearchParams({
+          m:mat.value,u:unit.value,s:shape.value,dep:depth.value||'',
+          l:l.value||'',w:w.value||'',d:d.value||'',a:a.value||'',
+          dens:densEl.value||'',bag:bag.value,bagc:bagCustom.value||'',
+          pb:$('ac-price-bag').value||'',pbk:$('ac-price-yard').value||''
+        }).toString();
+        const url=location.origin+location.pathname+'?'+q+'#agg-calc';
+        navigator.clipboard?.writeText(url); alert('Share link copied.');
+      };
+
+      const hydrate=()=>{
+        const q=new URLSearchParams(location.search), get=k=>q.get(k)||'';
+        if(get('m')) mat.value=get('m');
+        if(get('u')) unit.value=get('u');
+        if(get('s')) shape.value=get('s');
+        if(get('dep')) depth.value=get('dep');
+        if(get('l')) l.value=get('l');
+        if(get('w')) w.value=get('w');
+        if(get('d')) d.value=get('d');
+        if(get('a')) a.value=get('a');
+        if(get('dens')) densEl.value=get('dens');
+        if(get('bag')) bag.value=get('bag');
+        if(get('bagc')) bagCustom.value=get('bagc');
+        if(get('pb')) $('ac-price-bag').value=get('pb');
+        if(get('pbk')) $('ac-price-yard').value=get('pbk');
+        toggleUnit(); toggleShape(); toggleBag(); setDensity();
+      };
+
+      function hydrateDefaults(){
+        mat.value='topsoil'; unit.value='imperial'; shape.value='rect';
+        depth.value='4'; l.value='12'; w.value='8'; d.value=''; a.value='';
+        densEl.value='1600'; bag.value='2'; bagCustom.value='';
+        toggleUnit(); toggleShape(); toggleBag(); setDensity();
+      }
+
+      // events
+      $('ac-calc').addEventListener('click', calc);
+      $('ac-reset').addEventListener('click', resetForm);
+      $('ac-share').addEventListener('click', share);
+      mat.addEventListener('change', setDensity);
+      unit.addEventListener('change', toggleUnit);
+      shape.addEventListener('change', toggleShape);
+      bag.addEventListener('change', toggleBag);
+      document.querySelectorAll('#agg-calc input').forEach(i=>i.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();calc();}}));
+
+      hydrate(); if(!location.search) hydrateDefaults();
+    })();
+    </script>
+  </div>
+</section>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"SoftwareApplication",
+  "name":"Topsoil & Gravel Calculator",
+  "applicationCategory":"CalculatorApplication",
+  "operatingSystem":"Web",
+  "url":"https://www.homegardenlot.com/p/topsoil-gravel-calculator.html",
+  "description":"Free calculator for topsoil, gravel, and sand: volume, weight (tons), bags, and cost. Rectangle, circle or area input with imperial/metric units.",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "publisher":{"@type":"Organization","name":"HomeGardenLot","url":"https://www.homegardenlot.com"}
+}
+</script>

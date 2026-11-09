@@ -1,0 +1,300 @@
+---
+title: Paver & Patio Calculator: Stones, Gravel, Sand & Cost Estimate
+description: Free paver and patio calculator: how many pavers you need plus base gravel and bedding sand in tons, with an estimated material cost for your patio.
+date: 2025-10-31T10:20:00-07:00
+updated: 2026-08-16T22:23:54-07:00
+author: Fadzilla
+bloggerId: 2282007637573023104
+---
+<p>Plan patios and paths like a pro. Enter area, paver size, joints, and base depths to get paver count, waste, gravel &amp; sand volumes, edge length, and cost-in yd³/m³ with imperial/metric units.</p>
+
+<section id="paver-calc" aria-label="Paver & Patio Calculator" style="--pv-base:#249749;--pv-ink:#0f1a13;--pv-muted:#3a624e;--pv-bg:#f7faf8;--pv-card:#fff;--pv-sh:0 4px 18px rgba(0,0,0,.08);margin:0;padding:32px 0;background:var(--pv-bg);color:var(--pv-ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;">
+  <div class="pv-wrap" style="max-width:1100px;margin:0 auto;padding:0 16px;">
+    <header style="text-align:center;margin-bottom:24px">
+      <h2 style="margin:0 0 6px;font-size:clamp(22px,3.2vw,28px);color:var(--pv-base);font-weight:800">🧱 Paver &amp; Patio Calculator</h2>
+      <p style="margin:0 auto;max-width:780px;line-height:1.65;color:var(--pv-muted)">Paver count, waste, base gravel &amp; sand volumes, edge length, and cost—fast &amp; accurate.</p>
+    </header>
+
+    <div class="pv-grid" style="display:grid;grid-template-columns:repeat(12,1fr);gap:16px;align-items:start;">
+      <div class="pv-card" style="grid-column:span 12;background:var(--pv-card);box-shadow:var(--pv-sh);border-radius:12px;padding:16px;">
+        <form id="pv-form" autocomplete="off">
+          <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:12px;">
+            <div style="grid-column:span 6">
+              <label class="pv-label" for="pv-unit">Units</label>
+              <select id="pv-unit" class="pv-input">
+                <option value="imperial">Imperial (ft, in)</option>
+                <option value="metric">Metric (m, cm)</option>
+              </select>
+            </div>
+            <div style="grid-column:span 6">
+              <label class="pv-label" for="pv-shape">Area Type</label>
+              <select id="pv-shape" class="pv-input">
+                <option value="rect">Rectangle (L × W)</option>
+                <option value="circle">Circle (diameter)</option>
+                <option value="area">Direct area input</option>
+              </select>
+            </div>
+
+            <!-- rectangle -->
+            <div class="pv-rect" style="grid-column:span 6">
+              <label class="pv-label" for="pv-l">Length</label>
+              <input id="pv-l" class="pv-input" type="number" min="0" step="0.01" placeholder="e.g., 20">
+            </div>
+            <div class="pv-rect" style="grid-column:span 6">
+              <label class="pv-label" for="pv-w">Width</label>
+              <input id="pv-w" class="pv-input" type="number" min="0" step="0.01" placeholder="e.g., 12">
+            </div>
+
+            <!-- circle -->
+            <div class="pv-circ" style="grid-column:span 12;display:none;">
+              <label class="pv-label" for="pv-d">Diameter</label>
+              <input id="pv-d" class="pv-input" type="number" min="0" step="0.01" placeholder="e.g., 14">
+            </div>
+
+            <!-- direct area -->
+            <div class="pv-area" style="grid-column:span 12;display:none;">
+              <label class="pv-label" for="pv-a">Area</label>
+              <input id="pv-a" class="pv-input" type="number" min="0" step="0.01" placeholder="e.g., 240">
+            </div>
+
+            <!-- paver size + joint -->
+            <div style="grid-column:span 4">
+              <label id="pv-pl-label" class="pv-label" for="pv-pl">Paver Length (in)</label>
+              <input id="pv-pl" class="pv-input" type="number" min="0.1" step="0.1" placeholder="e.g., 8">
+            </div>
+            <div style="grid-column:span 4">
+              <label id="pv-pw-label" class="pv-label" for="pv-pw">Paver Width (in)</label>
+              <input id="pv-pw" class="pv-input" type="number" min="0.1" step="0.1" placeholder="e.g., 4">
+            </div>
+            <div style="grid-column:span 4">
+              <label id="pv-j-label" class="pv-label" for="pv-j">Joint Width (in)</label>
+              <input id="pv-j" class="pv-input" type="number" min="0" step="0.05" placeholder="e.g., 0.25">
+            </div>
+
+            <!-- depths -->
+            <div style="grid-column:span 4">
+              <label id="pv-gd-label" class="pv-label" for="pv-gd">Base Gravel Depth (in)</label>
+              <input id="pv-gd" class="pv-input" type="number" min="0" step="0.1" placeholder="e.g., 4">
+            </div>
+            <div style="grid-column:span 4">
+              <label id="pv-sd-label" class="pv-label" for="pv-sd">Sand Bed Depth (in)</label>
+              <input id="pv-sd" class="pv-input" type="number" min="0" step="0.1" placeholder="e.g., 1">
+            </div>
+            <div style="grid-column:span 4">
+              <label class="pv-label" for="pv-waste">Waste (%)</label>
+              <input id="pv-waste" class="pv-input" type="number" min="0" step="1" placeholder="e.g., 10">
+            </div>
+
+            <!-- costs -->
+            <div style="grid-column:span 4">
+              <label class="pv-label" for="pv-cost-paver">Cost per Paver (optional)</label>
+              <input id="pv-cost-paver" class="pv-input" type="number" min="0" step="0.01" placeholder="e.g., 0.85">
+            </div>
+            <div style="grid-column:span 4">
+              <label class="pv-label" for="pv-cost-gravel">Cost per yd³ Gravel (optional)</label>
+              <input id="pv-cost-gravel" class="pv-input" type="number" min="0" step="0.01" placeholder="e.g., 45">
+            </div>
+            <div style="grid-column:span 4">
+              <label class="pv-label" for="pv-cost-sand">Cost per yd³ Sand (optional)</label>
+              <input id="pv-cost-sand" class="pv-input" type="number" min="0" step="0.01" placeholder="e.g., 40">
+            </div>
+
+            <div style="grid-column:span 12;display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
+              <button type="button" id="pv-calc" class="pv-btn">Calculate</button>
+              <button type="button" id="pv-reset" class="pv-btn ghost">Reset</button>
+              <button type="button" id="pv-share" class="pv-btn outline">Share</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="pv-card" style="grid-column:span 12;background:var(--pv-card);box-shadow:var(--pv-sh);border-radius:12px;padding:16px;">
+        <h2 style="margin:0 0 10px;font-size:18px;color:var(--pv-base)">Results</h2>
+        <div id="pv-results" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px"></div>
+        <p style="margin-top:10px;font-size:12.5px;color:var(--pv-muted)">Tip: Add 5–10% waste for simple layouts; 10–15% for diagonals/complex cuts.</p>
+      </div>
+    </div>
+
+    <style>
+      #paver-calc .pv-label{display:block;font-size:13px;color:var(--pv-muted);margin:2px 0 6px}
+      #paver-calc .pv-input{width:100%;padding:10px 12px;border:1px solid rgba(0,0,0,.12);border-radius:10px;background:#fff;outline:none}
+      #paver-calc .pv-input:focus{border-color:var(--pv-base);box-shadow:0 0 0 3px color-mix(in srgb, var(--pv-base) 18%, transparent)}
+      #paver-calc .pv-btn{appearance:none;border:0;background:var(--pv-base);color:#fff;padding:10px 14px;border-radius:999px;font-weight:700;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.1)}
+      #paver-calc .pv-btn:hover{transform:translateY(-1px)}
+      #paver-calc .pv-btn.ghost{background:#eaf5ee;color:var(--pv-base)}
+      #paver-calc .pv-btn.outline{background:#fff;color:var(--pv-base);border:1px solid var(--pv-base)}
+      @media (max-width:640px){#paver-calc header p{font-size:14px}}
+    </style>
+
+    <script>
+    (()=>{'use strict';
+      const $=id=>document.getElementById(id);
+      const unit=$('pv-unit'), shape=$('pv-shape');
+      const l=$('pv-l'), w=$('pv-w'), d=$('pv-d'), a=$('pv-a');
+      const pl=$('pv-pl'), pw=$('pv-pw'), j=$('pv-j');
+      const gd=$('pv-gd'), sd=$('pv-sd'), waste=$('pv-waste');
+      const cp=$('pv-cost-paver'), cg=$('pv-cost-gravel'), cs=$('pv-cost-sand');
+      const res=$('pv-results');
+
+      const toggleShape=()=>{
+        const v=shape.value;
+        document.querySelectorAll('#paver-calc .pv-rect').forEach(e=>e.style.display=(v==='rect')?'block':'none');
+        document.querySelectorAll('#paver-calc .pv-circ').forEach(e=>e.style.display=(v==='circle')?'block':'none');
+        document.querySelectorAll('#paver-calc .pv-area').forEach(e=>e.style.display=(v==='area')?'block':'none');
+      };
+      const toggleUnits=()=>{
+        const isImp=unit.value==='imperial';
+        $('pv-pl-label').textContent = isImp?'Paver Length (in)':'Paver Length (cm)';
+        $('pv-pw-label').textContent = isImp?'Paver Width (in)':'Paver Width (cm)';
+        $('pv-j-label').textContent  = isImp?'Joint Width (in)':'Joint Width (cm)';
+        $('pv-gd-label').textContent = isImp?'Base Gravel Depth (in)':'Base Gravel Depth (cm)';
+        $('pv-sd-label').textContent = isImp?'Sand Bed Depth (in)':'Sand Bed Depth (cm)';
+      };
+
+      // helpers
+      const toFt=(v)=> (unit.value==='imperial') ? (parseFloat(v)||0) : (parseFloat(v)||0)*3.28084;
+      const inToFt=(v)=> (parseFloat(v)||0)/12;
+      const cmToFt=(v)=> (parseFloat(v)||0)*0.0328084;
+      const depthToFt=(v)=> unit.value==='imperial' ? inToFt(v) : cmToFt(v);
+      const area_ft2 = ()=>{
+        if(shape.value==='rect'){ return toFt(l.value)*toFt(w.value); }
+        if(shape.value==='circle'){ const r=toFt(d.value)/2; return Math.PI*r*r; }
+        return unit.value==='imperial' ? (parseFloat(a.value)||0) : (parseFloat(a.value)||0)*10.7639;
+      };
+      const perimeter_ft = ()=>{
+        if(shape.value==='rect'){ return 2*(toFt(l.value)+toFt(w.value)); }
+        if(shape.value==='circle'){ const r=toFt(d.value)/2; return 2*Math.PI*r; }
+        return 0;
+      };
+      const card=(label,val)=>`<div style="background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:12px;padding:14px;min-height:72px"><div style="font-size:12px;color:var(--pv-muted);margin-bottom:6px">${label}</div><div style="font-size:18px;font-weight:800;color:var(--pv-base)">${val}</div></div>`;
+
+      function calc(){
+        const Aft2 = Math.max(0, area_ft2());
+        const perimFt = Math.max(0, perimeter_ft());
+
+        // paver footprint including joints
+        const pLenFt = unit.value==='imperial' ? inToFt(pl.value) : cmToFt(pl.value);
+        const pWidFt = unit.value==='imperial' ? inToFt(pw.value) : cmToFt(pw.value);
+        const jointFt = unit.value==='imperial' ? inToFt(j.value)  : cmToFt(j.value);
+        const modLen = pLenFt + jointFt, modWid = pWidFt + jointFt;
+        const paverArea = Math.max(0.0001, modLen*modWid);
+        const rawCount = Math.ceil(Aft2 / paverArea);
+        const wastePct = Math.max(0, parseFloat(waste.value)||0)/100;
+        const countWithWaste = Math.ceil(rawCount * (1 + wastePct));
+
+        // base volumes
+        const gravelDepthFt = depthToFt(gd.value);
+        const sandDepthFt   = depthToFt(sd.value);
+        const gravelYd3 = (Aft2 * gravelDepthFt) / 27;
+        const sandYd3   = (Aft2 * sandDepthFt)   / 27;
+        const gravelM3  = gravelYd3 * 0.764555;
+        const sandM3    = sandYd3 * 0.764555;
+
+        // costs
+        const costPavers = (parseFloat(cp.value)||0) * countWithWaste || null;
+        const costGravel = (parseFloat(cg.value)||0) * gravelYd3 || null;
+        const costSand   = (parseFloat(cs.value)||0) * sandYd3 || null;
+        const totalCost  = (costPavers||0)+(costGravel||0)+(costSand||0) || null;
+
+        res.innerHTML='';
+        res.insertAdjacentHTML('beforeend', card('Area (ft²)', Aft2.toFixed(1)));
+        res.insertAdjacentHTML('beforeend', card('Pavers Needed (incl. waste)', countWithWaste.toLocaleString()));
+        res.insertAdjacentHTML('beforeend', card('Edge Length (ft)', perimFt.toFixed(1)));
+        res.insertAdjacentHTML('beforeend', card('Gravel Volume (yd³)', gravelYd3.toFixed(3)));
+        res.insertAdjacentHTML('beforeend', card('Gravel Volume (m³)', gravelM3.toFixed(3)));
+        res.insertAdjacentHTML('beforeend', card('Sand Volume (yd³)', sandYd3.toFixed(3)));
+        res.insertAdjacentHTML('beforeend', card('Sand Volume (m³)', sandM3.toFixed(3)));
+        if(costPavers!==null) res.insertAdjacentHTML('beforeend', card('Paver Cost', costPavers.toLocaleString(undefined,{style:'currency',currency:'USD'})));
+        if(costGravel!==null) res.insertAdjacentHTML('beforeend', card('Gravel Cost', costGravel.toLocaleString(undefined,{style:'currency',currency:'USD'})));
+        if(costSand!==null) res.insertAdjacentHTML('beforeend', card('Sand Cost', costSand.toLocaleString(undefined,{style:'currency',currency:'USD'})));
+        if(totalCost!==null) res.insertAdjacentHTML('beforeend', card('Estimated Total', totalCost.toLocaleString(undefined,{style:'currency',currency:'USD'})));
+      }
+
+      function resetForm(){ $('pv-form').reset(); defaults(); res.innerHTML=''; }
+      function share(){
+        const q=new URLSearchParams({
+          u:unit.value,s:shape.value,l:l.value||'',w:w.value||'',d:d.value||'',a:a.value||'',
+          pl:pl.value||'',pw:pw.value||'',j:j.value||'',gd:gd.value||'',sd:sd.value||'',
+          wst:waste.value||'',cp:cp.value||'',cg:cg.value||'',cs:cs.value||''
+        }).toString();
+        const url=location.origin+location.pathname+'?'+q+'#paver-calc';
+        navigator.clipboard?.writeText(url); alert('Share link copied.');
+      }
+      function hydrate(){
+        const q=new URLSearchParams(location.search), get=k=>q.get(k)||'';
+        if(get('u')) unit.value=get('u');
+        if(get('s')) shape.value=get('s');
+        if(get('l')) l.value=get('l'); if(get('w')) w.value=get('w');
+        if(get('d')) d.value=get('d'); if(get('a')) a.value=get('a');
+        if(get('pl')) pl.value=get('pl'); if(get('pw')) pw.value=get('pw'); if(get('j')) j.value=get('j');
+        if(get('gd')) gd.value=get('gd'); if(get('sd')) sd.value=get('sd');
+        if(get('wst')) waste.value=get('wst');
+        if(get('cp')) cp.value=get('cp'); if(get('cg')) cg.value=get('cg'); if(get('cs')) cs.value=get('cs');
+        toggleUnits(); toggleShape();
+      }
+      function defaults(){
+        unit.value='imperial'; shape.value='rect';
+        l.value='20'; w.value='12'; d.value=''; a.value='';
+        pl.value='8'; pw.value='4'; j.value='0.25';
+        gd.value='4'; sd.value='1'; waste.value='10';
+        cp.value=''; cg.value=''; cs.value='';
+        toggleUnits(); toggleShape();
+      }
+
+      $('pv-calc').addEventListener('click', calc);
+      $('pv-reset').addEventListener('click', resetForm);
+      $('pv-share').addEventListener('click', share);
+      unit.addEventListener('change', toggleUnits);
+      shape.addEventListener('change', toggleShape);
+      document.querySelectorAll('#paver-calc input').forEach(i=>i.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();calc();}}));
+
+      hydrate(); if(!location.search) defaults();
+    })();
+    </script>
+  </div>
+</section>
+
+<section id="paver-howto" style="max-width:1100px;margin:22px auto;padding:0 16px">
+  <h2 style="color:#249749;margin:0 0 10px">How to Use the Paver &amp; Patio Calculator</h2>
+  <ol style="line-height:1.8;color:#3a624e;margin-left:18px">
+    <li>Select <strong>Units</strong> and <strong>Area Type</strong>.</li>
+    <li>Enter <strong>dimensions</strong> (or total area).</li>
+    <li>Set <strong>paver size</strong>, <strong>joint width</strong>, and <strong>base depths</strong>.</li>
+    <li>Add <strong>waste %</strong> and optional <strong>costs</strong>.</li>
+    <li>Click <strong>Calculate</strong> → see paver count, base volumes, edge length &amp; cost.</li>
+  </ol>
+
+  <h2 style="color:#249749;margin:16px 0 8px">Paver &amp; Patio FAQ</h2>
+  <details><summary>How much waste should I use?</summary><p>5–10% for straight patterns; 10–15% for herringbone/diagonals/complex borders.</p></details>
+  <details><summary>What joint width is typical?</summary><p>Polymeric sand joints commonly 3–6&nbsp;mm (⅛–¼&nbsp;in). Follow the paver manufacturer.</p></details>
+  <details><summary>How deep should the base be?</summary><p>Walkways: 3–4 in gravel + 1 in sand; driveways: 6–8 in gravel + 1 in sand (soil/drainage dependent).</p></details>
+  <details><summary>How do I estimate edging?</summary><p>The tool outputs perimeter length—order edge restraints + spikes accordingly.</p></details>
+  <details><summary>Does pattern change the count?</summary><p>Pattern affects waste more than net count; set a higher waste % for complex patterns.</p></details>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"How much waste should I use?","acceptedAnswer":{"@type":"Answer","text":"Use 5–10% waste for straight patterns and 10–15% for diagonals/herringbone and complex borders."}},
+    {"@type":"Question","name":"What joint width is typical?","acceptedAnswer":{"@type":"Answer","text":"3–6 mm (1/8–1/4 in) is common with polymeric sand. Follow manufacturer guidance."}},
+    {"@type":"Question","name":"How deep should the base be?","acceptedAnswer":{"@type":"Answer","text":"Walkways: 3–4 in gravel + 1 in sand; driveways: 6–8 in gravel + 1 in sand, adjusted for soil and drainage."}},
+    {"@type":"Question","name":"How do I estimate edging?","acceptedAnswer":{"@type":"Answer","text":"Use the perimeter output to order edge restraints and spikes/stakes with margin for cuts."}},
+    {"@type":"Question","name":"Does pattern change the count?","acceptedAnswer":{"@type":"Answer","text":"Pattern mainly impacts waste %. Increase waste for herringbone/diagonals and borders."}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"SoftwareApplication",
+  "name":"Paver & Patio Calculator",
+  "applicationCategory":"CalculatorApplication",
+  "operatingSystem":"Web",
+  "url":"https://www.homegardenlot.com/p/paver-patio-calculator.html",
+  "description":"Calculate paver count with waste, base gravel and sand volumes, edge length, and cost for patios and paths in imperial or metric units.",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "publisher":{"@type":"Organization","name":"HomeGardenLot","url":"https://www.homegardenlot.com"}
+}
+</script>
