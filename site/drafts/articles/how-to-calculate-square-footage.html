@@ -1,0 +1,143 @@
+---
+title: How to Calculate Square Footage (Rooms, Odd Shapes and m²)
+description: How to calculate square footage: length × width for rectangles; split odd rooms into shapes and add them. Formulas, examples and sq ft to m² conversion.
+date: 2026-11-09T09:00:00+08:00
+updated: 2026-11-09T09:00:00+08:00
+hub: home-diy
+author: Fadzilla
+image: /images/how-to-calculate-square-footage/how-to-calculate-square-footage.webp
+imageAlt: Illustration of a floor plan with room measurements, for the guide How to Calculate Square Footage
+---
+<!--
+  DRAFT (home improvement batch 1). Publishes at /how-to-calculate-square-footage/ when you say "publish drafts".
+  The featured image is an illustration already made; replace it with your own photo if you like
+  (same path, or change image: above).
+
+  YOUR EXPERIENCE (answer briefly, any language; Claude turns it into a paragraph in your voice):
+   1. What did you measure (room, whole house, yard) and what was it for?
+   2. A tricky shape you measured and how you split it up.
+   3. Any measuring mistake you learned from.
+   4. Photo: your sketch or floor plan with measurements.
+
+IMAGE BRIEF (for your own photos or AI images; label AI images as illustrations)
+1. FEATURED (first image, also used for social sharing and Google Discover): 1200×675 WebP, under 150 KB
+   Filename: measuring-room-tape-measure.webp
+   Alt:      Person measuring a room with a tape measure and notepad
+   Title:    Measuring a room
+   Caption:  Multiply length by width to get square feet.
+   Prompt A (photorealistic): A person measuring the length of an empty living room with a tape measure, notepad with a hand-drawn floor sketch, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 16:9 --style raw
+   Prompt B (editorial top-down / lifestyle): Top-down drone-style view of a person measuring the length of an empty living room with a tape measure, notepad with a hand-drawn floor sketch, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 16:9
+   Prompt C (clean flat illustration, no text): Minimal flat vector illustration of a person measuring the length of an empty living room with a tape measure, notepad with a hand-drawn floor sketch, soft greens and earthy browns, white background, no text, no labels --ar 16:9
+   Negative (SD): text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+2. INLINE: 1200×800 WebP, under 150 KB
+   Filename: l-shaped-room-sketch.webp
+   Alt:      Sketch of an L-shaped room split into two rectangles
+   Title:    Splitting an L-shaped room
+   Caption:  Split odd rooms into rectangles and add them up.
+   Prompt A (photorealistic): A hand-drawn sketch of an L-shaped room divided into two labelled rectangles with dimensions on graph paper, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+   Prompt B (editorial top-down / lifestyle): Top-down drone-style view of a hand-drawn sketch of an L-shaped room divided into two labelled rectangles with dimensions on graph paper, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+   Prompt C (clean flat illustration, no text): Minimal flat vector illustration of a hand-drawn sketch of an L-shaped room divided into two labelled rectangles with dimensions on graph paper, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+   Negative (SD): text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+3. INLINE: 1200×800 WebP, under 150 KB
+   Filename: laser-measure-wall.webp
+   Alt:      Laser distance measure pointed at a wall
+   Title:    Using a laser measure
+   Caption:  A laser measure makes long rooms quick and accurate.
+   Prompt A (photorealistic): A handheld laser distance measure on a floor projecting a red dot onto a far wall, display showing a measurement, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+   Prompt B (editorial top-down / lifestyle): Top-down drone-style view of a handheld laser distance measure on a floor projecting a red dot onto a far wall, display showing a measurement, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+   Prompt C (clean flat illustration, no text): Minimal flat vector illustration of a handheld laser distance measure on a floor projecting a red dot onto a far wall, display showing a measurement, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+   Negative (SD): text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+4. PINTEREST PIN: 1000×1500 (2:3), upload to Pinterest linking to this article
+   Filename: how-to-calculate-square-footage-pin.webp
+   Overlay text (add free in Canva): "How to Calculate Square Footage"
+   Prompt: Vertical photo of a bright empty room with a tape measure and floor plan sketch, soft natural light, the top third calm and uncluttered with empty space for text --ar 2:3
+-->
+<div class="hgl-answer">
+  <span class="hgl-answer__label">Quick answer</span>
+  <p><strong>For a rectangle, multiply length × width in feet (a 12 × 15 ft room is 180 sq ft). For an irregular space, split it into rectangles, triangles (½ × base × height) and circles (3.14 × radius²), calculate each, and add them.</strong> To convert to square metres, multiply square feet by 0.0929.</p>
+</div>
+
+<p>Square footage is the starting number for almost every home project: flooring, paint, tile, carpet, insulation, heating and cooling, even pricing a house. You only need a tape measure, a notepad and a little multiplication. The <a href="/square-footage-calculator/">square footage calculator</a> adds up mixed shapes for you.</p>
+
+<div class="hgl-takeaways">
+  <strong>Key takeaways</strong>
+  <ul>
+    <li><strong>Rectangle:</strong> length × width.</li>
+    <li><strong>Triangle:</strong> ½ × base × height.</li>
+    <li><strong>Circle:</strong> 3.1416 × radius².</li>
+    <li><strong>Irregular rooms:</strong> split into simple shapes and add them up.</li>
+    <li><strong>Convert:</strong> sq ft × 0.0929 = m²; m² × 10.764 = sq ft.</li>
+  </ul>
+</div>
+
+<h2>How do you calculate the square footage of a room?</h2>
+<ol>
+  <li><strong>Measure the length</strong> of the room wall to wall, in feet.</li>
+  <li><strong>Measure the width.</strong></li>
+  <li><strong>Multiply</strong> length × width.</li>
+</ol>
+<p>If a measurement includes inches, convert them to decimal feet by dividing by 12: 12 ft 6 in = 12.5 ft. A room 12 ft 6 in × 10 ft is 125 sq ft.</p>
+
+<h2>How do you calculate square footage of an irregular room?</h2>
+<ol>
+  <li><strong>Sketch the room</strong> and divide it into rectangles, triangles and circles or half-circles.</li>
+  <li><strong>Measure and calculate</strong> each shape separately.</li>
+  <li><strong>Add</strong> the areas together; subtract any cut-outs you won't cover.</li>
+</ol>
+<p><strong>Example (L-shaped room):</strong> a 14 × 10 ft section (140 sq ft) plus an 8 × 6 ft alcove (48 sq ft) = 188 sq ft.</p>
+
+<h2>What are the area formulas for common shapes?</h2>
+<table>
+  <thead><tr><th>Shape</th><th>Formula</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr><td>Square or rectangle</td><td>length × width</td><td>12 × 15 ft = 180 sq ft</td></tr>
+    <tr><td>Triangle</td><td>½ × base × height</td><td>½ × 10 × 6 ft = 30 sq ft</td></tr>
+    <tr><td>Circle</td><td>3.1416 × radius²</td><td>radius 5 ft = 78.5 sq ft</td></tr>
+    <tr><td>Half-circle</td><td>3.1416 × radius² ÷ 2</td><td>radius 4 ft = 25.1 sq ft</td></tr>
+    <tr><td>Trapezoid</td><td>(side a + side b) ÷ 2 × height</td><td>(10 + 6) ÷ 2 × 8 = 64 sq ft</td></tr>
+  </tbody>
+</table>
+
+<h2>How do you calculate the square footage of a house?</h2>
+<p>Add up the finished, heated living areas room by room, or measure the exterior walls of each finished floor and multiply. In the US, the ANSI Z765 standard used by many appraisers measures finished area from the exterior walls and excludes garages, unfinished basements and spaces with low ceilings. Listing and appraisal rules vary, so for a sale or valuation, follow your local standard. In the UK, floor area on property listings is usually given as the internal area in m².</p>
+
+<h2>How much extra should you buy for a project?</h2>
+<ul>
+  <li><strong>Flooring and tile:</strong> add 10% (15% for diagonal or herringbone). See <a href="/how-much-tile-do-i-need/">how much tile you need</a>.</li>
+  <li><strong>Carpet:</strong> rolls come in fixed widths, so plan seams and buy extra.</li>
+  <li><strong>Paint:</strong> uses wall area, not floor area. See <a href="/how-much-paint-do-i-need/">how much paint you need</a>.</li>
+</ul>
+
+<!-- ADD YOUR EXPERIENCE: paste your experience paragraph here (see the questions at the top). -->
+
+<h2>Frequently asked questions</h2>
+<div class="hgl-faq">
+  <details open="open">
+    <summary>How do I calculate square feet from inches?</summary>
+    <p>Multiply length × width in inches, then divide by 144. For example, 60 × 48 in = 2,880 ÷ 144 = 20 sq ft.</p>
+  </details>
+  <details>
+    <summary>How many square feet are in a 12×12 room?</summary>
+    <p>144 square feet (about 13.4 m²).</p>
+  </details>
+  <details>
+    <summary>How do I convert square feet to square metres?</summary>
+    <p>Multiply by 0.0929. 1,000 sq ft is about 92.9 m².</p>
+  </details>
+  <details>
+    <summary>Do closets count in a room's square footage?</summary>
+    <p>For flooring, include any closet you'll floor. For home listings, rules vary; most include finished closets in total living area.</p>
+  </details>
+</div>
+
+<h2>The bottom line</h2>
+<p>Square footage = length × width for rectangles; split anything irregular into simple shapes and add them. Multiply by 0.0929 for square metres, and add waste for flooring and tile.</p>
+
+<p><strong>Related:</strong> <a href="/how-much-tile-do-i-need/">How Much Tile Do I Need? Area, Waste and Boxes to Buy</a> · <a href="/how-much-paint-do-i-need/">How Much Paint Do I Need? Gallons per Room and Coverage Chart</a></p>
+
+<div class="hgl-sources">
+  <p><strong>Sources:</strong> Standard geometry formulas; house measurement guidance from the ANSI Z765 standard used by many US appraisers. <em>Last reviewed: November 2026.</em></p>
+</div>

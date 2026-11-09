@@ -1,0 +1,12 @@
+[
+ {"slug":"how-much-concrete-do-i-need","kicker":"CONCRETE","title":"How Much Concrete Do I Need?","sub":"Cubic yards, bags and<br>slab chart","art":"concrete"},
+ {"slug":"how-much-paint-do-i-need","kicker":"PAINTING","title":"How Much Paint Do I Need?","sub":"Gallons per room,<br>coats and coverage","art":"paint"},
+ {"slug":"how-many-deck-boards-do-i-need","kicker":"DECKING","title":"How Many Deck Boards Do I Need?","sub":"Boards, joists<br>and screws","art":"deck"},
+ {"slug":"how-much-drywall-do-i-need","kicker":"DRYWALL","title":"How Much Drywall Do I Need?","sub":"Sheets for walls<br>and ceilings","art":"drywall"},
+ {"slug":"how-much-tile-do-i-need","kicker":"TILING","title":"How Much Tile Do I Need?","sub":"Area, waste and<br>boxes to buy","art":"tile"},
+ {"slug":"how-to-calculate-stair-rise-and-run","kicker":"STAIRS","title":"How to Calculate Stair Rise and Run","sub":"Risers, treads<br>and code limits","art":"stairs"},
+ {"slug":"what-size-mini-split-do-i-need","kicker":"HEATING & COOLING","title":"What Size Mini-Split Do I Need?","sub":"BTU by room size","art":"ac"},
+ {"slug":"how-many-bundles-of-shingles-do-i-need","kicker":"ROOFING","title":"How Many Bundles of Shingles?","sub":"Squares, pitch<br>and waste","art":"roof"},
+ {"slug":"how-many-fence-posts-do-i-need","kicker":"FENCING","title":"How Many Fence Posts Do I Need?","sub":"Spacing, depth<br>and concrete","art":"fence"},
+ {"slug":"how-to-calculate-square-footage","kicker":"MEASURING","title":"How to Calculate Square Footage","sub":"Rooms, odd shapes<br>and conversions","art":"floorplan"}
+]
