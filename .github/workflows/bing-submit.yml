@@ -24,6 +24,8 @@ concurrency:
 
 jobs:
   submit:
+    # Blogger feeds only. Once the static site is live (WWW_LIVE=1), Deploy www sends changed pages to IndexNow instead.
+    if: vars.WWW_LIVE != '1'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
