@@ -92,6 +92,8 @@ async function write(rel, content) {
 // ---------- Theme pieces (the Blogger theme stays the single source of the design) ----------
 const themeXml = await readFile(THEME, 'utf8');
 const THEME_CSS = themeXml.match(/<b:skin[^>]*><!\[CDATA\[([\s\S]*?)\]\]><\/b:skin>/)[1].replace(/body#layout[^{]*\{[^}]*\}/g, '').trim();
+// Additions for static-only content (figures with captions); the rest of the design is the theme's.
+const EXTRA_CSS = '.hgl-figure{margin:1.6em 0}.hgl-figure img{display:block;width:100%;height:auto;border-radius:var(--hgl-radius);border:1px solid var(--hgl-line)}.hgl-figure figcaption{font-size:.88rem;color:var(--hgl-muted);margin-top:.5em}.hgl-post__body img{max-width:100%;height:auto}.hgl-post__body>img{display:block;margin:0 auto 1.4em}';
 const SPRITE = themeXml.match(/<svg aria-hidden='true' height='0'[\s\S]*?<\/svg>/)[0];
 const SHARE_ICONS = [...themeXml.matchAll(/<button aria-label='[^']*' class='hgl-share__icon[\s\S]*?<\/button>/g)].map((m) => m[0]).join('\n');
 const HEADER_LOGO = themeXml.match(/<img class='hgl-brand__logo'[^>]*\/>/)[0].replace(/expr:alt='[^']*'/, `alt='${BRAND}'`).replace(/\/>$/, '>');
@@ -260,7 +262,8 @@ ${ogImg ? `<meta property="og:image" content="${esc(ogImg)}">\n<meta property="o
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" media="print" onload="this.media='all'">
-<style>${THEME_CSS}</style>
+<style>${THEME_CSS}
+${EXTRA_CSS}</style>
 ${extraHead}
 ${gtmHead()}
 ${jsonLd({ '@context': 'https://schema.org', '@graph': [...ORG_GRAPH, ...graph] })}
@@ -335,7 +338,9 @@ function rewriteHref(href) {
 
 let LABEL_HUB = {};
 function renderBody(item, byPath) {
-  const { document: d } = parseHTML(`<!doctype html><html><body><div id="b">${item.html}</div></body></html>`);
+  // Source comments (image briefs, editor notes) never reach the page.
+  const src = item.html.replace(/<!--[\s\S]*?-->/g, '');
+  const { document: d } = parseHTML(`<!doctype html><html><body><div id="b">${src}</div></body></html>`);
   const body = d.getElementById('b');
   const attr = (t, name) => (t.match(new RegExp('\\$' + name + '=\\{([^}]*)\\}')) || [])[1]?.trim() || '';
   const block = (el) => {
@@ -443,9 +448,16 @@ function renderBody(item, byPath) {
   if (tocSlot?.el?.isConnected) tocSlot.el.outerHTML = toc ? '<!--TOC-->' : '';
   let html = body.innerHTML;
   if (html.includes('<!--TOC-->')) { html = html.replace('<!--TOC-->', toc); toc = ''; }
+  // No {getToc} marker: the TOC goes just before the first H2, so the intro (the direct answer) and the featured image lead.
+  else if (toc && html.includes('<h2')) { html = html.replace('<h2', `${toc}<h2`); toc = ''; }
+  const faqs = [...body.querySelectorAll('.hgl-faq details')].map((dt) => {
+    const q = dt.querySelector('summary')?.textContent.trim();
+    const a = [...dt.children].filter((c) => c.tagName !== 'SUMMARY').map((c) => c.textContent.trim()).join(' ');
+    return q && a ? { '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } } : null;
+  }).filter(Boolean);
   const text = body.textContent.replace(/\s+/g, ' ').trim();
   const firstP = [...body.querySelectorAll('p')].map((p) => p.textContent.replace(/\s+/g, ' ').trim()).find((t) => t.length > 60 && !t.startsWith('{')) || text;
-  return { html, toc, words: text.split(' ').length, firstP };
+  return { html, toc, words: text.split(' ').length, firstP, faqs };
 }
 
 function summary(text, max = 155) {
@@ -510,6 +522,7 @@ ${p.body}
       datePublished: p.date, dateModified: p.updated, inLanguage: 'en-US', wordCount: p.words,
       ...(p.image ? { image: { '@type': 'ImageObject', url: abs(resize(p.image, 1200, 675)), width: 1200, height: 675 } } : {}),
       author: { '@type': 'Person', name: p.author, url: `${SITE}/p/about.html` }, publisher: { '@id': ORG_ID }, isPartOf: { '@id': SITE_ID }, articleSection: hub.name },
+    ...(p.faqs.length && !/FAQPage/.test(p.body) ? [{ '@type': 'FAQPage', '@id': `${SITE}${p.url}#faq`, mainEntity: p.faqs }] : []),
     { '@type': 'BreadcrumbList', itemListElement: [['Home', `${SITE}/`], [hub.name, `${SITE}${hub.url}`], [p.title]].map(([n, u], i) => ({ '@type': 'ListItem', position: i + 1, name: n, ...(u ? { item: u } : {}) })) },
   ];
   return shell({ url: p.url, title: p.title, description: p.description, body, bodyClass: 'hgl-body hgl-body--item', image: p.image, type: 'article', graph,
@@ -647,8 +660,13 @@ async function main() {
   LABEL_HUB = Object.fromEntries(Object.entries(LABEL_HUB).map(([l, c]) => [l, HUB[Object.entries(c).sort((a, b) => b[1] - a[1])[0][0]].url]));
 
   for (const it of items) {
+    // New posts: the featured image (front matter image + imageAlt) opens the article unless the body already shows it.
+    if (it.type === 'post' && it.image?.startsWith('/images/') && !it.html.includes(it.image)) {
+      if (!it.imageAlt) throw new Error(`${it.url}: add imageAlt: to the front matter (describes the featured image)`);
+      it.html = `<img src="${esc(it.image)}" alt="${esc(it.imageAlt)}">\n${it.html}`;
+    }
     const r = renderBody(it, byPath);
-    Object.assign(it, { body: r.html, toc: r.toc, words: r.words });
+    Object.assign(it, { body: r.html, toc: r.toc, words: r.words, faqs: r.faqs });
     it.description ||= summary(r.firstP);
   }
   POSTS = items.filter((i) => i.type === 'post').sort((a, b) => new Date(b.date) - new Date(a.date));

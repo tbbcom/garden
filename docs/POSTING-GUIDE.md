@@ -18,6 +18,8 @@ date: 2026-11-09T08:00:00+08:00
 updated: 2026-11-09T08:00:00+08:00
 hub: grow-food
 image: /images/how-to-grow-spinach/featured.webp
+imageAlt: What the featured image shows
+author: Fadzilla
 draft: true
 ---
 <p>The direct answer first…</p>
@@ -26,7 +28,8 @@ draft: true
 
 - `hub`: one of `grow-food`, `garden-design`, `soil-compost`, `pests-weeds`, `houseplants`, `home-diy`.
 - `draft: true` shows the post on preview.homegardenlot.com only. Delete the line to publish.
-- The table of contents, related guides, breadcrumbs, schema, sitemap, feed and search are added automatically.
+- The featured image (`image` + `imageAlt`) opens the post automatically. Notes inside `<!-- -->` (image briefs, reminders) never appear on the page.
+- The table of contents (before the first H2), FAQ schema (from `.hgl-faq`), related guides, breadcrumbs, schema, sitemap, feed and search are added automatically.
 
 ## Images
 1. Make the image (prompts are in each post brief), export **WebP**, 1200 px wide, under ~150 KB (squoosh.app is free).
