@@ -12,16 +12,16 @@ Volumes are US monthly averages from Ubersuggest (Oct 2026); "–" means not che
 
 | # | Day | Status | File (`content/posts/…`) | Working title | Primary keyword (vol) | Label | Link to tool |
 |---|---|---|---|---|---|---|---|
-| 1 | 1 | drafted | when-to-fertilize-lawn.html | When to Fertilize Your Lawn: Month-by-Month Schedule by Grass Type | when to fertilize lawn (6,600) | Lawn Care | /p/lawn-fertilizer-npk-calculator.html |
-| 2 | 1 | drafted | how-long-to-water-lawn.html | How Long to Water Your Lawn (Sprinkler Run Times That Work) | how long to water lawn (3,600) | Lawn Care | /p/irrigation-runtime-calculator.html |
-| 3 | 1 | drafted | how-much-grass-seed-do-i-need.html | How Much Grass Seed Do I Need? Rates by Grass Type | how much grass seed do i need (1,000) | Lawn Care | /p/garden-calculator.html |
-| 4 | 1 | drafted | fertilizer-numbers-npk-explained.html | What Do Fertilizer Numbers Mean? NPK Explained Simply | fertilizer numbers meaning (–) | Lawn Care | /p/lawn-fertilizer-npk-calculator.html |
-| 5 | 1 | drafted | how-much-fertilizer-per-1000-sq-ft.html | How Much Fertilizer per 1,000 Sq Ft? (Pounds of Nitrogen Made Easy) | fertilizer per 1000 sq ft (–) | Lawn Care | /p/lawn-fertilizer-npk-calculator.html |
-| 6 | 1 | drafted | when-to-overseed-lawn.html | When to Overseed Your Lawn (and How to Do It Right) | when to overseed lawn (–) | Lawn Care | /p/garden-calculator.html |
-| 7 | 1 | drafted | cool-season-vs-warm-season-grass.html | Cool-Season vs Warm-Season Grass: Which Grows Where You Live | cool season vs warm season grass (–) | Lawn Care | /p/lawn-fertilizer-npk-calculator.html |
-| 8 | 1 | drafted | how-to-measure-lawn-square-footage.html | How to Measure Your Lawn's Square Footage (Any Shape) | how to measure lawn square footage (–) | Lawn Care | /p/garden-calculator.html |
-| 9 | 1 | drafted | lawn-aeration-guide.html | Lawn Aeration: When, Why and How to Aerate Your Yard | when to aerate lawn (–) | Lawn Care | /p/lawn-fertilizer-npk-calculator.html |
-| 10 | 1 | drafted | when-to-plant-garlic.html | When to Plant Garlic: Fall Planting Dates by USDA Zone | when to plant garlic (6,600; 14,800 in Oct) | Vegetable | /p/planting-calendar.html |
+| 1 | 1 | published (/when-to-fertilize-lawn/) | when-to-fertilize-lawn.html | When to Fertilize Your Lawn: Month-by-Month Schedule by Grass Type | when to fertilize lawn (6,600) | Lawn Care | /p/lawn-fertilizer-npk-calculator.html |
+| 2 | 1 | published (/how-long-to-water-lawn/) | how-long-to-water-lawn.html | How Long to Water Your Lawn (Sprinkler Run Times That Work) | how long to water lawn (3,600) | Lawn Care | /p/irrigation-runtime-calculator.html |
+| 3 | 1 | published (/how-much-grass-seed-do-i-need/) | how-much-grass-seed-do-i-need.html | How Much Grass Seed Do I Need? Rates by Grass Type | how much grass seed do i need (1,000) | Lawn Care | /p/garden-calculator.html |
+| 4 | 1 | published (/fertilizer-numbers-npk-explained/) | fertilizer-numbers-npk-explained.html | What Do Fertilizer Numbers Mean? NPK Explained Simply | fertilizer numbers meaning (–) | Lawn Care | /p/lawn-fertilizer-npk-calculator.html |
+| 5 | 1 | published (/how-much-fertilizer-per-1000-sq-ft/) | how-much-fertilizer-per-1000-sq-ft.html | How Much Fertilizer per 1,000 Sq Ft? (Pounds of Nitrogen Made Easy) | fertilizer per 1000 sq ft (–) | Lawn Care | /p/lawn-fertilizer-npk-calculator.html |
+| 6 | 1 | published (/when-to-overseed-lawn/) | when-to-overseed-lawn.html | When to Overseed Your Lawn (and How to Do It Right) | when to overseed lawn (–) | Lawn Care | /p/garden-calculator.html |
+| 7 | 1 | published (/cool-season-vs-warm-season-grass/) | cool-season-vs-warm-season-grass.html | Cool-Season vs Warm-Season Grass: Which Grows Where You Live | cool season vs warm season grass (–) | Lawn Care | /p/lawn-fertilizer-npk-calculator.html |
+| 8 | 1 | published (/how-to-measure-lawn-square-footage/) | how-to-measure-lawn-square-footage.html | How to Measure Your Lawn's Square Footage (Any Shape) | how to measure lawn square footage (–) | Lawn Care | /p/garden-calculator.html |
+| 9 | 1 | published (/lawn-aeration-guide/) | lawn-aeration-guide.html | Lawn Aeration: When, Why and How to Aerate Your Yard | when to aerate lawn (–) | Lawn Care | /p/lawn-fertilizer-npk-calculator.html |
+| 10 | 1 | published (/when-to-plant-garlic/) | when-to-plant-garlic.html | When to Plant Garlic: Fall Planting Dates by USDA Zone | when to plant garlic (6,600; 14,800 in Oct) | Vegetable | /p/planting-calendar.html |
 | 11 | 2 | drafted | how-deep-should-mulch-be.html | How Deep Should Mulch Be? Depth Guide by Mulch Type | how deep should mulch be (480) | Garden Maintenance | /p/mulch-calculator.html |
 | 12 | 2 | drafted | bagged-vs-bulk-mulch.html | Bagged vs Bulk Mulch: Cost, Quality and When Each Wins | bagged vs bulk mulch (–) | Garden Maintenance | /p/mulch-calculator.html |
 | 13 | 2 | drafted | when-to-mulch.html | When to Mulch: Best Time in Spring and Fall | when to mulch (–) | Garden Maintenance | /p/mulch-calculator.html |
