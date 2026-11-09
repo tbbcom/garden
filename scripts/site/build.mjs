@@ -95,11 +95,13 @@ async function write(rel, content) {
 const themeXml = await readFile(THEME, 'utf8');
 const THEME_CSS = themeXml.match(/<b:skin[^>]*><!\[CDATA\[([\s\S]*?)\]\]><\/b:skin>/)[1].replace(/body#layout[^{]*\{[^}]*\}/g, '').trim();
 // Additions for static-only content (figures with captions); the rest of the design is the theme's.
-const EXTRA_CSS = '.hgl-figure{margin:1.6em 0}.hgl-figure img{display:block;width:100%;height:auto;border-radius:var(--hgl-radius);border:1px solid var(--hgl-line)}.hgl-figure figcaption{font-size:.88rem;color:var(--hgl-muted);margin-top:.5em}.hgl-post__body img{max-width:100%;height:auto}.hgl-post__body>img{display:block;margin:0 auto 1.4em}';
+const EXTRA_CSS = '.hgl-author{grid-template-columns:1fr;justify-items:center;text-align:center;padding:28px 24px}.hgl-author__img{width:88px;height:88px;border:3px solid var(--hgl-green-soft);background:#fff}.hgl-author__links{justify-content:center}.hgl-author__name{font-weight:700}.hgl-cf{max-width:640px;gap:16px;background:var(--hgl-surface);border:1px solid var(--hgl-line);border-top:4px solid var(--hgl-green);border-radius:var(--hgl-radius);padding:24px;box-shadow:var(--hgl-shadow)}.hgl-cf__head{margin-bottom:4px}.hgl-cf__title{margin:0;font-size:1.25rem;font-weight:700;color:var(--hgl-text)}.hgl-cf__sub{margin:.2em 0 0;color:var(--hgl-muted);font-size:.95rem}.hgl-cf__row{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media (max-width:560px){.hgl-cf__row{grid-template-columns:1fr}.hgl-cf{padding:18px}}.hgl-cf__field{display:grid;gap:6px}.hgl-cf__field label{font-weight:600;font-size:.92rem;color:var(--hgl-text-2)}.hgl-cf__field label span{color:#b42318}.hgl-cf__input{background:var(--hgl-gray)}.hgl-cf__input:focus{background:#fff;outline:2px solid var(--hgl-green);outline-offset:0}.hgl-cf textarea{resize:vertical;min-height:140px}.hgl-cf__privacy{margin:0;font-size:.85rem;color:var(--hgl-muted)}.hgl-cf .hgl-cf__btn{justify-self:stretch;padding:14px;font-size:1rem}.hgl-cf__btn[disabled]{opacity:.7;cursor:progress}.hgl-cf__status{margin:0;font-size:.92rem;min-height:1.2em}.hgl-cf__status--err{color:#b42318}.hgl-cf__done{text-align:center;padding:12px 4px}.hgl-cf__done h2{margin:.2em 0 .4em;font-size:1.3rem}.hgl-cf__done p{margin:0;color:var(--hgl-muted)}.hgl-cf__done svg{width:48px;height:48px;color:var(--hgl-green)}.hgl-figure{margin:1.6em 0}.hgl-figure img{display:block;width:100%;height:auto;border-radius:var(--hgl-radius);border:1px solid var(--hgl-line)}.hgl-figure figcaption{font-size:.88rem;color:var(--hgl-muted);margin-top:.5em}.hgl-post__body img{max-width:100%;height:auto}.hgl-post__body>img{display:block;margin:0 auto 1.4em}';
 // Brand icons (site/root, from the Home Garden Lot logo) for every page, blog and tools.
 const ICON_LINKS = '<link rel="icon" href="/favicon.ico" sizes="48x48">\n<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">\n<link rel="apple-touch-icon" href="/apple-touch-icon.png">\n<link rel="manifest" href="/manifest.webmanifest">';
 // Static pages are safe to prerender: Chrome loads the next page on hover/press, so clicks feel instant.
 const SPECULATION = '<script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/search/*","/*.xml","/*.json"]}}]},"eagerness":"moderate"}]}</script>';
+// Author photo: site/images/author.webp when you add one, otherwise the site logo.
+const AUTHOR_PHOTO = existsSync('site/images/author.webp') ? '/images/author.webp' : '/icon-192.png';
 const SPRITE = themeXml.match(/<svg aria-hidden='true' height='0'[\s\S]*?<\/svg>/)[0];
 const SHARE_ICONS = [...themeXml.matchAll(/<button aria-label='[^']*' class='hgl-share__icon[\s\S]*?<\/button>/g)].map((m) => m[0]).join('\n');
 const HEADER_LOGO = themeXml.match(/<img class='hgl-brand__logo'[^>]*\/>/)[0].replace(/expr:alt='[^']*'/, `alt='${BRAND}'`).replace(/\/>$/, '>');
@@ -312,16 +314,28 @@ function sidebarHtml() {
 }
 
 // ---------- Content ----------
+// Contact form: sent in the background to Web3Forms (free; delivers to the inbox set up there), so the
+// reader stays on the page. Email Routing isn't used because the domain's mail runs on Zoho.
+const TOPICS = [['general', 'General question'], ['correction', 'Correction or error report'], ['garden', 'Gardening question'],
+  ['tool', 'Tool idea or feedback'], ['data', 'Using our data or embeds'], ['partnership', 'Advertising or partnership'], ['privacy', 'Privacy request']];
 const contactForm = () => WEB3FORMS_KEY
-  ? `<form class="hgl-cf" action="https://api.web3forms.com/submit" method="post">
+  ? `<form class="hgl-cf" data-contact action="https://api.web3forms.com/submit" method="post" novalidate>
+  <div class="hgl-cf__head"><p class="hgl-cf__title">Send us a message</p><p class="hgl-cf__sub">We read every message and reply within 3 business days.</p></div>
   <input type="hidden" name="access_key" value="${WEB3FORMS_KEY}">
-  <input type="hidden" name="subject" value="New message from ${BRAND}">
+  <input type="hidden" name="subject" value="[${BRAND}] New message">
+  <input type="hidden" name="from_name" value="${BRAND} contact form">
   <input type="hidden" name="redirect" value="${SITE}/p/contact.html?sent=1">
+  <input type="hidden" name="t" value="">
   <input type="checkbox" name="botcheck" class="hgl-sr" tabindex="-1" autocomplete="off" aria-hidden="true">
-  <label class="hgl-sr" for="cf-name">Name</label><input class="hgl-cf__input" id="cf-name" name="name" placeholder="Your name" autocomplete="name">
-  <label class="hgl-sr" for="cf-email">Email</label><input class="hgl-cf__input" id="cf-email" name="email" type="email" placeholder="Email *" required autocomplete="email">
-  <label class="hgl-sr" for="cf-msg">Message</label><textarea class="hgl-cf__input" id="cf-msg" name="message" rows="6" placeholder="Message *" required></textarea>
-  <button class="hgl-btn" type="submit">Send message</button>
+  <div class="hgl-cf__row">
+    <div class="hgl-cf__field"><label for="cf-name">Your name</label><input class="hgl-cf__input" id="cf-name" name="name" required minlength="2" maxlength="100" autocomplete="name"></div>
+    <div class="hgl-cf__field"><label for="cf-email">Email <span aria-hidden="true">*</span></label><input class="hgl-cf__input" id="cf-email" name="email" type="email" required maxlength="200" autocomplete="email" inputmode="email"></div>
+  </div>
+  <div class="hgl-cf__field"><label for="cf-topic">Topic</label><select class="hgl-cf__input" id="cf-topic" name="topic">${TOPICS.map(([v, n]) => `<option value="${v}">${n}</option>`).join('')}</select></div>
+  <div class="hgl-cf__field"><label for="cf-msg">Message <span aria-hidden="true">*</span></label><textarea class="hgl-cf__input" id="cf-msg" name="message" rows="6" required minlength="10" maxlength="5000" placeholder="If you're reporting an error, include the page and what looks wrong."></textarea></div>
+  <p class="hgl-cf__privacy">We use your email only to reply. See our <a href="/p/privacy-policy.html">Privacy Policy</a>.</p>
+  <button class="hgl-btn hgl-cf__btn" type="submit">Send message</button>
+  <p class="hgl-cf__status" data-status role="status" aria-live="polite"></p>
 </form>`
   : '<p class="hgl-note">The contact form is being set up. Please check back soon.</p>';
 
@@ -527,7 +541,7 @@ ${p.body}
   ${shareBlock(p, false)}
   <ul aria-label="Topics" class="hgl-tags"><li><a class="hgl-chip" href="${hub.url}" rel="tag">${esc(hub.name)}</a></li></ul>
   <aside aria-label="About the author" class="hgl-author">
-    <div aria-hidden="true" class="hgl-author__img"></div>
+    <img class="hgl-author__img" src="${AUTHOR_PHOTO}" alt="${esc(p.author)}" width="72" height="72" loading="lazy" decoding="async">
     <div>
       <p class="hgl-author__kicker">Written by</p>
       <p class="hgl-author__name">${esc(p.author)}</p>

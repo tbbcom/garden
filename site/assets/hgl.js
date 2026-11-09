@@ -63,15 +63,41 @@
     });
   });
 
-  // Contact form: confirmation after Web3Forms redirects back.
-  if (/[?&]sent=1/.test(location.search)) {
-    var form = d.querySelector('.hgl-cf');
-    if (form) {
-      var ok = d.createElement('p');
-      ok.className = 'hgl-note';
-      ok.setAttribute('role', 'status');
-      ok.textContent = 'Thanks! Your message was sent. We usually reply within 3 business days.';
-      form.parentNode.insertBefore(ok, form);
-    }
+  // Contact form: sends in the background so the reader stays on the page; without JavaScript it posts normally.
+  var cf = d.querySelector('[data-contact]');
+  if (cf) {
+    var status = cf.querySelector('[data-status]');
+    var btn = cf.querySelector('button[type=submit]');
+    var t = cf.querySelector('input[name=t]');
+    if (t) t.value = String(Date.now());
+    var topic = new URLSearchParams(location.search).get('topic');
+    if (topic && cf.topic.querySelector('option[value="' + topic.replace(/[^a-z]/g, '') + '"]')) cf.topic.value = topic;
+    var done = function () {
+      cf.innerHTML = '<div class="hgl-cf__done" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="currentColor" opacity=".12"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><h2>Thanks, your message is on its way</h2><p>We reply to every genuine message, usually within 3 business days. Check your spam folder if you haven’t heard back.</p></div>';
+      cf.querySelector('.hgl-cf__done').focus();
+    };
+    if (/[?&]sent=1/.test(location.search)) done();
+    cf.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!cf.reportValidity()) return;
+      if (t && Date.now() - Number(t.value) < 3000) { status.className = 'hgl-cf__status hgl-cf__status--err'; status.textContent = 'That was quick. Please wait a few seconds and send again.'; return; }
+      var fd = new FormData(cf);
+      var label = cf.topic.options[cf.topic.selectedIndex].text;
+      fd.set('subject', '[Home Garden Lot] ' + label + ': ' + (fd.get('name') || 'reader'));
+      fd.delete('redirect'); fd.delete('t');
+      btn.disabled = true; btn.textContent = 'Sending…';
+      status.className = 'hgl-cf__status'; status.textContent = '';
+      fetch(cf.action, { method: 'POST', body: fd, headers: { Accept: 'application/json' } })
+        .then(function (r) { return r.json().catch(function () { return {}; }); })
+        .then(function (j) {
+          if (j && j.success) { done(); if (window.gtag) window.gtag('event', 'contact_sent', { topic: cf.topic ? cf.topic.value : '' }); return; }
+          throw new Error(j && j.message);
+        })
+        .catch(function () {
+          status.className = 'hgl-cf__status hgl-cf__status--err';
+          status.textContent = 'Your message could not be sent. Please check your connection and try again.';
+          btn.disabled = false; btn.textContent = 'Send message';
+        });
+    });
   }
 })();
