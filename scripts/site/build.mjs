@@ -785,7 +785,7 @@ ${feedPosts.map((p) => `<entry><title>${esc(p.title)}</title><link href="${SITE}
 ${urls.map(([u, d]) => `<url><loc>${SITE}${u}</loc>${d ? `<lastmod>${isoDay(d)}</lastmod>` : ''}</url>`).join('\n')}
 </urlset>
 `);
-  await write('robots.txt', PREVIEW ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\nDisallow: /search/\n\nSitemap: ${SITE}/sitemap.xml\n`);
+  await write('robots.txt', PREVIEW ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
   const toolsLlms = existsSync(path.join(OUT, '.tools-llms.txt')) ? await readFile(path.join(OUT, '.tools-llms.txt'), 'utf8') : '';
   await rm(path.join(OUT, '.tools-llms.txt'), { force: true });
   await write('llms.txt', `# ${BRAND}

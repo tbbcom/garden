@@ -15,6 +15,10 @@ on:
         description: 'Switch-over: create the Cloudflare 301 rules (needs CF_API_TOKEN and CF_ZONE_ID)'
         type: boolean
         default: false
+      indexnow_all:
+        description: 'Send every page to IndexNow (after the switch-over or a big change)'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -65,11 +69,14 @@ jobs:
       - name: Find changed pages
         id: diff
         if: env.LIVE == 'true'
+        env:
+          ALL: ${{ inputs.indexnow_all }}
         run: |
           node -e "
             const o = JSON.parse(require('fs').readFileSync('/tmp/old-hashes.json','utf8') || '{}');
             const n = JSON.parse(require('fs').readFileSync('_site/page-hashes.json','utf8'));
-            const c = Object.keys(n).filter((u) => o[u] !== n[u]).slice(0, 10000);
+            const all = process.env.ALL === 'true';
+            const c = Object.keys(n).filter((u) => all || o[u] !== n[u]).slice(0, 10000);
             require('fs').writeFileSync('/tmp/changed.json', JSON.stringify(c));
             console.log(c.length + ' changed page(s)');
           "
