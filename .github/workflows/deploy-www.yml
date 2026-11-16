@@ -121,8 +121,10 @@ jobs:
           CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
         run: |
           if [ -z "$CF_API_TOKEN" ] || [ -z "$CF_ZONE_ID" ]; then echo "No Cloudflare secrets; skipping purge."; exit 0; fi
-          curl -fsS -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/purge_cache" \
-            -H "Authorization: Bearer $CF_API_TOKEN" -H "Content-Type: application/json" --data '{"purge_everything":true}' >/dev/null && echo "Cache purged."
+          # A failed purge must not stop IndexNow: warn and carry on (pages refresh when the 2-hour edge cache expires).
+          code=$(curl -sS -o /tmp/purge.json -w '%{http_code}' -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/purge_cache" \
+            -H "Authorization: Bearer $CF_API_TOKEN" -H "Content-Type: application/json" --data '{"purge_everything":true}') || code=000
+          if [ "$code" = "200" ]; then echo "Cache purged."; else echo "::warning::Cloudflare cache purge failed (HTTP $code). Check that CF_API_TOKEN is valid and has Zone → Cache Purge → Purge for this zone."; fi
       - name: Submit changed pages to IndexNow
         env:
           CHANGED: ${{ needs.build.outputs.changed }}
