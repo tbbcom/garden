@@ -358,8 +358,12 @@ function rewriteHref(href) {
 
 let LABEL_HUB = {};
 function renderBody(item, byPath) {
+  // Image slots from the brief (<!--img:FILE|ALT|CAPTION-->) show once the file is uploaded to site/images/<slug>/.
+  const slug = path.basename(item.url.replace(/\/$/, ''), '.html');
+  const withImages = item.html.replace(/<!--img:([^|]+)\|([^|]*)\|([^>]*?)-->/g, (m, file, alt, cap) => (existsSync(`site/images/${slug}/${file.trim()}`)
+    ? `<figure class="hgl-figure"><img src="/images/${slug}/${file.trim()}" alt="${esc(alt.trim())}"><figcaption>${esc(cap.trim())}</figcaption></figure>` : ''));
   // Source comments (image briefs, editor notes) never reach the page.
-  const src = item.html.replace(/<!--[\s\S]*?-->/g, '');
+  const src = withImages.replace(/<!--[\s\S]*?-->/g, '');
   const { document: d } = parseHTML(`<!doctype html><html><body><div id="b">${src}</div></body></html>`);
   const body = d.getElementById('b');
   const attr = (t, name) => (t.match(new RegExp('\\$' + name + '=\\{([^}]*)\\}')) || [])[1]?.trim() || '';
@@ -698,6 +702,12 @@ async function main() {
   LABEL_HUB = Object.fromEntries(Object.entries(LABEL_HUB).map(([l, c]) => [l, HUB[Object.entries(c).sort((a, b) => b[1] - a[1])[0][0]].url]));
 
   for (const it of items) {
+    // An uploaded featured photo (photo: in the front matter) replaces the illustration or the old first image.
+    if (it.photo && existsSync(`site${it.photo}`)) {
+      if (it.image && !it.image.startsWith('/images/') && /^\s*<img[^>]*>/.test(it.html)) it.html = it.html.replace(/^\s*<img[^>]*>/, '');
+      it.image = it.photo;
+      it.imageAlt = it.photoAlt || it.imageAlt || it.title;
+    }
     // New posts: the featured image (front matter image + imageAlt) opens the article unless the body already shows it.
     if (it.type === 'post' && it.image?.startsWith('/images/') && !it.html.includes(it.image)) {
       if (!it.imageAlt) throw new Error(`${it.url}: add imageAlt: to the front matter (describes the featured image)`);

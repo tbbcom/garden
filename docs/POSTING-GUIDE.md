@@ -39,3 +39,9 @@ draft: true
 
 The build adds width/height (no layout shift) and lazy loading, and **fails** if an image is missing or has no `alt`, so a typo never reaches the live site.
 AI illustrations: say so in the caption or alt (our Disclaimer promises this), never present them as real results.
+
+## Image briefs and automatic image slots
+`docs/IMAGE-BRIEFS.md` lists every image each post still needs (filename, alt, title, caption, prompts).
+Upload a WebP with the **exact filename** to the folder shown and commit: inline images appear in their slot,
+and a featured photo replaces the illustration, on the next deploy. Nothing shows until the file exists.
+After adding new posts with an IMAGE BRIEF, run `node scripts/site/image-briefs.mjs` to add their slots and refresh the list.
