@@ -7,7 +7,7 @@ then on GitHub open the folder shown, **Add file → Upload files**, keep the ex
 automatically on the next deploy (about a minute). A featured photo replaces the illustration. AI images: keep them clearly illustrative,
 never presented as your own results (our Disclaimer promises this).
 
-**Status:** 0 uploaded · 68 to do
+**Status:** 0 uploaded · 98 to do
 
 ## Cool-Season vs Warm-Season Grass: What Grows Where
 
@@ -146,6 +146,53 @@ never presented as your own results (our Disclaimer promises this).
 - **Size:** 1000×1500 (2:3
 - **Prompt:** Vertical photo of a neat house with a new dark shingle roof, soft natural light, the top third calm and uncluttered with empty space for text --ar 2:3
 
+## How Many Concrete Blocks Do I Need? CMU Wall Calculator Guide
+
+**Page:** https://www.homegardenlot.com/how-many-concrete-blocks-do-i-need/ · **Upload to:** `site/images/how-many-concrete-blocks-do-i-need/`
+
+### Featured (top of post, social, Pinterest) · ⬜ to do
+
+- **Filename:** `laying-concrete-block-wall.webp`
+- **Alt text:** Mason laying gray concrete blocks with mortar and a level
+- **Title:** Laying a concrete block wall
+- **Caption:** A standard 8×8×16 in block covers 0.89 sq ft of wall, so you need 1.125 blocks per sq ft.
+- **Size:** 1200×675 WebP
+- **Prompt A (photorealistic):** A mason in gloves setting a gray 8x8x16 concrete block onto a fresh mortar bed on a block wall, trowel and spirit level resting on the course, outdoor construction site, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 16:9 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of a mason in gloves setting a gray 8x8x16 concrete block onto a fresh mortar bed on a block wall, trowel and spirit level resting on the course, outdoor construction site, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 16:9
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of a mason in gloves setting a gray 8x8x16 concrete block onto a fresh mortar bed on a block wall, trowel and spirit level resting on the course, outdoor construction site, soft greens and earthy browns, white background, no text, no labels --ar 16:9
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Inline image · ⬜ to do
+
+- **Filename:** `concrete-block-types.webp`
+- **Alt text:** Stretcher, corner and half concrete blocks lined up on a pallet
+- **Title:** Common concrete block types
+- **Caption:** Corner and half blocks finish ends without cutting.
+- **Size:** 1200×800 WebP
+- **Prompt A (photorealistic):** Several types of gray concrete masonry units lined up on a wooden pallet: standard stretcher block, corner block, half block and bond beam block, even daylight, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of several types of gray concrete masonry units lined up on a wooden pallet: standard stretcher block, corner block, half block and bond beam block, even daylight, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of several types of gray concrete masonry units lined up on a wooden pallet: standard stretcher block, corner block, half block and bond beam block, even daylight, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Inline image · ⬜ to do
+
+- **Filename:** `block-wall-footing.webp`
+- **Alt text:** Concrete footing with rebar ready for the first course of blocks
+- **Title:** Footing for a block wall
+- **Caption:** Block walls need a continuous concrete footing below the frost line.
+- **Size:** 1200×800 WebP
+- **Prompt A (photorealistic):** A poured concrete strip footing in a trench with vertical rebar dowels sticking up, string line set out for the first course of concrete blocks, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of a poured concrete strip footing in a trench with vertical rebar dowels sticking up, string line set out for the first course of concrete blocks, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of a poured concrete strip footing in a trench with vertical rebar dowels sticking up, string line set out for the first course of concrete blocks, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Pinterest pin (upload to Pinterest, not the site) · 
+
+- **Filename:** `how-many-concrete-blocks-do-i-need-pin.webp`
+- **Overlay text:** "How Many Concrete Blocks Do I Need?"
+- **Size:** 1000×1500 (2:3
+- **Prompt:** Vertical photo of a neatly built gray concrete block garden wall with crisp mortar joints, soft natural light, the top third calm and uncluttered with empty space for text --ar 2:3
+
 ## How Many Deck Boards Do I Need? Boards, Joists and Screws
 
 **Page:** https://www.homegardenlot.com/how-many-deck-boards-do-i-need/ · **Upload to:** `site/images/how-many-deck-boards-do-i-need/`
@@ -240,6 +287,100 @@ never presented as your own results (our Disclaimer promises this).
 - **Size:** 1000×1500 (2:3
 - **Prompt:** Vertical photo of a tidy new wooden privacy fence along a green backyard, soft natural light, the top third calm and uncluttered with empty space for text --ar 2:3
 
+## How Many Pavers Do I Need? Pavers per Sq Ft, Base and Sand
+
+**Page:** https://www.homegardenlot.com/how-many-pavers-do-i-need/ · **Upload to:** `site/images/how-many-pavers-do-i-need/`
+
+### Featured (top of post, social, Pinterest) · ⬜ to do
+
+- **Filename:** `laying-patio-pavers.webp`
+- **Alt text:** Concrete pavers being laid in a herringbone pattern on a sand bed
+- **Title:** Laying patio pavers
+- **Caption:** Add 5–10% extra pavers for cuts, or 10–15% for herringbone and curves.
+- **Size:** 1200×675 WebP
+- **Prompt A (photorealistic):** A person kneeling to lay rectangular gray concrete pavers in a herringbone pattern on a screeded sand bed for a backyard patio, rubber mallet nearby, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 16:9 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of a person kneeling to lay rectangular gray concrete pavers in a herringbone pattern on a screeded sand bed for a backyard patio, rubber mallet nearby, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 16:9
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of a person kneeling to lay rectangular gray concrete pavers in a herringbone pattern on a screeded sand bed for a backyard patio, rubber mallet nearby, soft greens and earthy browns, white background, no text, no labels --ar 16:9
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Inline image · ⬜ to do
+
+- **Filename:** `paver-base-layers.webp`
+- **Alt text:** Paver patio cross-section with compacted gravel base and bedding sand
+- **Title:** Paver base layers
+- **Caption:** A patio needs about 4–6 inches of compacted gravel plus 1 inch of sand.
+- **Size:** 1200×800 WebP
+- **Prompt A (photorealistic):** An excavated backyard patio area showing a compacted crushed-stone base, a thin level layer of bedding sand and screed rails, plate compactor in the background, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of an excavated backyard patio area showing a compacted crushed-stone base, a thin level layer of bedding sand and screed rails, plate compactor in the background, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of an excavated backyard patio area showing a compacted crushed-stone base, a thin level layer of bedding sand and screed rails, plate compactor in the background, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Inline image · ⬜ to do
+
+- **Filename:** `polymeric-sand-joints.webp`
+- **Alt text:** Polymeric sand being swept into the joints of a finished paver patio
+- **Title:** Sweeping polymeric sand
+- **Caption:** Polymeric sand locks the joints once it is misted with water.
+- **Size:** 1200×800 WebP
+- **Prompt A (photorealistic):** A push broom sweeping fine polymeric sand into the joints of a newly laid tan paver patio, sunny afternoon, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of a push broom sweeping fine polymeric sand into the joints of a newly laid tan paver patio, sunny afternoon, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of a push broom sweeping fine polymeric sand into the joints of a newly laid tan paver patio, sunny afternoon, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Pinterest pin (upload to Pinterest, not the site) · 
+
+- **Filename:** `how-many-pavers-do-i-need-pin.webp`
+- **Overlay text:** "How Many Pavers Do I Need? + Chart"
+- **Size:** 1000×1500 (2:3
+- **Prompt:** Vertical photo of a finished herringbone brick-paver patio with outdoor chairs and potted plants, soft natural light, the top third calm and uncluttered with empty space for text --ar 2:3
+
+## How Many Retaining Wall Blocks Do I Need? Blocks, Caps and Gravel
+
+**Page:** https://www.homegardenlot.com/how-many-retaining-wall-blocks-do-i-need/ · **Upload to:** `site/images/how-many-retaining-wall-blocks-do-i-need/`
+
+### Featured (top of post, social, Pinterest) · ⬜ to do
+
+- **Filename:** `building-block-retaining-wall.webp`
+- **Alt text:** Concrete retaining wall blocks being stacked on a gravel base in a garden
+- **Title:** Building a retaining wall
+- **Caption:** Bury the first course and set it perfectly level, because every course above follows it.
+- **Size:** 1200×675 WebP
+- **Prompt A (photorealistic):** A person setting gray segmental concrete retaining wall blocks onto a level compacted gravel base in a sloped backyard, string line and level visible, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 16:9 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of a person setting gray segmental concrete retaining wall blocks onto a level compacted gravel base in a sloped backyard, string line and level visible, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 16:9
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of a person setting gray segmental concrete retaining wall blocks onto a level compacted gravel base in a sloped backyard, string line and level visible, soft greens and earthy browns, white background, no text, no labels --ar 16:9
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Inline image · ⬜ to do
+
+- **Filename:** `retaining-wall-drainage-gravel.webp`
+- **Alt text:** Drainage gravel and perforated pipe behind a block retaining wall
+- **Title:** Drainage behind the wall
+- **Caption:** About 12 inches of clean drainage stone behind the wall relieves water pressure.
+- **Size:** 1200×800 WebP
+- **Prompt A (photorealistic):** View from above behind a partly built block retaining wall showing clean angular drainage gravel and a black perforated drain pipe along the base, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of view from above behind a partly built block retaining wall showing clean angular drainage gravel and a black perforated drain pipe along the base, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of view from above behind a partly built block retaining wall showing clean angular drainage gravel and a black perforated drain pipe along the base, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Inline image · ⬜ to do
+
+- **Filename:** `finished-retaining-wall-caps.webp`
+- **Alt text:** Finished curved retaining wall with cap stones and planted bed above
+- **Title:** Finished wall with caps
+- **Caption:** Cap blocks are glued on with masonry adhesive to finish the top course.
+- **Size:** 1200×800 WebP
+- **Prompt A (photorealistic):** A finished curved tan block retaining wall with smooth cap stones, a planted flower bed above and lawn below, soft afternoon light, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of a finished curved tan block retaining wall with smooth cap stones, a planted flower bed above and lawn below, soft afternoon light, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of a finished curved tan block retaining wall with smooth cap stones, a planted flower bed above and lawn below, soft afternoon light, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Pinterest pin (upload to Pinterest, not the site) · 
+
+- **Filename:** `how-many-retaining-wall-blocks-do-i-need-pin.webp`
+- **Overlay text:** "How Many Retaining Wall Blocks? + Example"
+- **Size:** 1000×1500 (2:3
+- **Prompt:** Vertical photo of a neat stacked-block garden retaining wall with flowers planted on the terrace above, soft natural light, the top third calm and uncluttered with empty space for text --ar 2:3
+
 ## How Much Concrete Do I Need? Cubic Yards, Bags and Slab Chart
 
 **Page:** https://www.homegardenlot.com/how-much-concrete-do-i-need/ · **Upload to:** `site/images/how-much-concrete-do-i-need/`
@@ -286,6 +427,53 @@ never presented as your own results (our Disclaimer promises this).
 - **Overlay text:** "How Much Concrete Do I Need? + Chart"
 - **Size:** 1000×1500 (2:3
 - **Prompt:** Vertical photo of a freshly finished smooth concrete patio slab in a backyard, soft natural light, the top third calm and uncluttered with empty space for text --ar 2:3
+
+## How Much Deck Stain Do I Need? Gallons by Deck Size
+
+**Page:** https://www.homegardenlot.com/how-much-deck-stain-do-i-need/ · **Upload to:** `site/images/how-much-deck-stain-do-i-need/`
+
+### Featured (top of post, social, Pinterest) · ⬜ to do
+
+- **Filename:** `staining-wood-deck.webp`
+- **Alt text:** Semi-transparent stain being applied to deck boards with a brush
+- **Title:** Staining a wood deck
+- **Caption:** Most deck stains cover 150–300 sq ft per gallon per coat; rough wood is at the low end.
+- **Size:** 1200×675 WebP
+- **Prompt A (photorealistic):** A person applying warm cedar-tone semi-transparent stain to clean pressure-treated deck boards with a wide brush, half-stained deck showing the contrast, sunny afternoon, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 16:9 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of a person applying warm cedar-tone semi-transparent stain to clean pressure-treated deck boards with a wide brush, half-stained deck showing the contrast, sunny afternoon, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 16:9
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of a person applying warm cedar-tone semi-transparent stain to clean pressure-treated deck boards with a wide brush, half-stained deck showing the contrast, sunny afternoon, soft greens and earthy browns, white background, no text, no labels --ar 16:9
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Inline image · ⬜ to do
+
+- **Filename:** `deck-water-drop-test.webp`
+- **Alt text:** Water droplets soaking into a bare deck board during a readiness test
+- **Title:** Water drop test
+- **Caption:** If water soaks in within about 10 minutes, the wood is ready to stain.
+- **Size:** 1200×800 WebP
+- **Prompt A (photorealistic):** Macro photo of water droplets on a bare weathered wooden deck board, some beading and some soaking into the grain, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of macro photo of water droplets on a bare weathered wooden deck board, some beading and some soaking into the grain, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of macro photo of water droplets on a bare weathered wooden deck board, some beading and some soaking into the grain, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Inline image · ⬜ to do
+
+- **Filename:** `stained-deck-railing.webp`
+- **Alt text:** Freshly stained deck railing and balusters in the sun
+- **Title:** Stained railings
+- **Caption:** Railings and balusters add a lot of surface area, so measure them separately.
+- **Size:** 1200×800 WebP
+- **Prompt A (photorealistic):** A freshly stained wooden deck railing with square balusters glowing in late sun, backyard trees blurred behind, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of a freshly stained wooden deck railing with square balusters glowing in late sun, backyard trees blurred behind, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of a freshly stained wooden deck railing with square balusters glowing in late sun, backyard trees blurred behind, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Pinterest pin (upload to Pinterest, not the site) · 
+
+- **Filename:** `how-much-deck-stain-do-i-need-pin.webp`
+- **Overlay text:** "How Much Deck Stain Do I Need?"
+- **Size:** 1000×1500 (2:3
+- **Prompt:** Vertical photo of a freshly stained wooden backyard deck with outdoor furniture and potted plants, soft natural light, the top third calm and uncluttered with empty space for text --ar 2:3
 
 ## How Much Drywall Do I Need? Sheets for Walls and Ceilings
 
@@ -394,6 +582,53 @@ never presented as your own results (our Disclaimer promises this).
 - **Size:** 1200×800 (3:2
 - **Prompt:** Close-up eye-level photo of evenly spaced young grass seedlings about an inch tall coming up through dark topsoil with a light scattering of straw, soft overcast light, realistic educational garden photo, no people, no text --ar 3:2
 
+## How Much Gravel Do I Need? Cubic Yards, Tons and Depth Chart
+
+**Page:** https://www.homegardenlot.com/how-much-gravel-do-i-need/ · **Upload to:** `site/images/how-much-gravel-do-i-need/`
+
+### Featured (top of post, social, Pinterest) · ⬜ to do
+
+- **Filename:** `spreading-gravel-driveway.webp`
+- **Alt text:** Crushed gravel being spread with a rake on a new driveway
+- **Title:** Spreading gravel on a driveway
+- **Caption:** A driveway needs 4–6 inches of compacted gravel; one ton covers about 58 sq ft at 4 inches.
+- **Size:** 1200×675 WebP
+- **Prompt A (photorealistic):** A homeowner raking freshly dumped crushed gray gravel evenly across a new residential driveway edged with timber, wheelbarrow nearby, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 16:9 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of a homeowner raking freshly dumped crushed gray gravel evenly across a new residential driveway edged with timber, wheelbarrow nearby, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 16:9
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of a homeowner raking freshly dumped crushed gray gravel evenly across a new residential driveway edged with timber, wheelbarrow nearby, soft greens and earthy browns, white background, no text, no labels --ar 16:9
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Inline image · ⬜ to do
+
+- **Filename:** `gravel-types-comparison.webp`
+- **Alt text:** Piles of crushed stone, pea gravel and crusher run side by side
+- **Title:** Common gravel types
+- **Caption:** Crushed stone packs firm; rounded pea gravel stays loose.
+- **Size:** 1200×800 WebP
+- **Prompt A (photorealistic):** Three neat piles of gravel side by side on a landscape supply yard: angular crushed gray stone, rounded tan pea gravel and fine crusher run, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of three neat piles of gravel side by side on a landscape supply yard: angular crushed gray stone, rounded tan pea gravel and fine crusher run, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of three neat piles of gravel side by side on a landscape supply yard: angular crushed gray stone, rounded tan pea gravel and fine crusher run, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Inline image · ⬜ to do
+
+- **Filename:** `gravel-path-depth.webp`
+- **Alt text:** Cross-section of a garden path showing gravel layer over landscape fabric
+- **Title:** Gravel path depth
+- **Caption:** Most paths need 2–3 inches of gravel over fabric or a compacted base.
+- **Size:** 1200×800 WebP
+- **Prompt A (photorealistic):** A garden gravel path under construction with steel edging, landscape fabric partly visible and a 3-inch layer of gravel being added, ruler for scale, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of a garden gravel path under construction with steel edging, landscape fabric partly visible and a 3-inch layer of gravel being added, ruler for scale, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of a garden gravel path under construction with steel edging, landscape fabric partly visible and a 3-inch layer of gravel being added, ruler for scale, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Pinterest pin (upload to Pinterest, not the site) · 
+
+- **Filename:** `how-much-gravel-do-i-need-pin.webp`
+- **Overlay text:** "How Much Gravel Do I Need? + Depth Chart"
+- **Size:** 1000×1500 (2:3
+- **Prompt:** Vertical photo of a neat crushed gravel garden path curving between green plants, soft natural light, the top third calm and uncluttered with empty space for text --ar 2:3
+
 ## How Much Paint Do I Need? Gallons per Room and Coverage Chart
 
 **Page:** https://www.homegardenlot.com/how-much-paint-do-i-need/ · **Upload to:** `site/images/how-much-paint-do-i-need/`
@@ -441,6 +676,100 @@ never presented as your own results (our Disclaimer promises this).
 - **Size:** 1000×1500 (2:3
 - **Prompt:** Vertical photo of a freshly painted living room in a calm color with paint cans and a roller in the corner, soft natural light, the top third calm and uncluttered with empty space for text --ar 2:3
 
+## How Much Salt for a Pool? Pounds by Gallons and Target PPM
+
+**Page:** https://www.homegardenlot.com/how-much-salt-for-pool/ · **Upload to:** `site/images/how-much-salt-for-pool/`
+
+### Featured (top of post, social, Pinterest) · ⬜ to do
+
+- **Filename:** `adding-salt-to-pool.webp`
+- **Alt text:** Bag of pool salt being poured into the shallow end of a swimming pool
+- **Title:** Adding salt to a pool
+- **Caption:** Raising 10,000 gallons from 0 to 3,200 ppm takes about 267 lb of salt.
+- **Size:** 1200×675 WebP
+- **Prompt A (photorealistic):** A person pouring a white bag of pool salt into the shallow end of a clear blue backyard swimming pool, salt dissolving in a cloudy plume, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 16:9 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of a person pouring a white bag of pool salt into the shallow end of a clear blue backyard swimming pool, salt dissolving in a cloudy plume, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 16:9
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of a person pouring a white bag of pool salt into the shallow end of a clear blue backyard swimming pool, salt dissolving in a cloudy plume, soft greens and earthy browns, white background, no text, no labels --ar 16:9
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Inline image · ⬜ to do
+
+- **Filename:** `salt-chlorine-generator-cell.webp`
+- **Alt text:** Salt chlorine generator cell and control panel on pool plumbing
+- **Title:** Salt chlorine generator
+- **Caption:** Your salt cell’s manual sets the target, usually around 3,000–3,500 ppm.
+- **Size:** 1200×800 WebP
+- **Prompt A (photorealistic):** Close-up of a salt chlorine generator cell installed on white PVC pool plumbing next to a control box with a digital display, pool equipment pad, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of close-up of a salt chlorine generator cell installed on white PVC pool plumbing next to a control box with a digital display, pool equipment pad, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of close-up of a salt chlorine generator cell installed on white PVC pool plumbing next to a control box with a digital display, pool equipment pad, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Inline image · ⬜ to do
+
+- **Filename:** `testing-pool-salt-level.webp`
+- **Alt text:** Salt test strip held up next to the color chart over pool water
+- **Title:** Testing salt level
+- **Caption:** Test again 24 hours after adding salt with the pump running.
+- **Size:** 1200×800 WebP
+- **Prompt A (photorealistic):** A hand holding a pool salt test strip next to its bottle color chart above sparkling pool water, sunny day, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of a hand holding a pool salt test strip next to its bottle color chart above sparkling pool water, sunny day, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of a hand holding a pool salt test strip next to its bottle color chart above sparkling pool water, sunny day, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Pinterest pin (upload to Pinterest, not the site) · 
+
+- **Filename:** `how-much-salt-for-pool-pin.webp`
+- **Overlay text:** "How Much Salt for My Pool? + Chart"
+- **Size:** 1000×1500 (2:3
+- **Prompt:** Vertical photo of a sparkling backyard saltwater swimming pool with a lounge chair beside it, soft natural light, the top third calm and uncluttered with empty space for text --ar 2:3
+
+## How Much Sod Do I Need? Pieces, Pallets and Rolls Calculator Guide
+
+**Page:** https://www.homegardenlot.com/how-much-sod-do-i-need/ · **Upload to:** `site/images/how-much-sod-do-i-need/`
+
+### Featured (top of post, social, Pinterest) · ⬜ to do
+
+- **Filename:** `laying-sod-new-lawn.webp`
+- **Alt text:** Fresh rolls of sod being laid in staggered rows on prepared soil
+- **Title:** Laying sod for a new lawn
+- **Caption:** Stagger the seams like brickwork and order 5–10% extra for cuts.
+- **Size:** 1200×675 WebP
+- **Prompt A (photorealistic):** A person unrolling fresh green sod pieces in staggered brick-like rows over smooth raked soil in a backyard, pallet of sod in the background, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 16:9 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of a person unrolling fresh green sod pieces in staggered brick-like rows over smooth raked soil in a backyard, pallet of sod in the background, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 16:9
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of a person unrolling fresh green sod pieces in staggered brick-like rows over smooth raked soil in a backyard, pallet of sod in the background, soft greens and earthy browns, white background, no text, no labels --ar 16:9
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Inline image · ⬜ to do
+
+- **Filename:** `sod-pallet-delivery.webp`
+- **Alt text:** A pallet of stacked sod rolls delivered on a driveway
+- **Title:** A pallet of sod
+- **Caption:** A pallet usually holds about 400–500 sq ft; ask your sod farm for its exact figure.
+- **Size:** 1200×800 WebP
+- **Prompt A (photorealistic):** A wooden pallet stacked with neatly folded rolls of fresh green sod on a suburban driveway in early morning light, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of a wooden pallet stacked with neatly folded rolls of fresh green sod on a suburban driveway in early morning light, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of a wooden pallet stacked with neatly folded rolls of fresh green sod on a suburban driveway in early morning light, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Inline image · ⬜ to do
+
+- **Filename:** `watering-new-sod.webp`
+- **Alt text:** Sprinkler watering newly laid sod in the evening light
+- **Title:** Watering new sod
+- **Caption:** Keep new sod moist every day for the first 1–2 weeks while the roots knit.
+- **Size:** 1200×800 WebP
+- **Prompt A (photorealistic):** An oscillating sprinkler watering a freshly laid sod lawn with visible seams, warm evening backlight catching water droplets, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of an oscillating sprinkler watering a freshly laid sod lawn with visible seams, warm evening backlight catching water droplets, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of an oscillating sprinkler watering a freshly laid sod lawn with visible seams, warm evening backlight catching water droplets, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Pinterest pin (upload to Pinterest, not the site) · 
+
+- **Filename:** `how-much-sod-do-i-need-pin.webp`
+- **Overlay text:** "How Much Sod Do I Need? Pallets & Rolls"
+- **Size:** 1000×1500 (2:3
+- **Prompt:** Vertical photo of a lush freshly sodded backyard lawn with faint seams, garden border in the background, soft natural light, the top third calm and uncluttered with empty space for text --ar 2:3
+
 ## How Much Tile Do I Need? Area, Waste and Boxes to Buy
 
 **Page:** https://www.homegardenlot.com/how-much-tile-do-i-need/ · **Upload to:** `site/images/how-much-tile-do-i-need/`
@@ -487,6 +816,100 @@ never presented as your own results (our Disclaimer promises this).
 - **Overlay text:** "How Much Tile Do You Need?"
 - **Size:** 1000×1500 (2:3
 - **Prompt:** Vertical photo of a beautiful newly tiled bathroom with a walk-in shower, soft natural light, the top third calm and uncluttered with empty space for text --ar 2:3
+
+## How Much Topsoil Do I Need? Cubic Yards, Bags and Depth Guide
+
+**Page:** https://www.homegardenlot.com/how-much-topsoil-do-i-need/ · **Upload to:** `site/images/how-much-topsoil-do-i-need/`
+
+### Featured (top of post, social, Pinterest) · ⬜ to do
+
+- **Filename:** `spreading-topsoil-new-lawn.webp`
+- **Alt text:** Dark screened topsoil being raked level over a bare yard before seeding
+- **Title:** Spreading topsoil for a new lawn
+- **Caption:** A new lawn needs 4–6 inches of topsoil; 1,000 sq ft at 4 inches is about 12.3 cubic yards.
+- **Size:** 1200×675 WebP
+- **Prompt A (photorealistic):** A gardener raking dark crumbly screened topsoil level across a bare backyard before seeding a new lawn, wheelbarrow and delivery pile behind, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 16:9 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of a gardener raking dark crumbly screened topsoil level across a bare backyard before seeding a new lawn, wheelbarrow and delivery pile behind, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 16:9
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of a gardener raking dark crumbly screened topsoil level across a bare backyard before seeding a new lawn, wheelbarrow and delivery pile behind, soft greens and earthy browns, white background, no text, no labels --ar 16:9
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Inline image · ⬜ to do
+
+- **Filename:** `topsoil-bulk-vs-bags.webp`
+- **Alt text:** A bulk topsoil delivery pile beside a stack of bagged topsoil
+- **Title:** Bulk topsoil versus bags
+- **Caption:** Bulk delivery is usually cheaper once you need more than about 1–2 cubic yards.
+- **Size:** 1200×800 WebP
+- **Prompt A (photorealistic):** A large mound of bulk dark topsoil on a tarp on a driveway next to a neat stack of plastic bags of topsoil, shovel leaning on the pile, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of a large mound of bulk dark topsoil on a tarp on a driveway next to a neat stack of plastic bags of topsoil, shovel leaning on the pile, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of a large mound of bulk dark topsoil on a tarp on a driveway next to a neat stack of plastic bags of topsoil, shovel leaning on the pile, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Inline image · ⬜ to do
+
+- **Filename:** `top-dressing-lawn.webp`
+- **Alt text:** Thin layer of topsoil being spread over an existing lawn with a rake
+- **Title:** Top dressing a lawn
+- **Caption:** Top dressing uses only ¼–½ inch, so grass can grow through it.
+- **Size:** 1200×800 WebP
+- **Prompt A (photorealistic):** Close-up of a thin layer of fine screened soil being spread with the back of a leaf rake over a green lawn so the grass blades still show through, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of close-up of a thin layer of fine screened soil being spread with the back of a leaf rake over a green lawn so the grass blades still show through, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of close-up of a thin layer of fine screened soil being spread with the back of a leaf rake over a green lawn so the grass blades still show through, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Pinterest pin (upload to Pinterest, not the site) · 
+
+- **Filename:** `how-much-topsoil-do-i-need-pin.webp`
+- **Overlay text:** "How Much Topsoil Do I Need? + Depth Chart"
+- **Size:** 1000×1500 (2:3
+- **Prompt:** Vertical photo of a freshly leveled dark topsoil garden bed ready for planting, rake resting on the edge, soft natural light, the top third calm and uncluttered with empty space for text --ar 2:3
+
+## How to Calculate Board Feet (Formula, Chart and Examples)
+
+**Page:** https://www.homegardenlot.com/how-to-calculate-board-feet/ · **Upload to:** `site/images/how-to-calculate-board-feet/`
+
+### Featured (top of post, social, Pinterest) · ⬜ to do
+
+- **Filename:** `measuring-hardwood-board-feet.webp`
+- **Alt text:** Tape measure across a rough-sawn hardwood board at a lumberyard
+- **Title:** Measuring a hardwood board
+- **Caption:** A 1-inch-thick board 6 inches wide and 10 feet long is 5 board feet.
+- **Size:** 1200×675 WebP
+- **Prompt A (photorealistic):** A hand stretching a tape measure across the width of a rough-sawn walnut board in a hardwood lumberyard rack, chalk numbers on the board end, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 16:9 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of a hand stretching a tape measure across the width of a rough-sawn walnut board in a hardwood lumberyard rack, chalk numbers on the board end, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 16:9
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of a hand stretching a tape measure across the width of a rough-sawn walnut board in a hardwood lumberyard rack, chalk numbers on the board end, soft greens and earthy browns, white background, no text, no labels --ar 16:9
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Inline image · ⬜ to do
+
+- **Filename:** `lumber-stack-dimensions.webp`
+- **Alt text:** Stacks of dimensional lumber in different sizes on a rack
+- **Title:** Dimensional lumber sizes
+- **Caption:** Softwood lumber is counted at its nominal size: a 2×4 is figured as 2 × 4 inches.
+- **Size:** 1200×800 WebP
+- **Prompt A (photorealistic):** Neat stacks of pine dimensional lumber, 2x4, 2x6 and 2x10 boards, on a home center rack showing their end grain, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of neat stacks of pine dimensional lumber, 2x4, 2x6 and 2x10 boards, on a home center rack showing their end grain, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of neat stacks of pine dimensional lumber, 2x4, 2x6 and 2x10 boards, on a home center rack showing their end grain, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Inline image · ⬜ to do
+
+- **Filename:** `hardwood-quarter-thickness.webp`
+- **Alt text:** Ends of 4/4, 6/4 and 8/4 hardwood boards side by side
+- **Title:** Hardwood thickness in quarters
+- **Caption:** Hardwood thickness is sold in quarters: 4/4 = 1 inch, 8/4 = 2 inches.
+- **Size:** 1200×800 WebP
+- **Prompt A (photorealistic):** Close-up of the end grain of three oak boards of increasing thickness side by side on a workbench, a steel ruler laid across them, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of close-up of the end grain of three oak boards of increasing thickness side by side on a workbench, a steel ruler laid across them, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of close-up of the end grain of three oak boards of increasing thickness side by side on a workbench, a steel ruler laid across them, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Pinterest pin (upload to Pinterest, not the site) · 
+
+- **Filename:** `how-to-calculate-board-feet-pin.webp`
+- **Overlay text:** "How to Calculate Board Feet + Chart"
+- **Size:** 1000×1500 (2:3
+- **Prompt:** Vertical photo of rough-sawn hardwood boards stacked in a woodworking shop with warm light, soft natural light, the top third calm and uncluttered with empty space for text --ar 2:3
 
 ## How to Calculate Square Footage (Rooms, Odd Shapes and m²)
 
@@ -581,6 +1004,53 @@ never presented as your own results (our Disclaimer promises this).
 - **Overlay text:** "Stair Rise and Run Made Easy"
 - **Size:** 1000×1500 (2:3
 - **Prompt:** Vertical photo of a well-built wooden staircase in a bright modern home, soft natural light, the top third calm and uncluttered with empty space for text --ar 2:3
+
+## How to Find Roof Pitch: Measure Rise Over Run (Pitch Chart)
+
+**Page:** https://www.homegardenlot.com/how-to-find-roof-pitch/ · **Upload to:** `site/images/how-to-find-roof-pitch/`
+
+### Featured (top of post, social, Pinterest) · ⬜ to do
+
+- **Filename:** `measuring-roof-pitch-level.webp`
+- **Alt text:** Level and tape measure used against a rafter to measure roof pitch
+- **Title:** Measuring roof pitch
+- **Caption:** Hold a level 12 inches long horizontally and measure straight down to the rafter: that’s the rise.
+- **Size:** 1200×675 WebP
+- **Prompt A (photorealistic):** In an attic, a 24-inch spirit level held horizontally against the underside of a wooden rafter with a tape measure hanging vertically from the 12-inch mark, flashlight lighting, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 16:9 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of in an attic, a 24-inch spirit level held horizontally against the underside of a wooden rafter with a tape measure hanging vertically from the 12-inch mark, flashlight lighting, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 16:9
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of in an attic, a 24-inch spirit level held horizontally against the underside of a wooden rafter with a tape measure hanging vertically from the 12-inch mark, flashlight lighting, soft greens and earthy browns, white background, no text, no labels --ar 16:9
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Inline image · ⬜ to do
+
+- **Filename:** `roof-pitches-comparison.webp`
+- **Alt text:** Three houses with low, medium and steep roof pitches side by side
+- **Title:** Low, medium and steep roofs
+- **Caption:** A 4/12 roof is low, 6/12 is common, and 12/12 is a 45-degree slope.
+- **Size:** 1200×800 WebP
+- **Prompt A (photorealistic):** Three suburban house rooflines side by side under a clear sky showing a low-slope roof, a medium-slope roof and a steep roof, all with gray asphalt shingles, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of three suburban house rooflines side by side under a clear sky showing a low-slope roof, a medium-slope roof and a steep roof, all with gray asphalt shingles, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of three suburban house rooflines side by side under a clear sky showing a low-slope roof, a medium-slope roof and a steep roof, all with gray asphalt shingles, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Inline image · ⬜ to do
+
+- **Filename:** `gable-end-roof-measure.webp`
+- **Alt text:** Gable end of a house showing rise and run of the roof
+- **Title:** Rise and run on a gable
+- **Caption:** Pitch can also be worked out from the gable end: rise ÷ half the span × 12.
+- **Size:** 1200×800 WebP
+- **Prompt A (photorealistic):** Straight-on photo of a house gable end with a symmetrical pitched roof against a blue sky, clean siding, shot from the yard, natural daylight, shallow depth of field, 35mm lens, true-to-life colors, editorial home-and-garden magazine style --ar 3:2 --style raw
+- **Prompt B (editorial top-down / lifestyle):** Top-down drone-style view of straight-on photo of a house gable end with a symmetrical pitched roof against a blue sky, clean siding, shot from the yard, soft overcast light, crisp detail, earthy palette, clean negative space on one side for text --ar 3:2
+- **Prompt C (clean flat illustration, no text):** Minimal flat vector illustration of straight-on photo of a house gable end with a symmetrical pitched roof against a blue sky, clean siding, shot from the yard, soft greens and earthy browns, white background, no text, no labels --ar 3:2
+- **Negative (SD):** text, watermark, logo, blurry, distorted hands, extra fingers, oversaturated, plastic look, cartoonish
+
+### Pinterest pin (upload to Pinterest, not the site) · 
+
+- **Filename:** `how-to-find-roof-pitch-pin.webp`
+- **Overlay text:** "How to Find Your Roof Pitch + Chart"
+- **Size:** 1000×1500 (2:3
+- **Prompt:** Vertical photo of a house gable roof against a blue sky with a crisp roofline, soft natural light, the top third calm and uncluttered with empty space for text --ar 2:3
 
 ## How to Measure Your Lawn's Square Footage (Any Shape)
 
