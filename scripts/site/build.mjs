@@ -131,6 +131,7 @@ function shellCss(css) {
   }
   return out.join('\n');
 }
+const TOOLGUIDES_CSS = '.hgl-toolguides__list{list-style:none;margin:0;padding:0;display:grid;gap:10px}.hgl-toolguides__item{background:var(--hgt-surface,#fff);border:1px solid var(--hgt-line,#e4e4e7);border-left:4px solid var(--hgt-green,#247b49);border-radius:10px;padding:12px 16px}.hgl-toolguides__link{font-weight:700;color:var(--hgt-green-dark,#1b5e37);text-decoration:none}.hgl-toolguides__link:hover{text-decoration:underline}.hgl-toolguides__desc{display:block;margin-top:4px;color:var(--hgt-muted,#5c5c66);font-size:.95rem;line-height:1.45}';
 const SHELL_CSS = shellCss(THEME_CSS.replace(/\/\*[\s\S]*?\*\//g, ''));
 
 const TOOL_LINKS = [
@@ -609,6 +610,14 @@ ${posts.map((p, i) => card(p, i, isHome && i === 0)).join('\n')}
 }
 
 // ---------- Tools merge ----------
+// Guides that link to a tool: guides named after the tool first, then by how early in the guide the link appears.
+function toolGuides(url) {
+  const href = `href="${url}"`;
+  const stem = url.replace(/^\/|-calculator\/$|\/$/g, '');
+  return POSTS.map((p) => ({ p, i: p.body.indexOf(href) })).filter((x) => x.i >= 0)
+    .sort((a, b) => (b.p.url.includes(stem) - a.p.url.includes(stem)) || a.i / a.p.body.length - b.i / b.p.body.length).slice(0, 3).map((x) => x.p);
+}
+
 async function mergeTools(header, footer) {
   if (!TOOLS_DIR) { console.log('TOOLS_DIR not set: building the blog only.'); return []; }
   const files = await walk(TOOLS_DIR);
@@ -666,8 +675,14 @@ async function mergeTools(header, footer) {
     if (dest === 'tools/index.html') h = h.replace(`<link rel="canonical" href="${SITE}/">`, `<link rel="canonical" href="${SITE}/tools/">`).replace(`<meta property="og:url" content="${SITE}/">`, `<meta property="og:url" content="${SITE}/tools/">`);
     const indexable = !/<meta name="robots" content="noindex/.test(h);
     if (PREVIEW && indexable) h = h.replace(/<meta name="robots" content="[^"]*">/, '<meta name="robots" content="noindex, follow" data-preview="1">');
+    // Calculator pages link to the guides that use them (found automatically from the guides' own links).
+    const guides = chrome && /^[a-z0-9-]+\/index\.html$/.test(rel) ? toolGuides(`/${rel.replace(/index\.html$/, '')}`) : [];
+    if (guides.length) {
+      const box = `<section class="hgl-toolguides hgt-read"><h2>Step-by-step guides</h2><ul class="hgl-toolguides__list">${guides.map((g) => `<li class="hgl-toolguides__item"><a class="hgl-toolguides__link" href="${g.url}">${esc(g.title)}</a><span class="hgl-toolguides__desc">${esc(g.description)}</span></li>`).join('')}</ul></section>\n`;
+      h = h.includes('<section><h2>Related free tools</h2>') ? h.replace('<section><h2>Related free tools</h2>', `${box}<section><h2>Related free tools</h2>`) : h.replace(/(\s*<\/div>\s*<\/main>)/, `\n${box}$1`);
+    }
     if (chrome) {
-      h = h.replace('</head>', `<link rel="preconnect" href="https://blogger.googleusercontent.com">\n<style>${SHELL_CSS}\nbody{margin:0}</style>\n</head>`)
+      h = h.replace('</head>', `<link rel="preconnect" href="https://blogger.googleusercontent.com">\n<style>${SHELL_CSS}\nbody{margin:0}${TOOLGUIDES_CSS}</style>\n</head>`)
         .replace('</body>', '<script src="/assets/hgl.js" defer></script>\n</body>');
     }
     await write(dest, h);
