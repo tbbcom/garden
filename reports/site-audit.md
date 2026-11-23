@@ -1,6 +1,6 @@
 # Site audit: Home Garden Lot
 
-_2026-11-16 · read-only check of 44 live posts, 77 drafts and 10 pages. Nothing in Blogger was changed._
+_2026-11-23 · read-only check of 44 live posts, 77 drafts and 10 pages. Nothing in Blogger was changed._
 
 ## AdSense readiness: ❌ not yet
 
@@ -23,24 +23,25 @@ _2026-11-16 · read-only check of 44 live posts, 77 drafts and 10 pages. Nothing
 
 | Post | Words | To fix |
 |---|---|---|
-| [The 10 Easiest Vegetables to Grow for Beginners at Home](https://www.homegardenlot.com/2025/10/easiest-vegetables-for-beginners.html) | 2263 | old shortcodes as anchor/text: {getToc} {getCard}<br>3 image(s) missing alt text<br>8 labels (use exactly one)<br>not updated for 390 days (refresh candidate) |
-| [The Ultimate Guide How to Paint Kitchen Cabinets (Like a Pro)](https://www.homegardenlot.com/2025/10/how-to-paint-kitchen-cabinets.html) | 2965 | old shortcodes as anchor/text: {getToc} {getCard}<br>1 image(s) missing alt text<br>10 labels (use exactly one)<br>not updated for 390 days (refresh candidate) |
-| [Gardening for Beginners: How to Start a Garden Till Harvest](https://www.homegardenlot.com/2025/10/gardening-for-beginners.html) | 3229 | old shortcodes as anchor/text: {getToc} {getCard}<br>3 image(s) missing alt text<br>8 labels (use exactly one)<br>not updated for 393 days (refresh candidate) |
-| [How to Choose Outdoor Furniture for Small Patios](https://www.homegardenlot.com/2025/10/patio-outdoor-furniture-guide.html) | 2081 | old shortcodes as anchor/text: {getToc} {getCard}<br>2 image(s) missing alt text<br>8 labels (use exactly one)<br>not updated for 393 days (refresh candidate) |
-| [The Best Indoor Plants for Every Room Ideas](https://www.homegardenlot.com/2025/10/best-indoor-plants.html) | 2299 | old shortcodes as anchor/text: {getToc} {getCard}<br>1 image(s) missing alt text<br>8 labels (use exactly one)<br>not updated for 395 days (refresh candidate) |
-| [How to Compost Kitchen Scraps: A Visual Guide](https://www.homegardenlot.com/2025/10/how-to-compost-kitchen-scraps.html) | 1894 | old shortcodes as anchor/text: {getToc} {getCard}<br>1 image(s) missing alt text<br>4 labels (use exactly one)<br>not updated for 400 days (refresh candidate) |
+| [The 10 Easiest Vegetables to Grow for Beginners at Home](https://www.homegardenlot.com/2025/10/easiest-vegetables-for-beginners.html) | 2263 | old shortcodes as anchor/text: {getToc} {getCard}<br>3 image(s) missing alt text<br>8 labels (use exactly one)<br>not updated for 397 days (refresh candidate) |
+| [The Ultimate Guide How to Paint Kitchen Cabinets (Like a Pro)](https://www.homegardenlot.com/2025/10/how-to-paint-kitchen-cabinets.html) | 2965 | old shortcodes as anchor/text: {getToc} {getCard}<br>1 image(s) missing alt text<br>10 labels (use exactly one)<br>not updated for 397 days (refresh candidate) |
+| [Gardening for Beginners: How to Start a Garden Till Harvest](https://www.homegardenlot.com/2025/10/gardening-for-beginners.html) | 3229 | old shortcodes as anchor/text: {getToc} {getCard}<br>3 image(s) missing alt text<br>8 labels (use exactly one)<br>not updated for 400 days (refresh candidate) |
+| [How to Choose Outdoor Furniture for Small Patios](https://www.homegardenlot.com/2025/10/patio-outdoor-furniture-guide.html) | 2081 | old shortcodes as anchor/text: {getToc} {getCard}<br>2 image(s) missing alt text<br>8 labels (use exactly one)<br>not updated for 400 days (refresh candidate) |
+| [The Best Indoor Plants for Every Room Ideas](https://www.homegardenlot.com/2025/10/best-indoor-plants.html) | 2299 | old shortcodes as anchor/text: {getToc} {getCard}<br>1 image(s) missing alt text<br>8 labels (use exactly one)<br>not updated for 402 days (refresh candidate) |
+| [How to Compost Kitchen Scraps: A Visual Guide](https://www.homegardenlot.com/2025/10/how-to-compost-kitchen-scraps.html) | 1894 | old shortcodes as anchor/text: {getToc} {getCard}<br>1 image(s) missing alt text<br>4 labels (use exactly one)<br>not updated for 407 days (refresh candidate) |
 | [25 Vegetable Garden Ideas: Pro Design & Layouts 2025](https://www.homegardenlot.com/2025/10/vegetable-garden-ideas.html) | 3318 | old shortcodes as anchor/text: {getToc} {getCard}<br>1 image(s) missing alt text<br>3 labels (use exactly one) |
 | [How Much for 1000 Sq Ft of New Flooring? (Cost Guide)](https://www.homegardenlot.com/2025/10/cost-to-floor-1000-sq-ft.html) | 2155 | old shortcodes as anchor/text: {getToc} {getCard} {getButton}<br>1 image(s) missing alt text<br>5 labels (use exactly one) |
-| [How to Grow Okra at Home: 5 Guides From Seed to Harvest](https://www.homegardenlot.com/2025/10/how-to-grow-okra.html) | 2784 | old shortcodes as anchor/text: {getToc} {getCard}<br>9 labels (use exactly one)<br>not updated for 393 days (refresh candidate) |
-| [Top 20 Best Small Garden Design Ideas: Hacks It & Transform](https://www.homegardenlot.com/2025/10/small-garden-design-ideas.html) | 2475 | old shortcodes as anchor/text: {getToc} {getCard}<br>10 labels (use exactly one)<br>not updated for 394 days (refresh candidate) |
-| [How to Hang Art: A Pro's Guide to Perfect Placement](https://www.homegardenlot.com/2025/10/how-to-hang-art.html) | 2391 | old shortcodes as anchor/text: {getToc} {getCard}<br>8 labels (use exactly one)<br>not updated for 368 days (refresh candidate) |
-| [The 10 Best Sustainable Home Decor Brands You Need to Know](https://www.homegardenlot.com/2025/10/sustainable-home-decor-brands.html) | 1870 | old shortcodes as anchor/text: {getToc} {getCard}<br>6 labels (use exactly one)<br>not updated for 395 days (refresh candidate) |
-| [How to Master the Top 4 Decor Trends of 2025](https://www.homegardenlot.com/2025/10/decor-trends.html) | 1932 | old shortcodes as anchor/text: {getToc} {getCard}<br>9 labels (use exactly one)<br>not updated for 395 days (refresh candidate) |
-| [How to Grow Garlic: 8 Steps to a Bountiful Harvest](https://www.homegardenlot.com/2025/10/how-to-grow-garlic.html) | 1602 | old shortcodes as anchor/text: {getToc} {getCard}<br>4 labels (use exactly one)<br>not updated for 397 days (refresh candidate) |
-| [How to Grow Broccoli at Home & Harvest Easily](https://www.homegardenlot.com/2025/10/how-to-grow-broccoli.html) | 1959 | old shortcodes as anchor/text: {getToc} {getCard}<br>5 labels (use exactly one)<br>not updated for 397 days (refresh candidate) |
-| [How to Grow Sweet Potatoes in Malaysia: From Slip to Harvest](https://www.homegardenlot.com/2025/10/grow-sweet-potatoes.html) | 1907 | old shortcodes as anchor/text: {getToc} {getCard}<br>6 labels (use exactly one)<br>not updated for 399 days (refresh candidate) |
-| [How to Grow Strawberries in Pots at Home: A Visual Guide!](https://www.homegardenlot.com/2025/10/how-to-grow-strawberry.html) | 2109 | old shortcodes as anchor/text: {getToc} {getCard}<br>5 labels (use exactly one)<br>not updated for 400 days (refresh candidate) |
-| [How to Grow Watermelon From Seed: A Visual Guide](https://www.homegardenlot.com/2022/11/how-to-grow-watermelon.html) | 1851 | old shortcodes as anchor/text: {getToc} {getCard}<br>1 image(s) missing alt text<br>not updated for 402 days (refresh candidate) |
+| [How to Grow Okra at Home: 5 Guides From Seed to Harvest](https://www.homegardenlot.com/2025/10/how-to-grow-okra.html) | 2784 | old shortcodes as anchor/text: {getToc} {getCard}<br>9 labels (use exactly one)<br>not updated for 400 days (refresh candidate) |
+| [Top 20 Best Small Garden Design Ideas: Hacks It & Transform](https://www.homegardenlot.com/2025/10/small-garden-design-ideas.html) | 2475 | old shortcodes as anchor/text: {getToc} {getCard}<br>10 labels (use exactly one)<br>not updated for 401 days (refresh candidate) |
+| [How to Hang Art: A Pro's Guide to Perfect Placement](https://www.homegardenlot.com/2025/10/how-to-hang-art.html) | 2391 | old shortcodes as anchor/text: {getToc} {getCard}<br>8 labels (use exactly one)<br>not updated for 375 days (refresh candidate) |
+| [The 10 Best Sustainable Home Decor Brands You Need to Know](https://www.homegardenlot.com/2025/10/sustainable-home-decor-brands.html) | 1870 | old shortcodes as anchor/text: {getToc} {getCard}<br>6 labels (use exactly one)<br>not updated for 402 days (refresh candidate) |
+| [How to Master the Top 4 Decor Trends of 2025](https://www.homegardenlot.com/2025/10/decor-trends.html) | 1932 | old shortcodes as anchor/text: {getToc} {getCard}<br>9 labels (use exactly one)<br>not updated for 402 days (refresh candidate) |
+| [How to Grow Garlic: 8 Steps to a Bountiful Harvest](https://www.homegardenlot.com/2025/10/how-to-grow-garlic.html) | 1602 | old shortcodes as anchor/text: {getToc} {getCard}<br>4 labels (use exactly one)<br>not updated for 404 days (refresh candidate) |
+| [How to Grow Broccoli at Home & Harvest Easily](https://www.homegardenlot.com/2025/10/how-to-grow-broccoli.html) | 1959 | old shortcodes as anchor/text: {getToc} {getCard}<br>5 labels (use exactly one)<br>not updated for 404 days (refresh candidate) |
+| [How to Grow Cabbage at Home: Step-by-Step Guide](https://www.homegardenlot.com/2025/10/how-to-grow-cabbage.html) | 1652 | old shortcodes as anchor/text: {getToc} {getCard}<br>4 labels (use exactly one)<br>not updated for 370 days (refresh candidate) |
+| [How to Grow Sweet Potatoes in Malaysia: From Slip to Harvest](https://www.homegardenlot.com/2025/10/grow-sweet-potatoes.html) | 1907 | old shortcodes as anchor/text: {getToc} {getCard}<br>6 labels (use exactly one)<br>not updated for 406 days (refresh candidate) |
+| [How to Grow Strawberries in Pots at Home: A Visual Guide!](https://www.homegardenlot.com/2025/10/how-to-grow-strawberry.html) | 2109 | old shortcodes as anchor/text: {getToc} {getCard}<br>5 labels (use exactly one)<br>not updated for 407 days (refresh candidate) |
+| [How to Grow Watermelon From Seed: A Visual Guide](https://www.homegardenlot.com/2022/11/how-to-grow-watermelon.html) | 1851 | old shortcodes as anchor/text: {getToc} {getCard}<br>1 image(s) missing alt text<br>not updated for 409 days (refresh candidate) |
 | [How to Kill Weeds Naturally: 7 Methods That Actually Work](https://www.homegardenlot.com/2022/09/how-to-kill-weeds-naturally.html) | 1874 | old shortcodes as anchor/text: {getToc} {getCard}<br>1 image(s) missing alt text<br>3 labels (use exactly one) |
 | [The Renter's Guide to Peel & Stick Wallpaper (Install & Removal)](https://www.homegardenlot.com/2026/10/peel-and-stick-wallpaper-renters-guide.html) | 1108 | old shortcodes as anchor/text: {getToc}<br>2 labels (use exactly one) |
 | [How to Grow Carrots Till Harvest: A 7-Step Beginner's Guide](https://www.homegardenlot.com/2025/11/how-to-grow-carrots.html) | 2338 | old shortcodes as anchor/text: {getToc} {getCard}<br>3 labels (use exactly one) |
@@ -50,23 +51,22 @@ _2026-11-16 · read-only check of 44 live posts, 77 drafts and 10 pages. Nothing
 | [20 Best Indoor Hanging Plants for Any Room & Skill Level](https://www.homegardenlot.com/2025/10/best-indoor-hanging-plants.html) | 3216 | old shortcodes as anchor/text: {getToc} {getCard}<br>4 labels (use exactly one) |
 | [How to Grow Radishes: A 30-Day Guide for Beginners](https://www.homegardenlot.com/2025/10/how-to-grow-radishes.html) | 2079 | old shortcodes as anchor/text: {getToc} {getCard}<br>2 labels (use exactly one) |
 | [Natural Pest Control for Your Garden (Homemade Pesticides)](https://www.homegardenlot.com/2025/10/natural-pest-control-garden.html) | 2424 | old shortcodes as anchor/text: {getToc} {getCard}<br>7 labels (use exactly one) |
-| [How to Grow Cabbage at Home: Step-by-Step Guide](https://www.homegardenlot.com/2025/10/how-to-grow-cabbage.html) | 1652 | old shortcodes as anchor/text: {getToc} {getCard}<br>4 labels (use exactly one) |
-| [How to Grow Brussels Sprouts (3 Secrets That Will Change Your Life)](https://www.homegardenlot.com/2022/09/how-to-grow-brussels-sprouts.html) | 825 | title 67 chars (may be cut in search; aim ≤ 65)<br>not updated for 1372 days (refresh candidate) |
-| [8 Genius Tricks to Get Rid of Flies for Good](https://www.homegardenlot.com/2022/09/8-genius-tricks-to-get-rid-of-flies.html) | 1229 | 1 image(s) missing alt text<br>not updated for 1372 days (refresh candidate) |
-| [Outdoor Growing Space: How to Grow Anything Outside](https://www.homegardenlot.com/2022/11/outdoor-growing-space-how-to-grow.html) | 1263 | not updated for 1372 days (refresh candidate) |
-| [How to Grow and Care for a Banana Plant Indoors](https://www.homegardenlot.com/2022/11/how-to-grow-and-care-for-banana-plant.html) | 1805 | not updated for 1372 days (refresh candidate) |
-| [How to Make Compost to Feed Your Plants and Reduce Waste](https://www.homegardenlot.com/2022/11/how-to-make-compost-to-feed-your-plants.html) | 2003 | not updated for 1372 days (refresh candidate) |
-| [How to Grow Potatoes at Home: Step by Step Complete Guide](https://www.homegardenlot.com/2022/10/how-to-grow-potatoes.html) | 1709 | not updated for 1372 days (refresh candidate) |
-| [How to Grow Curry Leaf in the United States (Easy Steps)](https://www.homegardenlot.com/2022/10/how-to-grow-curry-leaf.html) | 2205 | not updated for 1372 days (refresh candidate) |
-| [How to Grow Okra from Seeds to Harvest - Step by Step Guide](https://www.homegardenlot.com/2022/10/how-to-grow-okra-from-seeds-to-harvest.html) | 1822 | not updated for 1372 days (refresh candidate) |
-| [How to Grow Dragon Fruit From Seed at Home - Easy Steps](https://www.homegardenlot.com/2022/10/how-to-grow-dragon-fruit.html) | 1545 | not updated for 1372 days (refresh candidate) |
-| [How to Grow, Care, and Harvest for Your Pumpkins](https://www.homegardenlot.com/2022/10/how-to-grow-pumpkins.html) | 1220 | not updated for 1372 days (refresh candidate) |
-| [How to Grow Strawberries at Home (Tips for Beginners)](https://www.homegardenlot.com/2022/10/how-to-grow-strawberries.html) | 1375 | not updated for 1372 days (refresh candidate) |
-| [How to Build a Raised Bed Garden: The Simplest, Easiest Guide](https://www.homegardenlot.com/2022/09/how-to-build-raised-bed-garden.html) | 1441 | not updated for 1372 days (refresh candidate) |
-| [How to Grow Ginger in Your Home Garden Step by Step Guide](https://www.homegardenlot.com/2022/09/how-to-grow-ginger-at-home.html) | 1011 | not updated for 1372 days (refresh candidate) |
-| [How to Get Rid of Ants (5 Solutions That Actually Work)](https://www.homegardenlot.com/2022/09/how-to-get-rid-of-ants.html) | 931 | not updated for 1372 days (refresh candidate) |
-| [How to Get Rid of Lizards in Your House Permanently](https://www.homegardenlot.com/2022/09/how-to-get-rid-of-lizards.html) | 1786 | not updated for 1372 days (refresh candidate) |
-| [What To Plant in Your Garden During November](https://www.homegardenlot.com/2022/09/what-to-plant-in-november.html) | 1070 | not updated for 1372 days (refresh candidate) |
+| [How to Grow Brussels Sprouts (3 Secrets That Will Change Your Life)](https://www.homegardenlot.com/2022/09/how-to-grow-brussels-sprouts.html) | 825 | title 67 chars (may be cut in search; aim ≤ 65)<br>not updated for 1379 days (refresh candidate) |
+| [8 Genius Tricks to Get Rid of Flies for Good](https://www.homegardenlot.com/2022/09/8-genius-tricks-to-get-rid-of-flies.html) | 1229 | 1 image(s) missing alt text<br>not updated for 1379 days (refresh candidate) |
+| [Outdoor Growing Space: How to Grow Anything Outside](https://www.homegardenlot.com/2022/11/outdoor-growing-space-how-to-grow.html) | 1263 | not updated for 1379 days (refresh candidate) |
+| [How to Grow and Care for a Banana Plant Indoors](https://www.homegardenlot.com/2022/11/how-to-grow-and-care-for-banana-plant.html) | 1805 | not updated for 1379 days (refresh candidate) |
+| [How to Make Compost to Feed Your Plants and Reduce Waste](https://www.homegardenlot.com/2022/11/how-to-make-compost-to-feed-your-plants.html) | 2003 | not updated for 1379 days (refresh candidate) |
+| [How to Grow Potatoes at Home: Step by Step Complete Guide](https://www.homegardenlot.com/2022/10/how-to-grow-potatoes.html) | 1709 | not updated for 1379 days (refresh candidate) |
+| [How to Grow Curry Leaf in the United States (Easy Steps)](https://www.homegardenlot.com/2022/10/how-to-grow-curry-leaf.html) | 2205 | not updated for 1379 days (refresh candidate) |
+| [How to Grow Okra from Seeds to Harvest - Step by Step Guide](https://www.homegardenlot.com/2022/10/how-to-grow-okra-from-seeds-to-harvest.html) | 1822 | not updated for 1379 days (refresh candidate) |
+| [How to Grow Dragon Fruit From Seed at Home - Easy Steps](https://www.homegardenlot.com/2022/10/how-to-grow-dragon-fruit.html) | 1545 | not updated for 1379 days (refresh candidate) |
+| [How to Grow, Care, and Harvest for Your Pumpkins](https://www.homegardenlot.com/2022/10/how-to-grow-pumpkins.html) | 1220 | not updated for 1379 days (refresh candidate) |
+| [How to Grow Strawberries at Home (Tips for Beginners)](https://www.homegardenlot.com/2022/10/how-to-grow-strawberries.html) | 1375 | not updated for 1379 days (refresh candidate) |
+| [How to Build a Raised Bed Garden: The Simplest, Easiest Guide](https://www.homegardenlot.com/2022/09/how-to-build-raised-bed-garden.html) | 1441 | not updated for 1379 days (refresh candidate) |
+| [How to Grow Ginger in Your Home Garden Step by Step Guide](https://www.homegardenlot.com/2022/09/how-to-grow-ginger-at-home.html) | 1011 | not updated for 1379 days (refresh candidate) |
+| [How to Get Rid of Ants (5 Solutions That Actually Work)](https://www.homegardenlot.com/2022/09/how-to-get-rid-of-ants.html) | 931 | not updated for 1379 days (refresh candidate) |
+| [How to Get Rid of Lizards in Your House Permanently](https://www.homegardenlot.com/2022/09/how-to-get-rid-of-lizards.html) | 1786 | not updated for 1379 days (refresh candidate) |
+| [What To Plant in Your Garden During November](https://www.homegardenlot.com/2022/09/what-to-plant-in-november.html) | 1070 | not updated for 1379 days (refresh candidate) |
 
 ## Labels
 
